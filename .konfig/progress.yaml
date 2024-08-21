@@ -1,0 +1,101 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v1/actions:
+    get: Actions_list
+  /v1/actions/{actionName}:
+    get: Actions_get
+  /v1/actions/{actionName}/execute:
+    post: Actions_execute
+  /v1/apps:
+    get: Apps_list
+  /v1/connectedAccounts:
+    get: ConnectedAccounts_list
+    post: ConnectedAccounts_createConnection
+  /v1/connectedAccounts/{connectedAccountId}:
+    delete: ConnectedAccounts_removeConnection
+    get: ConnectedAccounts_getAccountDetails
+  /v1/integrations:
+    get: Integrations_list
+    post: Integrations_create
+  /v1/integrations/{integrationId}:
+    get: Integrations_get
+    patch: Integrations_update
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/actions/{actionName}/execute:
+    post:
+      application/json: ActionsExecuteActionRequest
+  /v1/connectedAccounts:
+    post:
+      application/json: ConnectedAccountsCreateConnectionRequest
+  /v1/integrations:
+    post:
+      application/json: IntegrationsCreateNewIntegrationRequest
+  /v1/integrations/{integrationId}:
+    patch:
+      application/json: IntegrationsUpdateIntegrationSettingsRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/actions:
+    get:
+      '200':
+        application/json: ActionsGetListResponse
+  /v1/actions/{actionName}:
+    get:
+      '200':
+        application/json: ActionsGetSpecificActionResponse
+  /v1/actions/{actionName}/execute:
+    post:
+      '200':
+        application/json: ActionsExecuteActionResponse
+  /v1/apps:
+    get:
+      '200':
+        application/json: AppsGetAllAppsResponse
+  /v1/connectedAccounts:
+    get:
+      '200':
+        application/json: ConnectedAccountsListAllResponse
+    post:
+      '200':
+        application/json: ConnectedAccountsCreateConnectionResponse
+  /v1/connectedAccounts/{connectedAccountId}:
+    delete:
+      '200':
+        application/json: ConnectedAccountsRemoveConnectionResponse
+    get:
+      '200':
+        application/json: ConnectedAccountsGetAccountDetailsResponse
+  /v1/integrations:
+    get:
+      '200':
+        application/json: IntegrationsListAllResponse
+    post:
+      '200':
+        application/json: IntegrationsCreateNewIntegrationResponse
+  /v1/integrations/{integrationId}:
+    get:
+      '200':
+        application/json: IntegrationsGetIntegrationDetailsResponse
+    patch:
+      '200':
+        application/json: IntegrationsUpdateIntegrationSettingsResponse
+securityParameters:
+  appNames:
+    query: false
+  integrationId:
+    query: false
+  limit:
+    query: false
+  page:
+    query: false
+  pageSize:
+    query: false
+  showEnabledOnly:
+    query: false
+  useCase:
+    query: false
+validServerUrls: {}
