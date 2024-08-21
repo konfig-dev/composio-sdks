@@ -4,6 +4,10 @@ outputDirectory: /tmp/composio-sdks-out
 specRemotePath: https://raw.githubusercontent.com/ComposioHQ/composio/master/docs/composio.yaml
 specPath: openapi-fixed.yaml
 specInputPath: composio.yaml
+readmeHeader:
+  title: Composio
+  image: header.png
+  url: https://composio.dev
 generators:
   ruby:
     version: 1.0.0
