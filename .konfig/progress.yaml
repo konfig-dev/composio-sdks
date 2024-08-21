@@ -1,7 +1,181 @@
 examples: {}
 examples_2: {}
-examples_3: {}
+examples_3:
+  /api/v1/apps/custom-repo/add-repo:
+    post:
+      '200':
+        application/json: {}
+  /api/v1/apps/custom-repo/get-repo:
+    get:
+      '200':
+        application/json: {}
+  /api/v1/apps/openapi/spec/add:
+    post:
+      '200':
+        application/json: {}
+  /api/v1/apps/openapi/spec/delete/{name}:
+    delete:
+      '200':
+        application/json: {}
+  /api/v1/apps/openapi/spec/logs/{name}:
+    get:
+      '200':
+        application/json: {}
+  /api/v1/apps/sync:
+    post:
+      '202':
+        application/json: {}
+  /api/v1/connectedAccounts/{connectedAccountId}:
+    delete:
+      '200':
+        application/json: {}
+    get:
+      '200':
+        application/json: {}
+  /api/v1/connectedAccounts/{connectedAccountId}/disable:
+    post:
+      '201':
+        application/json: {}
+  /api/v1/connectedAccounts/{connectedAccountId}/enable:
+    post:
+      '201':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
 operationIds:
+  /api/v1/actions:
+    get: ActionsControllerV1_list
+  /api/v1/actions/proxy:
+    post: ActionsControllerV1_executeProxy
+  /api/v1/actions/{actionId}:
+    get: ActionsControllerV1_get
+  /api/v1/actions/{actionId}/execute:
+    post: ActionsControllerV1_execute
+  /api/v1/api_keys:
+    get: ApiKeys_list
+    post: ApiKeys_generate
+  /api/v1/api_keys/{id}:
+    delete: ApiKeys_remove
+  /api/v1/apps:
+    get: App_list
+  /api/v1/apps/custom-repo/add-repo:
+    post: App_createCustomRepo
+  /api/v1/apps/custom-repo/get-repo:
+    get: App_getCustomRepo
+  /api/v1/apps/openapi/spec/add:
+    post: App_addOpenApiSpec
+  /api/v1/apps/openapi/spec/delete/{name}:
+    delete: App_deleteOpenApiSpecTool
+  /api/v1/apps/openapi/spec/list:
+    get: App_listOpenApiSpecs
+  /api/v1/apps/openapi/spec/logs/{name}:
+    get: App_getLogsByName
+  /api/v1/apps/sync:
+    post: App_syncCustomRepo
+  /api/v1/apps/{appName}:
+    get: App_getDetails
+  /api/v1/cli/generate-cli-session:
+    get: Cli_exchangeCode
+  /api/v1/cli/get-cli-code:
+    get: Cli_getCode
+  /api/v1/cli/sentry-dns:
+    get: Admin_getSentryDns
+  /api/v1/cli/verify-cli-code:
+    get: Cli_verifyCode
+  /api/v1/client/auth/client_info:
+    get: ClientAuth_getUserInfo
+  /api/v1/client/auth/delete/{clientId}:
+    delete: ClientAuth_deleteClient
+  /api/v1/client/auth/google_login:
+    post: ClientAuth_googleLogin
+  /api/v1/client/auth/identify:
+    post: ClientAuth_identifyClientOperation
+  /api/v1/client/auth/logout:
+    post: ClientAuth_userLogout
+  /api/v1/client/auth/pusher_auth:
+    post: ClientAuth_authenticateUser
+  /api/v1/client/auth/send_magic_link:
+    post: ClientAuth_sendMagicLink
+  /api/v1/client/auth/track:
+    post: ClientAuth_trackClientOperation
+  /api/v1/client/auth/verify_magic_link:
+    post: ClientAuth_verifyMagicLink
+  /api/v1/connectedAccounts:
+    get: Connections_list
+    post: Connections_initiate
+  /api/v1/connectedAccounts/{connectedAccountId}:
+    delete: Connections_delete
+    get: Connections_get
+  /api/v1/connectedAccounts/{connectedAccountId}/disable:
+    post: Connections_disable
+  /api/v1/connectedAccounts/{connectedAccountId}/enable:
+    post: Connections_enable
+  /api/v1/integrations:
+    get: AppConnector_listGlobalConnectors
+    post: AppConnector_createIntegration
+  /api/v1/integrations/{integrationId}:
+    delete: AppConnector_deleteConnector
+    get: AppConnector_getConnectorInfo
+    patch: AppConnector_updateIntegration
+  /api/v1/integrations/{integrationId}/status:
+    post: AppConnector_updateStatus
+  /api/v1/login/{appName}/auth:
+    get: AppLogin_handleAuth2Callback
+  /api/v1/login/{appName}/callback:
+    get: AppLogin_verifyOAuth2Login
+  /api/v1/logs/:
+    get: Logs_list
+  /api/v1/metadata:
+    get: Metadata_getInfo
+    post: Metadata_updateInfo
+  /api/v1/metadata/toggle.info:
+    get: Metadata_getToggleInfo
+  /api/v1/metadata/toggle/trigger:
+    post: Metadata_toggleTriggerState
+  /api/v1/team/invite:
+    post: Team_sendInvitation
+  /api/v1/team/members:
+    get: Team_getMemberList
+  /api/v1/team/members/{id}:
+    delete: Team_removeMemberById
+  /api/v1/triggers:
+    get: Triggers_list
+  /api/v1/triggers/active_triggers:
+    get: Triggers_getActiveTriggers
+  /api/v1/triggers/callback_url:
+    get: Triggers_getCallbackUrl
+  /api/v1/triggers/disable/{triggerInstanceId}:
+    post: Triggers_disableTriggerInstance
+  /api/v1/triggers/enable/{connectedAccountId}/{triggerName}:
+    post: Triggers_enable
+  /api/v1/triggers/get/{triggerId}:
+    get: Triggers_getById
+  /api/v1/triggers/handle/{appName}/{clientId}:
+    post: Triggers_handleTrigger
+  /api/v1/triggers/instance/{triggerId}/status:
+    patch: Triggers_switchInstanceStatus
+    post: Triggers_switchPostInstanceStatus
+  /api/v1/triggers/instance/{triggerInstanceId}:
+    delete: Triggers_deleteTriggerInstance
+  /api/v1/triggers/logs:
+    get: Triggers_getLogsBasedOnConnectionAndIntegrationDetails
+  /api/v1/triggers/pusher:
+    post: Triggers_handlePusherEvents
+  /api/v1/triggers/setCallbackURL:
+    post: Triggers_setCallbackUrl
+  /api/v1/triggers/set_callback_url:
+    post: Triggers_setCallbackUrl
+  /api/v2/actions:
+    get: ActionsControllerV2_list
+  /api/v2/actions/list/all:
+    get: ActionsControllerV2_getAllActionsBasedOnQuery
+  /api/v2/actions/proxy:
+    post: ActionsControllerV2_executeActionProxy
+  /api/v2/actions/{actionId}:
+    get: ActionsControllerV2_getActionById
+  /api/v2/actions/{actionId}/execute:
+    post: ActionsControllerV2_execute
+  /api/v2/triggers/{triggerName}:
+    get: TriggerControllerV2_getTriggerInfo
   /v1/actions:
     get: Actions_list
   /v1/actions/{actionName}:
@@ -25,6 +199,21 @@ operationIds:
 operationTags: {}
 renameTags: {}
 requestSchemaNames:
+  /api/v1/client/auth/google_login:
+    post:
+      application/json: ClientAuthGoogleLoginRequest
+  /api/v1/client/auth/pusher_auth:
+    post:
+      application/json: ClientAuthAuthenticateUserRequest
+  /api/v1/triggers/handle/{appName}/{clientId}:
+    post:
+      application/json: TriggersHandleTriggerRequest
+  /api/v1/triggers/pusher:
+    post:
+      application/json: TriggersHandlePusherEventsRequest
+  /api/v1/triggers/setCallbackURL:
+    post:
+      application/json: TriggersSetCallbackUrlRequest
   /v1/actions/{actionName}/execute:
     post:
       application/json: ActionsExecuteActionRequest
@@ -39,6 +228,65 @@ requestSchemaNames:
       application/json: IntegrationsUpdateIntegrationSettingsRequest
 responseDescriptions: {}
 responseSchemaNames:
+  /api/v1/api_keys:
+    get:
+      '200':
+        text/html; charset=utf-8: ApiKeysListApiKeysResponse
+  /api/v1/apps/custom-repo/add-repo:
+    post:
+      '200':
+        application/json: AppCreateCustomRepoResponse
+  /api/v1/apps/custom-repo/get-repo:
+    get:
+      '200':
+        application/json: AppGetCustomRepoResponse
+  /api/v1/apps/openapi/spec/add:
+    post:
+      '200':
+        application/json: AppAddOpenApiSpecResponse
+  /api/v1/apps/openapi/spec/delete/{name}:
+    delete:
+      '200':
+        application/json: AppDeleteOpenApiSpecToolResponse
+  /api/v1/apps/openapi/spec/list:
+    get:
+      '200':
+        application/json: AppListOpenApiSpecsResponse
+  /api/v1/apps/openapi/spec/logs/{name}:
+    get:
+      '200':
+        application/json: AppGetLogsByNameResponse
+  /api/v1/apps/sync:
+    post:
+      '202':
+        application/json: AppSyncCustomRepoResponse
+  /api/v1/connectedAccounts/{connectedAccountId}:
+    delete:
+      '200':
+        application/json: ConnectionsDeleteConnectionResponse
+    get:
+      '200':
+        application/json: ConnectionsGetConnectionResponse
+  /api/v1/connectedAccounts/{connectedAccountId}/disable:
+    post:
+      '201':
+        application/json: ConnectionsDisableConnectionResponse
+  /api/v1/connectedAccounts/{connectedAccountId}/enable:
+    post:
+      '201':
+        application/json: ConnectionsEnableConnectionResponse
+  /api/v1/team/members:
+    get:
+      '200':
+        text/html; charset=utf-8: TeamGetMemberListResponse
+  /api/v1/triggers:
+    get:
+      '200':
+        text/html; charset=utf-8: TriggersListTriggersResponse
+  /api/v2/triggers/{triggerName}:
+    get:
+      '200':
+        text/html; charset=utf-8: TriggerControllerV2GetTriggerInfoResponse
   /v1/actions:
     get:
       '200':
@@ -84,9 +332,37 @@ responseSchemaNames:
       '200':
         application/json: IntegrationsUpdateIntegrationSettingsResponse
 securityParameters:
+  '':
+    header: false
+  actions:
+    query: false
   appNames:
     query: false
+  apps:
+    query: false
+  category:
+    query: false
+  code:
+    query: false
+  connectedAccountId:
+    query: false
+  connectedAccountIds:
+    query: false
+  connectionId:
+    query: false
+  cursor:
+    query: false
+  email:
+    query: false
+  endpoint:
+    query: false
+  filterImportantActions:
+    query: false
   integrationId:
+    query: false
+  integrationIds:
+    query: false
+  key:
     query: false
   limit:
     query: false
@@ -94,8 +370,34 @@ securityParameters:
     query: false
   pageSize:
     query: false
+  redirectUri:
+    query: false
+  search:
+    query: false
+  showActiveOnly:
+    query: false
+  showAll:
+    query: false
+  showDisabled:
+    query: false
   showEnabledOnly:
     query: false
+  status:
+    query: false
+  tags:
+    query: false
+  time:
+    query: false
+  triggerIds:
+    query: false
+  triggerNames:
+    query: false
+  type:
+    query: false
   useCase:
+    query: false
+  usecaseLimit:
+    query: false
+  user_uuid:
     query: false
 validServerUrls: {}
