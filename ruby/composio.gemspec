@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["soham"]
   s.email       = ["hello@composio.dev"]
-  s.homepage    = "composio.dev"
+  s.homepage    = "https://composio.dev"
   s.summary     = "Composio API Collection Ruby Gem"
   s.description = "Composio SDK: Equip your agent with high-quality tools and build your real-world usecase"
   s.license     = "MIT"

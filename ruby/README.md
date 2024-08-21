@@ -7,7 +7,7 @@
 Composio SDK: Equip your agent with high-quality tools and build your real-world usecase
 
 [![npm](https://img.shields.io/badge/gem-v0.1.0-blue)](https://rubygems.org/gems/composio/versions/0.1.0)
-[![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](composio.dev)
+[![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](https://composio.dev)
 
 </div>
 
