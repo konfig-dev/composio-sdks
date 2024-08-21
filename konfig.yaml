@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://unpkg.com/konfig-lib@latest/konfig-yaml.schema.json
+
+outputDirectory: /tmp/composio-sdks-out
+specRemotePath: https://raw.githubusercontent.com/ComposioHQ/composio/master/docs/composio.yaml
+specPath: openapi-fixed.yaml
+specInputPath: composio.yaml
+generators:
+  ruby:
+    version: 1.0.0
+    moduleName: Composio
+    gemName: composio
+    outputDirectory: ruby
+    git:
+      userId: konfig-dev
+      repoId: composio-sdks/tree/main/ruby

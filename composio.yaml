@@ -1,0 +1,1623 @@
+openapi: 3.1.0
+info:
+  summary: ''
+  title: Composio API Collection
+  description: Composio API OpenAPI Spec.
+  version: 1.0.0
+  contact:
+    name: soham
+    url: composio.dev
+    email: hello@composio.dev
+  license:
+    url: https://composio.dev/terms-of-service
+    name: Proprietary
+servers:
+  - description: baseurl
+    url: https://backend.composio.dev/api
+tags:
+  - name: actions
+  - name: apps
+  - name: connectedAccounts
+  - name: integrations
+paths:
+  /v1/apps:
+    get:
+      servers:
+        - description: baseurl
+          url: https://backend.composio.dev/api
+      tags:
+        - apps
+      summary: List All Apps
+      operationId: list-all-apps
+      security:
+        - authToken: []
+      description: >-
+        Retrieves a list of all available apps in the Composio platform.
+
+
+        This endpoint allows clients to explore and discover the supported apps.
+        It returns an array of app objects, each containing essential details
+        such as the app's key, name, description, logo, categories, and unique
+        identifier.
+
+
+        Use this endpoint to build a catalog of available apps and provide your
+        users with an overview of the apps they can integrate with.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    description: An array of app objects.
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        description:
+                          description: A brief description of the app's functionality.
+                          type: string
+                        key:
+                          description: A unique identifier for the app.
+                          type: string
+                        name:
+                          description: The name of the app.
+                          type: string
+                        logo:
+                          description: The URL of the app's logo image.
+                          type: string
+                        categories:
+                          description: An array of categories the app belongs to.
+                          type: array
+                          items:
+                            type: string
+                        appId:
+                          description: The unique ID of the app.
+                          type: string
+              examples:
+                List All Apps:
+                  value:
+                    items:
+                      - description: >-
+                          Tool to help teams organize, track, and manage their
+                          work.
+                        key: asana
+                        name: Asana
+                        logo: >-
+                          https://assets.asana.biz/m/7342a96f034ee491/original/trademark-logo-lockup-horizontal.png
+                        categories:
+                          - productivity
+                          - ticketing
+                        appId: 36a0705d-7e93-42ba-9288-436ee6201d7c
+                      - description: >-
+                          A business communication platform used for teams to
+                          schedule, prepare and follow up on external meetings.
+                        key: calendly
+                        name: Calendly
+                        logo: >-
+                          https://upload.wikimedia.org/wikipedia/en/thumb/7/7f/Calendly_company_logo.png/330px-Calendly_company_logo.png
+                        categories:
+                          - productivity
+                        appId: fb9b4a59-8eda-4032-84d7-638e1df4ffef
+  /v1/connectedAccounts:
+    get:
+      servers:
+        - description: baseurl
+          url: https://backend.composio.dev/api
+      tags:
+        - connectedAccounts
+      summary: List All Connected Accounts
+      operationId: list-all-connections
+      security:
+        - authToken: []
+      description: >-
+        Retrieves a list of all connected accounts in the Composio platform. 
+
+
+        It supports pagination and filtering based on various parameters such as
+        app ID, integration ID, and connected  ID. The response includes an
+        array of connection objects, each containing details like the connector
+        ID, connection parameters, status, creation/update timestamps, and
+        associated app information.
+
+
+        Use this endpoint to manage and monitor all active connections.  
+      parameters:
+        - description: Page number to fetch
+          name: page
+          in: query
+          schema:
+            type: integer
+            examples:
+              - 1
+          examples:
+            default:
+              value: 1
+        - description: Page size to assume
+          name: pageSize
+          in: query
+          schema:
+            type: integer
+            examples:
+              - 10
+          examples:
+            default:
+              value: 10
+        - description: Filter by using specific Integration
+          name: integrationId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        connectorId:
+                          description: >-
+                            The unique identifier of the connector associated
+                            with the connection.
+                          type: string
+                        connectionParams:
+                          description: >-
+                            An object containing the parameters specific to the
+                            connection.
+                          type: object
+                          properties:
+                            base_url:
+                              description: >-
+                                The base URL for making API requests to the
+                                connected app.
+                              type: string
+                            client_id:
+                              description: >-
+                                The client ID used for authentication with the
+                                connected app.
+                              type: string
+                            client_secret:
+                              description: >-
+                                The client secret used for authentication with
+                                the connected app.
+                              type: string
+                            owner:
+                              description: >-
+                                The owner of the connection, which can be an
+                                object or a string.
+                              oneOf:
+                                - type: object
+                                  properties:
+                                    type:
+                                      description: The type of the owner (e.g., "user").
+                                      type: string
+                                    user:
+                                      description: >-
+                                        An object representing the user owner of
+                                        the connection.
+                                      type: object
+                                      properties:
+                                        id:
+                                          type: string
+                                        name:
+                                          type: string
+                                        type:
+                                          type: string
+                                        object:
+                                          description: >-
+                                            The object type of the user (e.g.,
+                                            "user").
+                                          type: string
+                                        person:
+                                          type: object
+                                          properties:
+                                            email:
+                                              type: string
+                                        avatar_url:
+                                          type: string
+                                - type: string
+                            bot_id:
+                              description: >-
+                                The ID of the bot associated with the
+                                connection.
+                              type: string
+                            request_id:
+                              description: >-
+                                The ID of the request associated with the
+                                connection.
+                              type: string
+                            token_type:
+                              description: >-
+                                The type of token used for authentication (e.g.,
+                                "bearer").
+                              type: string
+                            access_token:
+                              description: >-
+                                The access token used for authentication with
+                                the connected app.
+                              type: string
+                            workspace_id:
+                              description: >-
+                                The ID of the workspace associated with the
+                                connection.
+                              type: string
+                            workspace_icon:
+                              description: The URL of the workspace icon.
+                              type: string
+                            workspace_name:
+                              description: The name of the workspace.
+                              type: string
+                            duplicated_template_id:
+                              description: >-
+                                The ID of the duplicated template associated
+                                with the connection.
+                              type: string
+                            scope:
+                              description: >-
+                                The scope of permissions granted to the
+                                connection
+                              type: string
+                            created_at:
+                              description: >-
+                                The timestamp indicating when the connection was
+                                created.
+                              type: integer
+                            expires_in:
+                              description: >
+                                The expiration time (in seconds) of the access
+                                token.
+                              type: integer
+                            organization:
+                              description: The organization associated with the connection.
+                              type: string
+                            refresh_token:
+                              description: >-
+                                The refresh token used to obtain a new access
+                                token when it expires.
+                              type: string
+                        id:
+                          description: The unique identifier of the connection.
+                          type: string
+                        status:
+                          description: >-
+                            The status of the connection (e.g., "INITIATED",
+                            "SUCCESS").
+                          type: string
+                          enum:
+                            - FAILED
+                            - INITIATED
+                            - ACTIVE
+                        createdAt:
+                          description: >-
+                            The timestamp indicating when the connection was
+                            created.
+                          type: string
+                        updatedAt:
+                          description: >-
+                            The timestamp indicating when the connection was
+                            last updated.
+                          type: string
+                        appName:
+                          description: The name of the app associated with the connection.
+                          type: string
+                        logo:
+                          description: >-
+                            The URL of the logo of the app associated with the
+                            connection.
+                          type: string
+                  totalPages:
+                    type: integer
+                  page:
+                    type: integer
+              examples:
+                Get List of connections:
+                  value:
+                    items:
+                      - connectorId: c9da705a-774c-46e8-9b55-cc0eb0d85508
+                        connectionParams:
+                          base_url: https://api.github.com
+                          client_id: 37beeaa7
+                          client_secret: 8c6d25f889a4e74
+                        id: 57fa7084-1188-4cbc-ae3b-e26c5bcccb7b
+                        status: INITIATED
+                        createdAt: '2024-03-11T07:41:34.827Z'
+                        updatedAt: '2024-03-11T07:41:34.827Z'
+                        appName: Github
+                        logo: >-
+                          https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png
+                      - connectorId: 31a23bf7-8df4-4e76-9860-
+                        connectionParams:
+                          owner:
+                            type: user
+                            user:
+                              id: 99b093ad-f0ff-42ef-be49-5c86a9ca9f52
+                              name: Utkarsh
+                              type: person
+                              object: user
+                              person:
+                                email: utkarsh@composio.dev
+                              avatar_url: s
+                          bot_id: 95e803ea-6677-4fd5-a881-9216e0ba8299
+                          base_url: https://api.notion.app
+                          client_id: 85b2ddba
+                          request_id: a2b510af-acaf-4194-b1ff-ca0403d939e1
+                          token_type: bearer
+                          access_token: secret_H3AAr9E8rR8tA
+                          workspace_id: 35adec70-dbef-4f42-9
+                          client_secret: secret_K05OAKiG3MMe
+                          workspace_icon: 'null'
+                          workspace_name: Composio
+                          duplicated_template_id: 'null'
+                        id: 25613ab6-fb84-456d-bd14-8a748f2cf267
+                        status: ACTIVE
+                        createdAt: '2024-03-11T11:41:32.216Z'
+                        updatedAt: '2024-03-11T11:43:31.855Z'
+                        appName: Notion
+                        logo: https://i.imgur.com/98qPYXd.png
+                      - connectorId: 31a23bf7-8df4-4e76-9860-143a7e3834a2
+                        connectionParams:
+                          base_url: https://api.notion.app
+                          client_id: 85b2ddba-74a4-4aab-8b35-d
+                          client_secret: secret_K05OAKiG3Msyn2SChpm5
+                        id: 27dd1aa9-3267-48e0-8b65-a65c1699589a
+                        status: INITIATED
+                        createdAt: '2024-03-09T13:11:25.166Z'
+                        updatedAt: '2024-03-09T13:11:25.166Z'
+                        appName: Notion
+                        logo: https://i.imgur.com/98qPYXd.png
+                      - connectorId: 31a23bf7-8df4-4e76-
+                        connectionParams:
+                          owner:
+                            type: user
+                            user:
+                              id: 99b093ad-f0ff-42ef-b
+                              name: Utkarsh
+                              type: person
+                              object: user
+                              person:
+                                email: utkarsh@composio.dev
+                              avatar_url: 'null'
+                          bot_id: 95e803ea-6677-4fd5-a881
+                          base_url: https://api.notion.app
+                          client_id: 85b2ddba-74a4-4a
+                          request_id: a9979398-e15a-4d640-5162c9a3385b
+                          token_type: bearer
+                          access_token: secret_H3AAHjY96LPppWhyN4
+                          workspace_id: 35adec70-dbef-9214-62ac8cdc4d75
+                          client_secret: secret_G3MMecFqZVZ8syn2S
+                          workspace_icon: 'null'
+                          workspace_name: Composio
+                          duplicated_template_id: 'null'
+                        id: 6be44ecc-6a27-4675-a813-becf10465702
+                        status: ACTIVE
+                        createdAt: '2024-03-11T11:52:21.585Z'
+                        updatedAt: '2024-03-11T11:52:27.463Z'
+                        appName: Notion
+                        logo: https://i.imgur.com/98qPYXd.png
+                      - connectorId: 31a23bf7-8df4-4e76-9860-
+                        connectionParams:
+                          base_url: https://api.notion.app
+                          client_id: 85b2ddba-74a4-4aab-8b35-
+                          client_secret: secret_K05OAKiG3MMecFqZVZ8
+                        id: 9b81f3c9-54b0-4e45-a6a2-4
+                        status: INITIATED
+                        createdAt: '2024-03-11T07:39:05.438Z'
+                        updatedAt: '2024-03-11T07:39:05.438Z'
+                        appName: Notion
+                        logo: https://i.imgur.com/98qPYXd.png
+                    totalPages: 4
+                    page: 1
+    post:
+      servers:
+        - description: baseurl
+          url: https://backend.composio.dev/api
+      tags:
+        - connectedAccounts
+      summary: Connect an Account
+      operationId: create-connection
+      security:
+        - authToken: []
+      description: >-
+        Connect an account
+
+
+        This endpoint allows you to connect an external app account with
+        Composio. It requires the integration ID in the request body and returns
+        the connection status, connection ID, and a redirect URL (if applicable)
+        for completing the connection flow.
+
+
+        Use this endpoint to initiate the process of connecting an external app
+        for your end user.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                integrationId:
+                  type: string
+                redirectUri:
+                  type: string
+                  examples:
+                    - https://google.com
+              required:
+                - integrationId
+              x-examples:
+                Example 1:
+                  connectorId: 065bcbcf-e25b-4808-b4ad-13c16ad14824
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  connectionStatus:
+                    type: string
+                    enum:
+                      - SUCCESS
+                      - INITIATED
+                      - FAILED
+                  connectionId:
+                    type: string
+                  redirectUrl:
+                    type: string
+              examples:
+                Create a connection:
+                  value:
+                    connectionStatus: INITIATED
+                    connectionId: 4d3e5e98-2fd0-4e7b-841a-a
+                    redirectUrl: >-
+                      https://github.com/login/oauth/authorize?client_id=e7c77&redirect_uri
+        '404':
+          description: |-
+            {
+                "message": "Connector not found"
+            }
+  /v1/connectedAccounts/{connectedAccountId}:
+    get:
+      servers:
+        - description: baseurl
+          url: https://backend.composio.dev/api
+      tags:
+        - connectedAccounts
+      summary: Get a Connected Account
+      operationId: get-connected-account
+      security:
+        - authToken: []
+      description: >-
+        Retrieves details of a specific account connected to the Composio
+        platform by providing its connected account ID. 
+
+        The response includes the integration ID, connection parameters (such as
+        scope, base URL, client ID, token type, access token, etc.), connection
+        ID, status, and creation/update timestamps.
+      parameters:
+        - description: The unique identifier of the connection.
+          name: connectedAccountId
+          in: path
+          required: true
+          schema:
+            type: string
+            examples:
+              - 4d3e5e98-2fd0-4e7b-841a-a208c031b731
+          examples:
+            default:
+              value: 4d3e5e98-2fd0-4e7b-841a-a208c031b731
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  integrationId:
+                    description: >
+                      The unique identifier of the connector associated with the
+                      connection.
+                    type: string
+                  connectionParams:
+                    description: >-
+                      An object containing the parameters specific to the
+                      connection.
+                    type: object
+                    properties:
+                      scope:
+                        description: The scope of permissions granted to the connection.
+                        type: string
+                      base_url:
+                        description: >-
+                          The base URL for making API requests to the connected
+                          app.
+                        type: string
+                      client_id:
+                        description: >-
+                          The client ID used for authentication with the
+                          connected app.
+                        type: string
+                      token_type:
+                        description: ' The type of token used for authentication (e.g., "bearer").'
+                        type: string
+                      access_token:
+                        description: >-
+                          The access token used for authentication with the
+                          connected app.
+                        type: string
+                      client_secret:
+                        description: >-
+                          The client secret used for authentication with the
+                          connected app.
+                        type: string
+                  id:
+                    description: The unique identifier of the connection.
+                    type: string
+                  status:
+                    description: ' The status of the connection (e.g., "SUCCESS").'
+                    type: string
+                    enum:
+                      - ACTIVE
+                      - INITIATED
+                      - FAILED
+                  createdAt:
+                    description: The timestamp indicating when the connection was created.
+                    type: string
+                  updatedAt:
+                    description: >-
+                      The timestamp indicating when the connection was last
+                      updated.
+                    type: string
+              examples:
+                Get a connection:
+                  value:
+                    connectorId: 065bcbcf-e25b-4808-b4ad-
+                    connectionParams:
+                      scope: ''
+                      base_url: https://api.github.app
+                      client_id: e73c7edc82b30512e717
+                      token_type: bearer
+                      access_token: gho_KewHRYqIGjT
+                      client_secret: f585c6035b3
+                    id: 4d3e5e98-2fd0-4e7b-841a-031b731
+                    status: ACTIVE
+                    createdAt: '2024-03-11T17:13:05.237Z'
+                    updatedAt: '2024-03-11T17:14:08.818Z'
+        '404':
+          description: |-
+            {
+                "message": "Connection not found or already deleted"
+            }
+    delete:
+      servers:
+        - description: baseurl
+          url: https://backend.composio.dev/api
+      tags:
+        - connectedAccounts
+      summary: Delete a Connected Account
+      operationId: delete-connection
+      security:
+        - authToken: []
+      description: >-
+        Remove a specific account from the Composio platform by providing its
+        connection ID. Upon successful deletion, the response includes a status
+        indicating the success of the operation.
+
+        Use this endpoint to clean up unwanted connections for your end user and
+        manage the connection lifecycle.
+      parameters:
+        - description: The unique identifier of the connection.
+          name: connectedAccountId
+          in: path
+          required: true
+          schema:
+            type: string
+            examples:
+              - 4d3e5e98-2fd0-4e7b-841a-a208c031b731
+          examples:
+            default:
+              value: 4d3e5e98-2fd0-4e7b-841a-a208c031b731
+      responses:
+        '200':
+          description: |-
+            {
+                "message": "Connection not found or already deleted"
+            }
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    description: 'Status of the api call. '
+                    type: string
+              examples:
+                Example Response:
+                  value:
+                    status: success
+        '404':
+          description: Not Found
+  /v1/integrations/{integrationId}:
+    get:
+      servers:
+        - description: baseurl
+          url: https://backend.composio.dev/api
+      tags:
+        - integrations
+      summary: Get an Integration
+      operationId: get-integration
+      security:
+        - authToken: []
+      description: >-
+        Retrieves details of a specific integration in the Composio platform by
+        providing its unique identifier. The response includes the connector's
+        name, authentication scheme, authentication configuration, creation and
+        update timestamps, enabled status, associated app information, expected
+        input fields, and logo.
+
+
+        Use this endpoint to obtain detailed information about a integration and
+        its configuration. It can be shown to end user for selection. 
+
+
+        You will also get parameters that are required to be captured from end
+        user to connect an account using this connector. 
+
+        ex. API Key or subdomain URL. 
+
+
+        If the end-user selects this flow, collect the parameters and connect an
+        account using it. 
+      parameters:
+        - description: The unique identifier of the integration.
+          name: integrationId
+          in: path
+          required: true
+          schema:
+            type: string
+            examples:
+              - 065bcbcf-e25b-4808-b4ad-13c16ad14824
+          examples:
+            default:
+              value: 065bcbcf-e25b-4808-b4ad-13c16ad14824
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    description: The unique identifier of the connector.
+                    type: string
+                  name:
+                    description: The name of the connector.
+                    type: string
+                  authScheme:
+                    description: >-
+                      The authentication scheme used by the connector (e.g.,
+                      "OAUTH2", "API_KEY").
+                    type: string
+                  authConfig:
+                    description: >-
+                      An object containing the authentication configuration for
+                      the connector.
+                    type: object
+                    properties:
+                      base_url:
+                        description: The base URL for making API requests to the app.
+                        type: string
+                      client_id:
+                        description: The client ID used for authentication with the app.
+                        type: string
+                      client_secret:
+                        description: >-
+                          The client secret used for authentication with the
+                          app.
+                        type: string
+                  createdAt:
+                    description: The timestamp indicating when the connector was created.
+                    type: string
+                  updatedAt:
+                    description: >-
+                      The timestamp indicating when the connector was last
+                      updated.
+                    type: string
+                  enabled:
+                    description: >-
+                      A boolean indicating whether the connector is enabled or
+                      not.
+                    type: boolean
+                  appId:
+                    description: >-
+                      The unique identifier of the app associated with the
+                      connector.
+                    type: string
+                  expectedInputFields:
+                    description: An array of input fields expected by the connector.
+                    type: array
+                    items:
+                      type: object
+                  logo:
+                    description: >-
+                      The URL of the logo of the app associated with the
+                      connector.
+                    type: string
+                  appName:
+                    description: The name of the app associated with the connector.
+                    type: string
+              examples:
+                Get a connector:
+                  value:
+                    id: 065bcbcf-e25b-4808-b4ad-13c16ad14824
+                    name: Github 1709897890337
+                    authScheme: OAUTH2
+                    authConfig:
+                      base_url: https://api.github.app
+                      client_id: e73c7edc82b317
+                      client_secret: f585c60af135b3e4ae02689291
+                    createdAt: '2024-03-08T11:38:10.365Z'
+                    updatedAt: '2024-03-11T14:56:49.606Z'
+                    enabled: false
+                    appId: cde35d34-9fde-3d1-ebe642ca665
+                    expectedInputFields: []
+                    logo: >-
+                      https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png
+                    appName: github
+        '404':
+          description: Not Found
+    patch:
+      servers:
+        - description: baseurl
+          url: https://backend.composio.dev/api
+      tags:
+        - integrations
+      summary: Update an Integration
+      operationId: update-integration
+      security:
+        - authToken: []
+      description: >-
+        Updates the settings of a specific integration in the Composio platform.
+
+
+        This endpoint allows you to modify the settings of a integration, such
+        as enabling or disabling it, by providing its unique identifier. The
+        request body should include the updated settings, and the response
+        indicates the success of the update operation.
+
+
+        Use this endpoint to manage the configuration and behavior of
+        integrations in the Composio platform.
+      parameters:
+        - description: The unique identifier of the integration.
+          name: integrationId
+          in: path
+          required: true
+          schema:
+            type: string
+            examples:
+              - 31a23bf7-8df4-4e76-9860-143a7e3834a2
+          examples:
+            default:
+              value: 31a23bf7-8df4-4e76-9860-143a7e3834a2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                enabled:
+                  description: All the parameters that you see in the GET connector
+                  type: boolean
+            examples:
+              Example:
+                value:
+                  enabled: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+              examples:
+                Example 1:
+                  value:
+                    status: success
+        '404':
+          description: Not Found
+  /v1/integrations:
+    get:
+      servers:
+        - description: baseurl
+          url: https://backend.composio.dev/api
+      tags:
+        - integrations
+      summary: List All Integrations
+      operationId: list-connectors
+      security:
+        - authToken: []
+      description: >-
+        Retrieves a list of all integrations in the Composio platform. It
+        supports pagination to handle large numbers of connectors. The response
+        includes an array of connector objects, each containing information such
+        as the connector's ID, name, authentication scheme, creation/update
+        timestamps, enabled status, associated app information, and logo.
+
+
+        This are the integration you can showcase to end user, and let them
+        select which integration they want to connect an account with. 
+      parameters:
+        - description: Page number to fetch
+          name: page
+          in: query
+          schema:
+            type: integer
+            examples:
+              - 1
+          examples:
+            default:
+              value: 1
+        - description: Page Size to assume
+          name: pageSize
+          in: query
+          schema:
+            type: integer
+            examples:
+              - 10
+          examples:
+            default:
+              value: 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          description: >-
+                            The unique identifier of the newly created
+                            connector.
+                          type: string
+                        name:
+                          description: The name of the connector.
+                          type: string
+                        authScheme:
+                          description: The authentication scheme used by the connector.
+                          type: string
+                        createdAt:
+                          description: >-
+                            The timestamp indicating when the connector was
+                            created.
+                          type: string
+                        updatedAt:
+                          description: >-
+                            The timestamp indicating when the connector was last
+                            updated.
+                          type: string
+                        enabled:
+                          description: >-
+                            A boolean indicating whether the connector is
+                            enabled or not.
+                          type: boolean
+                        appId:
+                          description: >-
+                            The unique identifier of the app associated with the
+                            connector.
+                          type: string
+                        appName:
+                          description: The name of the app associated with the connector.
+                          type: string
+                        logo:
+                          description: >-
+                            The URL of the logo of the app associated with the
+                            connector.
+                          type: string
+                  totalPages:
+                    type: integer
+                  page:
+                    type: integer
+              examples:
+                List all connectors:
+                  value:
+                    items:
+                      - id: 065bcbcf-e25b-4808-b4a6ad14824
+                        name: Github 1709897890337
+                        authScheme: OAUTH2
+                        createdAt: '2024-03-08T11:38:10.365Z'
+                        updatedAt: '2024-03-11T14:56:49.606Z'
+                        enabled: false
+                        appId: cde35d34-9fde-4e12-42ca665
+                        appName: github
+                        logo: >-
+                          https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png
+                      - id: 200f53ac-04f92-91f8-68b747daff6a
+                        name: Github - tomato_unique_hare
+                        authScheme: API_KEY
+                        createdAt: '2024-03-11T13:06:48.848Z'
+                        updatedAt: '2024-03-11T13:06:48.848Z'
+                        enabled: true
+                        appId: cde35d34-9fde-4ebe642ca665
+                        appName: github
+                        logo: >-
+                          https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png
+                      - id: 31a23bf7-8df4-4e7643a7e3834a2
+                        name: Notion 1709920326906
+                        authScheme: OAUTH2
+                        createdAt: '2024-03-08T17:52:07.518Z'
+                        updatedAt: '2024-03-11T14:46:22.604Z'
+                        enabled: false
+                        appId: db51f6f1-793f-446aa
+                        appName: notion
+                        logo: https://i.imgur.com/98qPYXd.png
+                    totalPages: 2
+                    page: 1
+    post:
+      servers:
+        - description: baseurl
+          url: https://backend.composio.dev/api
+      tags:
+        - integrations
+      summary: Create a new integration
+      operationId: create-integration
+      security:
+        - authToken: []
+      description: >-
+        This endpoint allows you to add a new integration by providing the
+        necessary details such as the integration name, authentication scheme,
+        associated app ID, and authentication configuration. Upon successful
+        creation, the response includes the newly created connector object.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: The name of the connector.
+                  type: string
+                authScheme:
+                  description: >-
+                    The authentication scheme used by the connector (e.g.,
+                    "OAUTH2", "API_KEY").
+                  type: string
+                  enum:
+                    - OAUTH2
+                    - API_KEY
+                appId:
+                  description: >-
+                    The unique identifier of the app associated with the
+                    connector.
+                  type: string
+                authConfig:
+                  description: >-
+                    An object containing the authentication configuration for
+                    the connector.
+                  type: object
+                  properties:
+                    client_id:
+                      description: The client ID used for authentication with the app.
+                      type: string
+                    client_secret:
+                      description: The client secret used for authentication with the app.
+                      type: string
+                    base_url:
+                      description: ' The base URL for making API requests to the app.'
+                      type: string
+                useComposioAuth:
+                  description: >-
+                    Use default Composio credentials to proceed. The developer
+                    app credentials will be of Composio.  
+                  type: boolean
+            examples:
+              Creating a connector:
+                value:
+                  name: hello
+                  authScheme: OAUTH2
+                  appId: db51f6f1-793f-449e-9221-bc6043e3d6aa
+                  authConfig:
+                    client_id: dasdasdasdas
+                    client_secret: dasdasdasdasdasdas
+                    base_url: https://app.asana.com
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    description: The unique identifier of the newly created connector.
+                    type: string
+                  name:
+                    description: The name of the connector.
+                    type: string
+                  authScheme:
+                    description: The authentication scheme used by the connector.
+                    type: string
+                  authConfig:
+                    description: >-
+                      An object containing the authentication configuration for
+                      the connector.
+                    type: object
+                    properties:
+                      base_url:
+                        description: The base URL for making API requests to the app.
+                        type: string
+                      client_id:
+                        description: The client ID used for authentication with the app.
+                        type: string
+                      client_secret:
+                        description: >-
+                          The client secret used for authentication with the
+                          app.
+                        type: string
+                  createdAt:
+                    description: The timestamp indicating when the connector was created.
+                    type: string
+                  updatedAt:
+                    description: >-
+                      The timestamp indicating when the connector was last
+                      updated.
+                    type: string
+                  enabled:
+                    description: ' A boolean indicating whether the connector is enabled or not.'
+                    type: boolean
+                  appId:
+                    description: >-
+                      The unique identifier of the app associated with the
+                      connector.
+                    type: string
+                  expectedInputFields:
+                    description: An array of input fields expected by the connector.
+                    type: array
+                    items:
+                      type: object
+                  logo:
+                    description: >-
+                      The URL of the logo of the app associated with the
+                      connector.
+                    type: string
+                  appName:
+                    description: The name of the app associated with the connector.
+                    type: string
+              examples:
+                Create a connector:
+                  value:
+                    id: 2184fd84-2fcae-873e-28218f7c0a0b
+                    name: hello
+                    authScheme: OAUTH2
+                    authConfig:
+                      base_url: https://app.asana.com
+                      client_id: dasdasdasdas
+                      client_secret: dasdasdasdasdasdas
+                    createdAt: '2024-03-11T17:23:15.477Z'
+                    updatedAt: '2024-03-11T17:23:15.477Z'
+                    enabled: false
+                    appId: db51f6f1-449e-9221-bc6043e3d6aa
+                    expectedInputFields: []
+                    logo: https://i.imgur.com/98qPYXd.png
+                    appName: notion
+        '400':
+          description: Bad Request
+  /v1/actions/{actionName}:
+    get:
+      servers:
+        - description: baseurl
+          url: https://backend.composio.dev/api
+      tags:
+        - actions
+      summary: Get a Specific Action
+      operationId: Get-action
+      security:
+        - authToken: []
+      description: >-
+        Retrieves details of a specific action in the Composio platform.
+
+
+        This endpoint allows you to fetch comprehensive information about a
+        particular action by providing its unique identifier.
+
+        The response includes the action's name, display name, description,
+        input parameters, expected response, associated app information, and
+        enabled status.
+
+        Use this endpoint to obtain detailed information about an action,
+        including its configuration and usage requirements. 
+
+        You can then pass this to function calling or use LLM to fill in the
+        parameters. 
+      parameters:
+        - description: The unique identifier of the action.
+          name: actionName
+          in: path
+          required: true
+          schema:
+            type: string
+            examples:
+              - CreateSubtask
+          examples:
+            default:
+              value: CreateSubtask
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  description:
+                    description: |
+                      A description of the action.
+                    type: string
+                  parameters:
+                    description: ' An object describing the input parameters of the action.'
+                    type: object
+                    properties:
+                      title:
+                        description: The title of the input parameters.
+                        type: string
+                      properties:
+                        description: >-
+                          An object containing the properties of the input
+                          parameters.
+                        type: object
+                      required:
+                        description: An array of required parameter names.
+                        type: array
+                        items:
+                          type: string
+                      type:
+                        description: The type of the input parameters (e.g., "object").
+                        type: string
+                  name:
+                    description: The name of the action.
+                    type: string
+                  display_name:
+                    description: The display name of the action.
+                    type: string
+                  response:
+                    description: An object describing the response of the action.
+                    type: object
+                    properties:
+                      title:
+                        description: The title of the response.
+                        type: string
+                      properties:
+                        description: An object containing the properties of the response.
+                        type: object
+                      required:
+                        description: An array of required response field names.
+                        type: array
+                        items:
+                          type: string
+                      type:
+                        description: The type of the response (e.g., "object").
+                        type: string
+                  appId:
+                    description: >-
+                      The unique identifier of the app associated with the
+                      action.
+                    type: string
+                  logo:
+                    description: The URL of the logo of the app associated with the action.
+                    type: string
+                  appName:
+                    description: The name of the app associated with the action.
+                    type: string
+                  enabled:
+                    description: A boolean indicating whether the action is enabled or not.
+                    type: boolean
+              examples:
+                Get CreateSubtask:
+                  value:
+                    description: Create a subtask under a specific task.
+                    parameters:
+                      title: CreateSubtaskRequest
+                      properties:
+                        workspace:
+                          title: Workspace
+                          description: Workspace ID
+                          type: string
+                        task_id:
+                          title: Task Id
+                          description: Parent Task ID
+                          type: string
+                        name:
+                          title: Name
+                          description: Name of the subtask
+                          type: string
+                        assignee:
+                          title: Assignee
+                          description: Assignee ID
+                          default: '12312'
+                          type: string
+                        assignee_status:
+                          title: Assignee Status
+                          description: Assignee status
+                          default: '12312'
+                          type: string
+                        completed:
+                          title: Completed
+                          description: Whether the subtask is completed
+                          default: false
+                          type: boolean
+                        due_on:
+                          title: Due On
+                          description: Due date for the subtask
+                          default: '12312'
+                          type: string
+                        liked:
+                          title: Liked
+                          description: Whether the subtask is liked
+                          default: false
+                          type: boolean
+                        notes:
+                          title: Notes
+                          description: Subtask notes
+                          default: '12312'
+                          type: string
+                      required:
+                        - workspace
+                        - task_id
+                        - name
+                      type: object
+                    name: CreateSubtask
+                    display_name: Create Subtask
+                    response:
+                      title: CreateSubtaskResponse
+                      properties:
+                        id:
+                          title: Id
+                          description: ID of the created subtask
+                          type: string
+                      required:
+                        - id
+                      type: object
+                    appId: 36a0705d-7e93-42ba-926ee6201d7c
+                    logo: >-
+                      https://assets.asana.biz/m/7342a96f034ee491/original/trademark-logo-lockup-horizontal.png
+                    appName: Asana
+                    enabled: true
+        '404':
+          description: Not Found
+  /v1/actions:
+    get:
+      servers:
+        - description: baseurl
+          url: https://backend.composio.dev/api
+      tags:
+        - actions
+      summary: Get List of Actions
+      operationId: Get-List-Actions
+      security:
+        - authToken: []
+      description: >-
+        Retrieves a list of all actions in the Composio platform.
+
+
+        This endpoint allows you to fetch a list of all the available actions.
+        It supports pagination to handle large numbers of actions. The response
+        includes an array of action objects, each containing information such as
+        the action's name, display name, description, input parameters, expected
+        response, associated app information, and enabled status.
+
+
+        Use this endpoint to explore and discover the actions supported by the
+        Composio platform and showcase them to end user. 
+      parameters:
+        - description: Name of the app like "github", "linear"
+          name: appNames
+          in: query
+          schema:
+            type: string
+        - description: Natural language usecase
+          name: useCase
+          in: query
+          schema:
+            type: string
+            examples:
+              - Star a Github Repo, create a new issue on linear
+        - description: Show actions enabled for the API Key
+          name: showEnabledOnly
+          in: query
+          schema:
+            type: boolean
+        - description: Limit of apis
+          name: limit
+          in: query
+          schema:
+            type: string
+            default: '10'
+            examples:
+              - 5,10,20
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    description: An array of action objects.
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        description:
+                          description: A description of the action.
+                          type: string
+                        parameters:
+                          description: >-
+                            An object describing the input parameters of the
+                            action.
+                          type: object
+                          properties:
+                            title:
+                              description: The title of the input parameters.
+                              type: string
+                            properties:
+                              description: >-
+                                An object containing the properties of the input
+                                parameters.
+                              type: object
+                            required:
+                              description: An array of required parameter names.
+                              type: array
+                              items:
+                                type: string
+                            type:
+                              description: >-
+                                The type of the input parameters (e.g.,
+                                "object").
+                              type: string
+                        name:
+                          description: ' The name of the action.'
+                          type: string
+                        display_name:
+                          description: The display name of the action.
+                          type: string
+                        response:
+                          description: An object describing the response of the action.
+                          type: object
+                          properties:
+                            title:
+                              description: The title of the response.
+                              type: string
+                            properties:
+                              description: ' An object containing the properties of the response.'
+                              type: object
+                            required:
+                              description: An array of required response field names.
+                              type: array
+                              items:
+                                type: string
+                            type:
+                              description: The type of the response (e.g., "object").
+                              type: string
+                        appId:
+                          description: >-
+                            The unique identifier of the app associated with the
+                            action.
+                          type: string
+                        logo:
+                          description: >-
+                            The URL of the logo of the app associated with the
+                            action.
+                          type: string
+                        appName:
+                          description: The name of the app associated with the action.
+                          type: string
+                        enabled:
+                          description: >-
+                            A boolean indicating whether the action is enabled
+                            or not. This is decided based on whether you have
+                            created a connector for the same app.
+
+                            Without creating a connector and then connection for
+                            the app, you won't be able to execute the action. 
+                          type: boolean
+                  page:
+                    description: The current page number of the action list.
+                    type: integer
+                  totalPages:
+                    description: The total number of pages available for the action list.
+                    type: integer
+  /v1/actions/{actionName}/execute:
+    post:
+      servers:
+        - description: baseurl
+          url: https://backend.composio.dev/api
+      tags:
+        - actions
+      summary: Execute action
+      operationId: Execute-Action
+      security:
+        - authToken: []
+      description: >-
+        Executes a specific action in the Composio platform.
+
+
+        This endpoint allows you to trigger the execution of an action by
+        providing its name and the necessary input parameters. The request
+        includes the connected account ID to identify the app connection to use
+        for the action, and the input parameters required by the action. The
+        response provides details about the execution status and the response
+        data returned by the action.
+
+
+        Use this endpoint to execute actions available in the Composio platform
+        for your end customer. 
+
+
+        Executed will indicate whether the action was successfully executed. 
+      parameters:
+        - description: The name of the action to execute.
+          name: actionName
+          in: path
+          required: true
+          schema:
+            type: string
+            examples:
+              - CreateIssue
+          examples:
+            default:
+              value: CreateIssue
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                connectedAccountId:
+                  description: >-
+                    The unique identifier of the connection to use for executing
+                    the action.
+                  type: string
+                input:
+                  description: An object containing the input parameters for the action.
+                  type: object
+                appName:
+                  type: string
+            examples:
+              Execute Action:
+                value:
+                  connectionId: 2ae1674c-96fa-42a3-8458-c76293df6
+                  input:
+                    title: testing E2E new 6
+                    owner: utkarsh-dixit
+                    repo: speedy
+                    body: testing E2E new 6
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  execution_details:
+                    description: An object containing the details of the action execution.
+                    type: object
+                    properties:
+                      executed:
+                        description: >
+                          A boolean indicating whether the action was executed
+                          successfully.
+                        type: boolean
+                  response_data:
+                    description: >-
+                      An object containing the response data from the action
+                      execution.
+                    type: object
+              examples:
+                Example Response Create Issue:
+                  value:
+                    execution_details:
+                      executed: true
+                    response_data:
+                      title: testing E2E new 6
+                      url: >-
+                        https://api.github.com/repos/utkarsh-dixit/speedy/issues/14
+                      repository_url: https://api.github.com/repos/utkarsh-dixit/speedy
+                      labels_url: >-
+                        https://api.github.com/repos/utkarsh-dixit/speedy/issues/14/labels{/name}
+                      comments_url: >-
+                        https://api.github.com/repos/utkarsh-dixit/speedy/issues/14/comments
+                      events_url: >-
+                        https://api.github.com/repos/utkarsh-dixit/speedy/issues/14/events
+                      html_url: https://github.com/utkarsh-dixit/speedy/issues/14
+                      id: 2179737980
+                      node_id: I_kwDOIq0jNs6B7Cl8
+                      number: 14
+                      user:
+                        login: utkarsh-dixit
+                        id: 16796008
+                        node_id: MDQ6VXNlcjE2Nzk2MDA4
+                        avatar_url: https://avatars.githubusercontent.com/u/16796008?v=4
+                        gravatar_id: ''
+                        url: https://api.github.com/users/utkarsh-dixit
+                        html_url: https://github.com/utkarsh-dixit
+                        followers_url: https://api.github.com/users/utkarsh-dixit/followers
+                        following_url: >-
+                          https://api.github.com/users/utkarsh-dixit/following{/other_user}
+                        gists_url: >-
+                          https://api.github.com/users/utkarsh-dixit/gists{/gist_id}
+                        starred_url: >-
+                          https://api.github.com/users/utkarsh-dixit/starred{/owner}{/repo}
+                        subscriptions_url: >-
+                          https://api.github.com/users/utkarsh-dixit/subscriptions
+                        organizations_url: https://api.github.com/users/utkarsh-dixit/orgs
+                        repos_url: https://api.github.com/users/utkarsh-dixit/repos
+                        events_url: >-
+                          https://api.github.com/users/utkarsh-dixit/events{/privacy}
+                        received_events_url: >-
+                          https://api.github.com/users/utkarsh-dixit/received_events
+                        type: User
+                        site_admin: false
+                      labels: []
+                      state: open
+                      locked: false
+                      assignee: null
+                      assignees: []
+                      milestone: null
+                      comments: 0
+                      created_at: '2024-03-11T17:28:13Z'
+                      updated_at: '2024-03-11T17:28:13Z'
+                      closed_at: null
+                      author_association: OWNER
+                      active_lock_reason: null
+                      body: testing E2E new 6
+                      closed_by: null
+                      reactions:
+                        url: >-
+                          https://api.github.com/repos/utkarsh-dixit/speedy/issues/14/reactions
+                        total_count: 0
+                        '+1': 0
+                        '-1': 0
+                        laugh: 0
+                        hooray: 0
+                        confused: 0
+                        heart: 0
+                        rocket: 0
+                        eyes: 0
+                      timeline_url: >-
+                        https://api.github.com/repos/utkarsh-dixit/speedy/issues/14/timeline
+                      performed_via_github_app: null
+                      state_reason: null
+        '404':
+          description: Not Found
+components:
+  securitySchemes:
+    authToken:
+      type: apiKey
+      name: X-API-Key
+      in: header
+security:
+  - authToken: []
