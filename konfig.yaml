@@ -4,6 +4,10 @@ outputDirectory: /tmp/composio-sdks-out
 specRemotePath: https://raw.githubusercontent.com/ComposioHQ/composio/master/docs/composio.yaml
 specPath: openapi-fixed.yaml
 specInputPath: composio.yaml
+fixConfig:
+  update:
+    info:
+      description: "Composio SDK: Equip your agent with high-quality tools and build your real-world usecase"
 readmeHeader:
   title: Composio
   image: header.png

@@ -2,7 +2,9 @@ openapi: 3.0.3
 info:
   summary: ''
   title: Composio API Collection
-  description: Composio API OpenAPI Spec.
+  description: >-
+    Composio SDK: Equip your agent with high-quality tools and build your
+    real-world usecase
   version: 1.0.0
   contact:
     name: soham
