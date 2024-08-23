@@ -1,10 +1,9 @@
 =begin
-#Composio API Collection
+#Composio OpenAPI
 
 #Composio SDK: Equip your agent with high-quality tools and build your real-world usecase
 
 The version of the OpenAPI document: 1.0.0
-Contact: hello@composio.dev
 =end
 
 module Composio
@@ -30,8 +29,8 @@ module Composio
     # Default server operation variables
     attr_accessor :server_operation_variables
 
-    def auth_token=(value)
-      @api_key_store['authToken'] = value
+    def api_key=(value)
+      @api_key_store['api_key'] = value
     end
 
     # Defines API keys used with API Key authentications.
@@ -128,7 +127,7 @@ module Composio
     def initialize
       @scheme = 'https'
       @host = 'backend.composio.dev'
-      @base_path = '/api'
+      @base_path = ''
       @server_index = 0
       @server_operation_index = {}
       @server_variables = {}
@@ -214,12 +213,12 @@ module Composio
     # Returns Auth Settings hash for api client.
     def auth_settings
       {
-        'authToken' =>
+        'api_key' =>
           {
             type: 'api_key',
             in: 'header',
-            key: 'X-API-Key',
-            value: api_key_with_prefix('authToken')
+            key: 'x-api-key',
+            value: api_key_with_prefix('api_key')
           },
       }
     end
@@ -228,86 +227,14 @@ module Composio
     def server_settings
       [
         {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
+          url: "https://backend.composio.dev",
+          description: "No description provided",
         }
       ]
     end
 
     def operation_server_settings
       {
-        "ActionsApi.execute": [
-          {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
-          }
-        ],
-        "ActionsApi.get": [
-          {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
-          }
-        ],
-        "ActionsApi.list": [
-          {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
-          }
-        ],
-        "AppsApi.list": [
-          {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
-          }
-        ],
-        "ConnectedAccountsApi.create_connection": [
-          {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
-          }
-        ],
-        "ConnectedAccountsApi.get_account_details": [
-          {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
-          }
-        ],
-        "ConnectedAccountsApi.list": [
-          {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
-          }
-        ],
-        "ConnectedAccountsApi.remove_connection": [
-          {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
-          }
-        ],
-        "IntegrationsApi.create": [
-          {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
-          }
-        ],
-        "IntegrationsApi.get": [
-          {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
-          }
-        ],
-        "IntegrationsApi.list": [
-          {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
-          }
-        ],
-        "IntegrationsApi.update": [
-          {
-          url: "https://backend.composio.dev/api",
-          description: "baseurl",
-          }
-        ],
       }
     end
 

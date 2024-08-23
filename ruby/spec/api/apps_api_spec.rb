@@ -1,10 +1,9 @@
 =begin
-#Composio API Collection
+#Composio OpenAPI
 
 #Composio SDK: Equip your agent with high-quality tools and build your real-world usecase
 
 The version of the OpenAPI document: 1.0.0
-Contact: hello@composio.dev
 =end
 
 require 'spec_helper'
@@ -27,12 +26,35 @@ describe 'AppsApi' do
     end
   end
 
-  # unit tests for list
-  # List All Apps
-  # Retrieves a list of all available apps in the Composio platform.  This endpoint allows clients to explore and discover the supported apps. It returns an array of app objects, each containing essential details such as the app&#39;s key, name, description, logo, categories, and unique identifier.  Use this endpoint to build a catalog of available apps and provide your users with an overview of the apps they can integrate with.
+  # unit tests for get_details
+  # Get app
+  # Get app details
+  # @param app_name 
   # @param [Hash] opts the optional parameters
-  # @return [AppsGetAllAppsResponse]
+  # @return [SingleAppInfoResDTO]
+  describe 'get_details test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list
+  # Get apps
+  # Retrieve a list of all applications based on query parameters.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :category 
+  # @return [AppListResDTO]
   describe 'list test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_open_api_specs
+  # Get opena api specs
+  # @param [Hash] opts the optional parameters
+  # @return [Array<AppListResDTO>]
+  describe 'list_open_api_specs test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

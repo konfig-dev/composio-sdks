@@ -1,10 +1,9 @@
 =begin
-#Composio API Collection
+#Composio OpenAPI
 
 #Composio SDK: Equip your agent with high-quality tools and build your real-world usecase
 
 The version of the OpenAPI document: 1.0.0
-Contact: hello@composio.dev
 =end
 
 require 'date'
@@ -12,12 +11,12 @@ require 'time'
 
 module Composio
   class Status
-    FAILED = "FAILED".freeze
-    INITIATED = "INITIATED".freeze
-    ACTIVE = "ACTIVE".freeze
+    ALL = "all".freeze
+    SUCCESS = "success".freeze
+    ERROR = "error".freeze
 
     def self.all_vars
-      @all_vars ||= [FAILED, INITIATED, ACTIVE].freeze
+      @all_vars ||= [ALL, SUCCESS, ERROR].freeze
     end
 
     # Builds the enum from string

@@ -56,16 +56,6 @@
   ],
   "paths": {
     "/api/v1/client/auth/identify": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Auth"
@@ -98,16 +88,6 @@
       }
     },
     "/api/v1/client/auth/google_login": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Auth"
@@ -137,16 +117,6 @@
       }
     },
     "/api/v1/client/auth/send_magic_link": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Auth"
@@ -179,16 +149,6 @@
       }
     },
     "/api/v1/client/auth/logout": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Auth"
@@ -211,16 +171,6 @@
       }
     },
     "/api/v1/client/auth/verify_magic_link": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Auth"
@@ -253,16 +203,6 @@
       }
     },
     "/api/v1/client/auth/client_info": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Auth"
@@ -281,16 +221,6 @@
       }
     },
     "/api/v1/client/auth/pusher_auth": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Auth"
@@ -320,16 +250,6 @@
       }
     },
     "/api/v1/client/auth/delete/{clientId}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "delete": {
         "tags": [
           "Auth"
@@ -359,16 +279,6 @@
       }
     },
     "/api/v1/team/invite": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Team"
@@ -401,16 +311,6 @@
       }
     },
     "/api/v1/team/members": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Team"
@@ -432,16 +332,6 @@
       }
     },
     "/api/v1/team/members/{id}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "delete": {
         "tags": [
           "Team"
@@ -471,16 +361,6 @@
       }
     },
     "/api/v1/api_keys": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "API-Keys"
@@ -532,16 +412,6 @@
       }
     },
     "/api/v1/api_keys/{id}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "delete": {
         "tags": [
           "API-Keys"
@@ -571,16 +441,6 @@
       }
     },
     "/api/v1/apps": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Apps"
@@ -613,16 +473,6 @@
       }
     },
     "/api/v1/apps/openapi/spec/list": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Apps"
@@ -644,16 +494,6 @@
       }
     },
     "/api/v1/apps/{appName}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Apps"
@@ -687,16 +527,6 @@
       }
     },
     "/api/v1/integrations": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Integrations"
@@ -748,16 +578,6 @@
       }
     },
     "/api/v1/integrations/{integrationId}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Integrations"
@@ -861,16 +681,6 @@
       }
     },
     "/api/v1/integrations/{integrationId}/status": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Integrations"
@@ -914,16 +724,6 @@
       }
     },
     "/api/v1/actions": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Actions"
@@ -1021,16 +821,6 @@
       }
     },
     "/api/v1/actions/{actionId}/execute": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Actions"
@@ -1074,16 +864,6 @@
       }
     },
     "/api/v1/actions/proxy": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Actions"
@@ -1123,16 +903,6 @@
       }
     },
     "/api/v1/actions/{actionId}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Actions"
@@ -1165,16 +935,6 @@
       }
     },
     "/api/v1/connectedAccounts": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Connections"
@@ -1290,16 +1050,6 @@
       }
     },
     "/api/v1/connectedAccounts/{connectedAccountId}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Connections"
@@ -1362,16 +1112,6 @@
       }
     },
     "/api/v1/connectedAccounts/{connectedAccountId}/disable": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Connections"
@@ -1404,16 +1144,6 @@
       }
     },
     "/api/v1/connectedAccounts/{connectedAccountId}/enable": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Connections"
@@ -1446,16 +1176,6 @@
       }
     },
     "/api/v1/login/{appName}/auth": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Login"
@@ -1492,16 +1212,6 @@
       }
     },
     "/api/v1/login/{appName}/callback": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Login"
@@ -1531,16 +1241,6 @@
       }
     },
     "/api/v1/triggers": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Triggers"
@@ -1597,16 +1297,6 @@
       }
     },
     "/api/v1/triggers/handle/{appName}/{clientId}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Triggers"
@@ -1656,16 +1346,6 @@
       }
     },
     "/api/v1/triggers/enable/{connectedAccountId}/{triggerName}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Triggers"
@@ -1719,16 +1399,6 @@
       }
     },
     "/api/v1/triggers/get/{triggerId}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Triggers"
@@ -1759,16 +1429,6 @@
       }
     },
     "/api/v1/triggers/active_triggers": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Triggers"
@@ -1849,16 +1509,6 @@
       }
     },
     "/api/v1/triggers/instance/{triggerId}/status": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "patch": {
         "tags": [
           "Triggers"
@@ -1945,16 +1595,6 @@
       }
     },
     "/api/v1/triggers/disable/{triggerInstanceId}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Triggers"
@@ -1988,16 +1628,6 @@
       }
     },
     "/api/v1/triggers/instance/{triggerInstanceId}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "delete": {
         "tags": [
           "Triggers"
@@ -2031,22 +1661,12 @@
       }
     },
     "/api/v1/triggers/set_callback_url": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Triggers"
         ],
         "summary": "Set callback url",
-        "operationId": "Triggers_setCallbackUrl2",
+        "operationId": "Triggers_setCallbackUrl",
         "description": "Sets a universal callback URL for the client.",
         "requestBody": {
           "description": "SetCallbackUrlBodyDTO",
@@ -2074,16 +1694,6 @@
       }
     },
     "/api/v1/triggers/callback_url": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Triggers"
@@ -2106,16 +1716,6 @@
       }
     },
     "/api/v1/triggers/logs": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Triggers"
@@ -2172,16 +1772,6 @@
       }
     },
     "/api/v1/triggers/pusher": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Triggers"
@@ -2211,16 +1801,6 @@
       }
     },
     "/api/v1/cli/sentry-dns": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Admin"
@@ -2239,16 +1819,6 @@
       }
     },
     "/api/v1/cli/generate-cli-session": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "CLI"
@@ -2270,16 +1840,6 @@
       }
     },
     "/api/v1/cli/get-cli-code": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "CLI"
@@ -2321,16 +1881,6 @@
       }
     },
     "/api/v1/cli/verify-cli-code": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "CLI"
@@ -2372,16 +1922,6 @@
       }
     },
     "/api/v1/metadata": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Metadata"
@@ -2438,16 +1978,6 @@
       }
     },
     "/api/v1/metadata/toggle/trigger": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Metadata"
@@ -2477,16 +2007,6 @@
       }
     },
     "/api/v1/metadata/toggle.info": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Metadata"
@@ -2505,16 +2025,6 @@
       }
     },
     "/api/v2/actions": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Actions"
@@ -2613,16 +2123,6 @@
       }
     },
     "/api/v2/actions/list/all": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Actions"
@@ -2721,16 +2221,6 @@
       }
     },
     "/api/v2/actions/{actionId}/execute": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Actions"
@@ -2775,16 +2265,6 @@
       }
     },
     "/api/v2/actions/{actionId}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Actions"
@@ -2818,16 +2298,6 @@
       }
     },
     "/api/v2/actions/proxy": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "post": {
         "tags": [
           "Actions"
@@ -2868,16 +2338,6 @@
       }
     },
     "/api/v2/triggers/{triggerName}": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Triggers"
@@ -2911,16 +2371,6 @@
       }
     },
     "/api/v1/logs": {
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "tags": [
           "Logs"

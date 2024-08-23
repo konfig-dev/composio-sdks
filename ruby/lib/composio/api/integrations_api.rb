@@ -1,10 +1,9 @@
 =begin
-#Composio API Collection
+#Composio OpenAPI
 
 #Composio SDK: Equip your agent with high-quality tools and build your real-world usecase
 
 The version of the OpenAPI document: 1.0.0
-Contact: hello@composio.dev
 =end
 
 require 'cgi'
@@ -17,72 +16,70 @@ module Composio
       @api_client = api_client
     end
 
-    # Create a new integration
+    # Create connector
     #
-    # This endpoint allows you to add a new integration by providing the necessary details such as the integration name, authentication scheme, associated app ID, and authentication configuration. Upon successful creation, the response includes the newly created connector object.
-    #
-    # @param name [String] The name of the connector.
-    # @param auth_scheme [AuthScheme] The authentication scheme used by the connector (e.g., \"OAUTH2\", \"API_KEY\").
-    # @param app_id [String] The unique identifier of the app associated with the connector.
-    # @param auth_config [IntegrationsCreateNewIntegrationRequestAuthConfig] 
-    # @param use_composio_auth [Boolean] Use default Composio credentials to proceed. The developer app credentials will be of Composio. 
-    # @param body [IntegrationsCreateNewIntegrationRequest] 
+    # @param name [String] Name of the connector
+    # @param app_id [String] Application ID
+    # @param auth_scheme [String] Authentication scheme
+    # @param auth_config [AuthConfigDTO] 
+    # @param use_composio_auth [CreateConnectorPayloadDTOUseComposioAuth] 
+    # @param force_new_integration [Boolean] Flag to force new integration
+    # @param body [CreateConnectorPayloadDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def create(name: SENTINEL, auth_scheme: SENTINEL, app_id: SENTINEL, auth_config: SENTINEL, use_composio_auth: SENTINEL, extra: {})
+    def create_integration(name:, app_id:, auth_scheme: SENTINEL, auth_config: SENTINEL, use_composio_auth: SENTINEL, force_new_integration: SENTINEL, extra: {})
       _body = {}
       _body[:name] = name if name != SENTINEL
       _body[:authScheme] = auth_scheme if auth_scheme != SENTINEL
-      _body[:appId] = app_id if app_id != SENTINEL
       _body[:authConfig] = auth_config if auth_config != SENTINEL
       _body[:useComposioAuth] = use_composio_auth if use_composio_auth != SENTINEL
-      extra[:integrations_create_new_integration_request] = _body if !_body.empty?
-      api_response = create_with_http_info_impl(extra)
+      _body[:appId] = app_id if app_id != SENTINEL
+      _body[:forceNewIntegration] = force_new_integration if force_new_integration != SENTINEL
+      extra[:create_connector_payload_dto] = _body if !_body.empty?
+      api_response = create_integration_with_http_info_impl(extra)
       api_response.data
     end
 
-    # Create a new integration
+    # Create connector
     #
-    # This endpoint allows you to add a new integration by providing the necessary details such as the integration name, authentication scheme, associated app ID, and authentication configuration. Upon successful creation, the response includes the newly created connector object.
-    #
-    # @param name [String] The name of the connector.
-    # @param auth_scheme [AuthScheme] The authentication scheme used by the connector (e.g., \"OAUTH2\", \"API_KEY\").
-    # @param app_id [String] The unique identifier of the app associated with the connector.
-    # @param auth_config [IntegrationsCreateNewIntegrationRequestAuthConfig] 
-    # @param use_composio_auth [Boolean] Use default Composio credentials to proceed. The developer app credentials will be of Composio. 
-    # @param body [IntegrationsCreateNewIntegrationRequest] 
+    # @param name [String] Name of the connector
+    # @param app_id [String] Application ID
+    # @param auth_scheme [String] Authentication scheme
+    # @param auth_config [AuthConfigDTO] 
+    # @param use_composio_auth [CreateConnectorPayloadDTOUseComposioAuth] 
+    # @param force_new_integration [Boolean] Flag to force new integration
+    # @param body [CreateConnectorPayloadDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def create_with_http_info(name: SENTINEL, auth_scheme: SENTINEL, app_id: SENTINEL, auth_config: SENTINEL, use_composio_auth: SENTINEL, extra: {})
+    def create_integration_with_http_info(name:, app_id:, auth_scheme: SENTINEL, auth_config: SENTINEL, use_composio_auth: SENTINEL, force_new_integration: SENTINEL, extra: {})
       _body = {}
       _body[:name] = name if name != SENTINEL
       _body[:authScheme] = auth_scheme if auth_scheme != SENTINEL
-      _body[:appId] = app_id if app_id != SENTINEL
       _body[:authConfig] = auth_config if auth_config != SENTINEL
       _body[:useComposioAuth] = use_composio_auth if use_composio_auth != SENTINEL
-      extra[:integrations_create_new_integration_request] = _body if !_body.empty?
-      create_with_http_info_impl(extra)
+      _body[:appId] = app_id if app_id != SENTINEL
+      _body[:forceNewIntegration] = force_new_integration if force_new_integration != SENTINEL
+      extra[:create_connector_payload_dto] = _body if !_body.empty?
+      create_integration_with_http_info_impl(extra)
     end
 
-    # Create a new integration
-    # This endpoint allows you to add a new integration by providing the necessary details such as the integration name, authentication scheme, associated app ID, and authentication configuration. Upon successful creation, the response includes the newly created connector object.
+    # Create connector
     # @param [Hash] opts the optional parameters
-    # @option opts [IntegrationsCreateNewIntegrationRequest] :integrations_create_new_integration_request 
-    # @return [IntegrationsCreateNewIntegrationResponse]
-    private def create_impl(opts = {})
-      data, _status_code, _headers = create_with_http_info(opts)
+    # @option opts [CreateConnectorPayloadDTO] :create_connector_payload_dto CreateConnectorPayloadDTO
+    # @return [GetConnectorInfoResDTO]
+    private def create_integration_impl(opts = {})
+      data, _status_code, _headers = create_integration_with_http_info(opts)
       data
     end
 
-    # Create a new integration
-    # This endpoint allows you to add a new integration by providing the necessary details such as the integration name, authentication scheme, associated app ID, and authentication configuration. Upon successful creation, the response includes the newly created connector object.
+    # Create connector
     # @param [Hash] opts the optional parameters
-    # @option opts [IntegrationsCreateNewIntegrationRequest] :integrations_create_new_integration_request 
-    # @return [APIResponse] data is IntegrationsCreateNewIntegrationResponse, status code, headers and response
-    private def create_with_http_info_impl(opts = {})
+    # @option opts [CreateConnectorPayloadDTO] :create_connector_payload_dto CreateConnectorPayloadDTO
+    # @return [APIResponse] data is GetConnectorInfoResDTO, status code, headers and response
+    private def create_integration_with_http_info_impl(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: IntegrationsApi.create ...'
+        @api_client.config.logger.debug 'Calling API: IntegrationsApi.create_integration ...'
       end
       # resource path
-      local_var_path = '/v1/integrations'
+      local_var_path = '/api/v1/integrations'
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -90,7 +87,7 @@ module Composio
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/html; charset=utf-8'])
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
@@ -101,16 +98,16 @@ module Composio
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'integrations_create_new_integration_request'])
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'create_connector_payload_dto'])
 
       # return_type
-      return_type = opts[:debug_return_type] || 'IntegrationsCreateNewIntegrationResponse'
+      return_type = opts[:debug_return_type] || 'GetConnectorInfoResDTO'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['authToken']
+      auth_names = opts[:debug_auth_names] || ['api_key']
 
       new_options = opts.merge(
-        :operation => :"IntegrationsApi.create",
+        :operation => :"IntegrationsApi.create_integration",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -121,72 +118,57 @@ module Composio
 
       data, status_code, headers, response = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: IntegrationsApi#create\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: IntegrationsApi#create_integration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       APIResponse::new(data, status_code, headers, response)
     end
 
 
-    # Get an Integration
+    # Delete connector
     #
-    # Retrieves details of a specific integration in the Composio platform by providing its unique identifier. The response includes the connector's name, authentication scheme, authentication configuration, creation and update timestamps, enabled status, associated app information, expected input fields, and logo.
-    # 
-    # Use this endpoint to obtain detailed information about a integration and its configuration. It can be shown to end user for selection. 
-    # 
-    # You will also get parameters that are required to be captured from end user to connect an account using this connector. 
-    # ex. API Key or subdomain URL. 
-    # 
-    # If the end-user selects this flow, collect the parameters and connect an account using it. 
-    #
-    # @param integration_id [String] The unique identifier of the integration.
+    # @param integration_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def get(integration_id:, extra: {})
-      api_response = get_with_http_info_impl(integration_id, extra)
+    def delete_connector(integration_id:, extra: {})
+      api_response = delete_connector_with_http_info_impl(integration_id, extra)
       api_response.data
     end
 
-    # Get an Integration
+    # Delete connector
     #
-    # Retrieves details of a specific integration in the Composio platform by providing its unique identifier. The response includes the connector's name, authentication scheme, authentication configuration, creation and update timestamps, enabled status, associated app information, expected input fields, and logo.
-    # 
-    # Use this endpoint to obtain detailed information about a integration and its configuration. It can be shown to end user for selection. 
-    # 
-    # You will also get parameters that are required to be captured from end user to connect an account using this connector. 
-    # ex. API Key or subdomain URL. 
-    # 
-    # If the end-user selects this flow, collect the parameters and connect an account using it. 
-    #
-    # @param integration_id [String] The unique identifier of the integration.
+    # @param integration_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def get_with_http_info(integration_id:, extra: {})
-      get_with_http_info_impl(integration_id, extra)
+    def delete_connector_with_http_info(integration_id:, extra: {})
+      delete_connector_with_http_info_impl(integration_id, extra)
     end
 
-    # Get an Integration
-    # Retrieves details of a specific integration in the Composio platform by providing its unique identifier. The response includes the connector's name, authentication scheme, authentication configuration, creation and update timestamps, enabled status, associated app information, expected input fields, and logo.  Use this endpoint to obtain detailed information about a integration and its configuration. It can be shown to end user for selection.   You will also get parameters that are required to be captured from end user to connect an account using this connector.  ex. API Key or subdomain URL.   If the end-user selects this flow, collect the parameters and connect an account using it. 
-    # @param integration_id [String] The unique identifier of the integration.
+    # Delete connector
+    # @param integration_id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [IntegrationsGetIntegrationDetailsResponse]
-    private def get_impl(integration_id, opts = {})
-      data, _status_code, _headers = get_with_http_info(integration_id, opts)
+    # @return [DeleteRowAPIDTO]
+    private def delete_connector_impl(integration_id, opts = {})
+      data, _status_code, _headers = delete_connector_with_http_info(integration_id, opts)
       data
     end
 
-    # Get an Integration
-    # Retrieves details of a specific integration in the Composio platform by providing its unique identifier. The response includes the connector&#39;s name, authentication scheme, authentication configuration, creation and update timestamps, enabled status, associated app information, expected input fields, and logo.  Use this endpoint to obtain detailed information about a integration and its configuration. It can be shown to end user for selection.   You will also get parameters that are required to be captured from end user to connect an account using this connector.  ex. API Key or subdomain URL.   If the end-user selects this flow, collect the parameters and connect an account using it. 
-    # @param integration_id [String] The unique identifier of the integration.
+    # Delete connector
+    # @param integration_id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [APIResponse] data is IntegrationsGetIntegrationDetailsResponse, status code, headers and response
-    private def get_with_http_info_impl(integration_id, opts = {})
+    # @return [APIResponse] data is DeleteRowAPIDTO, status code, headers and response
+    private def delete_connector_with_http_info_impl(integration_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: IntegrationsApi.get ...'
+        @api_client.config.logger.debug 'Calling API: IntegrationsApi.delete_connector ...'
       end
       # verify the required parameter 'integration_id' is set
       if @api_client.config.client_side_validation && integration_id.nil?
-        fail ArgumentError, "Missing the required parameter 'integration_id' when calling IntegrationsApi.get"
+        fail ArgumentError, "Missing the required parameter 'integration_id' when calling IntegrationsApi.delete_connector"
       end
+      pattern = Regexp.new(/[^\\/#\?]+?/)
+      if @api_client.config.client_side_validation && integration_id !~ pattern
+        fail ArgumentError, "invalid value for 'integration_id' when calling IntegrationsApi.delete_connector, must conform to the pattern #{pattern}."
+      end
+
       # resource path
-      local_var_path = '/v1/integrations/{integrationId}'.sub('{' + 'integrationId' + '}', CGI.escape(integration_id.to_s))
+      local_var_path = '/api/v1/integrations/{integrationId}'.sub('{' + 'integrationId' + '}', CGI.escape(integration_id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -194,7 +176,7 @@ module Composio
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/html; charset=utf-8'])
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -203,13 +185,97 @@ module Composio
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'IntegrationsGetIntegrationDetailsResponse'
+      return_type = opts[:debug_return_type] || 'DeleteRowAPIDTO'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['authToken']
+      auth_names = opts[:debug_auth_names] || ['api_key']
 
       new_options = opts.merge(
-        :operation => :"IntegrationsApi.get",
+        :operation => :"IntegrationsApi.delete_connector",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers, response = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: IntegrationsApi#delete_connector\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      APIResponse::new(data, status_code, headers, response)
+    end
+
+
+    # Get connector info
+    #
+    # @param integration_id [String] 
+    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
+    def get_connector_info(integration_id:, extra: {})
+      api_response = get_connector_info_with_http_info_impl(integration_id, extra)
+      api_response.data
+    end
+
+    # Get connector info
+    #
+    # @param integration_id [String] 
+    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
+    def get_connector_info_with_http_info(integration_id:, extra: {})
+      get_connector_info_with_http_info_impl(integration_id, extra)
+    end
+
+    # Get connector info
+    # @param integration_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [GetConnectorInfoResDTO]
+    private def get_connector_info_impl(integration_id, opts = {})
+      data, _status_code, _headers = get_connector_info_with_http_info(integration_id, opts)
+      data
+    end
+
+    # Get connector info
+    # @param integration_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [APIResponse] data is GetConnectorInfoResDTO, status code, headers and response
+    private def get_connector_info_with_http_info_impl(integration_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: IntegrationsApi.get_connector_info ...'
+      end
+      # verify the required parameter 'integration_id' is set
+      if @api_client.config.client_side_validation && integration_id.nil?
+        fail ArgumentError, "Missing the required parameter 'integration_id' when calling IntegrationsApi.get_connector_info"
+      end
+      pattern = Regexp.new(/[^\\/#\?]+?/)
+      if @api_client.config.client_side_validation && integration_id !~ pattern
+        fail ArgumentError, "invalid value for 'integration_id' when calling IntegrationsApi.get_connector_info, must conform to the pattern #{pattern}."
+      end
+
+      # resource path
+      local_var_path = '/api/v1/integrations/{integrationId}'.sub('{' + 'integrationId' + '}', CGI.escape(integration_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['text/html; charset=utf-8'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'GetConnectorInfoResDTO'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"IntegrationsApi.get_connector_info",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -220,76 +286,52 @@ module Composio
 
       data, status_code, headers, response = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: IntegrationsApi#get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: IntegrationsApi#get_connector_info\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       APIResponse::new(data, status_code, headers, response)
     end
 
 
-    # List All Integrations
+    # List global connectors
     #
-    # Retrieves a list of all integrations in the Composio platform. It supports pagination to handle large numbers of connectors. The response includes an array of connector objects, each containing information such as the connector's ID, name, authentication scheme, creation/update timestamps, enabled status, associated app information, and logo.
-    # 
-    # This are the integration you can showcase to end user, and let them select which integration they want to connect an account with. 
-    #
-    # @param page [Integer] Page number to fetch
-    # @param page_size [Integer] Page Size to assume
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def list(page: SENTINEL, page_size: SENTINEL, extra: {})
-      extra[:page] = page if page != SENTINEL
-      extra[:page_size] = page_size if page_size != SENTINEL
-      api_response = list_with_http_info_impl(extra)
+    def list_global_connectors(extra: {})
+      api_response = list_global_connectors_with_http_info_impl(extra)
       api_response.data
     end
 
-    # List All Integrations
+    # List global connectors
     #
-    # Retrieves a list of all integrations in the Composio platform. It supports pagination to handle large numbers of connectors. The response includes an array of connector objects, each containing information such as the connector's ID, name, authentication scheme, creation/update timestamps, enabled status, associated app information, and logo.
-    # 
-    # This are the integration you can showcase to end user, and let them select which integration they want to connect an account with. 
-    #
-    # @param page [Integer] Page number to fetch
-    # @param page_size [Integer] Page Size to assume
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def list_with_http_info(page: SENTINEL, page_size: SENTINEL, extra: {})
-      extra[:page] = page if page != SENTINEL
-      extra[:page_size] = page_size if page_size != SENTINEL
-      list_with_http_info_impl(extra)
+    def list_global_connectors_with_http_info(extra: {})
+      list_global_connectors_with_http_info_impl(extra)
     end
 
-    # List All Integrations
-    # Retrieves a list of all integrations in the Composio platform. It supports pagination to handle large numbers of connectors. The response includes an array of connector objects, each containing information such as the connector's ID, name, authentication scheme, creation/update timestamps, enabled status, associated app information, and logo.  This are the integration you can showcase to end user, and let them select which integration they want to connect an account with. 
+    # List global connectors
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :page Page number to fetch
-    # @option opts [Integer] :page_size Page Size to assume
-    # @return [IntegrationsListAllResponse]
-    private def list_impl(opts = {})
-      data, _status_code, _headers = list_with_http_info(opts)
+    # @return [GetConnectorListResDTO]
+    private def list_global_connectors_impl(opts = {})
+      data, _status_code, _headers = list_global_connectors_with_http_info(opts)
       data
     end
 
-    # List All Integrations
-    # Retrieves a list of all integrations in the Composio platform. It supports pagination to handle large numbers of connectors. The response includes an array of connector objects, each containing information such as the connector&#39;s ID, name, authentication scheme, creation/update timestamps, enabled status, associated app information, and logo.  This are the integration you can showcase to end user, and let them select which integration they want to connect an account with. 
+    # List global connectors
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :page Page number to fetch
-    # @option opts [Integer] :page_size Page Size to assume
-    # @return [APIResponse] data is IntegrationsListAllResponse, status code, headers and response
-    private def list_with_http_info_impl(opts = {})
+    # @return [APIResponse] data is GetConnectorListResDTO, status code, headers and response
+    private def list_global_connectors_with_http_info_impl(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: IntegrationsApi.list ...'
+        @api_client.config.logger.debug 'Calling API: IntegrationsApi.list_global_connectors ...'
       end
       # resource path
-      local_var_path = '/v1/integrations'
+      local_var_path = '/api/v1/integrations'
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
-      query_params[:'pageSize'] = opts[:'page_size'] if !opts[:'page_size'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/html; charset=utf-8'])
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -298,13 +340,13 @@ module Composio
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'IntegrationsListAllResponse'
+      return_type = opts[:debug_return_type] || 'GetConnectorListResDTO'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['authToken']
+      auth_names = opts[:debug_auth_names] || ['api_key']
 
       new_options = opts.merge(
-        :operation => :"IntegrationsApi.list",
+        :operation => :"IntegrationsApi.list_global_connectors",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -315,78 +357,73 @@ module Composio
 
       data, status_code, headers, response = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: IntegrationsApi#list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: IntegrationsApi#list_global_connectors\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       APIResponse::new(data, status_code, headers, response)
     end
 
 
-    # Update an Integration
+    # Patch connector
     #
-    # Updates the settings of a specific integration in the Composio platform.
-    # 
-    # This endpoint allows you to modify the settings of a integration, such as enabling or disabling it, by providing its unique identifier. The request body should include the updated settings, and the response indicates the success of the update operation.
-    # 
-    # Use this endpoint to manage the configuration and behavior of integrations in the Composio platform.
-    #
-    # @param integration_id [String] The unique identifier of the integration.
-    # @param enabled [Boolean] All the parameters that you see in the GET connector
-    # @param body [IntegrationsUpdateIntegrationSettingsRequest] 
+    # @param integration_id [String] 
+    # @param auth_config [Object] Authentication configuration for the connector
+    # @param enabled [Boolean] Flag to indicate if the connector is enabled
+    # @param body [PatchConnectorReqDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def update(integration_id:, enabled: SENTINEL, extra: {})
+    def update_integration(integration_id:, auth_config: SENTINEL, enabled: SENTINEL, extra: {})
       _body = {}
+      _body[:authConfig] = auth_config if auth_config != SENTINEL
       _body[:enabled] = enabled if enabled != SENTINEL
-      extra[:integrations_update_integration_settings_request] = _body if !_body.empty?
-      api_response = update_with_http_info_impl(integration_id, extra)
+      extra[:patch_connector_req_dto] = _body if !_body.empty?
+      api_response = update_integration_with_http_info_impl(integration_id, extra)
       api_response.data
     end
 
-    # Update an Integration
+    # Patch connector
     #
-    # Updates the settings of a specific integration in the Composio platform.
-    # 
-    # This endpoint allows you to modify the settings of a integration, such as enabling or disabling it, by providing its unique identifier. The request body should include the updated settings, and the response indicates the success of the update operation.
-    # 
-    # Use this endpoint to manage the configuration and behavior of integrations in the Composio platform.
-    #
-    # @param integration_id [String] The unique identifier of the integration.
-    # @param enabled [Boolean] All the parameters that you see in the GET connector
-    # @param body [IntegrationsUpdateIntegrationSettingsRequest] 
+    # @param integration_id [String] 
+    # @param auth_config [Object] Authentication configuration for the connector
+    # @param enabled [Boolean] Flag to indicate if the connector is enabled
+    # @param body [PatchConnectorReqDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def update_with_http_info(integration_id:, enabled: SENTINEL, extra: {})
+    def update_integration_with_http_info(integration_id:, auth_config: SENTINEL, enabled: SENTINEL, extra: {})
       _body = {}
+      _body[:authConfig] = auth_config if auth_config != SENTINEL
       _body[:enabled] = enabled if enabled != SENTINEL
-      extra[:integrations_update_integration_settings_request] = _body if !_body.empty?
-      update_with_http_info_impl(integration_id, extra)
+      extra[:patch_connector_req_dto] = _body if !_body.empty?
+      update_integration_with_http_info_impl(integration_id, extra)
     end
 
-    # Update an Integration
-    # Updates the settings of a specific integration in the Composio platform.  This endpoint allows you to modify the settings of a integration, such as enabling or disabling it, by providing its unique identifier. The request body should include the updated settings, and the response indicates the success of the update operation.  Use this endpoint to manage the configuration and behavior of integrations in the Composio platform.
-    # @param integration_id [String] The unique identifier of the integration.
+    # Patch connector
+    # @param integration_id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [IntegrationsUpdateIntegrationSettingsRequest] :integrations_update_integration_settings_request 
-    # @return [IntegrationsUpdateIntegrationSettingsResponse]
-    private def update_impl(integration_id, opts = {})
-      data, _status_code, _headers = update_with_http_info(integration_id, opts)
+    # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO
+    # @return [PatchConnectorResDTO]
+    private def update_integration_impl(integration_id, opts = {})
+      data, _status_code, _headers = update_integration_with_http_info(integration_id, opts)
       data
     end
 
-    # Update an Integration
-    # Updates the settings of a specific integration in the Composio platform.  This endpoint allows you to modify the settings of a integration, such as enabling or disabling it, by providing its unique identifier. The request body should include the updated settings, and the response indicates the success of the update operation.  Use this endpoint to manage the configuration and behavior of integrations in the Composio platform.
-    # @param integration_id [String] The unique identifier of the integration.
+    # Patch connector
+    # @param integration_id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [IntegrationsUpdateIntegrationSettingsRequest] :integrations_update_integration_settings_request 
-    # @return [APIResponse] data is IntegrationsUpdateIntegrationSettingsResponse, status code, headers and response
-    private def update_with_http_info_impl(integration_id, opts = {})
+    # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO
+    # @return [APIResponse] data is PatchConnectorResDTO, status code, headers and response
+    private def update_integration_with_http_info_impl(integration_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: IntegrationsApi.update ...'
+        @api_client.config.logger.debug 'Calling API: IntegrationsApi.update_integration ...'
       end
       # verify the required parameter 'integration_id' is set
       if @api_client.config.client_side_validation && integration_id.nil?
-        fail ArgumentError, "Missing the required parameter 'integration_id' when calling IntegrationsApi.update"
+        fail ArgumentError, "Missing the required parameter 'integration_id' when calling IntegrationsApi.update_integration"
       end
+      pattern = Regexp.new(/[^\\/#\?]+?/)
+      if @api_client.config.client_side_validation && integration_id !~ pattern
+        fail ArgumentError, "invalid value for 'integration_id' when calling IntegrationsApi.update_integration, must conform to the pattern #{pattern}."
+      end
+
       # resource path
-      local_var_path = '/v1/integrations/{integrationId}'.sub('{' + 'integrationId' + '}', CGI.escape(integration_id.to_s))
+      local_var_path = '/api/v1/integrations/{integrationId}'.sub('{' + 'integrationId' + '}', CGI.escape(integration_id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -394,7 +431,7 @@ module Composio
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/html; charset=utf-8'])
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
@@ -405,16 +442,16 @@ module Composio
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'integrations_update_integration_settings_request'])
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'patch_connector_req_dto'])
 
       # return_type
-      return_type = opts[:debug_return_type] || 'IntegrationsUpdateIntegrationSettingsResponse'
+      return_type = opts[:debug_return_type] || 'PatchConnectorResDTO'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['authToken']
+      auth_names = opts[:debug_auth_names] || ['api_key']
 
       new_options = opts.merge(
-        :operation => :"IntegrationsApi.update",
+        :operation => :"IntegrationsApi.update_integration",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -425,7 +462,112 @@ module Composio
 
       data, status_code, headers, response = @api_client.call_api(:PATCH, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: IntegrationsApi#update\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: IntegrationsApi#update_integration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      APIResponse::new(data, status_code, headers, response)
+    end
+
+
+    # Patch post connector
+    #
+    # @param integration_id [String] 
+    # @param auth_config [Object] Authentication configuration for the connector
+    # @param enabled [Boolean] Flag to indicate if the connector is enabled
+    # @param body [PatchConnectorReqDTO] 
+    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
+    def update_status(integration_id:, auth_config: SENTINEL, enabled: SENTINEL, extra: {})
+      _body = {}
+      _body[:authConfig] = auth_config if auth_config != SENTINEL
+      _body[:enabled] = enabled if enabled != SENTINEL
+      extra[:patch_connector_req_dto] = _body if !_body.empty?
+      api_response = update_status_with_http_info_impl(integration_id, extra)
+      api_response.data
+    end
+
+    # Patch post connector
+    #
+    # @param integration_id [String] 
+    # @param auth_config [Object] Authentication configuration for the connector
+    # @param enabled [Boolean] Flag to indicate if the connector is enabled
+    # @param body [PatchConnectorReqDTO] 
+    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
+    def update_status_with_http_info(integration_id:, auth_config: SENTINEL, enabled: SENTINEL, extra: {})
+      _body = {}
+      _body[:authConfig] = auth_config if auth_config != SENTINEL
+      _body[:enabled] = enabled if enabled != SENTINEL
+      extra[:patch_connector_req_dto] = _body if !_body.empty?
+      update_status_with_http_info_impl(integration_id, extra)
+    end
+
+    # Patch post connector
+    # @param integration_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO
+    # @return [PatchConnectorResDTO]
+    private def update_status_impl(integration_id, opts = {})
+      data, _status_code, _headers = update_status_with_http_info(integration_id, opts)
+      data
+    end
+
+    # Patch post connector
+    # @param integration_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO
+    # @return [APIResponse] data is PatchConnectorResDTO, status code, headers and response
+    private def update_status_with_http_info_impl(integration_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: IntegrationsApi.update_status ...'
+      end
+      # verify the required parameter 'integration_id' is set
+      if @api_client.config.client_side_validation && integration_id.nil?
+        fail ArgumentError, "Missing the required parameter 'integration_id' when calling IntegrationsApi.update_status"
+      end
+      pattern = Regexp.new(/[^\\/#\?]+?/)
+      if @api_client.config.client_side_validation && integration_id !~ pattern
+        fail ArgumentError, "invalid value for 'integration_id' when calling IntegrationsApi.update_status, must conform to the pattern #{pattern}."
+      end
+
+      # resource path
+      local_var_path = '/api/v1/integrations/{integrationId}/status'.sub('{' + 'integrationId' + '}', CGI.escape(integration_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['text/html; charset=utf-8'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+        header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'patch_connector_req_dto'])
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'PatchConnectorResDTO'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"IntegrationsApi.update_status",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers, response = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: IntegrationsApi#update_status\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       APIResponse::new(data, status_code, headers, response)
     end

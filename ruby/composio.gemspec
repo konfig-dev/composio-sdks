@@ -1,12 +1,11 @@
 # -*- encoding: utf-8 -*-
 
 =begin
-#Composio API Collection
+#Composio OpenAPI
 
 #Composio SDK: Equip your agent with high-quality tools and build your real-world usecase
 
 The version of the OpenAPI document: 1.0.0
-Contact: hello@composio.dev
 =end
 
 $:.push File.expand_path("../lib", __FILE__)
@@ -16,10 +15,10 @@ Gem::Specification.new do |s|
   s.name        = "composio"
   s.version     = Composio::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["soham"]
-  s.email       = ["hello@composio.dev"]
+  s.authors     = ["Konfig"]
+  s.email       = ["engineering@konfigthis.com"]
   s.homepage    = "https://composio.dev"
-  s.summary     = "Composio API Collection Ruby Gem"
+  s.summary     = "Composio OpenAPI Ruby Gem"
   s.description = "Composio SDK: Equip your agent with high-quality tools and build your real-world usecase"
   s.license     = "MIT"
   s.required_ruby_version = ">= 2.4"

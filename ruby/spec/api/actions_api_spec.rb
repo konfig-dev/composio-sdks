@@ -1,10 +1,9 @@
 =begin
-#Composio API Collection
+#Composio OpenAPI
 
 #Composio SDK: Equip your agent with high-quality tools and build your real-world usecase
 
 The version of the OpenAPI document: 1.0.0
-Contact: hello@composio.dev
 =end
 
 require 'spec_helper'
@@ -29,39 +28,134 @@ describe 'ActionsApi' do
 
   # unit tests for execute
   # Execute action
-  # Executes a specific action in the Composio platform.  This endpoint allows you to trigger the execution of an action by providing its name and the necessary input parameters. The request includes the connected account ID to identify the app connection to use for the action, and the input parameters required by the action. The response provides details about the execution status and the response data returned by the action.  Use this endpoint to execute actions available in the Composio platform for your end customer.   Executed will indicate whether the action was successfully executed. 
-  # @param action_name The name of the action to execute.
+  # @param action_id 
   # @param [Hash] opts the optional parameters
-  # @option opts [ActionsExecuteActionRequest] :actions_execute_action_request 
-  # @return [ActionsExecuteActionResponse]
+  # @option opts [ActionExecutionReqDTO] :action_execution_req_dto ActionExecutionReqDTO
+  # @return [ActionExecutionResDto]
   describe 'execute test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for get
-  # Get a Specific Action
-  # Retrieves details of a specific action in the Composio platform.  This endpoint allows you to fetch comprehensive information about a particular action by providing its unique identifier. The response includes the action&#39;s name, display name, description, input parameters, expected response, associated app information, and enabled status. Use this endpoint to obtain detailed information about an action, including its configuration and usage requirements.  You can then pass this to function calling or use LLM to fill in the parameters. 
-  # @param action_name The unique identifier of the action.
+  # unit tests for execute_0
+  # Execute action
+  # Execute an action. Support both connected account and no auth auth.
+  # @param action_id 
   # @param [Hash] opts the optional parameters
-  # @return [ActionsGetSpecificActionResponse]
+  # @option opts [ActionExecutionReqDTO] :action_execution_req_dto ActionExecutionReqDTO
+  # @return [ActionExecutionResDto]
+  describe 'execute_0 test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for execute_action_proxy
+  # Execute action proxy
+  # Execute an action with direct auth.
+  # @param endpoint 
+  # @param connected_account_id 
+  # @param [Hash] opts the optional parameters
+  # @return [ActionExecutionResDto]
+  describe 'execute_action_proxy test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for execute_proxy
+  # Execute action proxy
+  # @param endpoint 
+  # @param connected_account_id 
+  # @param [Hash] opts the optional parameters
+  # @return [ExecuteActionResDTO]
+  describe 'execute_proxy test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get
+  # Get action
+  # @param action_id 
+  # @param [Hash] opts the optional parameters
+  # @return [ActionDetails]
   describe 'get test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for list
-  # Get List of Actions
-  # Retrieves a list of all actions in the Composio platform.  This endpoint allows you to fetch a list of all the available actions. It supports pagination to handle large numbers of actions. The response includes an array of action objects, each containing information such as the action&#39;s name, display name, description, input parameters, expected response, associated app information, and enabled status.  Use this endpoint to explore and discover the actions supported by the Composio platform and showcase them to end user. 
+  # unit tests for get_action_by_id
+  # Get action
+  # Get action details
+  # @param action_id 
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :app_names Name of the app like \&quot;github\&quot;, \&quot;linear\&quot;
-  # @option opts [String] :use_case Natural language usecase
-  # @option opts [Boolean] :show_enabled_only Show actions enabled for the API Key
-  # @option opts [String] :limit Limit of apis
-  # @return [ActionsGetListResponse]
+  # @return [ActionDetails]
+  describe 'get_action_by_id test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_all_actions_based_on_query
+  # List actions minimal
+  # Retrieve a list of all actions based on query parameters.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :app_names 
+  # @option opts [String] :use_case 
+  # @option opts [Boolean] :show_enabled_only 
+  # @option opts [Float] :limit 
+  # @option opts [String] :apps 
+  # @option opts [String] :actions 
+  # @option opts [String] :tags 
+  # @option opts [Float] :usecase_limit 
+  # @option opts [Boolean] :filter_important_actions 
+  # @option opts [Boolean] :show_all 
+  # @return [ActionsListResponseDTO]
+  describe 'get_all_actions_based_on_query test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list
+  # List actions
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :app_names 
+  # @option opts [String] :use_case 
+  # @option opts [Boolean] :show_enabled_only 
+  # @option opts [Float] :limit 
+  # @option opts [String] :apps 
+  # @option opts [String] :actions 
+  # @option opts [String] :tags 
+  # @option opts [Float] :usecase_limit 
+  # @option opts [Boolean] :filter_important_actions 
+  # @option opts [Boolean] :show_all 
+  # @return [ActionsListResponseDTO]
   describe 'list test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_0
+  # List actions
+  # Retrieve a list of all actions based on query parameters.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :app_names 
+  # @option opts [String] :use_case 
+  # @option opts [Boolean] :show_enabled_only 
+  # @option opts [Float] :limit 
+  # @option opts [String] :apps 
+  # @option opts [String] :actions 
+  # @option opts [String] :tags 
+  # @option opts [Float] :usecase_limit 
+  # @option opts [Boolean] :filter_important_actions 
+  # @option opts [Boolean] :show_all 
+  # @return [ActionsListResponseDTO]
+  describe 'list_0 test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

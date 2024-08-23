@@ -125,10 +125,8 @@ operationIds:
     get: Triggers_getLogsBasedOnConnectionAndIntegrationDetails
   /api/v1/triggers/pusher:
     post: Triggers_handlePusherEvents
-  /api/v1/triggers/setCallbackURL:
-    post: Triggers_setCallbackUrl1
   /api/v1/triggers/set_callback_url:
-    post: Triggers_setCallbackUrl2
+    post: Triggers_setCallbackUrl
   /api/v2/actions:
     get: ActionsControllerV2_list
   /api/v2/actions/list/all:
