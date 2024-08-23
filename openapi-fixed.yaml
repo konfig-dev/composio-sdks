@@ -11,20 +11,18 @@ servers:
   - url: https://backend.composio.dev
 tags:
   - name: Triggers
-  - name: Client Auth
-  - name: App
-  - name: App Connector
+  - name: Auth
+  - name: Actions
+  - name: Integrations
   - name: Connections
-  - name: Actions Controller V 2
-  - name: Actions Controller V 1
   - name: Metadata
   - name: Team
-  - name: API Keys
+  - name: API-Keys
+  - name: Apps
   - name: CLI
-  - name: App Login
+  - name: Login
   - name: Admin
   - name: Logs
-  - name: Trigger Controller V 2
 paths:
   /api/v1/client/auth/identify:
     parameters:
@@ -35,7 +33,7 @@ paths:
           type: string
     post:
       tags:
-        - Client Auth
+        - Auth
       summary: Identify client
       operationId: ClientAuth_identifyClientOperation
       requestBody:
@@ -61,7 +59,7 @@ paths:
           type: string
     post:
       tags:
-        - Client Auth
+        - Auth
       summary: Google login
       operationId: ClientAuth_googleLogin
       requestBody:
@@ -85,7 +83,7 @@ paths:
           type: string
     post:
       tags:
-        - Client Auth
+        - Auth
       summary: Track client
       operationId: ClientAuth_trackClientOperation
       requestBody:
@@ -111,7 +109,7 @@ paths:
           type: string
     post:
       tags:
-        - Client Auth
+        - Auth
       summary: Send magic link
       operationId: ClientAuth_sendMagicLink
       requestBody:
@@ -137,7 +135,7 @@ paths:
           type: string
     post:
       tags:
-        - Client Auth
+        - Auth
       summary: Logout API
       operationId: ClientAuth_userLogout
       description: Logout the user and clear the server side session
@@ -157,7 +155,7 @@ paths:
           type: string
     post:
       tags:
-        - Client Auth
+        - Auth
       summary: Verify magic link
       operationId: ClientAuth_verifyMagicLink
       requestBody:
@@ -183,8 +181,8 @@ paths:
           type: string
     get:
       tags:
-        - Client Auth
-      summary: Get user info
+        - Auth
+      summary: Get client info
       operationId: ClientAuth_getUserInfo
       responses:
         '200':
@@ -200,7 +198,7 @@ paths:
           type: string
     post:
       tags:
-        - Client Auth
+        - Auth
       summary: Pusher user auth
       operationId: ClientAuth_authenticateUser
       requestBody:
@@ -224,7 +222,7 @@ paths:
           type: string
     delete:
       tags:
-        - Client Auth
+        - Auth
       summary: Delete client
       operationId: ClientAuth_deleteClient
       parameters:
@@ -317,7 +315,7 @@ paths:
           type: string
     post:
       tags:
-        - API Keys
+        - API-Keys
       summary: Generate api key
       operationId: ApiKeys_generate
       requestBody:
@@ -336,7 +334,7 @@ paths:
                 $ref: '#/components/schemas/APIKeyResDTO'
     get:
       tags:
-        - API Keys
+        - API-Keys
       summary: List api keys
       operationId: ApiKeys_list
       responses:
@@ -355,7 +353,7 @@ paths:
           type: string
     delete:
       tags:
-        - API Keys
+        - API-Keys
       summary: Delete api key
       operationId: ApiKeys_remove
       parameters:
@@ -379,7 +377,7 @@ paths:
           type: string
     get:
       tags:
-        - App
+        - Apps
       summary: Get apps
       operationId: App_list
       description: Retrieve a list of all applications based on query parameters.
@@ -396,33 +394,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AppListResDTO'
-  /api/v1/apps/openapi/spec/add:
-    parameters:
-      - name: x-api-key
-        in: header
-        required: true
-        schema:
-          type: string
-    post:
-      tags:
-        - App
-      summary: Add open api spec
-      operationId: App_addOpenApiSpec
-      description: Add openapi spec tool
-      requestBody:
-        description: AddToolsRequestDTO
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AddToolsRequestDTO'
-        required: false
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AppAddOpenApiSpecResponse'
   /api/v1/apps/openapi/spec/list:
     parameters:
       - name: x-api-key
@@ -432,7 +403,7 @@ paths:
           type: string
     get:
       tags:
-        - App
+        - Apps
       summary: Get opena api specs
       operationId: App_listOpenApiSpecs
       responses:
@@ -442,84 +413,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AppListOpenApiSpecsResponse'
-  /api/v1/apps/openapi/spec/delete/{name}:
-    parameters:
-      - name: x-api-key
-        in: header
-        required: true
-        schema:
-          type: string
-    delete:
-      tags:
-        - App
-      summary: Delete open api spec tool
-      operationId: App_deleteOpenApiSpecTool
-      parameters:
-        - in: path
-          name: name
-          required: true
-          schema:
-            pattern: '[^\/#\?]+?'
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AppDeleteOpenApiSpecToolResponse'
-  /api/v1/apps/openapi/spec/logs/{name}:
-    parameters:
-      - name: x-api-key
-        in: header
-        required: true
-        schema:
-          type: string
-    get:
-      tags:
-        - App
-      summary: Get open api spec logs
-      operationId: App_getLogsByName
-      parameters:
-        - in: path
-          name: name
-          required: true
-          schema:
-            pattern: '[^\/#\?]+?'
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AppGetLogsByNameResponse'
-  /api/v1/apps/custom-repo/add-repo:
-    parameters:
-      - name: x-api-key
-        in: header
-        required: true
-        schema:
-          type: string
-    post:
-      tags:
-        - App
-      summary: Add custom repo
-      operationId: App_createCustomRepo
-      requestBody:
-        description: AddRepoURLReqDTO
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AddRepoURLReqDTO'
-        required: false
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AppCreateCustomRepoResponse'
   /api/v1/apps/{appName}:
     parameters:
       - name: x-api-key
@@ -529,7 +422,7 @@ paths:
           type: string
     get:
       tags:
-        - App
+        - Apps
       summary: Get app
       operationId: App_getDetails
       description: Get app details
@@ -547,46 +440,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SingleAppInfoResDTO'
-  /api/v1/apps/sync:
-    parameters:
-      - name: x-api-key
-        in: header
-        required: true
-        schema:
-          type: string
-    post:
-      tags:
-        - App
-      summary: Sync apps
-      operationId: App_syncCustomRepo
-      description: Sync custom repo
-      responses:
-        '202':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AppSyncCustomRepoResponse'
-  /api/v1/apps/custom-repo/get-repo:
-    parameters:
-      - name: x-api-key
-        in: header
-        required: true
-        schema:
-          type: string
-    get:
-      tags:
-        - App
-      summary: Get custom repo
-      operationId: App_getCustomRepo
-      description: Get custom repo
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AppGetCustomRepoResponse'
   /api/v1/integrations:
     parameters:
       - name: x-api-key
@@ -596,7 +449,7 @@ paths:
           type: string
     post:
       tags:
-        - App Connector
+        - Integrations
       summary: Create connector
       operationId: AppConnector_createIntegration
       requestBody:
@@ -615,7 +468,7 @@ paths:
                 $ref: '#/components/schemas/GetConnectorInfoResDTO'
     get:
       tags:
-        - App Connector
+        - Integrations
       summary: List global connectors
       operationId: AppConnector_listGlobalConnectors
       responses:
@@ -634,7 +487,7 @@ paths:
           type: string
     get:
       tags:
-        - App Connector
+        - Integrations
       summary: Get connector info
       operationId: AppConnector_getConnectorInfo
       parameters:
@@ -653,7 +506,7 @@ paths:
                 $ref: '#/components/schemas/GetConnectorInfoResDTO'
     patch:
       tags:
-        - App Connector
+        - Integrations
       summary: Patch connector
       operationId: AppConnector_updateIntegration
       parameters:
@@ -679,7 +532,7 @@ paths:
                 $ref: '#/components/schemas/PatchConnectorResDTO'
     delete:
       tags:
-        - App Connector
+        - Integrations
       summary: Delete connector
       operationId: AppConnector_deleteConnector
       parameters:
@@ -705,7 +558,7 @@ paths:
           type: string
     post:
       tags:
-        - App Connector
+        - Integrations
       summary: Patch post connector
       operationId: AppConnector_updateStatus
       parameters:
@@ -738,7 +591,7 @@ paths:
           type: string
     get:
       tags:
-        - Actions Controller V 1
+        - Actions
       summary: List actions
       operationId: ActionsControllerV1_list
       parameters:
@@ -802,7 +655,7 @@ paths:
           type: string
     post:
       tags:
-        - Actions Controller V 1
+        - Actions
       summary: Execute action
       operationId: ActionsControllerV1_execute
       parameters:
@@ -835,7 +688,7 @@ paths:
           type: string
     post:
       tags:
-        - Actions Controller V 1
+        - Actions
       summary: Execute action proxy
       operationId: ActionsControllerV1_executeProxy
       parameters:
@@ -865,7 +718,7 @@ paths:
           type: string
     get:
       tags:
-        - Actions Controller V 1
+        - Actions
       summary: Get action
       operationId: ActionsControllerV1_get
       parameters:
@@ -980,11 +833,11 @@ paths:
             type: string
       responses:
         '200':
-          description: Successful response
+          description: Retrieve details of a specific connected account by its ID
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConnectionsGetConnectionResponse'
+                $ref: '#/components/schemas/ConnectedAccountResponseDTO'
     delete:
       tags:
         - Connections
@@ -1025,11 +878,11 @@ paths:
             type: string
       responses:
         '201':
-          description: Successful response
+          description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConnectionsDisableConnectionResponse'
+                $ref: '#/components/schemas/ToggleConnectedAccountResponseDTO'
   /api/v1/connectedAccounts/{connectedAccountId}/enable:
     parameters:
       - name: x-api-key
@@ -1051,11 +904,11 @@ paths:
             type: string
       responses:
         '201':
-          description: Successful response
+          description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConnectionsEnableConnectionResponse'
+                $ref: '#/components/schemas/ToggleConnectedAccountResponseDTO'
   /api/v1/login/{appName}/auth:
     parameters:
       - name: x-api-key
@@ -1065,7 +918,7 @@ paths:
           type: string
     get:
       tags:
-        - App Login
+        - Login
       summary: Handle o auth 2 callback
       operationId: AppLogin_handleAuth2Callback
       parameters:
@@ -1093,7 +946,7 @@ paths:
           type: string
     get:
       tags:
-        - App Login
+        - Login
       summary: Verify o auth 2 login
       operationId: AppLogin_verifyOAuth2Login
       parameters:
@@ -1162,10 +1015,6 @@ paths:
       summary: Handle trigger
       operationId: Triggers_handleTrigger
       parameters:
-        - in: header
-          name: ''
-          required: false
-          schema: {}
         - in: path
           name: appName
           required: true
@@ -1437,7 +1286,7 @@ paths:
       tags:
         - Triggers
       summary: Set callback url
-      operationId: Triggers_setCallbackUrl
+      operationId: Triggers_setCallbackUrl1
       description: Sets a universal callback URL for the client.
       requestBody:
         description: ''
@@ -1462,7 +1311,7 @@ paths:
       tags:
         - Triggers
       summary: Set callback url
-      operationId: Triggers_setCallbackUrl
+      operationId: Triggers_setCallbackUrl2
       description: Sets a universal callback URL for the client.
       requestBody:
         description: SetCallbackUrlBodyDTO
@@ -1754,7 +1603,7 @@ paths:
           type: string
     get:
       tags:
-        - Actions Controller V 2
+        - Actions
       summary: List actions
       operationId: ActionsControllerV2_list
       description: Retrieve a list of all actions based on query parameters.
@@ -1819,7 +1668,7 @@ paths:
           type: string
     get:
       tags:
-        - Actions Controller V 2
+        - Actions
       summary: List actions minimal
       operationId: ActionsControllerV2_getAllActionsBasedOnQuery
       description: Retrieve a list of all actions based on query parameters.
@@ -1884,7 +1733,7 @@ paths:
           type: string
     post:
       tags:
-        - Actions Controller V 2
+        - Actions
       summary: Execute action
       operationId: ActionsControllerV2_execute
       description: Execute an action. Support both connected account and no auth auth.
@@ -1918,9 +1767,10 @@ paths:
           type: string
     get:
       tags:
-        - Actions Controller V 2
+        - Actions
       summary: Get action
       operationId: ActionsControllerV2_getActionById
+      description: Get action details
       parameters:
         - in: path
           name: actionId
@@ -1944,7 +1794,7 @@ paths:
           type: string
     post:
       tags:
-        - Actions Controller V 2
+        - Actions
       summary: Execute action proxy
       operationId: ActionsControllerV2_executeActionProxy
       description: Execute an action with direct auth.
@@ -1975,7 +1825,7 @@ paths:
           type: string
     get:
       tags:
-        - Trigger Controller V 2
+        - Triggers
       summary: Get trigger info
       operationId: TriggerControllerV2_getTriggerInfo
       description: Get Trigger Info
@@ -2132,9 +1982,6 @@ components:
           description: Message indicating the result of the verification
           type: string
         data:
-          description: >-
-            Data containing client and token information if verification is
-            successful
           $ref: '#/components/schemas/VerifyMagicLinkDataDTO'
       type: object
       required:
@@ -3084,6 +2931,93 @@ components:
         - updatedAt
         - appUniqueId
         - appName
+    ToggleConnectedAccountResponseDTO:
+      properties:
+        status:
+          type: string
+      type: object
+      required:
+        - status
+    ConnectionParamsHeaders:
+      properties:
+        Authorization:
+          type: string
+        x-request-id:
+          type: string
+      type: object
+    ConnectionParamsForAccount:
+      properties:
+        scope:
+          type: string
+        scopes:
+          type: string
+        id_token:
+          type: string
+        client_id:
+          type: string
+        expires_in:
+          type: string
+        token_type:
+          type: string
+        callback_url:
+          type: string
+        client_secret:
+          type: string
+        code_verifier:
+          type: string
+        refresh_token:
+          type: string
+        headers:
+          type: object
+        queryParams:
+          type: object
+        base_url:
+          type: string
+      type: object
+    MetaApp:
+      properties:
+        get_current_user_endpoint:
+          type: string
+      type: object
+      required:
+        - get_current_user_endpoint
+    Meta:
+      properties:
+        app:
+          type: object
+      type: object
+      required:
+        - app
+    ConnectedAccountResponseDTO:
+      properties:
+        integrationId:
+          type: string
+        appUniqueId:
+          type: string
+        meta: {}
+        isDisabled:
+          type: boolean
+        id:
+          type: string
+        clientUniqueUserId:
+          type: string
+        status:
+          type: string
+        enabled:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      type: object
+      required:
+        - integrationId
+        - appUniqueId
+        - id
+        - clientUniqueUserId
+        - status
+        - createdAt
+        - updatedAt
     GetConnectionsResponseDto:
       properties:
         items:
@@ -3900,47 +3834,11 @@ components:
       items:
         $ref: '#/components/schemas/APIKeyResDTO'
       type: array
-    AppAddOpenApiSpecResponse:
-      type: object
-      properties: {}
-      example: {}
     AppListOpenApiSpecsResponse:
       items:
         $ref: '#/components/schemas/AppListResDTO'
       type: array
-    AppDeleteOpenApiSpecToolResponse:
-      type: object
-      properties: {}
-      example: {}
-    AppGetLogsByNameResponse:
-      type: object
-      properties: {}
-      example: {}
-    AppCreateCustomRepoResponse:
-      type: object
-      properties: {}
-      example: {}
-    AppSyncCustomRepoResponse:
-      type: object
-      properties: {}
-      example: {}
-    AppGetCustomRepoResponse:
-      type: object
-      properties: {}
-      example: {}
     ConnectionsDeleteConnectionResponse:
-      type: object
-      properties: {}
-      example: {}
-    ConnectionsGetConnectionResponse:
-      type: object
-      properties: {}
-      example: {}
-    ConnectionsDisableConnectionResponse:
-      type: object
-      properties: {}
-      example: {}
-    ConnectionsEnableConnectionResponse:
       type: object
       properties: {}
       example: {}
@@ -3952,3 +3850,8 @@ components:
       items:
         $ref: '#/components/schemas/SingleTriggerResDTO'
       type: array
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: x-api-key

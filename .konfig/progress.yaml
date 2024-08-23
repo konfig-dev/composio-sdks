@@ -1,44 +1,9 @@
 examples: {}
 examples_2: {}
 examples_3:
-  /api/v1/apps/custom-repo/add-repo:
-    post:
-      '200':
-        application/json: {}
-  /api/v1/apps/custom-repo/get-repo:
-    get:
-      '200':
-        application/json: {}
-  /api/v1/apps/openapi/spec/add:
-    post:
-      '200':
-        application/json: {}
-  /api/v1/apps/openapi/spec/delete/{name}:
-    delete:
-      '200':
-        application/json: {}
-  /api/v1/apps/openapi/spec/logs/{name}:
-    get:
-      '200':
-        application/json: {}
-  /api/v1/apps/sync:
-    post:
-      '202':
-        application/json: {}
   /api/v1/connectedAccounts/{connectedAccountId}:
     delete:
       '200':
-        application/json: {}
-    get:
-      '200':
-        application/json: {}
-  /api/v1/connectedAccounts/{connectedAccountId}/disable:
-    post:
-      '201':
-        application/json: {}
-  /api/v1/connectedAccounts/{connectedAccountId}/enable:
-    post:
-      '201':
         application/json: {}
 ignoreObjectsWithNoProperties: true
 operationIds:
@@ -161,9 +126,9 @@ operationIds:
   /api/v1/triggers/pusher:
     post: Triggers_handlePusherEvents
   /api/v1/triggers/setCallbackURL:
-    post: Triggers_setCallbackUrl
+    post: Triggers_setCallbackUrl1
   /api/v1/triggers/set_callback_url:
-    post: Triggers_setCallbackUrl
+    post: Triggers_setCallbackUrl2
   /api/v2/actions:
     get: ActionsControllerV2_list
   /api/v2/actions/list/all:
@@ -332,8 +297,6 @@ responseSchemaNames:
       '200':
         application/json: IntegrationsUpdateIntegrationSettingsResponse
 securityParameters:
-  '':
-    header: false
   actions:
     query: false
   appNames:
