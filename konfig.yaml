@@ -2,8 +2,8 @@
 
 outputDirectory: /tmp/composio-sdks-out
 specRemotePath: https://backend.composio.dev/openapi.json
-specPath: openapi-fixed.yaml
-specInputPath: composio.yaml
+specPath: openapi-fixed.json
+specInputPath: composio.json
 infoContactUrl: https://composio.dev
 fixConfig:
   update:
