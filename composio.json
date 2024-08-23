@@ -1806,15 +1806,7 @@
         },
         "summary": "Identify client",
         "tags": ["Auth"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/client/auth/google_login": {
       "post": {
@@ -1832,15 +1824,7 @@
         },
         "summary": "Google login",
         "tags": ["Auth"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/client/auth/send_magic_link": {
       "post": {
@@ -1866,15 +1850,7 @@
         },
         "summary": "Send magic link",
         "tags": ["Auth"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/client/auth/logout": {
       "post": {
@@ -1892,15 +1868,7 @@
         "summary": "Logout API",
         "tags": ["Auth"],
         "description": "Logout the user and clear the server side session"
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/client/auth/verify_magic_link": {
       "post": {
@@ -1928,15 +1896,7 @@
         },
         "summary": "Verify magic link",
         "tags": ["Auth"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/client/auth/client_info": {
       "get": {
@@ -1949,15 +1909,7 @@
         },
         "summary": "Get client info",
         "tags": ["Auth"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/client/auth/pusher_auth": {
       "post": {
@@ -1975,15 +1927,7 @@
         },
         "summary": "Pusher user auth",
         "tags": ["Auth"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/client/auth/delete/{clientId}": {
       "delete": {
@@ -2004,15 +1948,7 @@
         },
         "summary": "Delete client",
         "tags": ["Auth"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/team/invite": {
       "post": {
@@ -2038,15 +1974,7 @@
         },
         "summary": "Invite member",
         "tags": ["Team"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/team/members": {
       "get": {
@@ -2066,15 +1994,7 @@
         },
         "summary": "List members",
         "tags": ["Team"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/team/members/{id}": {
       "delete": {
@@ -2095,15 +2015,7 @@
         },
         "summary": "Remove member",
         "tags": ["Team"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/api_keys": {
       "post": {
@@ -2147,15 +2059,7 @@
         },
         "summary": "List api keys",
         "tags": ["API-Keys"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/api_keys/{id}": {
       "delete": {
@@ -2176,15 +2080,7 @@
         },
         "summary": "Delete api key",
         "tags": ["API-Keys"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/apps": {
       "get": {
@@ -2209,15 +2105,7 @@
         "summary": "Get apps",
         "tags": ["Apps"],
         "description": "Retrieve a list of all applications based on query parameters."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/apps/openapi/spec/list": {
       "get": {
@@ -2237,15 +2125,7 @@
         },
         "summary": "Get opena api specs",
         "tags": ["Apps"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/apps/{appName}": {
       "get": {
@@ -2271,15 +2151,7 @@
         "summary": "Get app",
         "tags": ["Apps"],
         "description": "Get app details"
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/integrations": {
       "post": {
@@ -2326,15 +2198,7 @@
         },
         "summary": "List global connectors",
         "tags": ["Integrations"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/integrations/{integrationId}": {
       "get": {
@@ -2418,15 +2282,7 @@
         },
         "summary": "Delete connector",
         "tags": ["Integrations"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/integrations/{integrationId}/status": {
       "post": {
@@ -2462,15 +2318,7 @@
         },
         "summary": "Patch post connector",
         "tags": ["Integrations"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/actions": {
       "get": {
@@ -2525,15 +2373,7 @@
         },
         "summary": "List actions",
         "tags": ["Actions"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/actions/{actionId}/execute": {
       "post": {
@@ -2569,15 +2409,7 @@
         },
         "summary": "Execute action",
         "tags": ["Actions"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/actions/proxy": {
       "post": {
@@ -2608,15 +2440,7 @@
         },
         "summary": "Execute action proxy",
         "tags": ["Actions"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/actions/{actionId}": {
       "get": {
@@ -2641,15 +2465,7 @@
         },
         "summary": "Get action",
         "tags": ["Actions"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/connectedAccounts": {
       "get": {
@@ -2727,15 +2543,7 @@
         },
         "summary": "Initiate connection",
         "tags": ["Connections"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/connectedAccounts/{connectedAccountId}": {
       "get": {
@@ -2781,15 +2589,7 @@
         },
         "summary": "Delete connection",
         "tags": ["Connections"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/connectedAccounts/{connectedAccountId}/disable": {
       "post": {
@@ -2816,15 +2616,7 @@
         },
         "summary": "Disable connection",
         "tags": ["Connections"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/connectedAccounts/{connectedAccountId}/enable": {
       "post": {
@@ -2851,15 +2643,7 @@
         },
         "summary": "Enable connection",
         "tags": ["Connections"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/login/{appName}/auth": {
       "get": {
@@ -2885,15 +2669,7 @@
         },
         "summary": "Handle o auth 2 callback",
         "tags": ["Login"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/login/{appName}/callback": {
       "get": {
@@ -2914,15 +2690,7 @@
         },
         "summary": "Verify o auth 2 login",
         "tags": ["Login"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/triggers": {
       "get": {
@@ -2968,15 +2736,7 @@
         "summary": "List triggers",
         "tags": ["Triggers"],
         "description": "List triggers"
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/triggers/handle/{appName}/{clientId}": {
       "post": {
@@ -3008,15 +2768,7 @@
         },
         "summary": "Handle trigger",
         "tags": ["Triggers"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/triggers/enable/{connectedAccountId}/{triggerName}": {
       "post": {
@@ -3057,15 +2809,7 @@
         "summary": "Enable trigger",
         "tags": ["Triggers"],
         "description": "Enables a trigger for a connected account and specific trigger name."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/triggers/get/{triggerId}": {
       "get": {
@@ -3087,15 +2831,7 @@
         "summary": "Get trigger",
         "tags": ["Triggers"],
         "description": "Retrieves a specific trigger by its ID."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/triggers/active_triggers": {
       "get": {
@@ -3164,15 +2900,7 @@
         "summary": "Get active triggers",
         "tags": ["Triggers"],
         "description": "Lists active triggers based on query parameters."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/triggers/instance/{triggerId}/status": {
       "patch": {
@@ -3244,15 +2972,7 @@
         "summary": "Switch post trigger instance status",
         "tags": ["Triggers"],
         "description": "Switches the status of a trigger instance."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/triggers/disable/{triggerInstanceId}": {
       "post": {
@@ -3278,15 +2998,7 @@
         "summary": "Disable trigger",
         "tags": ["Triggers"],
         "description": "Disables a specified trigger instance."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/triggers/instance/{triggerInstanceId}": {
       "delete": {
@@ -3312,15 +3024,7 @@
         "summary": "Delete trigger",
         "tags": ["Triggers"],
         "description": "Deletes a specified trigger instance."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/triggers/set_callback_url": {
       "post": {
@@ -3347,15 +3051,7 @@
         "summary": "Set callback url",
         "tags": ["Triggers"],
         "description": "Sets a universal callback URL for the client."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/triggers/callback_url": {
       "get": {
@@ -3375,15 +3071,7 @@
         "summary": "Get webhook url",
         "tags": ["Triggers"],
         "description": "Retrieves the universal callback URL set for the client."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/triggers/logs": {
       "get": {
@@ -3429,15 +3117,7 @@
         "summary": "Get logs",
         "tags": ["Triggers"],
         "description": "Fetches logs based on connection and integration details."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/triggers/pusher": {
       "post": {
@@ -3455,15 +3135,7 @@
         },
         "summary": "Handle pusher events",
         "tags": ["Triggers"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/cli/sentry-dns": {
       "get": {
@@ -3476,15 +3148,7 @@
         },
         "summary": "Sentry dns",
         "tags": ["Admin"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/cli/generate-cli-session": {
       "get": {
@@ -3503,15 +3167,7 @@
         },
         "summary": "Handle cli code exchange",
         "tags": ["CLI"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/cli/get-cli-code": {
       "get": {
@@ -3548,15 +3204,7 @@
         },
         "summary": "Get cli code",
         "tags": ["CLI"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/cli/verify-cli-code": {
       "get": {
@@ -3593,15 +3241,7 @@
         },
         "summary": "Handle cli code verification",
         "tags": ["CLI"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/metadata": {
       "get": {
@@ -3642,15 +3282,7 @@
         },
         "summary": "Update metadata",
         "tags": ["Metadata"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/metadata/toggle/trigger": {
       "post": {
@@ -3674,15 +3306,7 @@
         },
         "summary": "Toggle trigger state",
         "tags": ["Metadata"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/metadata/toggle.info": {
       "get": {
@@ -3695,15 +3319,7 @@
         },
         "summary": "Get toggle info",
         "tags": ["Metadata"]
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v1/logs/": {
       "get": {
@@ -3788,15 +3404,7 @@
         "summary": "Get logs",
         "tags": ["Logs"],
         "description": "List logs"
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v2/actions": {
       "get": {
@@ -3852,15 +3460,7 @@
         "summary": "List actions",
         "tags": ["Actions"],
         "description": "Retrieve a list of all actions based on query parameters."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v2/actions/list/all": {
       "get": {
@@ -3916,15 +3516,7 @@
         "summary": "List actions minimal",
         "tags": ["Actions"],
         "description": "Retrieve a list of all actions based on query parameters."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v2/actions/{actionId}/execute": {
       "post": {
@@ -3961,15 +3553,7 @@
         "summary": "Execute action",
         "tags": ["Actions"],
         "description": "Execute an action. Support both connected account and no auth auth."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v2/actions/{actionId}": {
       "get": {
@@ -3995,15 +3579,7 @@
         "summary": "Get action",
         "tags": ["Actions"],
         "description": "Get action details"
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v2/actions/proxy": {
       "post": {
@@ -4037,15 +3613,7 @@
         "summary": "Execute action proxy",
         "tags": ["Actions"],
         "description": "Execute an action with direct auth."
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     },
     "/api/v2/triggers/{triggerName}": {
       "get": {
@@ -4076,15 +3644,7 @@
         "summary": "Get trigger info",
         "tags": ["Triggers"],
         "description": "Get Trigger Info"
-      },
-      "parameters": [
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "schema": { "type": "string" }
-        }
-      ]
+      }
     }
   },
   "security": [{ "api_key": [] }],
