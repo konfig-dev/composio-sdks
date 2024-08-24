@@ -36,7 +36,7 @@ module Composio
     # Delete connection
     # @param connected_account_id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [Object]
+    # @return [DeleteRowAPIDTO]
     private def delete_impl(connected_account_id, opts = {})
       data, _status_code, _headers = delete_with_http_info(connected_account_id, opts)
       data
@@ -45,7 +45,7 @@ module Composio
     # Delete connection
     # @param connected_account_id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [APIResponse] data is Object, status code, headers and response
+    # @return [APIResponse] data is DeleteRowAPIDTO, status code, headers and response
     private def delete_with_http_info_impl(connected_account_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ConnectionsApi.delete ...'
@@ -77,7 +77,7 @@ module Composio
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Object'
+      return_type = opts[:debug_return_type] || 'DeleteRowAPIDTO'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']

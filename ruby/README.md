@@ -31,14 +31,9 @@ Composio SDK: Equip your agent with high-quality tools and build your real-world
   * [`composio.actions.get_all_actions_based_on_query`](#composioactionsget_all_actions_based_on_query)
   * [`composio.actions.list`](#composioactionslist)
   * [`composio.actions.list_0`](#composioactionslist_0)
-  * [`composio.admin.get_sentry_dns`](#composioadminget_sentry_dns)
   * [`composio.apps.get_details`](#composioappsget_details)
   * [`composio.apps.list`](#composioappslist)
   * [`composio.apps.list_open_api_specs`](#composioappslist_open_api_specs)
-  * [`composio.auth.authenticate_user`](#composioauthauthenticate_user)
-  * [`composio.auth.delete_client`](#composioauthdelete_client)
-  * [`composio.auth.get_user_info`](#composioauthget_user_info)
-  * [`composio.auth.google_login`](#composioauthgoogle_login)
   * [`composio.auth.identify_client_operation`](#composioauthidentify_client_operation)
   * [`composio.auth.send_magic_link`](#composioauthsend_magic_link)
   * [`composio.auth.user_logout`](#composioauthuser_logout)
@@ -58,15 +53,10 @@ Composio SDK: Equip your agent with high-quality tools and build your real-world
   * [`composio.integrations.list_global_connectors`](#composiointegrationslist_global_connectors)
   * [`composio.integrations.update_integration`](#composiointegrationsupdate_integration)
   * [`composio.integrations.update_status`](#composiointegrationsupdate_status)
-  * [`composio.login.handle_auth2_callback`](#composiologinhandle_auth2_callback)
-  * [`composio.login.verify_o_auth2_login`](#composiologinverify_o_auth2_login)
   * [`composio.logs.list`](#composiologslist)
-  * [`composio.metadata.get_info`](#composiometadataget_info)
   * [`composio.metadata.get_toggle_info`](#composiometadataget_toggle_info)
   * [`composio.metadata.toggle_trigger_state`](#composiometadatatoggle_trigger_state)
-  * [`composio.metadata.update_info`](#composiometadataupdate_info)
   * [`composio.team.get_member_list`](#composioteamget_member_list)
-  * [`composio.team.remove_member_by_id`](#composioteamremove_member_by_id)
   * [`composio.team.send_invitation`](#composioteamsend_invitation)
   * [`composio.triggers.delete_trigger_instance`](#composiotriggersdelete_trigger_instance)
   * [`composio.triggers.disable_trigger_instance`](#composiotriggersdisable_trigger_instance)
@@ -76,8 +66,6 @@ Composio SDK: Equip your agent with high-quality tools and build your real-world
   * [`composio.triggers.get_callback_url`](#composiotriggersget_callback_url)
   * [`composio.triggers.get_logs_based_on_connection_and_integration_details`](#composiotriggersget_logs_based_on_connection_and_integration_details)
   * [`composio.triggers.get_trigger_info`](#composiotriggersget_trigger_info)
-  * [`composio.triggers.handle_pusher_events`](#composiotriggershandle_pusher_events)
-  * [`composio.triggers.handle_trigger`](#composiotriggershandle_trigger)
   * [`composio.triggers.list`](#composiotriggerslist)
   * [`composio.triggers.set_callback_url`](#composiotriggersset_callback_url)
   * [`composio.triggers.switch_instance_status`](#composiotriggersswitch_instance_status)
@@ -185,14 +173,19 @@ Delete api key
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```ruby
-composio.api_keys.remove(
+result = composio.api_keys.remove(
   id: "'+j>6",
 )
+p result
 ```
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
 ##### id: `String`<a id="id-string"></a>
+#### 🔄 Return<a id="🔄-return"></a>
+
+[DeleteAPIKeyResponseDTO](./lib/composio/models/delete_api_key_response_dto.rb)
+
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v1/api_keys/{id}` `DELETE`
@@ -545,25 +538,6 @@ p result
 ---
 
 
-### `composio.admin.get_sentry_dns`<a id="composioadminget_sentry_dns"></a>
-
-Sentry dns
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-composio.admin.get_sentry_dns
-```
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/cli/sentry-dns` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
 ### `composio.apps.get_details`<a id="composioappsget_details"></a>
 
 Get app details
@@ -640,91 +614,6 @@ p result
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v1/apps/openapi/spec/list` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.auth.authenticate_user`<a id="composioauthauthenticate_user"></a>
-
-Pusher user auth
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-composio.auth.authenticate_user(
-  body: None,
-)
-```
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/client/auth/pusher_auth` `POST`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.auth.delete_client`<a id="composioauthdelete_client"></a>
-
-Delete client
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-composio.auth.delete_client(
-  client_id: "'+j>6",
-)
-```
-
-#### ⚙️ Parameters<a id="⚙️-parameters"></a>
-
-##### client_id: `String`<a id="client_id-string"></a>
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/client/auth/delete/{clientId}` `DELETE`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.auth.get_user_info`<a id="composioauthget_user_info"></a>
-
-Get client info
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-composio.auth.get_user_info
-```
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/client/auth/client_info` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.auth.google_login`<a id="composioauthgoogle_login"></a>
-
-Google login
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-composio.auth.google_login(
-  body: None,
-)
-```
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/client/auth/google_login` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -958,6 +847,10 @@ p result
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
 ##### connected_account_id: `String`<a id="connected_account_id-string"></a>
+#### 🔄 Return<a id="🔄-return"></a>
+
+[DeleteRowAPIDTO](./lib/composio/models/delete_row_apidto.rb)
+
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v1/connectedAccounts/{connectedAccountId}` `DELETE`
@@ -1338,56 +1231,6 @@ Flag to indicate if the connector is enabled
 ---
 
 
-### `composio.login.handle_auth2_callback`<a id="composiologinhandle_auth2_callback"></a>
-
-Handle o auth 2 callback
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-composio.login.handle_auth2_callback(
-  app_name: "'+j>6",
-  redirect_uri: "string_example",
-)
-```
-
-#### ⚙️ Parameters<a id="⚙️-parameters"></a>
-
-##### app_name: `String`<a id="app_name-string"></a>
-##### redirect_uri: `String`<a id="redirect_uri-string"></a>
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/login/{appName}/auth` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.login.verify_o_auth2_login`<a id="composiologinverify_o_auth2_login"></a>
-
-Verify o auth 2 login
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-composio.login.verify_o_auth2_login(
-  app_name: "'+j>6",
-)
-```
-
-#### ⚙️ Parameters<a id="⚙️-parameters"></a>
-
-##### app_name: `String`<a id="app_name-string"></a>
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/login/{appName}/callback` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
 ### `composio.logs.list`<a id="composiologslist"></a>
 
 List logs
@@ -1431,30 +1274,6 @@ p result
 ---
 
 
-### `composio.metadata.get_info`<a id="composiometadataget_info"></a>
-
-Get metadata
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-composio.metadata.get_info(
-  email: "email_example",
-)
-```
-
-#### ⚙️ Parameters<a id="⚙️-parameters"></a>
-
-##### email: `String`<a id="email-string"></a>
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/metadata` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
 ### `composio.metadata.get_toggle_info`<a id="composiometadataget_toggle_info"></a>
 
 Get toggle info
@@ -1462,8 +1281,13 @@ Get toggle info
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```ruby
-composio.metadata.get_toggle_info
+result = composio.metadata.get_toggle_info
+p result
 ```
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[TriggerToggleInfoResponseDTO](./lib/composio/models/trigger_toggle_info_response_dto.rb)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -1481,9 +1305,10 @@ Toggle trigger state
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```ruby
-composio.metadata.toggle_trigger_state(
+result = composio.metadata.toggle_trigger_state(
   enabled: true,
 )
+p result
 ```
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
@@ -1491,39 +1316,13 @@ composio.metadata.toggle_trigger_state(
 ##### enabled: `Boolean`<a id="enabled-boolean"></a>
 Flag to enable or disable triggers
 
+#### 🔄 Return<a id="🔄-return"></a>
+
+[ToggleTriggerStateResponseDTO](./lib/composio/models/toggle_trigger_state_response_dto.rb)
+
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v1/metadata/toggle/trigger` `POST`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.metadata.update_info`<a id="composiometadataupdate_info"></a>
-
-Update metadata
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-composio.metadata.update_info(
-  email: "string_example",
-  metadata: None,
-)
-```
-
-#### ⚙️ Parameters<a id="⚙️-parameters"></a>
-
-##### email: `String`<a id="email-string"></a>
-The email associated with the metadata request
-
-##### metadata: `Object`<a id="metadata-object"></a>
-Additional metadata as a key-value pair
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/metadata` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -1548,30 +1347,6 @@ p result
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v1/team/members` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.team.remove_member_by_id`<a id="composioteamremove_member_by_id"></a>
-
-Remove member
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-composio.team.remove_member_by_id(
-  id: "'+j>6",
-)
-```
-
-#### ⚙️ Parameters<a id="⚙️-parameters"></a>
-
-##### id: `String`<a id="id-string"></a>
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/team/members/{id}` `DELETE`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -1758,14 +1533,19 @@ Retrieves a specific trigger by its ID.
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```ruby
-composio.triggers.get_by_id(
+result = composio.triggers.get_by_id(
   trigger_id: "'+j>6",
 )
+p result
 ```
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
 ##### trigger_id: `String`<a id="trigger_id-string"></a>
+#### 🔄 Return<a id="🔄-return"></a>
+
+[GetTriggerResponseDTO](./lib/composio/models/get_trigger_response_dto.rb)
+
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v1/triggers/get/{triggerId}` `GET`
@@ -1857,54 +1637,6 @@ p result
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v2/triggers/{triggerName}` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.triggers.handle_pusher_events`<a id="composiotriggershandle_pusher_events"></a>
-
-Handle pusher events
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-composio.triggers.handle_pusher_events(
-  body: None,
-)
-```
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/triggers/pusher` `POST`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.triggers.handle_trigger`<a id="composiotriggershandle_trigger"></a>
-
-Handle trigger
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-composio.triggers.handle_trigger(
-  app_name: "'+j>6",
-  client_id: "'+j>6",
-  body: None,
-)
-```
-
-#### ⚙️ Parameters<a id="⚙️-parameters"></a>
-
-##### app_name: `String`<a id="app_name-string"></a>
-##### client_id: `String`<a id="client_id-string"></a>
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/triggers/handle/{appName}/{clientId}` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 

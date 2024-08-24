@@ -87,7 +87,7 @@ describe 'TriggersApi' do
   # Retrieves a specific trigger by its ID.
   # @param trigger_id 
   # @param [Hash] opts the optional parameters
-  # @return [nil]
+  # @return [GetTriggerResponseDTO]
   describe 'get_by_id test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -127,30 +127,6 @@ describe 'TriggersApi' do
   # @param [Hash] opts the optional parameters
   # @return [Array<SingleTriggerResDTO>]
   describe 'get_trigger_info test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for handle_pusher_events
-  # Handle pusher events
-  # @param [Hash] opts the optional parameters
-  # @option opts [Object] :body 
-  # @return [nil]
-  describe 'handle_pusher_events test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for handle_trigger
-  # Handle trigger
-  # @param app_name 
-  # @param client_id 
-  # @param [Hash] opts the optional parameters
-  # @option opts [Object] :body 
-  # @return [nil]
-  describe 'handle_trigger test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

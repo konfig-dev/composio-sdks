@@ -26,49 +26,6 @@ describe 'AuthApi' do
     end
   end
 
-  # unit tests for authenticate_user
-  # Pusher user auth
-  # @param [Hash] opts the optional parameters
-  # @option opts [Object] :body 
-  # @return [nil]
-  describe 'authenticate_user test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for delete_client
-  # Delete client
-  # @param client_id 
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'delete_client test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_user_info
-  # Get client info
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'get_user_info test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for google_login
-  # Google login
-  # @param [Hash] opts the optional parameters
-  # @option opts [Object] :body 
-  # @return [nil]
-  describe 'google_login test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for identify_client_operation
   # Identify client
   # @param [Hash] opts the optional parameters

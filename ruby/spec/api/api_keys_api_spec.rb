@@ -51,7 +51,7 @@ describe 'APIKeysApi' do
   # Delete api key
   # @param id 
   # @param [Hash] opts the optional parameters
-  # @return [nil]
+  # @return [DeleteAPIKeyResponseDTO]
   describe 'remove test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

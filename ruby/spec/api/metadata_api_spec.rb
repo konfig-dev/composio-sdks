@@ -26,21 +26,10 @@ describe 'MetadataApi' do
     end
   end
 
-  # unit tests for get_info
-  # Get metadata
-  # @param email 
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'get_info test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for get_toggle_info
   # Get toggle info
   # @param [Hash] opts the optional parameters
-  # @return [nil]
+  # @return [TriggerToggleInfoResponseDTO]
   describe 'get_toggle_info test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -51,19 +40,8 @@ describe 'MetadataApi' do
   # Toggle trigger state
   # @param [Hash] opts the optional parameters
   # @option opts [TriggersEnabledToggleReqDTO] :triggers_enabled_toggle_req_dto TriggersEnabledToggleReqDTO
-  # @return [nil]
+  # @return [ToggleTriggerStateResponseDTO]
   describe 'toggle_trigger_state test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for update_info
-  # Update metadata
-  # @param metadata_req_dto MetadataReqDTO
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'update_info test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

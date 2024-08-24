@@ -449,8 +449,8 @@ module Composio
     # @param trigger_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def get_by_id(trigger_id:, extra: {})
-      get_by_id_with_http_info_impl(trigger_id, extra)
-      nil
+      api_response = get_by_id_with_http_info_impl(trigger_id, extra)
+      api_response.data
     end
 
     # Get trigger
@@ -467,17 +467,17 @@ module Composio
     # Retrieves a specific trigger by its ID.
     # @param trigger_id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @return [GetTriggerResponseDTO]
     private def get_by_id_impl(trigger_id, opts = {})
-      get_by_id_with_http_info(trigger_id, opts)
-      nil
+      data, _status_code, _headers = get_by_id_with_http_info(trigger_id, opts)
+      data
     end
 
     # Get trigger
     # Retrieves a specific trigger by its ID.
     # @param trigger_id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [APIResponse] data is nil, status code, headers and response
+    # @return [APIResponse] data is GetTriggerResponseDTO, status code, headers and response
     private def get_by_id_with_http_info_impl(trigger_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: TriggersApi.get_by_id ...'
@@ -509,7 +509,7 @@ module Composio
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type]
+      return_type = opts[:debug_return_type] || 'GetTriggerResponseDTO'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
@@ -799,196 +799,6 @@ module Composio
       data, status_code, headers, response = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: TriggersApi#get_trigger_info\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      APIResponse::new(data, status_code, headers, response)
-    end
-
-
-    # Handle pusher events
-    #
-    # @param body [Object] 
-    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def handle_pusher_events(body:: SENTINEL, extra: {})
-      extra[:body] = body if body != SENTINEL
-      handle_pusher_events_with_http_info_impl(extra)
-      nil
-    end
-
-    # Handle pusher events
-    #
-    # @param body [Object] 
-    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def handle_pusher_events_with_http_info(body:: SENTINEL, extra: {})
-      extra[:body] = body if body != SENTINEL
-      handle_pusher_events_with_http_info_impl(extra)
-    end
-
-    # Handle pusher events
-    # @param [Hash] opts the optional parameters
-    # @option opts [Object] :body 
-    # @return [nil]
-    private def handle_pusher_events_impl(opts = {})
-      handle_pusher_events_with_http_info(opts)
-      nil
-    end
-
-    # Handle pusher events
-    # @param [Hash] opts the optional parameters
-    # @option opts [Object] :body 
-    # @return [APIResponse] data is nil, status code, headers and response
-    private def handle_pusher_events_with_http_info_impl(opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: TriggersApi.handle_pusher_events ...'
-      end
-      # resource path
-      local_var_path = '/api/v1/triggers/pusher'
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/html; charset=utf-8'])
-      # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/json'])
-      if !content_type.nil?
-        header_params['Content-Type'] = content_type
-      end
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'body'])
-
-      # return_type
-      return_type = opts[:debug_return_type]
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key']
-
-      new_options = opts.merge(
-        :operation => :"TriggersApi.handle_pusher_events",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers, response = @api_client.call_api(:POST, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: TriggersApi#handle_pusher_events\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      APIResponse::new(data, status_code, headers, response)
-    end
-
-
-    # Handle trigger
-    #
-    # @param app_name [String] 
-    # @param client_id [String] 
-    # @param body [Object] 
-    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def handle_trigger(app_name:, client_id:, body:: SENTINEL, extra: {})
-      extra[:body] = body if body != SENTINEL
-      handle_trigger_with_http_info_impl(app_name, client_id, extra)
-      nil
-    end
-
-    # Handle trigger
-    #
-    # @param app_name [String] 
-    # @param client_id [String] 
-    # @param body [Object] 
-    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def handle_trigger_with_http_info(app_name:, client_id:, body:: SENTINEL, extra: {})
-      extra[:body] = body if body != SENTINEL
-      handle_trigger_with_http_info_impl(app_name, client_id, extra)
-    end
-
-    # Handle trigger
-    # @param app_name [String] 
-    # @param client_id [String] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Object] :body 
-    # @return [nil]
-    private def handle_trigger_impl(app_name, client_id, opts = {})
-      handle_trigger_with_http_info(app_name, client_id, opts)
-      nil
-    end
-
-    # Handle trigger
-    # @param app_name [String] 
-    # @param client_id [String] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Object] :body 
-    # @return [APIResponse] data is nil, status code, headers and response
-    private def handle_trigger_with_http_info_impl(app_name, client_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: TriggersApi.handle_trigger ...'
-      end
-      # verify the required parameter 'app_name' is set
-      if @api_client.config.client_side_validation && app_name.nil?
-        fail ArgumentError, "Missing the required parameter 'app_name' when calling TriggersApi.handle_trigger"
-      end
-      pattern = Regexp.new(/[^\/#\?]+?/)
-      if @api_client.config.client_side_validation && app_name !~ pattern
-        fail ArgumentError, "invalid value for 'app_name' when calling TriggersApi.handle_trigger, must conform to the pattern #{pattern}."
-      end
-
-      # verify the required parameter 'client_id' is set
-      if @api_client.config.client_side_validation && client_id.nil?
-        fail ArgumentError, "Missing the required parameter 'client_id' when calling TriggersApi.handle_trigger"
-      end
-      pattern = Regexp.new(/[^\/#\?]+?/)
-      if @api_client.config.client_side_validation && client_id !~ pattern
-        fail ArgumentError, "invalid value for 'client_id' when calling TriggersApi.handle_trigger, must conform to the pattern #{pattern}."
-      end
-
-      # resource path
-      local_var_path = '/api/v1/triggers/handle/{appName}/{clientId}'.sub('{' + 'appName' + '}', CGI.escape(app_name.to_s)).sub('{' + 'clientId' + '}', CGI.escape(client_id.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/html; charset=utf-8'])
-      # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/json'])
-      if !content_type.nil?
-        header_params['Content-Type'] = content_type
-      end
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'body'])
-
-      # return_type
-      return_type = opts[:debug_return_type]
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key']
-
-      new_options = opts.merge(
-        :operation => :"TriggersApi.handle_trigger",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers, response = @api_client.call_api(:POST, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: TriggersApi#handle_trigger\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       APIResponse::new(data, status_code, headers, response)
     end

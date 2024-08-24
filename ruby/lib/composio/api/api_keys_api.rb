@@ -184,8 +184,8 @@ module Composio
     # @param id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def remove(id:, extra: {})
-      remove_with_http_info_impl(id, extra)
-      nil
+      api_response = remove_with_http_info_impl(id, extra)
+      api_response.data
     end
 
     # Delete api key
@@ -199,16 +199,16 @@ module Composio
     # Delete api key
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @return [DeleteAPIKeyResponseDTO]
     private def remove_impl(id, opts = {})
-      remove_with_http_info(id, opts)
-      nil
+      data, _status_code, _headers = remove_with_http_info(id, opts)
+      data
     end
 
     # Delete api key
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [APIResponse] data is nil, status code, headers and response
+    # @return [APIResponse] data is DeleteAPIKeyResponseDTO, status code, headers and response
     private def remove_with_http_info_impl(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: APIKeysApi.remove ...'
@@ -240,7 +240,7 @@ module Composio
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type]
+      return_type = opts[:debug_return_type] || 'DeleteAPIKeyResponseDTO'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']

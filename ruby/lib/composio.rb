@@ -50,6 +50,7 @@ require 'composio/models/connector_list_item_dto_updated_at'
 require 'composio/models/create_connector_payload_dto'
 require 'composio/models/create_connector_payload_dto_use_composio_auth'
 require 'composio/models/delete_api_key_req_dto'
+require 'composio/models/delete_api_key_response_dto'
 require 'composio/models/delete_row_apidto'
 require 'composio/models/delete_tools_req_dto'
 require 'composio/models/delete_tools_res_dto'
@@ -70,6 +71,7 @@ require 'composio/models/get_connector_list_res_dto'
 require 'composio/models/get_logs_dto'
 require 'composio/models/get_logs_query_dto'
 require 'composio/models/get_trigger_params_dto'
+require 'composio/models/get_trigger_response_dto'
 require 'composio/models/handle_trigger_body_dto'
 require 'composio/models/handle_trigger_params_dto'
 require 'composio/models/identify_client_req_dto'
@@ -104,6 +106,7 @@ require 'composio/models/switch_trigger_status_body_dto'
 require 'composio/models/switch_trigger_status_params_dto'
 require 'composio/models/time'
 require 'composio/models/toggle_connected_account_response_dto'
+require 'composio/models/toggle_trigger_state_response_dto'
 require 'composio/models/tools_execute_req_dto'
 require 'composio/models/track_client_req_dto'
 require 'composio/models/track_client_res_dto'
@@ -113,9 +116,11 @@ require 'composio/models/trigger_log_data'
 require 'composio/models/trigger_log_item_dto'
 require 'composio/models/trigger_logs_res_dto'
 require 'composio/models/trigger_metadata'
+require 'composio/models/trigger_metadata_dto'
 require 'composio/models/trigger_metadata_type'
 require 'composio/models/trigger_res_dto'
 require 'composio/models/trigger_response_dto'
+require 'composio/models/trigger_toggle_info_response_dto'
 require 'composio/models/triggers_enabled_toggle_req_dto'
 require 'composio/models/triggers_enabled_toggle_res_dto'
 require 'composio/models/type'
@@ -129,13 +134,11 @@ require 'composio/models/webhook_url_response_dto'
 # APIs
 require 'composio/api/api_keys_api'
 require 'composio/api/actions_api'
-require 'composio/api/admin_api'
 require 'composio/api/apps_api'
 require 'composio/api/auth_api'
 require 'composio/api/cli_api'
 require 'composio/api/connections_api'
 require 'composio/api/integrations_api'
-require 'composio/api/login_api'
 require 'composio/api/logs_api'
 require 'composio/api/metadata_api'
 require 'composio/api/team_api'
@@ -183,13 +186,11 @@ module Composio
   class Client
     attr_reader :api_keys
     attr_reader :actions
-    attr_reader :admin
     attr_reader :apps
     attr_reader :auth
     attr_reader :cli
     attr_reader :connections
     attr_reader :integrations
-    attr_reader :login
     attr_reader :logs
     attr_reader :metadata
     attr_reader :team
@@ -199,13 +200,11 @@ module Composio
       @api_client = ApiClient::new(config)
       @api_keys = Composio::APIKeysApi.new(@api_client)
       @actions = Composio::ActionsApi.new(@api_client)
-      @admin = Composio::AdminApi.new(@api_client)
       @apps = Composio::AppsApi.new(@api_client)
       @auth = Composio::AuthApi.new(@api_client)
       @cli = Composio::CLIApi.new(@api_client)
       @connections = Composio::ConnectionsApi.new(@api_client)
       @integrations = Composio::IntegrationsApi.new(@api_client)
-      @login = Composio::LoginApi.new(@api_client)
       @logs = Composio::LogsApi.new(@api_client)
       @metadata = Composio::MetadataApi.new(@api_client)
       @team = Composio::TeamApi.new(@api_client)

@@ -36,17 +36,6 @@ describe 'TeamApi' do
     end
   end
 
-  # unit tests for remove_member_by_id
-  # Remove member
-  # @param id 
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'remove_member_by_id test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for send_invitation
   # Invite member
   # @param [Hash] opts the optional parameters
