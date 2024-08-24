@@ -93,8 +93,7 @@
         },
         "type": "object",
         "required": ["email"],
-        "description": "User Git information",
-        "examples": [{ "name": "John Doe", "email": "john.doe@example.com" }]
+        "description": "User Git information"
       },
       "TrackClientReqDTO": {
         "properties": {
@@ -219,6 +218,16 @@
         },
         "type": "object",
         "required": ["id"]
+      },
+      "DeleteAPIKeyResponseDTO": {
+        "properties": {
+          "deleted": {
+            "type": "boolean",
+            "description": "The status of the delete operation"
+          }
+        },
+        "type": "object",
+        "required": ["deleted"]
       },
       "SingleAppInfoResDTO": {
         "properties": {
@@ -1404,6 +1413,73 @@
         "type": "object",
         "required": ["status"]
       },
+      "TriggerMetadataDTO": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the trigger"
+          },
+          "connectionId": {
+            "type": "string",
+            "description": "The connection identifier associated with the trigger"
+          },
+          "triggerName": {
+            "type": "string",
+            "description": "The name of the trigger"
+          },
+          "triggerData": {
+            "type": "string",
+            "description": "The data associated with the trigger"
+          },
+          "triggerConfig": {
+            "type": "object",
+            "description": "The configuration of the trigger"
+          },
+          "state": {
+            "type": "object",
+            "description": "The state of the trigger"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The creation date of the trigger"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "The last update date of the trigger"
+          },
+          "disabledAt": {
+            "type": "string",
+            "description": "The date when the trigger was disabled, if applicable"
+          },
+          "disabledReason": {
+            "type": "string",
+            "description": "The reason why the trigger was disabled, if applicable"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "connectionId",
+          "triggerName",
+          "triggerData",
+          "triggerConfig",
+          "state",
+          "createdAt",
+          "updatedAt"
+        ],
+        "description": "The trigger details if found"
+      },
+      "GetTriggerResponseDTO": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status of the operation"
+          },
+          "trigger": { "$ref": "#/components/schemas/TriggerMetadataDTO" }
+        },
+        "type": "object",
+        "required": ["status"]
+      },
       "GenerateCLISessionReqDTO": {
         "properties": {
           "channel_name": {
@@ -1488,6 +1564,21 @@
             "description": "Message indicating the result of the toggle operation"
           }
         },
+        "type": "object",
+        "required": ["message"]
+      },
+      "TriggerToggleInfoResponseDTO": {
+        "properties": {
+          "triggersEnabled": {
+            "type": "boolean",
+            "description": "Indicates if triggers are enabled"
+          }
+        },
+        "type": "object",
+        "required": ["triggersEnabled"]
+      },
+      "ToggleTriggerStateResponseDTO": {
+        "properties": { "message": { "type": "string" } },
         "type": "object",
         "required": ["message"]
       },
@@ -1808,24 +1899,6 @@
         "tags": ["Auth"]
       }
     },
-    "/api/v1/client/auth/google_login": {
-      "post": {
-        "operationId": "googleLogin",
-        "requestBody": {
-          "content": { "application/json": { "schema": {} } },
-          "description": "",
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Google login",
-        "tags": ["Auth"]
-      }
-    },
     "/api/v1/client/auth/send_magic_link": {
       "post": {
         "operationId": "sendMagicLink",
@@ -1898,58 +1971,6 @@
         "tags": ["Auth"]
       }
     },
-    "/api/v1/client/auth/client_info": {
-      "get": {
-        "operationId": "getUserInfo",
-        "responses": {
-          "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Get client info",
-        "tags": ["Auth"]
-      }
-    },
-    "/api/v1/client/auth/pusher_auth": {
-      "post": {
-        "operationId": "pusherUserAuth",
-        "requestBody": {
-          "content": { "application/json": { "schema": {} } },
-          "description": "",
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Pusher user auth",
-        "tags": ["Auth"]
-      }
-    },
-    "/api/v1/client/auth/delete/{clientId}": {
-      "delete": {
-        "operationId": "deleteClient",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "clientId",
-            "required": true,
-            "schema": { "pattern": "[^\\/#\\?]+?", "type": "string" }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Delete client",
-        "tags": ["Auth"]
-      }
-    },
     "/api/v1/team/invite": {
       "post": {
         "operationId": "inviteMember",
@@ -1993,27 +2014,6 @@
           }
         },
         "summary": "List members",
-        "tags": ["Team"]
-      }
-    },
-    "/api/v1/team/members/{id}": {
-      "delete": {
-        "operationId": "removeMember",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": { "pattern": "[^\\/#\\?]+?", "type": "string" }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Remove member",
         "tags": ["Team"]
       }
     },
@@ -2074,8 +2074,14 @@
         ],
         "responses": {
           "204": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
+            "content": {
+              "text/html; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAPIKeyResponseDTO"
+                }
+              }
+            },
+            "description": ""
           }
         },
         "summary": "Delete api key",
@@ -2583,8 +2589,12 @@
         ],
         "responses": {
           "200": {
-            "content": { "application/json": {} },
-            "description": "Successful response"
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DeleteRowAPIDTO" }
+              }
+            },
+            "description": ""
           }
         },
         "summary": "Delete connection",
@@ -2645,53 +2655,6 @@
         "tags": ["Connections"]
       }
     },
-    "/api/v1/login/{appName}/auth": {
-      "get": {
-        "operationId": "handleOAuth2Login",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "appName",
-            "required": true,
-            "schema": { "pattern": "[^\\/#\\?]+?", "type": "string" }
-          },
-          {
-            "in": "query",
-            "name": "redirectUri",
-            "schema": { "type": "string" }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Handle o auth 2 callback",
-        "tags": ["Login"]
-      }
-    },
-    "/api/v1/login/{appName}/callback": {
-      "get": {
-        "operationId": "verifyOAuth2Login",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "appName",
-            "required": true,
-            "schema": { "pattern": "[^\\/#\\?]+?", "type": "string" }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Verify o auth 2 login",
-        "tags": ["Login"]
-      }
-    },
     "/api/v1/triggers": {
       "get": {
         "operationId": "listTriggers",
@@ -2736,38 +2699,6 @@
         "summary": "List triggers",
         "tags": ["Triggers"],
         "description": "List triggers"
-      }
-    },
-    "/api/v1/triggers/handle/{appName}/{clientId}": {
-      "post": {
-        "operationId": "handleTrigger",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "appName",
-            "required": true,
-            "schema": { "pattern": "[^\\/#\\?]+?", "type": "string" }
-          },
-          {
-            "in": "path",
-            "name": "clientId",
-            "required": true,
-            "schema": { "pattern": "[^\\/#\\?]+?", "type": "string" }
-          }
-        ],
-        "requestBody": {
-          "content": { "application/json": { "schema": {} } },
-          "description": "",
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Handle trigger",
-        "tags": ["Triggers"]
       }
     },
     "/api/v1/triggers/enable/{connectedAccountId}/{triggerName}": {
@@ -2824,8 +2755,14 @@
         ],
         "responses": {
           "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
+            "content": {
+              "text/html; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTriggerResponseDTO"
+                }
+              }
+            },
+            "description": ""
           }
         },
         "summary": "Get trigger",
@@ -3119,37 +3056,6 @@
         "description": "Fetches logs based on connection and integration details."
       }
     },
-    "/api/v1/triggers/pusher": {
-      "post": {
-        "operationId": "handlePusherEvents",
-        "requestBody": {
-          "content": { "application/json": { "schema": {} } },
-          "description": "",
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Handle pusher events",
-        "tags": ["Triggers"]
-      }
-    },
-    "/api/v1/cli/sentry-dns": {
-      "get": {
-        "operationId": "getSentryDNS",
-        "responses": {
-          "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Sentry dns",
-        "tags": ["Admin"]
-      }
-    },
     "/api/v1/cli/generate-cli-session": {
       "get": {
         "operationId": "generateCLISession",
@@ -3243,47 +3149,6 @@
         "tags": ["CLI"]
       }
     },
-    "/api/v1/metadata": {
-      "get": {
-        "operationId": "getMetadata",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "email",
-            "required": true,
-            "schema": { "type": "string", "description": "Email of the client" }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Get metadata",
-        "tags": ["Metadata"]
-      },
-      "post": {
-        "operationId": "updateMetadata",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/MetadataReqDTO" }
-            }
-          },
-          "description": "MetadataReqDTO",
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Update metadata",
-        "tags": ["Metadata"]
-      }
-    },
     "/api/v1/metadata/toggle/trigger": {
       "post": {
         "operationId": "toggleTriggerState",
@@ -3300,8 +3165,14 @@
         },
         "responses": {
           "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
+            "content": {
+              "text/html; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToggleTriggerStateResponseDTO"
+                }
+              }
+            },
+            "description": ""
           }
         },
         "summary": "Toggle trigger state",
@@ -3313,8 +3184,14 @@
         "operationId": "getToggleInfo",
         "responses": {
           "200": {
-            "content": { "text/html; charset=utf-8": {} },
-            "description": "Successful response"
+            "content": {
+              "text/html; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerToggleInfoResponseDTO"
+                }
+              }
+            },
+            "description": ""
           }
         },
         "summary": "Get toggle info",
