@@ -403,7 +403,7 @@
             "content": {
               "text/html; charset=utf-8": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiKeysListApiKeysResponse"
+                  "$ref": "#/components/schemas/ApiKeysListResponse"
                 }
               }
             }
@@ -1103,7 +1103,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConnectionsDeleteConnectionResponse"
+                  "$ref": "#/components/schemas/ConnectionsDeleteResponse"
                 }
               }
             }
@@ -1288,7 +1288,7 @@
             "content": {
               "text/html; charset=utf-8": {
                 "schema": {
-                  "$ref": "#/components/schemas/TriggersListTriggersResponse"
+                  "$ref": "#/components/schemas/TriggersListResponse"
                 }
               }
             }
@@ -5149,7 +5149,7 @@
         },
         "type": "array"
       },
-      "ApiKeysListApiKeysResponse": {
+      "ApiKeysListResponse": {
         "items": {
           "$ref": "#/components/schemas/APIKeyResDTO"
         },
@@ -5161,14 +5161,14 @@
         },
         "type": "array"
       },
-      "ConnectionsDeleteConnectionResponse": {
+      "ConnectionsDeleteResponse": {
         "type": "object",
         "properties": {
         },
         "example": {
         }
       },
-      "TriggersListTriggersResponse": {
+      "TriggersListResponse": {
         "items": {
           "$ref": "#/components/schemas/TriggerResDTO"
         },

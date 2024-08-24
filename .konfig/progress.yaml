@@ -174,70 +174,20 @@ requestSchemaNames:
   /api/v1/triggers/pusher:
     post:
       application/json: TriggersHandlePusherEventsRequest
-  /api/v1/triggers/setCallbackURL:
-    post:
-      application/json: TriggersSetCallbackUrlRequest
-  /v1/actions/{actionName}/execute:
-    post:
-      application/json: ActionsExecuteActionRequest
-  /v1/connectedAccounts:
-    post:
-      application/json: ConnectedAccountsCreateConnectionRequest
-  /v1/integrations:
-    post:
-      application/json: IntegrationsCreateNewIntegrationRequest
-  /v1/integrations/{integrationId}:
-    patch:
-      application/json: IntegrationsUpdateIntegrationSettingsRequest
 responseDescriptions: {}
 responseSchemaNames:
   /api/v1/api_keys:
     get:
       '200':
-        text/html; charset=utf-8: ApiKeysListApiKeysResponse
-  /api/v1/apps/custom-repo/add-repo:
-    post:
-      '200':
-        application/json: AppCreateCustomRepoResponse
-  /api/v1/apps/custom-repo/get-repo:
-    get:
-      '200':
-        application/json: AppGetCustomRepoResponse
-  /api/v1/apps/openapi/spec/add:
-    post:
-      '200':
-        application/json: AppAddOpenApiSpecResponse
-  /api/v1/apps/openapi/spec/delete/{name}:
-    delete:
-      '200':
-        application/json: AppDeleteOpenApiSpecToolResponse
+        text/html; charset=utf-8: ApiKeysListResponse
   /api/v1/apps/openapi/spec/list:
     get:
       '200':
         application/json: AppListOpenApiSpecsResponse
-  /api/v1/apps/openapi/spec/logs/{name}:
-    get:
-      '200':
-        application/json: AppGetLogsByNameResponse
-  /api/v1/apps/sync:
-    post:
-      '202':
-        application/json: AppSyncCustomRepoResponse
   /api/v1/connectedAccounts/{connectedAccountId}:
     delete:
       '200':
-        application/json: ConnectionsDeleteConnectionResponse
-    get:
-      '200':
-        application/json: ConnectionsGetConnectionResponse
-  /api/v1/connectedAccounts/{connectedAccountId}/disable:
-    post:
-      '201':
-        application/json: ConnectionsDisableConnectionResponse
-  /api/v1/connectedAccounts/{connectedAccountId}/enable:
-    post:
-      '201':
-        application/json: ConnectionsEnableConnectionResponse
+        application/json: ConnectionsDeleteResponse
   /api/v1/team/members:
     get:
       '200':
@@ -245,55 +195,11 @@ responseSchemaNames:
   /api/v1/triggers:
     get:
       '200':
-        text/html; charset=utf-8: TriggersListTriggersResponse
+        text/html; charset=utf-8: TriggersListResponse
   /api/v2/triggers/{triggerName}:
     get:
       '200':
         text/html; charset=utf-8: TriggerControllerV2GetTriggerInfoResponse
-  /v1/actions:
-    get:
-      '200':
-        application/json: ActionsGetListResponse
-  /v1/actions/{actionName}:
-    get:
-      '200':
-        application/json: ActionsGetSpecificActionResponse
-  /v1/actions/{actionName}/execute:
-    post:
-      '200':
-        application/json: ActionsExecuteActionResponse
-  /v1/apps:
-    get:
-      '200':
-        application/json: AppsGetAllAppsResponse
-  /v1/connectedAccounts:
-    get:
-      '200':
-        application/json: ConnectedAccountsListAllResponse
-    post:
-      '200':
-        application/json: ConnectedAccountsCreateConnectionResponse
-  /v1/connectedAccounts/{connectedAccountId}:
-    delete:
-      '200':
-        application/json: ConnectedAccountsRemoveConnectionResponse
-    get:
-      '200':
-        application/json: ConnectedAccountsGetAccountDetailsResponse
-  /v1/integrations:
-    get:
-      '200':
-        application/json: IntegrationsListAllResponse
-    post:
-      '200':
-        application/json: IntegrationsCreateNewIntegrationResponse
-  /v1/integrations/{integrationId}:
-    get:
-      '200':
-        application/json: IntegrationsGetIntegrationDetailsResponse
-    patch:
-      '200':
-        application/json: IntegrationsUpdateIntegrationSettingsResponse
 securityParameters:
   actions:
     query: false
