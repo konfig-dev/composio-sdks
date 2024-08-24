@@ -60,7 +60,7 @@ module Composio
       if @api_client.config.client_side_validation && app_name.nil?
         fail ArgumentError, "Missing the required parameter 'app_name' when calling AppsApi.get_details"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && app_name !~ pattern
         fail ArgumentError, "invalid value for 'app_name' when calling AppsApi.get_details, must conform to the pattern #{pattern}."
       end

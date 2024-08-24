@@ -60,7 +60,7 @@ module Composio
       if @api_client.config.client_side_validation && app_name.nil?
         fail ArgumentError, "Missing the required parameter 'app_name' when calling LoginApi.handle_auth2_callback"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && app_name !~ pattern
         fail ArgumentError, "invalid value for 'app_name' when calling LoginApi.handle_auth2_callback, must conform to the pattern #{pattern}."
       end
@@ -145,7 +145,7 @@ module Composio
       if @api_client.config.client_side_validation && app_name.nil?
         fail ArgumentError, "Missing the required parameter 'app_name' when calling LoginApi.verify_o_auth2_login"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && app_name !~ pattern
         fail ArgumentError, "invalid value for 'app_name' when calling LoginApi.verify_o_auth2_login, must conform to the pattern #{pattern}."
       end

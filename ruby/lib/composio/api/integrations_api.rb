@@ -162,7 +162,7 @@ module Composio
       if @api_client.config.client_side_validation && integration_id.nil?
         fail ArgumentError, "Missing the required parameter 'integration_id' when calling IntegrationsApi.delete_connector"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && integration_id !~ pattern
         fail ArgumentError, "invalid value for 'integration_id' when calling IntegrationsApi.delete_connector, must conform to the pattern #{pattern}."
       end
@@ -246,7 +246,7 @@ module Composio
       if @api_client.config.client_side_validation && integration_id.nil?
         fail ArgumentError, "Missing the required parameter 'integration_id' when calling IntegrationsApi.get_connector_info"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && integration_id !~ pattern
         fail ArgumentError, "invalid value for 'integration_id' when calling IntegrationsApi.get_connector_info, must conform to the pattern #{pattern}."
       end
@@ -417,7 +417,7 @@ module Composio
       if @api_client.config.client_side_validation && integration_id.nil?
         fail ArgumentError, "Missing the required parameter 'integration_id' when calling IntegrationsApi.update_integration"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && integration_id !~ pattern
         fail ArgumentError, "invalid value for 'integration_id' when calling IntegrationsApi.update_integration, must conform to the pattern #{pattern}."
       end
@@ -522,7 +522,7 @@ module Composio
       if @api_client.config.client_side_validation && integration_id.nil?
         fail ArgumentError, "Missing the required parameter 'integration_id' when calling IntegrationsApi.update_status"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && integration_id !~ pattern
         fail ArgumentError, "invalid value for 'integration_id' when calling IntegrationsApi.update_status, must conform to the pattern #{pattern}."
       end

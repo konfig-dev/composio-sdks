@@ -136,7 +136,7 @@ module Composio
       if @api_client.config.client_side_validation && client_id.nil?
         fail ArgumentError, "Missing the required parameter 'client_id' when calling AuthApi.delete_client"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && client_id !~ pattern
         fail ArgumentError, "invalid value for 'client_id' when calling AuthApi.delete_client, must conform to the pattern #{pattern}."
       end

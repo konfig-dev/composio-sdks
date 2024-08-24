@@ -217,7 +217,7 @@ module Composio
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling APIKeysApi.remove"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && id !~ pattern
         fail ArgumentError, "invalid value for 'id' when calling APIKeysApi.remove, must conform to the pattern #{pattern}."
       end

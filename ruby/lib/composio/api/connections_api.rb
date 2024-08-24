@@ -54,7 +54,7 @@ module Composio
       if @api_client.config.client_side_validation && connected_account_id.nil?
         fail ArgumentError, "Missing the required parameter 'connected_account_id' when calling ConnectionsApi.delete"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && connected_account_id !~ pattern
         fail ArgumentError, "invalid value for 'connected_account_id' when calling ConnectionsApi.delete, must conform to the pattern #{pattern}."
       end
@@ -138,7 +138,7 @@ module Composio
       if @api_client.config.client_side_validation && connected_account_id.nil?
         fail ArgumentError, "Missing the required parameter 'connected_account_id' when calling ConnectionsApi.disable"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && connected_account_id !~ pattern
         fail ArgumentError, "invalid value for 'connected_account_id' when calling ConnectionsApi.disable, must conform to the pattern #{pattern}."
       end
@@ -222,7 +222,7 @@ module Composio
       if @api_client.config.client_side_validation && connected_account_id.nil?
         fail ArgumentError, "Missing the required parameter 'connected_account_id' when calling ConnectionsApi.enable"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && connected_account_id !~ pattern
         fail ArgumentError, "invalid value for 'connected_account_id' when calling ConnectionsApi.enable, must conform to the pattern #{pattern}."
       end
@@ -306,7 +306,7 @@ module Composio
       if @api_client.config.client_side_validation && connected_account_id.nil?
         fail ArgumentError, "Missing the required parameter 'connected_account_id' when calling ConnectionsApi.get"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && connected_account_id !~ pattern
         fail ArgumentError, "invalid value for 'connected_account_id' when calling ConnectionsApi.get, must conform to the pattern #{pattern}."
       end

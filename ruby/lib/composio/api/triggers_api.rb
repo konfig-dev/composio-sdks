@@ -60,7 +60,7 @@ module Composio
       if @api_client.config.client_side_validation && trigger_instance_id.nil?
         fail ArgumentError, "Missing the required parameter 'trigger_instance_id' when calling TriggersApi.delete_trigger_instance"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && trigger_instance_id !~ pattern
         fail ArgumentError, "invalid value for 'trigger_instance_id' when calling TriggersApi.delete_trigger_instance, must conform to the pattern #{pattern}."
       end
@@ -150,7 +150,7 @@ module Composio
       if @api_client.config.client_side_validation && trigger_instance_id.nil?
         fail ArgumentError, "Missing the required parameter 'trigger_instance_id' when calling TriggersApi.disable_trigger_instance"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && trigger_instance_id !~ pattern
         fail ArgumentError, "invalid value for 'trigger_instance_id' when calling TriggersApi.disable_trigger_instance, must conform to the pattern #{pattern}."
       end
@@ -256,7 +256,7 @@ module Composio
       if @api_client.config.client_side_validation && connected_account_id.nil?
         fail ArgumentError, "Missing the required parameter 'connected_account_id' when calling TriggersApi.enable"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && connected_account_id !~ pattern
         fail ArgumentError, "invalid value for 'connected_account_id' when calling TriggersApi.enable, must conform to the pattern #{pattern}."
       end
@@ -265,7 +265,7 @@ module Composio
       if @api_client.config.client_side_validation && trigger_name.nil?
         fail ArgumentError, "Missing the required parameter 'trigger_name' when calling TriggersApi.enable"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && trigger_name !~ pattern
         fail ArgumentError, "invalid value for 'trigger_name' when calling TriggersApi.enable, must conform to the pattern #{pattern}."
       end
@@ -486,7 +486,7 @@ module Composio
       if @api_client.config.client_side_validation && trigger_id.nil?
         fail ArgumentError, "Missing the required parameter 'trigger_id' when calling TriggersApi.get_by_id"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && trigger_id !~ pattern
         fail ArgumentError, "invalid value for 'trigger_id' when calling TriggersApi.get_by_id, must conform to the pattern #{pattern}."
       end
@@ -758,7 +758,7 @@ module Composio
       if @api_client.config.client_side_validation && trigger_name.nil?
         fail ArgumentError, "Missing the required parameter 'trigger_name' when calling TriggersApi.get_trigger_info"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && trigger_name !~ pattern
         fail ArgumentError, "invalid value for 'trigger_name' when calling TriggersApi.get_trigger_info, must conform to the pattern #{pattern}."
       end
@@ -934,7 +934,7 @@ module Composio
       if @api_client.config.client_side_validation && app_name.nil?
         fail ArgumentError, "Missing the required parameter 'app_name' when calling TriggersApi.handle_trigger"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && app_name !~ pattern
         fail ArgumentError, "invalid value for 'app_name' when calling TriggersApi.handle_trigger, must conform to the pattern #{pattern}."
       end
@@ -943,7 +943,7 @@ module Composio
       if @api_client.config.client_side_validation && client_id.nil?
         fail ArgumentError, "Missing the required parameter 'client_id' when calling TriggersApi.handle_trigger"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && client_id !~ pattern
         fail ArgumentError, "invalid value for 'client_id' when calling TriggersApi.handle_trigger, must conform to the pattern #{pattern}."
       end
@@ -1249,7 +1249,7 @@ module Composio
       if @api_client.config.client_side_validation && trigger_id.nil?
         fail ArgumentError, "Missing the required parameter 'trigger_id' when calling TriggersApi.switch_instance_status"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && trigger_id !~ pattern
         fail ArgumentError, "invalid value for 'trigger_id' when calling TriggersApi.switch_instance_status, must conform to the pattern #{pattern}."
       end
@@ -1356,7 +1356,7 @@ module Composio
       if @api_client.config.client_side_validation && trigger_id.nil?
         fail ArgumentError, "Missing the required parameter 'trigger_id' when calling TriggersApi.switch_post_instance_status"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && trigger_id !~ pattern
         fail ArgumentError, "invalid value for 'trigger_id' when calling TriggersApi.switch_post_instance_status, must conform to the pattern #{pattern}."
       end

@@ -86,7 +86,7 @@ module Composio
       if @api_client.config.client_side_validation && action_id.nil?
         fail ArgumentError, "Missing the required parameter 'action_id' when calling ActionsApi.execute"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && action_id !~ pattern
         fail ArgumentError, "invalid value for 'action_id' when calling ActionsApi.execute, must conform to the pattern #{pattern}."
       end
@@ -213,7 +213,7 @@ module Composio
       if @api_client.config.client_side_validation && action_id.nil?
         fail ArgumentError, "Missing the required parameter 'action_id' when calling ActionsApi.execute_0"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && action_id !~ pattern
         fail ArgumentError, "invalid value for 'action_id' when calling ActionsApi.execute_0, must conform to the pattern #{pattern}."
       end
@@ -486,7 +486,7 @@ module Composio
       if @api_client.config.client_side_validation && action_id.nil?
         fail ArgumentError, "Missing the required parameter 'action_id' when calling ActionsApi.get"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && action_id !~ pattern
         fail ArgumentError, "invalid value for 'action_id' when calling ActionsApi.get, must conform to the pattern #{pattern}."
       end
@@ -576,7 +576,7 @@ module Composio
       if @api_client.config.client_side_validation && action_id.nil?
         fail ArgumentError, "Missing the required parameter 'action_id' when calling ActionsApi.get_action_by_id"
       end
-      pattern = Regexp.new(/[^\\/#\?]+?/)
+      pattern = Regexp.new(/[^\/#\?]+?/)
       if @api_client.config.client_side_validation && action_id !~ pattern
         fail ArgumentError, "invalid value for 'action_id' when calling ActionsApi.get_action_by_id, must conform to the pattern #{pattern}."
       end
