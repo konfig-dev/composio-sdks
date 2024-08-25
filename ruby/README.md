@@ -992,7 +992,7 @@ Get connections
 result = composio.connections.list(
   page: 3.14,
   page_size: 3.14,
-  app_names: None,
+  app_names: "string_example",
   integration_id: "string_example",
   connection_id: "string_example",
   user_uuid: "string_example",
@@ -1007,7 +1007,7 @@ p result
 
 ##### page: `Float`<a id="page-float"></a>
 ##### page_size: `Float`<a id="page_size-float"></a>
-##### app_names: `Object`<a id="app_names-object"></a>
+##### app_names: `String`<a id="app_names-string"></a>
 ##### integration_id: `String`<a id="integration_id-string"></a>
 ##### connection_id: `String`<a id="connection_id-string"></a>
 ##### user_uuid: `String`<a id="user_uuid-string"></a>

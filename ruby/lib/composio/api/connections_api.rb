@@ -456,7 +456,7 @@ module Composio
     #
     # @param page [Float] 
     # @param page_size [Float] 
-    # @param app_names [Object] 
+    # @param app_names [String] 
     # @param integration_id [String] 
     # @param connection_id [String] 
     # @param user_uuid [String] 
@@ -482,7 +482,7 @@ module Composio
     #
     # @param page [Float] 
     # @param page_size [Float] 
-    # @param app_names [Object] 
+    # @param app_names [String] 
     # @param integration_id [String] 
     # @param connection_id [String] 
     # @param user_uuid [String] 
@@ -507,7 +507,7 @@ module Composio
     # @param [Hash] opts the optional parameters
     # @option opts [Float] :page 
     # @option opts [Float] :page_size 
-    # @option opts [Object] :app_names 
+    # @option opts [String] :app_names 
     # @option opts [String] :integration_id 
     # @option opts [String] :connection_id 
     # @option opts [String] :user_uuid 
@@ -524,7 +524,7 @@ module Composio
     # @param [Hash] opts the optional parameters
     # @option opts [Float] :page 
     # @option opts [Float] :page_size 
-    # @option opts [Object] :app_names 
+    # @option opts [String] :app_names 
     # @option opts [String] :integration_id 
     # @option opts [String] :connection_id 
     # @option opts [String] :user_uuid 

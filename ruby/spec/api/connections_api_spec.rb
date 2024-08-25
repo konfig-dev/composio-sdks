@@ -86,7 +86,7 @@ describe 'ConnectionsApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [Float] :page 
   # @option opts [Float] :page_size 
-  # @option opts [Object] :app_names 
+  # @option opts [String] :app_names 
   # @option opts [String] :integration_id 
   # @option opts [String] :connection_id 
   # @option opts [String] :user_uuid 

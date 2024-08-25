@@ -57,7 +57,7 @@ module Composio
       {
         :'integration_id' => :'String',
         :'app_unique_id' => :'String',
-        :'meta' => :'Object',
+        :'meta' => :'Meta',
         :'is_disabled' => :'Boolean',
         :'id' => :'String',
         :'client_unique_user_id' => :'String',
@@ -71,7 +71,6 @@ module Composio
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'meta',
       ])
     end
 

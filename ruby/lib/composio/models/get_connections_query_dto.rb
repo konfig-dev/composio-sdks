@@ -54,7 +54,7 @@ module Composio
       {
         :'page' => :'Float',
         :'page_size' => :'Float',
-        :'app_names' => :'Object',
+        :'app_names' => :'String',
         :'integration_id' => :'String',
         :'connection_id' => :'String',
         :'user_uuid' => :'String',
@@ -67,7 +67,6 @@ module Composio
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'app_names',
       ])
     end
 
