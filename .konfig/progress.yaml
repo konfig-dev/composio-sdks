@@ -179,6 +179,7 @@ responseSchemaNames:
   /api/v1/api_keys:
     get:
       '200':
+        application/json: ApiKeysListResponse
         text/html; charset=utf-8: ApiKeysListResponse
   /api/v1/apps/openapi/spec/list:
     get:
@@ -191,14 +192,17 @@ responseSchemaNames:
   /api/v1/team/members:
     get:
       '200':
+        application/json: TeamGetMemberListResponse
         text/html; charset=utf-8: TeamGetMemberListResponse
   /api/v1/triggers:
     get:
       '200':
+        application/json: TriggersListResponse
         text/html; charset=utf-8: TriggersListResponse
   /api/v2/triggers/{triggerName}:
     get:
       '200':
+        application/json: TriggerControllerV2GetTriggerInfoResponse
         text/html; charset=utf-8: TriggerControllerV2GetTriggerInfoResponse
 securityParameters:
   actions:

@@ -68,7 +68,7 @@
           "202": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/IdentifyClientResDTO"
                 }
@@ -100,7 +100,7 @@
           "202": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MagicLinkResDTO"
                 }
@@ -122,7 +122,7 @@
           "201": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LogoutResDTO"
                 }
@@ -154,7 +154,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/VerifyMagicLinkResDTO"
                 }
@@ -186,7 +186,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MemberResDTO"
                 }
@@ -207,7 +207,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TeamGetMemberListResponse"
                 }
@@ -239,7 +239,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/APIKeyResDTO"
                 }
@@ -258,7 +258,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiKeysListResponse"
                 }
@@ -290,7 +290,7 @@
           "204": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DeleteAPIKeyResponseDTO"
                 }
@@ -408,7 +408,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetConnectorInfoResDTO"
                 }
@@ -427,7 +427,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetConnectorListResDTO"
                 }
@@ -459,7 +459,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetConnectorInfoResDTO"
                 }
@@ -500,7 +500,7 @@
           "204": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PatchConnectorResDTO"
                 }
@@ -530,7 +530,7 @@
           "204": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DeleteRowAPIDTO"
                 }
@@ -573,7 +573,7 @@
           "201": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PatchConnectorResDTO"
                 }
@@ -670,7 +670,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActionsListResponseDTO"
                 }
@@ -713,7 +713,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActionExecutionResDto"
                 }
@@ -752,7 +752,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExecuteActionResDTO"
                 }
@@ -784,7 +784,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActionDetails"
                 }
@@ -820,6 +820,7 @@
             "in": "query",
             "name": "appNames",
             "schema": {
+              "type": "string"
             }
           },
           {
@@ -1081,7 +1082,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TriggersListResponse"
                 }
@@ -1134,7 +1135,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TriggerResponseDTO"
                 }
@@ -1167,7 +1168,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetTriggerResponseDTO"
                 }
@@ -1247,7 +1248,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActiveTriggersResDTO"
                 }
@@ -1291,7 +1292,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TriggerResponseDTO"
                 }
@@ -1333,7 +1334,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TriggerResponseDTO"
                 }
@@ -1366,7 +1367,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TriggerResponseDTO"
                 }
@@ -1399,7 +1400,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DeleteRowAPIDTO"
                 }
@@ -1432,7 +1433,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TriggerResponseDTO"
                 }
@@ -1454,7 +1455,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WebhookURLResponseDTO"
                 }
@@ -1510,7 +1511,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TriggerLogsResDTO"
                 }
@@ -1531,7 +1532,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GenerateCLISessionResDTO"
                 }
@@ -1572,7 +1573,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetCLISessionResDTO"
                 }
@@ -1613,7 +1614,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/VerifyCLICodeResDTO"
                 }
@@ -1645,7 +1646,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ToggleTriggerStateResponseDTO"
                 }
@@ -1666,7 +1667,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TriggerToggleInfoResponseDTO"
                 }
@@ -1764,7 +1765,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActionsListResponseDTO"
                 }
@@ -1862,7 +1863,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActionsListResponseDTO"
                 }
@@ -1906,7 +1907,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActionExecutionResDto"
                 }
@@ -1939,7 +1940,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActionDetails"
                 }
@@ -1979,7 +1980,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActionExecutionResDto"
                 }
@@ -2012,7 +2013,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TriggerControllerV2GetTriggerInfoResponse"
                 }
@@ -2120,7 +2121,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/html; charset=utf-8": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LogsResDTO"
                 }
@@ -2505,6 +2506,7 @@
           "testConnectors": {
             "description": "The test connectors of the app",
             "items": {
+              "type": "object"
             },
             "type": "array"
           },
@@ -2515,6 +2517,7 @@
           "auth_schemes": {
             "description": "The authentication schemes of the app",
             "items": {
+              "type": "object"
             },
             "type": "array"
           },
@@ -2738,6 +2741,7 @@
           "categories": {
             "description": "The categories of the app",
             "items": {
+              "type": "object"
             },
             "type": "string"
           },
@@ -2949,6 +2953,7 @@
           "connections": {
             "description": "List of connections with their details and request logs count",
             "items": {
+              "type": "object"
             },
             "type": "array"
           },
@@ -3026,6 +3031,7 @@
           "items": {
             "description": "List of connectors",
             "items": {
+              "type": "object"
             },
             "type": "array"
           },
@@ -3469,6 +3475,7 @@
         "properties": {
           "getAction": {
             "items": {
+              "type": "object"
             },
             "type": "array"
           }
@@ -3657,6 +3664,7 @@
             "type": "string"
           },
           "meta": {
+            "$ref": "#/components/schemas/Meta"
           },
           "isDisabled": {
             "type": "boolean"
@@ -3722,6 +3730,7 @@
             "type": "number"
           },
           "appNames": {
+            "type": "string"
           },
           "integrationId": {
             "type": "string"
@@ -4080,6 +4089,7 @@
         "properties": {
           "triggers": {
             "items": {
+              "type": "object"
             },
             "type": "array"
           },
@@ -4817,6 +4827,7 @@
           "data": {
             "description": "Logs data",
             "items": {
+              "type": "object"
             },
             "type": "array"
           }
