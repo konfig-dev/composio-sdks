@@ -1049,7 +1049,8 @@
       "InitiateConnectionResponse": {
         "properties": {
           "connectionStatus": { "minLength": 1, "type": "string" },
-          "connectedAccountId": { "minLength": 1, "type": "string" }
+          "connectedAccountId": { "minLength": 1, "type": "string" },
+          "redirectUrl": { "type": "string" }
         },
         "type": "object",
         "required": ["connectionStatus", "connectedAccountId"]

@@ -3784,6 +3784,9 @@
           "connectedAccountId": {
             "minLength": 1,
             "type": "string"
+          },
+          "redirectUrl": {
+            "type": "string"
           }
         },
         "type": "object",

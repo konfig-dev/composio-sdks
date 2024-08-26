@@ -15,11 +15,14 @@ module Composio
 
     attr_accessor :connected_account_id
 
+    attr_accessor :redirect_url
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'connection_status' => :'connectionStatus',
-        :'connected_account_id' => :'connectedAccountId'
+        :'connected_account_id' => :'connectedAccountId',
+        :'redirect_url' => :'redirectUrl'
       }
     end
 
@@ -32,7 +35,8 @@ module Composio
     def self.openapi_types
       {
         :'connection_status' => :'String',
-        :'connected_account_id' => :'String'
+        :'connected_account_id' => :'String',
+        :'redirect_url' => :'String'
       }
     end
 
@@ -63,6 +67,10 @@ module Composio
 
       if attributes.key?(:'connected_account_id')
         self.connected_account_id = attributes[:'connected_account_id']
+      end
+
+      if attributes.key?(:'redirect_url')
+        self.redirect_url = attributes[:'redirect_url']
       end
     end
 
@@ -133,7 +141,8 @@ module Composio
       return true if self.equal?(o)
       self.class == o.class &&
           connection_status == o.connection_status &&
-          connected_account_id == o.connected_account_id
+          connected_account_id == o.connected_account_id &&
+          redirect_url == o.redirect_url
     end
 
     # @see the `==` method
@@ -145,7 +154,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [connection_status, connected_account_id].hash
+      [connection_status, connected_account_id, redirect_url].hash
     end
 
     # Builds the object from hash

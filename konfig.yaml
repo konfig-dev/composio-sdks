@@ -8,14 +8,16 @@ infoContactUrl: https://composio.dev
 fixConfig:
   update:
     info:
-      description: "Composio SDK: Equip your agent with high-quality tools and build your real-world usecase"
+      description: >-
+        Composio SDK: Equip your agent with high-quality tools and build your
+        real-world usecase
 readmeHeader:
   title: Composio
   image: header.png
   url: https://composio.dev
 generators:
   ruby:
-    version: 0.1.0
+    version: 0.1.1
     moduleName: Composio
     gemName: composio
     outputDirectory: ruby
