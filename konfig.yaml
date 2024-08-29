@@ -17,7 +17,7 @@ readmeHeader:
   url: https://composio.dev
 generators:
   ruby:
-    version: 0.1.1
+    version: 0.1.2
     moduleName: Composio
     gemName: composio
     outputDirectory: ruby
