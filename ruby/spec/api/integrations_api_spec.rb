@@ -60,7 +60,7 @@ describe 'IntegrationsApi' do
   end
 
   # unit tests for list_global_connectors
-  # List global connectors
+  # List all connectors
   # @param [Hash] opts the optional parameters
   # @return [GetConnectorListResDTO]
   describe 'list_global_connectors test' do
@@ -70,24 +70,12 @@ describe 'IntegrationsApi' do
   end
 
   # unit tests for update_integration
-  # Patch connector
+  # Modify connector
   # @param integration_id 
   # @param [Hash] opts the optional parameters
   # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO
   # @return [PatchConnectorResDTO]
   describe 'update_integration test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for update_status
-  # Patch post connector
-  # @param integration_id 
-  # @param [Hash] opts the optional parameters
-  # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO
-  # @return [PatchConnectorResDTO]
-  describe 'update_status test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

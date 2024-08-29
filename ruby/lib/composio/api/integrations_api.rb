@@ -292,7 +292,7 @@ module Composio
     end
 
 
-    # List global connectors
+    # List all connectors
     #
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def list_global_connectors(extra: {})
@@ -300,14 +300,14 @@ module Composio
       api_response.data
     end
 
-    # List global connectors
+    # List all connectors
     #
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def list_global_connectors_with_http_info(extra: {})
       list_global_connectors_with_http_info_impl(extra)
     end
 
-    # List global connectors
+    # List all connectors
     # @param [Hash] opts the optional parameters
     # @return [GetConnectorListResDTO]
     private def list_global_connectors_impl(opts = {})
@@ -315,7 +315,7 @@ module Composio
       data
     end
 
-    # List global connectors
+    # List all connectors
     # @param [Hash] opts the optional parameters
     # @return [APIResponse] data is GetConnectorListResDTO, status code, headers and response
     private def list_global_connectors_with_http_info_impl(opts = {})
@@ -363,7 +363,7 @@ module Composio
     end
 
 
-    # Patch connector
+    # Modify connector
     #
     # @param integration_id [String] 
     # @param auth_config [Object] Authentication configuration for the connector
@@ -379,7 +379,7 @@ module Composio
       api_response.data
     end
 
-    # Patch connector
+    # Modify connector
     #
     # @param integration_id [String] 
     # @param auth_config [Object] Authentication configuration for the connector
@@ -394,7 +394,7 @@ module Composio
       update_integration_with_http_info_impl(integration_id, extra)
     end
 
-    # Patch connector
+    # Modify connector
     # @param integration_id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO
@@ -404,7 +404,7 @@ module Composio
       data
     end
 
-    # Patch connector
+    # Modify connector
     # @param integration_id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO
@@ -463,111 +463,6 @@ module Composio
       data, status_code, headers, response = @api_client.call_api(:PATCH, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: IntegrationsApi#update_integration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      APIResponse::new(data, status_code, headers, response)
-    end
-
-
-    # Patch post connector
-    #
-    # @param integration_id [String] 
-    # @param auth_config [Object] Authentication configuration for the connector
-    # @param enabled [Boolean] Flag to indicate if the connector is enabled
-    # @param body [PatchConnectorReqDTO] 
-    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def update_status(integration_id:, auth_config: SENTINEL, enabled: SENTINEL, extra: {})
-      _body = {}
-      _body[:authConfig] = auth_config if auth_config != SENTINEL
-      _body[:enabled] = enabled if enabled != SENTINEL
-      extra[:patch_connector_req_dto] = _body if !_body.empty?
-      api_response = update_status_with_http_info_impl(integration_id, extra)
-      api_response.data
-    end
-
-    # Patch post connector
-    #
-    # @param integration_id [String] 
-    # @param auth_config [Object] Authentication configuration for the connector
-    # @param enabled [Boolean] Flag to indicate if the connector is enabled
-    # @param body [PatchConnectorReqDTO] 
-    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def update_status_with_http_info(integration_id:, auth_config: SENTINEL, enabled: SENTINEL, extra: {})
-      _body = {}
-      _body[:authConfig] = auth_config if auth_config != SENTINEL
-      _body[:enabled] = enabled if enabled != SENTINEL
-      extra[:patch_connector_req_dto] = _body if !_body.empty?
-      update_status_with_http_info_impl(integration_id, extra)
-    end
-
-    # Patch post connector
-    # @param integration_id [String] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO
-    # @return [PatchConnectorResDTO]
-    private def update_status_impl(integration_id, opts = {})
-      data, _status_code, _headers = update_status_with_http_info(integration_id, opts)
-      data
-    end
-
-    # Patch post connector
-    # @param integration_id [String] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO
-    # @return [APIResponse] data is PatchConnectorResDTO, status code, headers and response
-    private def update_status_with_http_info_impl(integration_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: IntegrationsApi.update_status ...'
-      end
-      # verify the required parameter 'integration_id' is set
-      if @api_client.config.client_side_validation && integration_id.nil?
-        fail ArgumentError, "Missing the required parameter 'integration_id' when calling IntegrationsApi.update_status"
-      end
-      pattern = Regexp.new(/[^\/#\?]+?/)
-      if @api_client.config.client_side_validation && integration_id !~ pattern
-        fail ArgumentError, "invalid value for 'integration_id' when calling IntegrationsApi.update_status, must conform to the pattern #{pattern}."
-      end
-
-      # resource path
-      local_var_path = '/api/v1/integrations/{integrationId}/status'.sub('{' + 'integrationId' + '}', CGI.escape(integration_id.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/json'])
-      if !content_type.nil?
-        header_params['Content-Type'] = content_type
-      end
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'patch_connector_req_dto'])
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'PatchConnectorResDTO'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key']
-
-      new_options = opts.merge(
-        :operation => :"IntegrationsApi.update_status",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers, response = @api_client.call_api(:POST, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: IntegrationsApi#update_status\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       APIResponse::new(data, status_code, headers, response)
     end
