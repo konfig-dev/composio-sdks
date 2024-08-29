@@ -29,6 +29,8 @@ module Composio
 
     attr_accessor :name
 
+    attr_accessor :deprecated
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -40,7 +42,8 @@ module Composio
         :'display_name' => :'displayName',
         :'enabled' => :'enabled',
         :'logo' => :'logo',
-        :'name' => :'name'
+        :'name' => :'name',
+        :'deprecated' => :'deprecated'
       }
     end
 
@@ -60,7 +63,8 @@ module Composio
         :'display_name' => :'String',
         :'enabled' => :'Boolean',
         :'logo' => :'String',
-        :'name' => :'String'
+        :'name' => :'String',
+        :'deprecated' => :'Boolean'
       }
     end
 
@@ -122,6 +126,10 @@ module Composio
       if attributes.key?(:'name')
         self.name = attributes[:'name']
       end
+
+      if attributes.key?(:'deprecated')
+        self.deprecated = attributes[:'deprecated']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -160,6 +168,10 @@ module Composio
         invalid_properties.push('invalid value for "name", name cannot be nil.')
       end
 
+      if @deprecated.nil?
+        invalid_properties.push('invalid value for "deprecated", deprecated cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -174,6 +186,7 @@ module Composio
       return false if @enabled.nil?
       return false if @logo.nil?
       return false if @name.nil?
+      return false if @deprecated.nil?
       true
     end
 
@@ -190,7 +203,8 @@ module Composio
           display_name == o.display_name &&
           enabled == o.enabled &&
           logo == o.logo &&
-          name == o.name
+          name == o.name &&
+          deprecated == o.deprecated
     end
 
     # @see the `==` method
@@ -202,7 +216,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [tags, description, app_id, app_key, app_name, display_name, enabled, logo, name].hash
+      [tags, description, app_id, app_key, app_name, display_name, enabled, logo, name, deprecated].hash
     end
 
     # Builds the object from hash

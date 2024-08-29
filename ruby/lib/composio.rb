@@ -136,12 +136,9 @@ require 'composio/api/api_keys_api'
 require 'composio/api/actions_api'
 require 'composio/api/apps_api'
 require 'composio/api/auth_api'
-require 'composio/api/cli_api'
 require 'composio/api/connections_api'
 require 'composio/api/integrations_api'
 require 'composio/api/logs_api'
-require 'composio/api/metadata_api'
-require 'composio/api/team_api'
 require 'composio/api/triggers_api'
 
 module Composio
@@ -188,12 +185,9 @@ module Composio
     attr_reader :actions
     attr_reader :apps
     attr_reader :auth
-    attr_reader :cli
     attr_reader :connections
     attr_reader :integrations
     attr_reader :logs
-    attr_reader :metadata
-    attr_reader :team
     attr_reader :triggers
 
     def initialize(config = Configuration.default)
@@ -202,12 +196,9 @@ module Composio
       @actions = Composio::ActionsApi.new(@api_client)
       @apps = Composio::AppsApi.new(@api_client)
       @auth = Composio::AuthApi.new(@api_client)
-      @cli = Composio::CLIApi.new(@api_client)
       @connections = Composio::ConnectionsApi.new(@api_client)
       @integrations = Composio::IntegrationsApi.new(@api_client)
       @logs = Composio::LogsApi.new(@api_client)
-      @metadata = Composio::MetadataApi.new(@api_client)
-      @team = Composio::TeamApi.new(@api_client)
       @triggers = Composio::TriggersApi.new(@api_client)
     end
   end

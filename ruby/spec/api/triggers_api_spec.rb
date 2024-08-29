@@ -82,18 +82,6 @@ describe 'TriggersApi' do
     end
   end
 
-  # unit tests for get_by_id
-  # Get trigger
-  # Retrieves a specific trigger by its ID.
-  # @param trigger_id 
-  # @param [Hash] opts the optional parameters
-  # @return [GetTriggerResponseDTO]
-  describe 'get_by_id test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for get_callback_url
   # Get webhook url
   # Retrieves the universal callback URL set for the client.
@@ -167,19 +155,6 @@ describe 'TriggersApi' do
   # @option opts [SwitchTriggerStatusBodyDTO] :switch_trigger_status_body_dto SwitchTriggerStatusBodyDTO
   # @return [TriggerResponseDTO]
   describe 'switch_instance_status test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for switch_post_instance_status
-  # Switch post trigger instance status
-  # Switches the status of a trigger instance.
-  # @param trigger_id 
-  # @param [Hash] opts the optional parameters
-  # @option opts [SwitchTriggerStatusBodyDTO] :switch_trigger_status_body_dto SwitchTriggerStatusBodyDTO
-  # @return [TriggerResponseDTO]
-  describe 'switch_post_instance_status test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
