@@ -1171,9 +1171,6 @@
               "type": "string"
             },
             "type": "array"
-          },
-          "deprecated": {
-            "type": "boolean"
           }
         },
         "type": "object",
@@ -1185,8 +1182,7 @@
           "enabled",
           "logo",
           "name",
-          "tags",
-          "deprecated"
+          "tags"
         ]
       },
       "ActionDetails": {
@@ -1226,9 +1222,6 @@
               "type": "string"
             },
             "type": "array"
-          },
-          "deprecated": {
-            "type": "boolean"
           }
         },
         "type": "object",
@@ -1242,8 +1235,7 @@
           "enabled",
           "logo",
           "name",
-          "tags",
-          "deprecated"
+          "tags"
         ]
       },
       "ActionsListResponseDTO": {
@@ -2820,6 +2812,148 @@
         ]
       }
     },
+    "/api/v1/client/auth/send_magic_link": {
+      "post": {
+        "operationId": "sendMagicLink",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MagicLinkReqDTO"
+              }
+            }
+          },
+          "description": "MagicLinkReqDTO",
+          "required": false
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MagicLinkResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Send magic link",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/client/auth/logout": {
+      "post": {
+        "operationId": "logout",
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Logout API",
+        "tags": [
+          "Auth"
+        ],
+        "description": "Logout the user and clear the server side session"
+      }
+    },
+    "/api/v1/client/auth/verify_magic_link": {
+      "post": {
+        "operationId": "verifyMagicLink",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyMagicLinkReqDTO"
+              }
+            }
+          },
+          "description": "VerifyMagicLinkReqDTO",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyMagicLinkResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Verify magic link",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/team/invite": {
+      "post": {
+        "operationId": "inviteMember",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InviteMemberReqDTO"
+              }
+            }
+          },
+          "description": "InviteMemberReqDTO",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Invite member",
+        "tags": [
+          "Team"
+        ]
+      }
+    },
+    "/api/v1/team/members": {
+      "get": {
+        "operationId": "listMembers",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/MemberResDTO"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "List members",
+        "tags": [
+          "Team"
+        ]
+      }
+    },
     "/api/v1/api_keys": {
       "post": {
         "operationId": "generateAPIKey",
@@ -3027,7 +3161,7 @@
         ]
       },
       "get": {
-        "operationId": "listAllConnectors",
+        "operationId": "listGlobalConnectors",
         "responses": {
           "200": {
             "content": {
@@ -3040,7 +3174,7 @@
             "description": ""
           }
         },
-        "summary": "List all connectors",
+        "summary": "List global connectors",
         "tags": [
           "Integrations"
         ]
@@ -3078,7 +3212,7 @@
         ]
       },
       "patch": {
-        "operationId": "modifyConnector",
+        "operationId": "patchConnector",
         "parameters": [
           {
             "in": "path",
@@ -3113,7 +3247,7 @@
             "description": ""
           }
         },
-        "summary": "Modify connector",
+        "summary": "Patch connector",
         "tags": [
           "Integrations"
         ]
@@ -3149,7 +3283,260 @@
         ]
       }
     },
-    "/api/v1/integrations/{integrationId}/status": {},
+    "/api/v1/integrations/{integrationId}/status": {
+      "post": {
+        "operationId": "patchPostConnector",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "integrationId",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchConnectorReqDTO"
+              }
+            }
+          },
+          "description": "PatchConnectorReqDTO",
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchConnectorResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch post connector",
+        "tags": [
+          "Integrations"
+        ]
+      }
+    },
+    "/api/v1/actions": {
+      "get": {
+        "operationId": "listActionsV1",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "appNames",
+            "schema": {
+              "type": "string",
+              "description": "Names of the apps"
+            }
+          },
+          {
+            "in": "query",
+            "name": "useCase",
+            "schema": {
+              "type": "string",
+              "description": "Use case"
+            }
+          },
+          {
+            "in": "query",
+            "name": "showEnabledOnly",
+            "schema": {
+              "type": "boolean",
+              "description": "Show enabled only"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "description": "Limit"
+            }
+          },
+          {
+            "in": "query",
+            "name": "apps",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "actions",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "tags",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "usecaseLimit",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filterImportantActions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "showAll",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionsListResponseDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "List actions",
+        "tags": [
+          "Actions"
+        ]
+      }
+    },
+    "/api/v1/actions/{actionId}/execute": {
+      "post": {
+        "operationId": "executeActionV1",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "actionId",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActionExecutionReqDTO"
+              }
+            }
+          },
+          "description": "ActionExecutionReqDTO",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionExecutionResDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Execute action",
+        "tags": [
+          "Actions"
+        ]
+      }
+    },
+    "/api/v1/actions/proxy": {
+      "post": {
+        "operationId": "executeActionProxy",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "endpoint",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "connectedAccountId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecuteActionResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Execute action proxy",
+        "tags": [
+          "Actions"
+        ]
+      }
+    },
+    "/api/v1/actions/{actionId}": {
+      "get": {
+        "operationId": "getActionV1",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "actionId",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionDetails"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get action",
+        "tags": [
+          "Actions"
+        ]
+      }
+    },
     "/api/v1/connectedAccounts": {
       "get": {
         "operationId": "getConnections",
@@ -3504,6 +3891,39 @@
         "description": "Enables a trigger for a connected account and specific trigger name."
       }
     },
+    "/api/v1/triggers/get/{triggerId}": {
+      "get": {
+        "operationId": "getTrigger",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "triggerId",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTriggerResponseDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get trigger",
+        "tags": [
+          "Triggers"
+        ],
+        "description": "Retrieves a specific trigger by its ID."
+      }
+    },
     "/api/v1/triggers/active_triggers": {
       "get": {
         "operationId": "getActiveTriggers",
@@ -3622,6 +4042,48 @@
           }
         },
         "summary": "Switch trigger instance status",
+        "tags": [
+          "Triggers"
+        ],
+        "description": "Switches the status of a trigger instance."
+      },
+      "post": {
+        "operationId": "switchPostTriggerInstanceStatus",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "triggerId",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SwitchTriggerStatusBodyDTO"
+              }
+            }
+          },
+          "description": "SwitchTriggerStatusBodyDTO",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerResponseDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Switch post trigger instance status",
         "tags": [
           "Triggers"
         ],
@@ -3805,6 +4267,162 @@
         "description": "Fetches logs based on connection and integration details."
       }
     },
+    "/api/v1/cli/generate-cli-session": {
+      "get": {
+        "operationId": "generateCLISession",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateCLISessionResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Handle cli code exchange",
+        "tags": [
+          "CLI"
+        ]
+      }
+    },
+    "/api/v1/cli/get-cli-code": {
+      "get": {
+        "operationId": "getCLICode",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Unique key for CLI session"
+            }
+          },
+          {
+            "in": "query",
+            "name": "code",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Code for CLI verification"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCLISessionResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get cli code",
+        "tags": [
+          "CLI"
+        ]
+      }
+    },
+    "/api/v1/cli/verify-cli-code": {
+      "get": {
+        "operationId": "verifyCLICode",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Unique key for CLI session"
+            }
+          },
+          {
+            "in": "query",
+            "name": "code",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Code for CLI verification"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyCLICodeResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Handle cli code verification",
+        "tags": [
+          "CLI"
+        ]
+      }
+    },
+    "/api/v1/metadata/toggle/trigger": {
+      "post": {
+        "operationId": "toggleTriggerState",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TriggersEnabledToggleReqDTO"
+              }
+            }
+          },
+          "description": "TriggersEnabledToggleReqDTO",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToggleTriggerStateResponseDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Toggle trigger state",
+        "tags": [
+          "Metadata"
+        ]
+      }
+    },
+    "/api/v1/metadata/toggle.info": {
+      "get": {
+        "operationId": "getToggleInfo",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerToggleInfoResponseDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get toggle info",
+        "tags": [
+          "Metadata"
+        ]
+      }
+    },
     "/api/v1/logs/": {
       "get": {
         "operationId": "getLogs",
@@ -3911,6 +4529,104 @@
           "Logs"
         ],
         "description": "List logs"
+      }
+    },
+    "/api/v2/actions": {
+      "get": {
+        "operationId": "listActionsV2",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "appNames",
+            "schema": {
+              "type": "string",
+              "description": "Names of the apps"
+            }
+          },
+          {
+            "in": "query",
+            "name": "useCase",
+            "schema": {
+              "type": "string",
+              "description": "Use case"
+            }
+          },
+          {
+            "in": "query",
+            "name": "showEnabledOnly",
+            "schema": {
+              "type": "boolean",
+              "description": "Show enabled only"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "description": "Limit"
+            }
+          },
+          {
+            "in": "query",
+            "name": "apps",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "actions",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "tags",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "usecaseLimit",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filterImportantActions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "showAll",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionsListResponseDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "List actions",
+        "tags": [
+          "Actions"
+        ],
+        "description": "Retrieve a list of all actions based on query parameters."
       }
     },
     "/api/v2/actions/list/all": {
