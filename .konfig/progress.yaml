@@ -229,6 +229,8 @@ securityParameters:
     query: false
   filterImportantActions:
     query: false
+  includeLocal:
+    query: false
   integrationId:
     query: false
   integrationIds:

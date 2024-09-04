@@ -168,6 +168,14 @@
               "description": "Category of the app",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "includeLocal",
+            "schema": {
+              "description": "Whether to include local tools or not",
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1982,6 +1990,10 @@
         "properties": {
           "category": {
             "description": "Category of the app",
+            "type": "string"
+          },
+          "includeLocal": {
+            "description": "Whether to include local tools or not",
             "type": "string"
           }
         },

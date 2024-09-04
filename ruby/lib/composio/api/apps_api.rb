@@ -111,9 +111,11 @@ module Composio
     # Retrieve a list of all applications based on query parameters.
     #
     # @param category [String] 
+    # @param include_local [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def list(category: SENTINEL, extra: {})
+    def list(category: SENTINEL, include_local: SENTINEL, extra: {})
       extra[:category] = category if category != SENTINEL
+      extra[:include_local] = include_local if include_local != SENTINEL
       api_response = list_with_http_info_impl(extra)
       api_response.data
     end
@@ -123,9 +125,11 @@ module Composio
     # Retrieve a list of all applications based on query parameters.
     #
     # @param category [String] 
+    # @param include_local [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def list_with_http_info(category: SENTINEL, extra: {})
+    def list_with_http_info(category: SENTINEL, include_local: SENTINEL, extra: {})
       extra[:category] = category if category != SENTINEL
+      extra[:include_local] = include_local if include_local != SENTINEL
       list_with_http_info_impl(extra)
     end
 
@@ -133,6 +137,7 @@ module Composio
     # Retrieve a list of all applications based on query parameters.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :category 
+    # @option opts [String] :include_local 
     # @return [AppListResDTO]
     private def list_impl(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -143,6 +148,7 @@ module Composio
     # Retrieve a list of all applications based on query parameters.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :category 
+    # @option opts [String] :include_local 
     # @return [APIResponse] data is AppListResDTO, status code, headers and response
     private def list_with_http_info_impl(opts = {})
       if @api_client.config.debugging
@@ -154,6 +160,7 @@ module Composio
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'category'] = opts[:'category'] if !opts[:'category'].nil?
+      query_params[:'includeLocal'] = opts[:'include_local'] if !opts[:'include_local'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

@@ -363,6 +363,7 @@ Retrieve a list of all applications based on query parameters.
 ```ruby
 result = composio.apps.list(
   category: "string_example",
+  include_local: "string_example",
 )
 p result
 ```
@@ -370,6 +371,7 @@ p result
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
 ##### category: `String`<a id="category-string"></a>
+##### include_local: `String`<a id="include_local-string"></a>
 #### 🔄 Return<a id="🔄-return"></a>
 
 [AppListResDTO](./lib/composio/models/app_list_res_dto.rb)
