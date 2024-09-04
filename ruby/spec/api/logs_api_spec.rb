@@ -35,6 +35,7 @@ describe 'LogsApi' do
   # @option opts [String] :status 
   # @option opts [String] :search 
   # @option opts [String] :integration_id 
+  # @option opts [String] :entity_id 
   # @option opts [Float] :limit 
   # @option opts [String] :cursor 
   # @option opts [String] :connection_id 

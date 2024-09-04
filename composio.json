@@ -2760,6 +2760,10 @@
             "type": "string",
             "description": "Integration UUID"
           },
+          "entityId": {
+            "type": "string",
+            "description": "Entity UUID"
+          },
           "limit": {
             "type": "number",
             "description": "Limit of the logs",
@@ -3878,6 +3882,14 @@
             "schema": {
               "type": "string",
               "description": "Integration UUID"
+            }
+          },
+          {
+            "in": "query",
+            "name": "entityId",
+            "schema": {
+              "type": "string",
+              "description": "Entity UUID"
             }
           },
           {

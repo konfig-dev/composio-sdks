@@ -820,6 +820,7 @@ result = composio.logs.list(
   status: "all",
   search: "string_example",
   integration_id: "string_example",
+  entity_id: "string_example",
   limit: 10,
   cursor: "string_example",
   connection_id: "string_example",
@@ -834,6 +835,7 @@ p result
 ##### status: `String`<a id="status-string"></a>
 ##### search: `String`<a id="search-string"></a>
 ##### integration_id: `String`<a id="integration_id-string"></a>
+##### entity_id: `String`<a id="entity_id-string"></a>
 ##### limit: `Float`<a id="limit-float"></a>
 ##### cursor: `String`<a id="cursor-string"></a>
 ##### connection_id: `String`<a id="connection_id-string"></a>
