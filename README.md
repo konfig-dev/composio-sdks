@@ -2,4 +2,4 @@
 
 |Language|Version|Package Manager|README|Source|
 |-|-|-|-|-|
-|Ruby|0.1.3|[RubyGems](https://rubygems.org/gems/composio/versions/0.1.3)|[README](https://github.com/konfig-dev/composio-sdks/tree/HEAD/ruby#readme)|[Source](https://github.com/konfig-dev/composio-sdks/tree/HEAD/ruby)|
+|Ruby|0.1.4|[RubyGems](https://rubygems.org/gems/composio/versions/0.1.4)|[README](https://github.com/konfig-dev/composio-sdks/tree/HEAD/ruby#readme)|[Source](https://github.com/konfig-dev/composio-sdks/tree/HEAD/ruby)|
