@@ -14,10 +14,14 @@ module Composio
     # Category of the app
     attr_accessor :category
 
+    # Whether to include local tools or not
+    attr_accessor :include_local
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'category' => :'category'
+        :'category' => :'category',
+        :'include_local' => :'includeLocal'
       }
     end
 
@@ -29,7 +33,8 @@ module Composio
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'category' => :'String'
+        :'category' => :'String',
+        :'include_local' => :'String'
       }
     end
 
@@ -57,6 +62,10 @@ module Composio
       if attributes.key?(:'category')
         self.category = attributes[:'category']
       end
+
+      if attributes.key?(:'include_local')
+        self.include_local = attributes[:'include_local']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -77,7 +86,8 @@ module Composio
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          category == o.category
+          category == o.category &&
+          include_local == o.include_local
     end
 
     # @see the `==` method
@@ -89,7 +99,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [category].hash
+      [category, include_local].hash
     end
 
     # Builds the object from hash
