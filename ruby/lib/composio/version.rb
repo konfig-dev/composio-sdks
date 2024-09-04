@@ -7,5 +7,5 @@ The version of the OpenAPI document: 1.0.0
 =end
 
 module Composio
-  VERSION = '0.1.3'
+  VERSION = '0.1.4'
 end
