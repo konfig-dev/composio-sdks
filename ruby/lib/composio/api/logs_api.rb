@@ -25,16 +25,18 @@ module Composio
     # @param status [String] 
     # @param search [String] 
     # @param integration_id [String] 
+    # @param entity_id [String] 
     # @param limit [Float] 
     # @param cursor [String] 
     # @param connection_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def list(type: SENTINEL, time: SENTINEL, status: SENTINEL, search: SENTINEL, integration_id: SENTINEL, limit: 10, cursor: SENTINEL, connection_id: SENTINEL, extra: {})
+    def list(type: SENTINEL, time: SENTINEL, status: SENTINEL, search: SENTINEL, integration_id: SENTINEL, entity_id: SENTINEL, limit: 10, cursor: SENTINEL, connection_id: SENTINEL, extra: {})
       extra[:type] = type if type != SENTINEL
       extra[:time] = time if time != SENTINEL
       extra[:status] = status if status != SENTINEL
       extra[:search] = search if search != SENTINEL
       extra[:integration_id] = integration_id if integration_id != SENTINEL
+      extra[:entity_id] = entity_id if entity_id != SENTINEL
       extra[:limit] = limit if limit != SENTINEL
       extra[:cursor] = cursor if cursor != SENTINEL
       extra[:connection_id] = connection_id if connection_id != SENTINEL
@@ -51,16 +53,18 @@ module Composio
     # @param status [String] 
     # @param search [String] 
     # @param integration_id [String] 
+    # @param entity_id [String] 
     # @param limit [Float] 
     # @param cursor [String] 
     # @param connection_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def list_with_http_info(type: SENTINEL, time: SENTINEL, status: SENTINEL, search: SENTINEL, integration_id: SENTINEL, limit: 10, cursor: SENTINEL, connection_id: SENTINEL, extra: {})
+    def list_with_http_info(type: SENTINEL, time: SENTINEL, status: SENTINEL, search: SENTINEL, integration_id: SENTINEL, entity_id: SENTINEL, limit: 10, cursor: SENTINEL, connection_id: SENTINEL, extra: {})
       extra[:type] = type if type != SENTINEL
       extra[:time] = time if time != SENTINEL
       extra[:status] = status if status != SENTINEL
       extra[:search] = search if search != SENTINEL
       extra[:integration_id] = integration_id if integration_id != SENTINEL
+      extra[:entity_id] = entity_id if entity_id != SENTINEL
       extra[:limit] = limit if limit != SENTINEL
       extra[:cursor] = cursor if cursor != SENTINEL
       extra[:connection_id] = connection_id if connection_id != SENTINEL
@@ -75,6 +79,7 @@ module Composio
     # @option opts [String] :status 
     # @option opts [String] :search 
     # @option opts [String] :integration_id 
+    # @option opts [String] :entity_id 
     # @option opts [Float] :limit  (default to 10)
     # @option opts [String] :cursor 
     # @option opts [String] :connection_id 
@@ -92,6 +97,7 @@ module Composio
     # @option opts [String] :status 
     # @option opts [String] :search 
     # @option opts [String] :integration_id 
+    # @option opts [String] :entity_id 
     # @option opts [Float] :limit  (default to 10)
     # @option opts [String] :cursor 
     # @option opts [String] :connection_id 
@@ -122,6 +128,7 @@ module Composio
       query_params[:'status'] = opts[:'status'] if !opts[:'status'].nil?
       query_params[:'search'] = opts[:'search'] if !opts[:'search'].nil?
       query_params[:'integrationId'] = opts[:'integration_id'] if !opts[:'integration_id'].nil?
+      query_params[:'entityId'] = opts[:'entity_id'] if !opts[:'entity_id'].nil?
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
       query_params[:'cursor'] = opts[:'cursor'] if !opts[:'cursor'].nil?
       query_params[:'connectionId'] = opts[:'connection_id'] if !opts[:'connection_id'].nil?

@@ -227,6 +227,8 @@ securityParameters:
     query: false
   endpoint:
     query: false
+  entityId:
+    query: false
   filterImportantActions:
     query: false
   includeLocal:

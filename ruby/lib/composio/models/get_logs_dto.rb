@@ -26,6 +26,9 @@ module Composio
     # Integration UUID
     attr_accessor :integration_id
 
+    # Entity UUID
+    attr_accessor :entity_id
+
     # Limit of the logs
     attr_accessor :limit
 
@@ -43,6 +46,7 @@ module Composio
         :'status' => :'status',
         :'search' => :'search',
         :'integration_id' => :'integrationId',
+        :'entity_id' => :'entityId',
         :'limit' => :'limit',
         :'cursor' => :'cursor',
         :'connection_id' => :'connectionId'
@@ -62,6 +66,7 @@ module Composio
         :'status' => :'Status',
         :'search' => :'String',
         :'integration_id' => :'String',
+        :'entity_id' => :'String',
         :'limit' => :'Float',
         :'cursor' => :'String',
         :'connection_id' => :'String'
@@ -109,6 +114,10 @@ module Composio
         self.integration_id = attributes[:'integration_id']
       end
 
+      if attributes.key?(:'entity_id')
+        self.entity_id = attributes[:'entity_id']
+      end
+
       if attributes.key?(:'limit')
         self.limit = attributes[:'limit']
       else
@@ -147,6 +156,7 @@ module Composio
           status == o.status &&
           search == o.search &&
           integration_id == o.integration_id &&
+          entity_id == o.entity_id &&
           limit == o.limit &&
           cursor == o.cursor &&
           connection_id == o.connection_id
@@ -161,7 +171,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, time, status, search, integration_id, limit, cursor, connection_id].hash
+      [type, time, status, search, integration_id, entity_id, limit, cursor, connection_id].hash
     end
 
     # Builds the object from hash
