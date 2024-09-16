@@ -203,11 +203,13 @@ module Composio
     # @param trigger_config [Object] The trigger configuration
     # @param connected_account_id [String] 
     # @param trigger_name [String] 
+    # @param verify_host [String] The verify host
     # @param body [EnableTriggerBodyDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def enable(trigger_config:, connected_account_id:, trigger_name:, extra: {})
+    def enable(trigger_config:, connected_account_id:, trigger_name:, verify_host: SENTINEL, extra: {})
       _body = {}
       _body[:triggerConfig] = trigger_config if trigger_config != SENTINEL
+      _body[:verifyHost] = verify_host if verify_host != SENTINEL
       extra[:enable_trigger_body_dto] = _body if !_body.empty?
       api_response = enable_with_http_info_impl(connected_account_id, trigger_name, extra)
       api_response.data
@@ -220,11 +222,13 @@ module Composio
     # @param trigger_config [Object] The trigger configuration
     # @param connected_account_id [String] 
     # @param trigger_name [String] 
+    # @param verify_host [String] The verify host
     # @param body [EnableTriggerBodyDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def enable_with_http_info(trigger_config:, connected_account_id:, trigger_name:, extra: {})
+    def enable_with_http_info(trigger_config:, connected_account_id:, trigger_name:, verify_host: SENTINEL, extra: {})
       _body = {}
       _body[:triggerConfig] = trigger_config if trigger_config != SENTINEL
+      _body[:verifyHost] = verify_host if verify_host != SENTINEL
       extra[:enable_trigger_body_dto] = _body if !_body.empty?
       enable_with_http_info_impl(connected_account_id, trigger_name, extra)
     end

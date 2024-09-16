@@ -3547,6 +3547,10 @@
           "triggerConfig": {
             "description": "The trigger configuration",
             "type": "object"
+          },
+          "verifyHost": {
+            "description": "The verify host",
+            "type": "string"
           }
         },
         "type": "object",

@@ -921,6 +921,7 @@ result = composio.triggers.enable(
   trigger_config: {},
   connected_account_id: "'+j>6",
   trigger_name: "'+j>6",
+  verify_host: "string_example",
 )
 p result
 ```
@@ -932,6 +933,9 @@ The trigger configuration
 
 ##### connected_account_id: `String`<a id="connected_account_id-string"></a>
 ##### trigger_name: `String`<a id="trigger_name-string"></a>
+##### verifyHost: `String`<a id="verifyhost-string"></a>
+The verify host
+
 #### 🔄 Return<a id="🔄-return"></a>
 
 [TriggerResponseDTO](./lib/composio/models/trigger_response_dto.rb)

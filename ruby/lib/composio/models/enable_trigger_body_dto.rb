@@ -14,10 +14,14 @@ module Composio
     # The trigger configuration
     attr_accessor :trigger_config
 
+    # The verify host
+    attr_accessor :verify_host
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'trigger_config' => :'triggerConfig'
+        :'trigger_config' => :'triggerConfig',
+        :'verify_host' => :'verifyHost'
       }
     end
 
@@ -29,7 +33,8 @@ module Composio
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'trigger_config' => :'Object'
+        :'trigger_config' => :'Object',
+        :'verify_host' => :'String'
       }
     end
 
@@ -57,6 +62,10 @@ module Composio
       if attributes.key?(:'trigger_config')
         self.trigger_config = attributes[:'trigger_config']
       end
+
+      if attributes.key?(:'verify_host')
+        self.verify_host = attributes[:'verify_host']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -82,7 +91,8 @@ module Composio
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          trigger_config == o.trigger_config
+          trigger_config == o.trigger_config &&
+          verify_host == o.verify_host
     end
 
     # @see the `==` method
@@ -94,7 +104,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [trigger_config].hash
+      [trigger_config, verify_host].hash
     end
 
     # Builds the object from hash
