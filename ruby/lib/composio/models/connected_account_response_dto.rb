@@ -23,6 +23,10 @@ module Composio
 
     attr_accessor :client_unique_user_id
 
+    attr_accessor :app_name
+
+    attr_accessor :entity_id
+
     attr_accessor :status
 
     attr_accessor :enabled
@@ -40,6 +44,8 @@ module Composio
         :'is_disabled' => :'isDisabled',
         :'id' => :'id',
         :'client_unique_user_id' => :'clientUniqueUserId',
+        :'app_name' => :'appName',
+        :'entity_id' => :'entityId',
         :'status' => :'status',
         :'enabled' => :'enabled',
         :'created_at' => :'createdAt',
@@ -61,6 +67,8 @@ module Composio
         :'is_disabled' => :'Boolean',
         :'id' => :'String',
         :'client_unique_user_id' => :'String',
+        :'app_name' => :'String',
+        :'entity_id' => :'String',
         :'status' => :'String',
         :'enabled' => :'Boolean',
         :'created_at' => :'String',
@@ -113,6 +121,14 @@ module Composio
         self.client_unique_user_id = attributes[:'client_unique_user_id']
       end
 
+      if attributes.key?(:'app_name')
+        self.app_name = attributes[:'app_name']
+      end
+
+      if attributes.key?(:'entity_id')
+        self.entity_id = attributes[:'entity_id']
+      end
+
       if attributes.key?(:'status')
         self.status = attributes[:'status']
       end
@@ -150,6 +166,14 @@ module Composio
         invalid_properties.push('invalid value for "client_unique_user_id", client_unique_user_id cannot be nil.')
       end
 
+      if @app_name.nil?
+        invalid_properties.push('invalid value for "app_name", app_name cannot be nil.')
+      end
+
+      if @entity_id.nil?
+        invalid_properties.push('invalid value for "entity_id", entity_id cannot be nil.')
+      end
+
       if @status.nil?
         invalid_properties.push('invalid value for "status", status cannot be nil.')
       end
@@ -172,6 +196,8 @@ module Composio
       return false if @app_unique_id.nil?
       return false if @id.nil?
       return false if @client_unique_user_id.nil?
+      return false if @app_name.nil?
+      return false if @entity_id.nil?
       return false if @status.nil?
       return false if @created_at.nil?
       return false if @updated_at.nil?
@@ -189,6 +215,8 @@ module Composio
           is_disabled == o.is_disabled &&
           id == o.id &&
           client_unique_user_id == o.client_unique_user_id &&
+          app_name == o.app_name &&
+          entity_id == o.entity_id &&
           status == o.status &&
           enabled == o.enabled &&
           created_at == o.created_at &&
@@ -204,7 +232,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [integration_id, app_unique_id, meta, is_disabled, id, client_unique_user_id, status, enabled, created_at, updated_at].hash
+      [integration_id, app_unique_id, meta, is_disabled, id, client_unique_user_id, app_name, entity_id, status, enabled, created_at, updated_at].hash
     end
 
     # Builds the object from hash
