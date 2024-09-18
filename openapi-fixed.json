@@ -2974,6 +2974,12 @@
           "clientUniqueUserId": {
             "type": "string"
           },
+          "appName": {
+            "type": "string"
+          },
+          "entityId": {
+            "type": "string"
+          },
           "status": {
             "type": "string"
           },
@@ -2993,6 +2999,8 @@
           "appUniqueId",
           "id",
           "clientUniqueUserId",
+          "appName",
+          "entityId",
           "status",
           "createdAt",
           "updatedAt"
