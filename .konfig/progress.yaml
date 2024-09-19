@@ -15,6 +15,10 @@ operationIds:
     get: ActionsControllerV1_get
   /api/v1/actions/{actionId}/execute:
     post: ActionsControllerV1_execute
+  /api/v1/analytics/:
+    get: Analytics_getData
+  /api/v1/analytics/top-entities:
+    get: Analytics_getTopEntities
   /api/v1/api_keys:
     get: ApiKeys_list
     post: ApiKeys_generate
@@ -238,6 +242,8 @@ securityParameters:
   integrationIds:
     query: false
   key:
+    query: false
+  lastTimePeriod:
     query: false
   limit:
     query: false
