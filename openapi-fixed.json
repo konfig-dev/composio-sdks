@@ -3,7 +3,10 @@
   "info": {
     "title": "Composio OpenAPI",
     "description": "Composio SDK: Equip your agent with high-quality tools and build your real-world usecase",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "x-konfig-ignore": {
+      "object-with-no-properties": true
+    }
   },
   "servers": [
     {
@@ -13,6 +16,9 @@
   "tags": [
     {
       "name": "Triggers"
+    },
+    {
+      "name": "Apps"
     },
     {
       "name": "Connections"
@@ -27,7 +33,7 @@
       "name": "API-Keys"
     },
     {
-      "name": "Apps"
+      "name": "Analytics"
     },
     {
       "name": "Auth"
@@ -206,6 +212,112 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AppListOpenApiSpecsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/apps/openapi/spec/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Apps"
+        ],
+        "summary": "Delete open api spec tool",
+        "operationId": "Apps_deleteOpenApiSpecTool",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppsDeleteOpenApiSpecToolResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/apps/openapi/send_email_to_client": {
+      "post": {
+        "tags": [
+          "Apps"
+        ],
+        "summary": "Send email to client",
+        "operationId": "Apps_sendEmailToClient",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "adminToken",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppsSendEmailToClientRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppsSendEmailToClientResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/apps/openapi/spec/status/{id}": {
+      "get": {
+        "tags": [
+          "Apps"
+        ],
+        "summary": "Get open api spec status",
+        "operationId": "Apps_getOpenApiSpecStatus",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppsGetOpenApiSpecStatusResponse"
                 }
               }
             }
@@ -1302,6 +1414,27 @@
         }
       }
     },
+    "/api/v1/analytics/top-entities": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Get top entities",
+        "operationId": "Analytics_getTopEntities",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopEntitiesResDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/logs": {
       "get": {
         "tags": [
@@ -1411,6 +1544,45 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LogsResDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/analytics": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Get analytics",
+        "operationId": "Analytics_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lastTimePeriod",
+            "schema": {
+              "description": "Time period to get the data for",
+              "enum": [
+                "DAY",
+                "WEEK",
+                "MONTH",
+                "SIX_MONTH",
+                "YEAR",
+                "FIVE_YEAR"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsDataResDTO"
                 }
               }
             }
@@ -1859,30 +2031,6 @@
             "description": "Client identifier",
             "type": "string"
           },
-          "openApiSpec": {
-            "description": "OpenAPI specification in YAML format",
-            "type": "string"
-          },
-          "integrationYaml": {
-            "description": "Integration details in YAML format",
-            "type": "string"
-          },
-          "enabled": {
-            "description": "Whether the OpenAPI spec is enabled",
-            "type": "boolean"
-          },
-          "openAPISpecURL": {
-            "description": "URL to the OpenAPI specification",
-            "type": "string",
-            "format": "uri",
-            "nullable": true
-          },
-          "integrationYAMLURL": {
-            "description": "URL to the integration YAML",
-            "type": "string",
-            "format": "uri",
-            "nullable": true
-          },
           "lastSyncAt": {
             "description": "Last synchronization date and time",
             "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+Z?",
@@ -1901,12 +2049,28 @@
             "type": "string",
             "format": "date-time"
           },
-          "jobStatus": {
+          "status": {
             "description": "The job status of the app",
             "enum": [
+              "initialized",
               "running",
-              "success",
-              "failed"
+              "caching",
+              "cancelled",
+              "finished",
+              "exited"
+            ],
+            "type": "string"
+          },
+          "state": {
+            "description": "Current state of the app FSM",
+            "enum": [
+              "preprocess",
+              "validate",
+              "prepare",
+              "build",
+              "push",
+              "load",
+              "finish"
             ],
             "type": "string"
           }
@@ -1916,9 +2080,6 @@
           "id",
           "name",
           "clientId",
-          "openApiSpec",
-          "integrationYaml",
-          "enabled",
           "lastSyncAt",
           "createdAt",
           "updatedAt"
@@ -4212,6 +4373,284 @@
         },
         "type": "object"
       },
+      "TimePeriodReqDTO": {
+        "properties": {
+          "lastTimePeriod": {
+            "description": "Time period to get the data for",
+            "enum": [
+              "DAY",
+              "WEEK",
+              "MONTH",
+              "SIX_MONTH",
+              "YEAR",
+              "FIVE_YEAR"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ActionByAppDTO": {
+        "properties": {
+          "appName": {
+            "description": "Name of the app",
+            "type": "string"
+          },
+          "totalCount": {
+            "description": "Total count of actions for the app",
+            "type": "number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "appName",
+          "totalCount"
+        ]
+      },
+      "ActionByStatusDTO": {
+        "properties": {
+          "failed": {
+            "description": "Count of failed actions",
+            "type": "number"
+          },
+          "success": {
+            "description": "Count of successful actions",
+            "type": "number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "failed",
+          "success"
+        ]
+      },
+      "ActionAnalyticsDTO": {
+        "properties": {
+          "date": {
+            "description": "Date of the action",
+            "type": "string",
+            "format": "date"
+          },
+          "byApp": {
+            "description": "Action counts by app",
+            "$ref": "#/components/schemas/ActionByAppDTO"
+          },
+          "byStatus": {
+            "description": "Action counts by status",
+            "$ref": "#/components/schemas/ActionByStatusDTO"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "byApp",
+          "byStatus"
+        ]
+      },
+      "IntegrationsWithCountsDTO": {
+        "properties": {
+          "id": {
+            "description": "Unique identifier for the integration",
+            "type": "string"
+          },
+          "appName": {
+            "description": "Name of the app",
+            "type": "string"
+          },
+          "integrationName": {
+            "description": "Name of the integration",
+            "type": "string"
+          },
+          "connectionCount": {
+            "description": "Count of connections for the integration",
+            "type": "number"
+          },
+          "triggerCount": {
+            "description": "Count of triggers for the integration",
+            "type": "number"
+          },
+          "requestLogsCount": {
+            "description": "Count of request logs for the integration",
+            "type": "number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "appName",
+          "integrationName",
+          "connectionCount",
+          "triggerCount",
+          "requestLogsCount"
+        ]
+      },
+      "AppNameCountDTO": {
+        "properties": {
+          "appName": {
+            "description": "Name of the app",
+            "type": "string"
+          },
+          "connectionCount": {
+            "description": "Count of connections for the app",
+            "type": "number"
+          },
+          "triggerCount": {
+            "description": "Count of triggers for the app",
+            "type": "number"
+          },
+          "requestLogsCount": {
+            "description": "Count of request logs for the app",
+            "type": "number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "appName",
+          "connectionCount",
+          "triggerCount",
+          "requestLogsCount"
+        ]
+      },
+      "AnalyticsDataReqDTO": {
+        "properties": {
+          "lastTimePeriod": {
+            "description": "Time period to get the data for",
+            "enum": [
+              "DAY",
+              "WEEK",
+              "MONTH",
+              "SIX_MONTH",
+              "YEAR",
+              "FIVE_YEAR"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ClientUniqueUserIdCountDTO": {
+        "properties": {
+          "clientUniqueUserId": {
+            "description": "Client unique user id",
+            "type": "string"
+          },
+          "count": {
+            "description": "Count of connections for the client unique user id",
+            "type": "number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "clientUniqueUserId",
+          "count"
+        ]
+      },
+      "AnalyticsEntityDataDTO": {
+        "properties": {
+          "byConnections": {
+            "description": "Connection counts by entity",
+            "items": {
+              "$ref": "#/components/schemas/ClientUniqueUserIdCountDTO"
+            },
+            "type": "array"
+          },
+          "byActions": {
+            "description": "Action counts by entity",
+            "items": {
+              "$ref": "#/components/schemas/ClientUniqueUserIdCountDTO"
+            },
+            "type": "array"
+          },
+          "byTriggers": {
+            "description": "Trigger counts by entity",
+            "items": {
+              "$ref": "#/components/schemas/ClientUniqueUserIdCountDTO"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object",
+        "required": [
+          "byConnections",
+          "byActions",
+          "byTriggers"
+        ]
+      },
+      "AnalyticsDataResDTO": {
+        "properties": {
+          "entity": {
+            "description": "Entity-related analytics data, providing a breakdown by connections, actions, and triggers for each entity. This is include all entity info.",
+            "$ref": "#/components/schemas/AnalyticsEntityDataDTO"
+          },
+          "actions": {
+            "description": "Detailed action analytics data, offering a breakdown by day, status, and provider for all actions",
+            "items": {
+              "$ref": "#/components/schemas/ActionAnalyticsDTO"
+            },
+            "type": "array"
+          },
+          "trigger": {
+            "description": "Comprehensive trigger analytics data, presenting a breakdown by day, status, and provider for all triggers",
+            "items": {
+              "$ref": "#/components/schemas/ActionAnalyticsDTO"
+            },
+            "type": "array"
+          },
+          "integrations": {
+            "description": "Detailed integration analytics data, including a breakdown of connection count, trigger count, and request logs count for each integration",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationsWithCountsDTO"
+            },
+            "type": "array"
+          },
+          "app": {
+            "description": "Comprehensive app-level analytics data, providing a breakdown of connection count, trigger count, and request logs count for each app",
+            "$ref": "#/components/schemas/AppNameCountDTO"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity",
+          "actions",
+          "trigger",
+          "integrations",
+          "app"
+        ]
+      },
+      "TopEntitiesResDTO": {
+        "properties": {
+          "entities": {
+            "description": "Top entities by connection count",
+            "items": {
+              "$ref": "#/components/schemas/TConnectionCountDTO"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entities"
+        ]
+      },
+      "TConnectionCountDTO": {
+        "properties": {
+          "clientUniqueUserId": {
+            "description": "Name of the entity",
+            "type": "string"
+          },
+          "count": {
+            "description": "Count of connections for the entity",
+            "type": "number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "clientUniqueUserId",
+          "count"
+        ]
+      },
+      "AppsSendEmailToClientRequest": {
+      },
       "ApiKeysListResponse": {
         "items": {
           "$ref": "#/components/schemas/APIKeyResDTO"
@@ -4223,6 +4662,27 @@
           "$ref": "#/components/schemas/AppListResDTO"
         },
         "type": "array"
+      },
+      "AppsDeleteOpenApiSpecToolResponse": {
+        "type": "object",
+        "properties": {
+        },
+        "example": {
+        }
+      },
+      "AppsSendEmailToClientResponse": {
+        "type": "object",
+        "properties": {
+        },
+        "example": {
+        }
+      },
+      "AppsGetOpenApiSpecStatusResponse": {
+        "type": "object",
+        "properties": {
+        },
+        "example": {
+        }
       },
       "TriggersListResponse": {
         "items": {

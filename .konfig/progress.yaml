@@ -1,6 +1,18 @@
 examples: {}
 examples_2: {}
 examples_3:
+  /api/v1/apps/openapi/send_email_to_client:
+    post:
+      '200':
+        application/json: {}
+  /api/v1/apps/openapi/spec/delete/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /api/v1/apps/openapi/spec/status/{id}:
+    get:
+      '200':
+        application/json: {}
   /api/v1/connectedAccounts/{connectedAccountId}:
     delete:
       '200':
@@ -15,6 +27,10 @@ operationIds:
     get: ActionsControllerV1_get
   /api/v1/actions/{actionId}/execute:
     post: ActionsControllerV1_execute
+  /api/v1/analytics/:
+    get: Analytics_get
+  /api/v1/analytics/top-entities:
+    get: Analytics_getTopEntities
   /api/v1/api_keys:
     get: ApiKeys_list
     post: ApiKeys_generate
@@ -26,14 +42,20 @@ operationIds:
     post: App_createCustomRepo
   /api/v1/apps/custom-repo/get-repo:
     get: App_getCustomRepo
+  /api/v1/apps/openapi/send_email_to_client:
+    post: Apps_sendEmailToClient
   /api/v1/apps/openapi/spec/add:
     post: App_addOpenApiSpec
+  /api/v1/apps/openapi/spec/delete/{id}:
+    delete: Apps_deleteOpenApiSpecTool
   /api/v1/apps/openapi/spec/delete/{name}:
     delete: App_deleteOpenApiSpecTool
   /api/v1/apps/openapi/spec/list:
     get: App_listOpenApiSpecs
   /api/v1/apps/openapi/spec/logs/{name}:
     get: App_getLogsByName
+  /api/v1/apps/openapi/spec/status/{id}:
+    get: Apps_getOpenApiSpecStatus
   /api/v1/apps/sync:
     post: App_syncCustomRepo
   /api/v1/apps/{appName}:
@@ -162,6 +184,9 @@ operationIds:
 operationTags: {}
 renameTags: {}
 requestSchemaNames:
+  /api/v1/apps/openapi/send_email_to_client:
+    post:
+      application/json: AppsSendEmailToClientRequest
   /api/v1/client/auth/google_login:
     post:
       application/json: ClientAuthGoogleLoginRequest
@@ -181,10 +206,22 @@ responseSchemaNames:
       '200':
         application/json: ApiKeysListResponse
         text/html; charset=utf-8: ApiKeysListResponse
+  /api/v1/apps/openapi/send_email_to_client:
+    post:
+      '200':
+        application/json: AppsSendEmailToClientResponse
+  /api/v1/apps/openapi/spec/delete/{id}:
+    delete:
+      '200':
+        application/json: AppsDeleteOpenApiSpecToolResponse
   /api/v1/apps/openapi/spec/list:
     get:
       '200':
         application/json: AppListOpenApiSpecsResponse
+  /api/v1/apps/openapi/spec/status/{id}:
+    get:
+      '200':
+        application/json: AppsGetOpenApiSpecStatusResponse
   /api/v1/connectedAccounts/{connectedAccountId}:
     delete:
       '200':
@@ -206,6 +243,8 @@ responseSchemaNames:
         text/html; charset=utf-8: TriggerControllerV2GetTriggerInfoResponse
 securityParameters:
   actions:
+    query: false
+  adminToken:
     query: false
   appNames:
     query: false
@@ -238,6 +277,8 @@ securityParameters:
   integrationIds:
     query: false
   key:
+    query: false
+  lastTimePeriod:
     query: false
   limit:
     query: false
