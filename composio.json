@@ -1,6 +1,73 @@
 {
   "components": {
     "schemas": {
+      "MemberInfoResDTO": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "clientId": {
+            "type": "string"
+          },
+          "email": {
+            "format": "email",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "metadata": {},
+          "createdAt": {
+            "oneOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "format": "date-time",
+                "type": "string"
+              }
+            ]
+          },
+          "updatedAt": {
+            "oneOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "format": "date-time",
+                "type": "string"
+              }
+            ]
+          },
+          "deletedAt": {
+            "oneOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "format": "date-time",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "clientId",
+          "email",
+          "name",
+          "role",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
       "MagicLinkResDTO": {
         "properties": {
           "status": {
@@ -210,6 +277,14 @@
           "verifyHost": {
             "type": "string",
             "description": "The host to verify the member"
+          },
+          "role": {
+            "enum": [
+              "admin",
+              "developer"
+            ],
+            "type": "string",
+            "description": "The role that will be assignied to the invited user"
           }
         },
         "type": "object",
@@ -238,6 +313,14 @@
             "type": "string",
             "description": "The creation date of the member record"
           },
+          "role": {
+            "enum": [
+              "admin",
+              "developer"
+            ],
+            "type": "string",
+            "description": "The role that is assigned to the member"
+          },
           "updatedAt": {
             "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+Z?",
             "type": "string",
@@ -248,7 +331,29 @@
         "required": [
           "email",
           "id",
-          "name"
+          "name",
+          "role"
+        ]
+      },
+      "UpdateMemberReqDTO": {
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "description": "The uuid identifier for the member"
+          },
+          "role": {
+            "enum": [
+              "admin",
+              "developer"
+            ],
+            "type": "string",
+            "description": "The role that is assigned to the member"
+          }
+        },
+        "type": "object",
+        "required": [
+          "memberId",
+          "role"
         ]
       },
       "GenerateAPIKeyReqDTO": {
@@ -286,6 +391,19 @@
           "key": {
             "type": "string",
             "description": "The generated API key"
+          },
+          "isHidden": {
+            "type": "boolean",
+            "description": "Whether the API key is hidden"
+          },
+          "lastUsed": {
+            "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+Z?",
+            "type": "string",
+            "description": "The last used date of the API key"
+          },
+          "member": {
+            "type": "object",
+            "description": "The member of the API key"
           }
         },
         "type": "object",
@@ -294,7 +412,9 @@
           "name",
           "createdAt",
           "updatedAt",
-          "key"
+          "key",
+          "isHidden",
+          "member"
         ]
       },
       "DeleteAPIKeyReqDTO": {
@@ -439,30 +559,6 @@
             "type": "string",
             "description": "Client identifier"
           },
-          "openApiSpec": {
-            "type": "string",
-            "description": "OpenAPI specification in YAML format"
-          },
-          "integrationYaml": {
-            "type": "string",
-            "description": "Integration details in YAML format"
-          },
-          "enabled": {
-            "type": "boolean",
-            "description": "Whether the OpenAPI spec is enabled"
-          },
-          "openAPISpecURL": {
-            "type": "string",
-            "description": "URL to the OpenAPI specification",
-            "format": "uri",
-            "nullable": true
-          },
-          "integrationYAMLURL": {
-            "type": "string",
-            "description": "URL to the integration YAML",
-            "format": "uri",
-            "nullable": true
-          },
           "lastSyncAt": {
             "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+Z?",
             "type": "string",
@@ -481,14 +577,30 @@
             "description": "Last update date and time",
             "format": "date-time"
           },
-          "jobStatus": {
+          "status": {
             "enum": [
+              "initialized",
               "running",
-              "success",
-              "failed"
+              "caching",
+              "cancelled",
+              "finished",
+              "exited"
             ],
             "type": "string",
             "description": "The job status of the app"
+          },
+          "state": {
+            "enum": [
+              "preprocess",
+              "validate",
+              "prepare",
+              "build",
+              "push",
+              "load",
+              "finish"
+            ],
+            "type": "string",
+            "description": "Current state of the app FSM"
           }
         },
         "type": "object",
@@ -496,9 +608,6 @@
           "id",
           "name",
           "clientId",
-          "openApiSpec",
-          "integrationYaml",
-          "enabled",
           "lastSyncAt",
           "createdAt",
           "updatedAt"
@@ -832,6 +941,11 @@
             "type": "string",
             "description": "Unique identifier of the connector"
           },
+          "member": {
+            "$ref": "#/components/schemas/MemberInfoResDTO",
+            "type": "object",
+            "description": "Member information associated with the connector"
+          },
           "name": {
             "type": "string",
             "description": "Name of the connector"
@@ -889,6 +1003,7 @@
           "_count",
           "connections",
           "id",
+          "member",
           "name",
           "authScheme",
           "createdAt",
@@ -1007,6 +1122,12 @@
           },
           "authConfig": {
             "type": "object"
+          },
+          "member": {
+            "items": {
+              "$ref": "#/components/schemas/MemberInfoResDTO"
+            },
+            "type": "object"
           }
         },
         "type": "object",
@@ -1017,7 +1138,8 @@
           "createdAt",
           "updatedAt",
           "appUniqueId",
-          "appName"
+          "appName",
+          "member"
         ]
       },
       "GetConnectionsResult": {
@@ -1431,6 +1553,12 @@
           },
           "authConfig": {
             "type": "object"
+          },
+          "member": {
+            "items": {
+              "$ref": "#/components/schemas/MemberInfoResDTO"
+            },
+            "type": "object"
           }
         },
         "type": "object",
@@ -1443,7 +1571,8 @@
           "createdAt",
           "updatedAt",
           "appUniqueId",
-          "appName"
+          "appName",
+          "member"
         ]
       },
       "ToggleConnectedAccountResponseDTO": {
@@ -1541,6 +1670,9 @@
           },
           "appUniqueId": {
             "type": "string"
+          },
+          "memberInfo": {
+            "$ref": "#/components/schemas/MemberInfoResDTO"
           },
           "meta": {
             "$ref": "#/components/schemas/Meta"
@@ -2788,9 +2920,337 @@
           "connectionId": {
             "type": "string",
             "description": "Connection ID of the log"
+          },
+          "logsType": {
+            "type": "string",
+            "description": "Type of the log"
           }
         },
         "type": "object"
+      },
+      "TimePeriodReqDTO": {
+        "properties": {
+          "lastTimePeriod": {
+            "enum": [
+              "DAY",
+              "WEEK",
+              "MONTH",
+              "SIX_MONTH",
+              "YEAR",
+              "FIVE_YEAR"
+            ],
+            "type": "string",
+            "description": "Time period to get the data for"
+          }
+        },
+        "type": "object"
+      },
+      "ActionByAppDTO": {
+        "properties": {
+          "appName": {
+            "type": "string",
+            "description": "Name of the app"
+          },
+          "totalCount": {
+            "type": "number",
+            "description": "Total count of actions for the app"
+          }
+        },
+        "type": "object",
+        "required": [
+          "appName",
+          "totalCount"
+        ]
+      },
+      "ActionByStatusDTO": {
+        "properties": {
+          "failed": {
+            "type": "number",
+            "description": "Count of failed actions"
+          },
+          "success": {
+            "type": "number",
+            "description": "Count of successful actions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "failed",
+          "success"
+        ]
+      },
+      "ActionAnalyticsDTO": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Date of the action",
+            "format": "date"
+          },
+          "byApp": {
+            "$ref": "#/components/schemas/ActionByAppDTO",
+            "description": "Action counts by app"
+          },
+          "byStatus": {
+            "$ref": "#/components/schemas/ActionByStatusDTO",
+            "description": "Action counts by status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "byApp",
+          "byStatus"
+        ]
+      },
+      "IntegrationsWithCountsDTO": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the integration"
+          },
+          "appName": {
+            "type": "string",
+            "description": "Name of the app"
+          },
+          "integrationName": {
+            "type": "string",
+            "description": "Name of the integration"
+          },
+          "connectionCount": {
+            "type": "number",
+            "description": "Count of connections for the integration"
+          },
+          "triggerCount": {
+            "type": "number",
+            "description": "Count of triggers for the integration"
+          },
+          "requestLogsCount": {
+            "type": "number",
+            "description": "Count of request logs for the integration"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "appName",
+          "integrationName",
+          "connectionCount",
+          "triggerCount",
+          "requestLogsCount"
+        ]
+      },
+      "AppNameCountDTO": {
+        "properties": {
+          "appName": {
+            "type": "string",
+            "description": "Name of the app"
+          },
+          "connectionCount": {
+            "type": "number",
+            "description": "Count of connections for the app"
+          },
+          "triggerCount": {
+            "type": "number",
+            "description": "Count of triggers for the app"
+          },
+          "requestLogsCount": {
+            "type": "number",
+            "description": "Count of request logs for the app"
+          }
+        },
+        "type": "object",
+        "required": [
+          "appName",
+          "connectionCount",
+          "triggerCount",
+          "requestLogsCount"
+        ]
+      },
+      "AnalyticsDataReqDTO": {
+        "properties": {
+          "lastTimePeriod": {
+            "enum": [
+              "DAY",
+              "WEEK",
+              "MONTH",
+              "SIX_MONTH",
+              "YEAR",
+              "FIVE_YEAR"
+            ],
+            "type": "string",
+            "description": "Time period to get the data for"
+          }
+        },
+        "type": "object"
+      },
+      "ClientUniqueUserIdCountDTO": {
+        "properties": {
+          "clientUniqueUserId": {
+            "type": "string",
+            "description": "Client unique user id"
+          },
+          "count": {
+            "type": "number",
+            "description": "Count of connections for the client unique user id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "clientUniqueUserId",
+          "count"
+        ]
+      },
+      "AnalyticsEntityDataDTO": {
+        "properties": {
+          "byConnections": {
+            "items": {
+              "$ref": "#/components/schemas/ClientUniqueUserIdCountDTO"
+            },
+            "type": "array",
+            "description": "Connection counts by entity"
+          },
+          "byActions": {
+            "items": {
+              "$ref": "#/components/schemas/ClientUniqueUserIdCountDTO"
+            },
+            "type": "array",
+            "description": "Action counts by entity"
+          },
+          "byTriggers": {
+            "items": {
+              "$ref": "#/components/schemas/ClientUniqueUserIdCountDTO"
+            },
+            "type": "array",
+            "description": "Trigger counts by entity"
+          }
+        },
+        "type": "object",
+        "required": [
+          "byConnections",
+          "byActions",
+          "byTriggers"
+        ]
+      },
+      "AnalyticsDataResDTO": {
+        "properties": {
+          "entity": {
+            "$ref": "#/components/schemas/AnalyticsEntityDataDTO",
+            "description": "Entity-related analytics data, providing a breakdown by connections, actions, and triggers for each entity. This is include all entity info."
+          },
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/ActionAnalyticsDTO"
+            },
+            "type": "array",
+            "description": "Detailed action analytics data, offering a breakdown by day, status, and provider for all actions"
+          },
+          "trigger": {
+            "items": {
+              "$ref": "#/components/schemas/ActionAnalyticsDTO"
+            },
+            "type": "array",
+            "description": "Comprehensive trigger analytics data, presenting a breakdown by day, status, and provider for all triggers"
+          },
+          "integrations": {
+            "items": {
+              "$ref": "#/components/schemas/IntegrationsWithCountsDTO"
+            },
+            "type": "array",
+            "description": "Detailed integration analytics data, including a breakdown of connection count, trigger count, and request logs count for each integration"
+          },
+          "app": {
+            "$ref": "#/components/schemas/AppNameCountDTO",
+            "description": "Comprehensive app-level analytics data, providing a breakdown of connection count, trigger count, and request logs count for each app"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity",
+          "actions",
+          "trigger",
+          "integrations",
+          "app"
+        ]
+      },
+      "TopEntitiesResDTO": {
+        "properties": {
+          "entities": {
+            "items": {
+              "$ref": "#/components/schemas/TConnectionCountDTO"
+            },
+            "type": "array",
+            "description": "Top entities by connection count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entities"
+        ]
+      },
+      "TConnectionCountDTO": {
+        "properties": {
+          "clientUniqueUserId": {
+            "type": "string",
+            "description": "Name of the entity"
+          },
+          "count": {
+            "type": "number",
+            "description": "Count of connections for the entity"
+          }
+        },
+        "type": "object",
+        "required": [
+          "clientUniqueUserId",
+          "count"
+        ]
+      },
+      "WebhookReqDTO": {
+        "properties": {
+          "eventWebhookURL": {
+            "type": "string",
+            "description": "Event Webhook URL"
+          }
+        },
+        "type": "object",
+        "required": [
+          "eventWebhookURL"
+        ]
+      },
+      "FetchQueryDTO": {
+        "properties": {
+          "startTime": {
+            "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+Z?",
+            "type": "string",
+            "description": "Start time of the event in ISO 8601 format"
+          },
+          "endTime": {
+            "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+Z?",
+            "type": "string",
+            "description": "End time of the event in ISO 8601 format"
+          }
+        },
+        "type": "object",
+        "required": [
+          "startTime",
+          "endTime"
+        ]
+      },
+      "CreateCheckoutSessionReqDto": {
+        "properties": {
+          "plan": {
+            "enum": [
+              "HOBBY",
+              "STARTER",
+              "GROWTH",
+              "ENTERPRISE"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "plan"
+        ]
       }
     },
     "securitySchemes": {
@@ -2985,6 +3445,98 @@
           }
         },
         "summary": "Get opena api specs",
+        "tags": [
+          "Apps"
+        ]
+      }
+    },
+    "/api/v1/apps/openapi/spec/delete/{id}": {
+      "delete": {
+        "operationId": "deleteOpenAPISpecTool",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Delete open api spec tool",
+        "tags": [
+          "Apps"
+        ]
+      }
+    },
+    "/api/v1/apps/openapi/send_email_to_client": {
+      "post": {
+        "operationId": "AppController.sendEmailToClient",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "adminToken",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "description": "",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Send email to client",
+        "tags": [
+          "Apps"
+        ]
+      }
+    },
+    "/api/v1/apps/openapi/spec/status/{id}": {
+      "get": {
+        "operationId": "getOpenAPISpecStatus",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Get open api spec status",
         "tags": [
           "Apps"
         ]
@@ -3928,6 +4480,14 @@
               "type": "string",
               "description": "Connection ID of the log"
             }
+          },
+          {
+            "in": "query",
+            "name": "logsType",
+            "schema": {
+              "type": "string",
+              "description": "Type of the log"
+            }
           }
         ],
         "responses": {
@@ -4198,6 +4758,278 @@
           "Triggers"
         ],
         "description": "Get Trigger Info"
+      }
+    },
+    "/api/v1/analytics/": {
+      "get": {
+        "operationId": "getAnalytics",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lastTimePeriod",
+            "schema": {
+              "enum": [
+                "DAY",
+                "WEEK",
+                "MONTH",
+                "SIX_MONTH",
+                "YEAR",
+                "FIVE_YEAR"
+              ],
+              "type": "string",
+              "description": "Time period to get the data for"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsDataResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get analytics",
+        "tags": [
+          "Analytics"
+        ]
+      }
+    },
+    "/api/v1/analytics/top-entities": {
+      "get": {
+        "operationId": "getTopEntities",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopEntitiesResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get top entities",
+        "tags": [
+          "Analytics"
+        ]
+      }
+    },
+    "/api/v1/event_logs/set/webhook": {
+      "post": {
+        "operationId": "updateWebhook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookReqDTO"
+              }
+            }
+          },
+          "description": "WebhookReqDTO",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Update webhook",
+        "tags": [
+          "Event Logs"
+        ]
+      }
+    },
+    "/api/v1/event_logs/get/webhook": {
+      "get": {
+        "operationId": "getWebhook",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Get webhook",
+        "tags": [
+          "Event Logs"
+        ]
+      }
+    },
+    "/api/v1/event_logs/get/events": {
+      "get": {
+        "operationId": "getEvents",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startTime",
+            "required": true,
+            "schema": {
+              "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+Z?",
+              "type": "string",
+              "description": "Start time of the event in ISO 8601 format"
+            }
+          },
+          {
+            "in": "query",
+            "name": "endTime",
+            "required": true,
+            "schema": {
+              "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+Z?",
+              "type": "string",
+              "description": "End time of the event in ISO 8601 format"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Get events",
+        "tags": [
+          "Event Logs"
+        ],
+        "description": "Fetch events from database"
+      }
+    },
+    "/api/v1/payment/create-checkout-session": {
+      "post": {
+        "operationId": "PaymentController.createCheckoutSession",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCheckoutSessionReqDto"
+              }
+            }
+          },
+          "description": "CreateCheckoutSessionReqDto",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Create checkout session",
+        "tags": [
+          "Payment"
+        ]
+      }
+    },
+    "/api/v1/payment/checkout-session/{sessionId}/status": {
+      "get": {
+        "operationId": "PaymentController.getCheckoutSessionStatus",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Get checkout session status",
+        "tags": [
+          "Payment"
+        ]
+      }
+    },
+    "/api/v1/payment/invoices": {
+      "get": {
+        "operationId": "PaymentController.getInvoices",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Get invoices",
+        "tags": [
+          "Payment"
+        ]
+      }
+    },
+    "/api/v1/payment/invoices/{invoiceId}": {
+      "get": {
+        "operationId": "PaymentController.getInvoice",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "invoiceId",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Get invoice",
+        "tags": [
+          "Payment"
+        ]
+      }
+    },
+    "/api/v1/payment/webhook": {
+      "post": {
+        "operationId": "PaymentController.handleStripeWebhook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "description": "",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Handle stripe webhook",
+        "tags": [
+          "Payment"
+        ]
       }
     }
   },
