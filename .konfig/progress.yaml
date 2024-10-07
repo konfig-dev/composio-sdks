@@ -1,8 +1,52 @@
 examples: {}
 examples_2: {}
 examples_3:
+  /api/v1/apps/openapi/send_email_to_client:
+    post:
+      '200':
+        application/json: {}
+  /api/v1/apps/openapi/spec/delete/{id}:
+    delete:
+      '200':
+        application/json: {}
+  /api/v1/apps/openapi/spec/status/{id}:
+    get:
+      '200':
+        application/json: {}
   /api/v1/connectedAccounts/{connectedAccountId}:
     delete:
+      '200':
+        application/json: {}
+  /api/v1/event_logs/get/events:
+    get:
+      '200':
+        application/json: {}
+  /api/v1/event_logs/get/webhook:
+    get:
+      '200':
+        application/json: {}
+  /api/v1/event_logs/set/webhook:
+    post:
+      '200':
+        application/json: {}
+  /api/v1/payment/checkout-session/{sessionId}/status:
+    get:
+      '200':
+        application/json: {}
+  /api/v1/payment/create-checkout-session:
+    post:
+      '200':
+        application/json: {}
+  /api/v1/payment/invoices:
+    get:
+      '200':
+        application/json: {}
+  /api/v1/payment/invoices/{invoiceId}:
+    get:
+      '200':
+        application/json: {}
+  /api/v1/payment/webhook:
+    post:
       '200':
         application/json: {}
 ignoreObjectsWithNoProperties: true
@@ -15,6 +59,10 @@ operationIds:
     get: ActionsControllerV1_get
   /api/v1/actions/{actionId}/execute:
     post: ActionsControllerV1_execute
+  /api/v1/analytics/:
+    get: Analytics_get
+  /api/v1/analytics/entities:
+    get: Analytics_getTopEntities
   /api/v1/api_keys:
     get: ApiKeys_list
     post: ApiKeys_generate
@@ -26,14 +74,20 @@ operationIds:
     post: App_createCustomRepo
   /api/v1/apps/custom-repo/get-repo:
     get: App_getCustomRepo
+  /api/v1/apps/openapi/send_email_to_client:
+    post: Apps_sendEmailToClient
   /api/v1/apps/openapi/spec/add:
     post: App_addOpenApiSpec
+  /api/v1/apps/openapi/spec/delete/{id}:
+    delete: Apps_deleteOpenApiSpecTool
   /api/v1/apps/openapi/spec/delete/{name}:
     delete: App_deleteOpenApiSpecTool
   /api/v1/apps/openapi/spec/list:
     get: App_listOpenApiSpecs
   /api/v1/apps/openapi/spec/logs/{name}:
     get: App_getLogsByName
+  /api/v1/apps/openapi/spec/status/{id}:
+    get: Apps_getOpenApiSpecStatus
   /api/v1/apps/sync:
     post: App_syncCustomRepo
   /api/v1/apps/{appName}:
@@ -74,6 +128,12 @@ operationIds:
     post: Connections_disable
   /api/v1/connectedAccounts/{connectedAccountId}/enable:
     post: Connections_enable
+  /api/v1/event_logs/get/events:
+    get: EventLogs_getEvents
+  /api/v1/event_logs/get/webhook:
+    get: EventLogs_getWebhook
+  /api/v1/event_logs/set/webhook:
+    post: EventLogs_updateWebhook
   /api/v1/integrations:
     get: AppConnector_listGlobalConnectors
     post: AppConnector_createIntegration
@@ -96,6 +156,16 @@ operationIds:
     get: Metadata_getToggleInfo
   /api/v1/metadata/toggle/trigger:
     post: Metadata_toggleTriggerState
+  /api/v1/payment/checkout-session/{sessionId}/status:
+    get: Payment_getCheckoutSessionStatus
+  /api/v1/payment/create-checkout-session:
+    post: Payment_createCheckoutSession
+  /api/v1/payment/invoices:
+    get: Payment_getInvoices
+  /api/v1/payment/invoices/{invoiceId}:
+    get: Payment_getInvoice
+  /api/v1/payment/webhook:
+    post: Payment_handleStripeWebhook
   /api/v1/team/invite:
     post: Team_sendInvitation
   /api/v1/team/members:
@@ -162,12 +232,18 @@ operationIds:
 operationTags: {}
 renameTags: {}
 requestSchemaNames:
+  /api/v1/apps/openapi/send_email_to_client:
+    post:
+      application/json: AppsSendEmailToClientRequest
   /api/v1/client/auth/google_login:
     post:
       application/json: ClientAuthGoogleLoginRequest
   /api/v1/client/auth/pusher_auth:
     post:
       application/json: ClientAuthAuthenticateUserRequest
+  /api/v1/payment/webhook:
+    post:
+      application/json: PaymentHandleStripeWebhookRequest
   /api/v1/triggers/handle/{appName}/{clientId}:
     post:
       application/json: TriggersHandleTriggerRequest
@@ -181,14 +257,58 @@ responseSchemaNames:
       '200':
         application/json: ApiKeysListResponse
         text/html; charset=utf-8: ApiKeysListResponse
+  /api/v1/apps/openapi/send_email_to_client:
+    post:
+      '200':
+        application/json: AppsSendEmailToClientResponse
+  /api/v1/apps/openapi/spec/delete/{id}:
+    delete:
+      '200':
+        application/json: AppsDeleteOpenApiSpecToolResponse
   /api/v1/apps/openapi/spec/list:
     get:
       '200':
         application/json: AppListOpenApiSpecsResponse
+  /api/v1/apps/openapi/spec/status/{id}:
+    get:
+      '200':
+        application/json: AppsGetOpenApiSpecStatusResponse
   /api/v1/connectedAccounts/{connectedAccountId}:
     delete:
       '200':
         application/json: ConnectionsDeleteResponse
+  /api/v1/event_logs/get/events:
+    get:
+      '200':
+        application/json: EventLogsGetEventsResponse
+  /api/v1/event_logs/get/webhook:
+    get:
+      '200':
+        application/json: EventLogsGetWebhookResponse
+  /api/v1/event_logs/set/webhook:
+    post:
+      '200':
+        application/json: EventLogsUpdateWebhookResponse
+  /api/v1/payment/checkout-session/{sessionId}/status:
+    get:
+      '200':
+        application/json: PaymentGetCheckoutSessionStatusResponse
+  /api/v1/payment/create-checkout-session:
+    post:
+      '200':
+        application/json: PaymentCreateCheckoutSessionResponse
+  /api/v1/payment/invoices:
+    get:
+      '200':
+        application/json: PaymentGetInvoicesResponse
+  /api/v1/payment/invoices/{invoiceId}:
+    get:
+      '200':
+        application/json: PaymentGetInvoiceResponse
+  /api/v1/payment/webhook:
+    post:
+      '200':
+        application/json: PaymentHandleStripeWebhookResponse
   /api/v1/team/members:
     get:
       '200':
@@ -206,6 +326,8 @@ responseSchemaNames:
         text/html; charset=utf-8: TriggerControllerV2GetTriggerInfoResponse
 securityParameters:
   actions:
+    query: false
+  adminToken:
     query: false
   appNames:
     query: false
@@ -225,6 +347,8 @@ securityParameters:
     query: false
   email:
     query: false
+  endTime:
+    query: false
   endpoint:
     query: false
   entityId:
@@ -239,11 +363,17 @@ securityParameters:
     query: false
   key:
     query: false
+  lastTimePeriod:
+    query: false
   limit:
+    query: false
+  logsType:
     query: false
   page:
     query: false
   pageSize:
+    query: false
+  query:
     query: false
   redirectUri:
     query: false
@@ -256,6 +386,8 @@ securityParameters:
   showDisabled:
     query: false
   showEnabledOnly:
+    query: false
+  startTime:
     query: false
   status:
     query: false
