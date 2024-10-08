@@ -441,7 +441,7 @@ module Composio
     # @param admin_token [String] 
     # @param body [Object] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def send_email_to_client(admin_token: SENTINEL, body:: SENTINEL, extra: {})
+    def send_email_to_client(admin_token: SENTINEL, body: SENTINEL, extra: {})
       extra[:body] = body if body != SENTINEL
       extra[:admin_token] = admin_token if admin_token != SENTINEL
       api_response = send_email_to_client_with_http_info_impl(extra)
@@ -453,7 +453,7 @@ module Composio
     # @param admin_token [String] 
     # @param body [Object] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def send_email_to_client_with_http_info(admin_token: SENTINEL, body:: SENTINEL, extra: {})
+    def send_email_to_client_with_http_info(admin_token: SENTINEL, body: SENTINEL, extra: {})
       extra[:body] = body if body != SENTINEL
       extra[:admin_token] = admin_token if admin_token != SENTINEL
       send_email_to_client_with_http_info_impl(extra)

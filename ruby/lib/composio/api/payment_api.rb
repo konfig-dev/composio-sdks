@@ -347,7 +347,7 @@ module Composio
     #
     # @param body [Object] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def handle_stripe_webhook(body:: SENTINEL, extra: {})
+    def handle_stripe_webhook(body: SENTINEL, extra: {})
       extra[:body] = body if body != SENTINEL
       api_response = handle_stripe_webhook_with_http_info_impl(extra)
       api_response.data
@@ -357,7 +357,7 @@ module Composio
     #
     # @param body [Object] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def handle_stripe_webhook_with_http_info(body:: SENTINEL, extra: {})
+    def handle_stripe_webhook_with_http_info(body: SENTINEL, extra: {})
       extra[:body] = body if body != SENTINEL
       handle_stripe_webhook_with_http_info_impl(extra)
     end
