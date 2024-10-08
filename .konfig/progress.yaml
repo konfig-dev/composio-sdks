@@ -29,6 +29,14 @@ examples_3:
     post:
       '200':
         application/json: {}
+  /api/v1/event_logs/webhook/secret/get:
+    get:
+      '200':
+        application/json: {}
+  /api/v1/event_logs/webhook/secret/refresh:
+    post:
+      '200':
+        application/json: {}
   /api/v1/payment/checkout-session/{sessionId}/status:
     get:
       '200':
@@ -46,6 +54,10 @@ examples_3:
       '200':
         application/json: {}
   /api/v1/payment/webhook:
+    post:
+      '200':
+        application/json: {}
+  /api/v2/actions/{actionId}/execute/get.inputs:
     post:
       '200':
         application/json: {}
@@ -134,6 +146,10 @@ operationIds:
     get: EventLogs_getWebhook
   /api/v1/event_logs/set/webhook:
     post: EventLogs_updateWebhook
+  /api/v1/event_logs/webhook/secret/get:
+    get: EventLogs_getWebhookSecret
+  /api/v1/event_logs/webhook/secret/refresh:
+    post: EventLogs_refreshWebhookSecret
   /api/v1/integrations:
     get: AppConnector_listGlobalConnectors
     post: AppConnector_createIntegration
@@ -149,6 +165,7 @@ operationIds:
     get: AppLogin_verifyOAuth2Login
   /api/v1/logs/:
     get: Logs_list
+    post: Logs_addNewLogs
   /api/v1/metadata:
     get: Metadata_getInfo
     post: Metadata_updateInfo
@@ -207,6 +224,8 @@ operationIds:
     get: ActionsControllerV2_getActionById
   /api/v2/actions/{actionId}/execute:
     post: ActionsControllerV2_execute
+  /api/v2/actions/{actionId}/execute/get.inputs:
+    post: Actions_getActionInputs
   /api/v2/triggers/{triggerName}:
     get: TriggerControllerV2_getTriggerInfo
   /v1/actions:
@@ -289,6 +308,14 @@ responseSchemaNames:
     post:
       '200':
         application/json: EventLogsUpdateWebhookResponse
+  /api/v1/event_logs/webhook/secret/get:
+    get:
+      '200':
+        application/json: EventLogsGetWebhookSecretResponse
+  /api/v1/event_logs/webhook/secret/refresh:
+    post:
+      '200':
+        application/json: EventLogsRefreshWebhookSecretResponse
   /api/v1/payment/checkout-session/{sessionId}/status:
     get:
       '200':
@@ -319,6 +346,10 @@ responseSchemaNames:
       '200':
         application/json: TriggersListResponse
         text/html; charset=utf-8: TriggersListResponse
+  /api/v2/actions/{actionId}/execute/get.inputs:
+    post:
+      '200':
+        application/json: ActionsGetActionInputsResponse
   /api/v2/triggers/{triggerName}:
     get:
       '200':

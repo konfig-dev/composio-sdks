@@ -27,25 +27,25 @@
       "name": "Integrations"
     },
     {
-      "name": "Payment"
+      "name": "Actions"
     },
     {
-      "name": "Actions"
+      "name": "Event Logs"
+    },
+    {
+      "name": "Payment"
     },
     {
       "name": "API-Keys"
     },
     {
-      "name": "Event Logs"
+      "name": "Logs"
     },
     {
       "name": "Analytics"
     },
     {
       "name": "Auth"
-    },
-    {
-      "name": "Logs"
     }
   ],
   "paths": {
@@ -1314,6 +1314,50 @@
         }
       }
     },
+    "/api/v2/actions/{actionId}/execute/get.inputs": {
+      "post": {
+        "tags": [
+          "Actions"
+        ],
+        "summary": "Get action inputs",
+        "operationId": "Actions_getActionInputs",
+        "description": "Get the inputs for an action with NLA",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "actionId",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "ActionGetNLAInputsReqDTO",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActionGetNLAInputsReqDTO"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionsGetActionInputsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/actions/{actionId}": {
       "get": {
         "tags": [
@@ -1548,6 +1592,48 @@
         }
       }
     },
+    "/api/v1/event_logs/webhook/secret/get": {
+      "get": {
+        "tags": [
+          "Event Logs"
+        ],
+        "summary": "Get webhook secret",
+        "operationId": "EventLogs_getWebhookSecret",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventLogsGetWebhookSecretResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/event_logs/webhook/secret/refresh": {
+      "post": {
+        "tags": [
+          "Event Logs"
+        ],
+        "summary": "Refresh webhook",
+        "operationId": "EventLogs_refreshWebhookSecret",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventLogsRefreshWebhookSecretResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/payment/create-checkout-session": {
       "post": {
         "tags": [
@@ -1769,7 +1855,7 @@
             "in": "query",
             "name": "entityId",
             "schema": {
-              "description": "Entity UUID",
+              "description": "Entity id",
               "type": "string"
             }
           },
@@ -1792,14 +1878,6 @@
           },
           {
             "in": "query",
-            "name": "connectionId",
-            "schema": {
-              "description": "Connection ID of the log",
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
             "name": "logsType",
             "schema": {
               "description": "Type of the log",
@@ -1814,6 +1892,37 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LogsResDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Logs"
+        ],
+        "summary": "Post logs",
+        "operationId": "Logs_addNewLogs",
+        "description": "Add new logs",
+        "requestBody": {
+          "description": "IngestDataDTO",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IngestDataDTO"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngestDataResponseDTO"
                 }
               }
             }
@@ -1864,6 +1973,7 @@
   "components": {
     "schemas": {
       "MemberInfoResDTO": {
+        "description": "Member information",
         "properties": {
           "id": {
             "type": "string"
@@ -2784,6 +2894,7 @@
         ]
       },
       "ConnectorListItemDTO": {
+        "description": "List of connectors",
         "properties": {
           "appName": {
             "description": "Application name associated with the connector",
@@ -2805,9 +2916,7 @@
             "type": "string"
           },
           "member": {
-            "description": "Member information associated with the connector",
-            "$ref": "#/components/schemas/MemberInfoResDTO",
-            "type": "object"
+            "$ref": "#/components/schemas/MemberInfoResDTO"
           },
           "name": {
             "description": "Name of the connector",
@@ -2878,7 +2987,6 @@
       "GetConnectorListResDTO": {
         "properties": {
           "items": {
-            "description": "List of connectors",
             "items": {
               "type": "object"
             },
@@ -3113,6 +3221,17 @@
           }
         },
         "type": "object"
+      },
+      "ActionGetNLAInputsReqDTO": {
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ]
       },
       "ProxyExecutionReqDTO": {
         "properties": {
@@ -4768,7 +4887,7 @@
             "type": "string"
           },
           "entityId": {
-            "description": "Entity UUID",
+            "description": "Entity id",
             "type": "string"
           },
           "limit": {
@@ -4780,16 +4899,60 @@
             "description": "Cursor for pagination",
             "type": "string"
           },
-          "connectionId": {
-            "description": "Connection ID of the log",
-            "type": "string"
-          },
           "logsType": {
             "description": "Type of the log",
             "type": "string"
           }
         },
         "type": "object"
+      },
+      "IngestDataDTO": {
+        "properties": {
+          "connectionId": {
+            "description": "Connection ID of the log",
+            "type": "string"
+          },
+          "entityId": {
+            "description": "Entity ID of the log",
+            "type": "string"
+          },
+          "providerName": {
+            "description": "Provider name of the log",
+            "type": "string"
+          },
+          "actionName": {
+            "description": "Action name of the log",
+            "type": "string"
+          },
+          "request": {
+            "type": "object"
+          },
+          "response": {
+            "type": "object"
+          },
+          "isError": {
+            "type": "boolean"
+          }
+        },
+        "type": "object",
+        "required": [
+          "providerName",
+          "actionName",
+          "request",
+          "response",
+          "isError"
+        ]
+      },
+      "IngestDataResponseDTO": {
+        "properties": {
+          "isIngested": {
+            "type": "boolean"
+          }
+        },
+        "type": "object",
+        "required": [
+          "isIngested"
+        ]
       },
       "TimePeriodReqDTO": {
         "properties": {
@@ -4809,6 +4972,7 @@
         "type": "object"
       },
       "ActionByAppDTO": {
+        "description": "Action counts by app",
         "properties": {
           "appName": {
             "description": "Name of the app",
@@ -4826,6 +4990,7 @@
         ]
       },
       "ActionByStatusDTO": {
+        "description": "Action counts by status",
         "properties": {
           "failed": {
             "description": "Count of failed actions",
@@ -4843,6 +5008,7 @@
         ]
       },
       "ActionAnalyticsDTO": {
+        "description": "Comprehensive trigger analytics data, presenting a breakdown by day, status, and provider for all triggers",
         "properties": {
           "date": {
             "description": "Date of the action",
@@ -4850,11 +5016,9 @@
             "format": "date"
           },
           "byApp": {
-            "description": "Action counts by app",
             "$ref": "#/components/schemas/ActionByAppDTO"
           },
           "byStatus": {
-            "description": "Action counts by status",
             "$ref": "#/components/schemas/ActionByStatusDTO"
           }
         },
@@ -4866,6 +5030,7 @@
         ]
       },
       "IntegrationsWithCountsDTO": {
+        "description": "Detailed integration analytics data, including a breakdown of connection count, trigger count, and request logs count for each integration",
         "properties": {
           "id": {
             "description": "Unique identifier for the integration",
@@ -4903,6 +5068,7 @@
         ]
       },
       "AppNameCountDTO": {
+        "description": "Comprehensive app-level analytics data, providing a breakdown of connection count, trigger count, and request logs count for each app",
         "properties": {
           "appName": {
             "description": "Name of the app",
@@ -4947,6 +5113,7 @@
         "type": "object"
       },
       "ClientUniqueUserIdCountDTO": {
+        "description": "Connection counts by entity",
         "properties": {
           "clientUniqueUserId": {
             "description": "Client unique user id",
@@ -4964,9 +5131,9 @@
         ]
       },
       "AnalyticsEntityDataDTO": {
+        "description": "Entity-related analytics data, providing a breakdown by connections, actions, and triggers for each entity. This is include all entity info.",
         "properties": {
           "byConnections": {
-            "description": "Connection counts by entity",
             "items": {
               "$ref": "#/components/schemas/ClientUniqueUserIdCountDTO"
             },
@@ -4997,32 +5164,27 @@
       "AnalyticsDataResDTO": {
         "properties": {
           "entity": {
-            "description": "Entity-related analytics data, providing a breakdown by connections, actions, and triggers for each entity. This is include all entity info.",
             "$ref": "#/components/schemas/AnalyticsEntityDataDTO"
           },
           "actions": {
-            "description": "Detailed action analytics data, offering a breakdown by day, status, and provider for all actions",
             "items": {
               "$ref": "#/components/schemas/ActionAnalyticsDTO"
             },
             "type": "array"
           },
           "trigger": {
-            "description": "Comprehensive trigger analytics data, presenting a breakdown by day, status, and provider for all triggers",
             "items": {
               "$ref": "#/components/schemas/ActionAnalyticsDTO"
             },
             "type": "array"
           },
           "integrations": {
-            "description": "Detailed integration analytics data, including a breakdown of connection count, trigger count, and request logs count for each integration",
             "items": {
               "$ref": "#/components/schemas/IntegrationsWithCountsDTO"
             },
             "type": "array"
           },
           "app": {
-            "description": "Comprehensive app-level analytics data, providing a breakdown of connection count, trigger count, and request logs count for each app",
             "$ref": "#/components/schemas/AppNameCountDTO"
           }
         },
@@ -5107,6 +5269,18 @@
           "endTime"
         ]
       },
+      "WebhookSecretResDTO": {
+        "properties": {
+          "webhookSecret": {
+            "description": "Webhook secret",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "webhookSecret"
+        ]
+      },
       "CreateCheckoutSessionReqDto": {
         "properties": {
           "plan": {
@@ -5167,6 +5341,13 @@
         },
         "type": "array"
       },
+      "ActionsGetActionInputsResponse": {
+        "type": "object",
+        "properties": {
+        },
+        "example": {
+        }
+      },
       "TriggerControllerV2GetTriggerInfoResponse": {
         "items": {
           "$ref": "#/components/schemas/SingleTriggerResDTO"
@@ -5188,6 +5369,20 @@
         }
       },
       "EventLogsGetEventsResponse": {
+        "type": "object",
+        "properties": {
+        },
+        "example": {
+        }
+      },
+      "EventLogsGetWebhookSecretResponse": {
+        "type": "object",
+        "properties": {
+        },
+        "example": {
+        }
+      },
+      "EventLogsRefreshWebhookSecretResponse": {
         "type": "object",
         "properties": {
         },
