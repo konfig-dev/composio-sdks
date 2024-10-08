@@ -67,7 +67,7 @@ describe Composio::GetLogsDTO do
     end
   end
 
-  describe 'test attribute "connection_id"' do
+  describe 'test attribute "logs_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

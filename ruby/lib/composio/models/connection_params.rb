@@ -43,6 +43,8 @@ module Composio
 
     attr_accessor :auth_config
 
+    attr_accessor :member
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -61,7 +63,8 @@ module Composio
         :'app_unique_id' => :'appUniqueId',
         :'app_name' => :'appName',
         :'logo' => :'logo',
-        :'auth_config' => :'authConfig'
+        :'auth_config' => :'authConfig',
+        :'member' => :'member'
       }
     end
 
@@ -83,12 +86,13 @@ module Composio
         :'data' => :'Object',
         :'deleted' => :'Boolean',
         :'enabled' => :'Boolean',
-        :'created_at' => :'ConnectionWithAppDataCreatedAt',
-        :'updated_at' => :'ConnectionWithAppDataCreatedAt',
+        :'created_at' => :'MemberInfoResDTOCreatedAt',
+        :'updated_at' => :'MemberInfoResDTOCreatedAt',
         :'app_unique_id' => :'String',
         :'app_name' => :'String',
         :'logo' => :'String',
-        :'auth_config' => :'Object'
+        :'auth_config' => :'Object',
+        :'member' => :'Array<MemberInfoResDTO>'
       }
     end
 
@@ -176,6 +180,12 @@ module Composio
       if attributes.key?(:'auth_config')
         self.auth_config = attributes[:'auth_config']
       end
+
+      if attributes.key?(:'member')
+        if (value = attributes[:'member']).is_a?(Array)
+          self.member = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -218,6 +228,10 @@ module Composio
         invalid_properties.push('invalid value for "app_name", app_name cannot be nil.')
       end
 
+      if @member.nil?
+        invalid_properties.push('invalid value for "member", member cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -233,6 +247,7 @@ module Composio
       return false if @updated_at.nil?
       return false if @app_unique_id.nil?
       return false if @app_name.nil?
+      return false if @member.nil?
       true
     end
 
@@ -256,7 +271,8 @@ module Composio
           app_unique_id == o.app_unique_id &&
           app_name == o.app_name &&
           logo == o.logo &&
-          auth_config == o.auth_config
+          auth_config == o.auth_config &&
+          member == o.member
     end
 
     # @see the `==` method
@@ -268,7 +284,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [integration_id, connection_params, is_disabled, invocation_count, id, client_unique_user_id, status, data, deleted, enabled, created_at, updated_at, app_unique_id, app_name, logo, auth_config].hash
+      [integration_id, connection_params, is_disabled, invocation_count, id, client_unique_user_id, status, data, deleted, enabled, created_at, updated_at, app_unique_id, app_name, logo, auth_config, member].hash
     end
 
     # Builds the object from hash

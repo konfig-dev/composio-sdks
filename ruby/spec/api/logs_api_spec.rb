@@ -26,6 +26,18 @@ describe 'LogsApi' do
     end
   end
 
+  # unit tests for add_new_logs
+  # Post logs
+  # Add new logs
+  # @param [Hash] opts the optional parameters
+  # @option opts [IngestDataDTO] :ingest_data_dto IngestDataDTO
+  # @return [IngestDataResponseDTO]
+  describe 'add_new_logs test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for list
   # Get logs
   # List logs
@@ -38,7 +50,7 @@ describe 'LogsApi' do
   # @option opts [String] :entity_id 
   # @option opts [Float] :limit 
   # @option opts [String] :cursor 
-  # @option opts [String] :connection_id 
+  # @option opts [String] :logs_type 
   # @return [LogsResDTO]
   describe 'list test' do
     it 'should work' do

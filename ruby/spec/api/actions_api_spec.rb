@@ -64,6 +64,19 @@ describe 'ActionsApi' do
     end
   end
 
+  # unit tests for get_action_inputs
+  # Get action inputs
+  # Get the inputs for an action with NLA
+  # @param action_id 
+  # @param [Hash] opts the optional parameters
+  # @option opts [ActionGetNLAInputsReqDTO] :action_get_nla_inputs_req_dto ActionGetNLAInputsReqDTO
+  # @return [Object]
+  describe 'get_action_inputs test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for get_all_actions_based_on_query
   # List actions minimal
   # Retrieve a list of all actions based on query parameters.

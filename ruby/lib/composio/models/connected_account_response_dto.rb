@@ -15,6 +15,8 @@ module Composio
 
     attr_accessor :app_unique_id
 
+    attr_accessor :member_info
+
     attr_accessor :meta
 
     attr_accessor :is_disabled
@@ -40,6 +42,7 @@ module Composio
       {
         :'integration_id' => :'integrationId',
         :'app_unique_id' => :'appUniqueId',
+        :'member_info' => :'memberInfo',
         :'meta' => :'meta',
         :'is_disabled' => :'isDisabled',
         :'id' => :'id',
@@ -63,6 +66,7 @@ module Composio
       {
         :'integration_id' => :'String',
         :'app_unique_id' => :'String',
+        :'member_info' => :'MemberInfoResDTO',
         :'meta' => :'Meta',
         :'is_disabled' => :'Boolean',
         :'id' => :'String',
@@ -103,6 +107,10 @@ module Composio
 
       if attributes.key?(:'app_unique_id')
         self.app_unique_id = attributes[:'app_unique_id']
+      end
+
+      if attributes.key?(:'member_info')
+        self.member_info = attributes[:'member_info']
       end
 
       if attributes.key?(:'meta')
@@ -211,6 +219,7 @@ module Composio
       self.class == o.class &&
           integration_id == o.integration_id &&
           app_unique_id == o.app_unique_id &&
+          member_info == o.member_info &&
           meta == o.meta &&
           is_disabled == o.is_disabled &&
           id == o.id &&
@@ -232,7 +241,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [integration_id, app_unique_id, meta, is_disabled, id, client_unique_user_id, app_name, entity_id, status, enabled, created_at, updated_at].hash
+      [integration_id, app_unique_id, member_info, meta, is_disabled, id, client_unique_user_id, app_name, entity_id, status, enabled, created_at, updated_at].hash
     end
 
     # Builds the object from hash

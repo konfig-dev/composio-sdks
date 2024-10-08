@@ -26,6 +26,15 @@ module Composio
     # The generated API key
     attr_accessor :key
 
+    # Whether the API key is hidden
+    attr_accessor :is_hidden
+
+    # The last used date of the API key
+    attr_accessor :last_used
+
+    # The member of the API key
+    attr_accessor :member
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -33,7 +42,10 @@ module Composio
         :'name' => :'name',
         :'created_at' => :'createdAt',
         :'updated_at' => :'updatedAt',
-        :'key' => :'key'
+        :'key' => :'key',
+        :'is_hidden' => :'isHidden',
+        :'last_used' => :'lastUsed',
+        :'member' => :'member'
       }
     end
 
@@ -49,7 +61,10 @@ module Composio
         :'name' => :'String',
         :'created_at' => :'String',
         :'updated_at' => :'String',
-        :'key' => :'String'
+        :'key' => :'String',
+        :'is_hidden' => :'Boolean',
+        :'last_used' => :'String',
+        :'member' => :'Object'
       }
     end
 
@@ -93,6 +108,18 @@ module Composio
       if attributes.key?(:'key')
         self.key = attributes[:'key']
       end
+
+      if attributes.key?(:'is_hidden')
+        self.is_hidden = attributes[:'is_hidden']
+      end
+
+      if attributes.key?(:'last_used')
+        self.last_used = attributes[:'last_used']
+      end
+
+      if attributes.key?(:'member')
+        self.member = attributes[:'member']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -129,6 +156,19 @@ module Composio
         invalid_properties.push('invalid value for "key", key cannot be nil.')
       end
 
+      if @is_hidden.nil?
+        invalid_properties.push('invalid value for "is_hidden", is_hidden cannot be nil.')
+      end
+
+      pattern = Regexp.new(/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d.\d+Z?/)
+      if !@last_used.nil? && @last_used !~ pattern
+        invalid_properties.push("invalid value for \"last_used\", must conform to the pattern #{pattern}.")
+      end
+
+      if @member.nil?
+        invalid_properties.push('invalid value for "member", member cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -142,6 +182,9 @@ module Composio
       return false if @updated_at.nil?
       return false if @updated_at !~ Regexp.new(/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d.\d+Z?/)
       return false if @key.nil?
+      return false if @is_hidden.nil?
+      return false if !@last_used.nil? && @last_used !~ Regexp.new(/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d.\d+Z?/)
+      return false if @member.nil?
       true
     end
 
@@ -175,6 +218,17 @@ module Composio
       @updated_at = updated_at
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] last_used Value to be assigned
+    def last_used=(last_used)
+      pattern = Regexp.new(/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d.\d+Z?/)
+      if !last_used.nil? && last_used !~ pattern
+        fail ArgumentError, "invalid value for \"last_used\", must conform to the pattern #{pattern}."
+      end
+
+      @last_used = last_used
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -184,7 +238,10 @@ module Composio
           name == o.name &&
           created_at == o.created_at &&
           updated_at == o.updated_at &&
-          key == o.key
+          key == o.key &&
+          is_hidden == o.is_hidden &&
+          last_used == o.last_used &&
+          member == o.member
     end
 
     # @see the `==` method
@@ -196,7 +253,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, name, created_at, updated_at, key].hash
+      [id, name, created_at, updated_at, key, is_hidden, last_used, member].hash
     end
 
     # Builds the object from hash

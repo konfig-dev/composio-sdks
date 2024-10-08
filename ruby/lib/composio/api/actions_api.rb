@@ -328,6 +328,113 @@ module Composio
     end
 
 
+    # Get action inputs
+    #
+    # Get the inputs for an action with NLA
+    #
+    # @param text [String] 
+    # @param action_id [String] 
+    # @param body [ActionGetNLAInputsReqDTO] 
+    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
+    def get_action_inputs(text:, action_id:, extra: {})
+      _body = {}
+      _body[:text] = text if text != SENTINEL
+      extra[:action_get_nla_inputs_req_dto] = _body if !_body.empty?
+      api_response = get_action_inputs_with_http_info_impl(action_id, extra)
+      api_response.data
+    end
+
+    # Get action inputs
+    #
+    # Get the inputs for an action with NLA
+    #
+    # @param text [String] 
+    # @param action_id [String] 
+    # @param body [ActionGetNLAInputsReqDTO] 
+    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
+    def get_action_inputs_with_http_info(text:, action_id:, extra: {})
+      _body = {}
+      _body[:text] = text if text != SENTINEL
+      extra[:action_get_nla_inputs_req_dto] = _body if !_body.empty?
+      get_action_inputs_with_http_info_impl(action_id, extra)
+    end
+
+    # Get action inputs
+    # Get the inputs for an action with NLA
+    # @param action_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [ActionGetNLAInputsReqDTO] :action_get_nla_inputs_req_dto ActionGetNLAInputsReqDTO
+    # @return [Object]
+    private def get_action_inputs_impl(action_id, opts = {})
+      data, _status_code, _headers = get_action_inputs_with_http_info(action_id, opts)
+      data
+    end
+
+    # Get action inputs
+    # Get the inputs for an action with NLA
+    # @param action_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [ActionGetNLAInputsReqDTO] :action_get_nla_inputs_req_dto ActionGetNLAInputsReqDTO
+    # @return [APIResponse] data is Object, status code, headers and response
+    private def get_action_inputs_with_http_info_impl(action_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ActionsApi.get_action_inputs ...'
+      end
+      # verify the required parameter 'action_id' is set
+      if @api_client.config.client_side_validation && action_id.nil?
+        fail ArgumentError, "Missing the required parameter 'action_id' when calling ActionsApi.get_action_inputs"
+      end
+      pattern = Regexp.new(/[^\/#\?]+?/)
+      if @api_client.config.client_side_validation && action_id !~ pattern
+        fail ArgumentError, "invalid value for 'action_id' when calling ActionsApi.get_action_inputs, must conform to the pattern #{pattern}."
+      end
+
+      # resource path
+      local_var_path = '/api/v2/actions/{actionId}/execute/get.inputs'.sub('{' + 'actionId' + '}', CGI.escape(action_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+        header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'action_get_nla_inputs_req_dto'])
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Object'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"ActionsApi.get_action_inputs",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers, response = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ActionsApi#get_action_inputs\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      APIResponse::new(data, status_code, headers, response)
+    end
+
+
     # List actions minimal
     #
     # Retrieve a list of all actions based on query parameters.
