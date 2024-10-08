@@ -26,6 +26,17 @@ describe 'AppsApi' do
     end
   end
 
+  # unit tests for delete_open_api_spec_tool
+  # Delete open api spec tool
+  # @param id 
+  # @param [Hash] opts the optional parameters
+  # @return [Object]
+  describe 'delete_open_api_spec_tool test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for get_details
   # Get app
   # Get app details
@@ -33,6 +44,17 @@ describe 'AppsApi' do
   # @param [Hash] opts the optional parameters
   # @return [SingleAppInfoResDTO]
   describe 'get_details test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_open_api_spec_status
+  # Get open api spec status
+  # @param id 
+  # @param [Hash] opts the optional parameters
+  # @return [Object]
+  describe 'get_open_api_spec_status test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -56,6 +78,18 @@ describe 'AppsApi' do
   # @param [Hash] opts the optional parameters
   # @return [Array<AppListResDTO>]
   describe 'list_open_api_specs test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for send_email_to_client
+  # Send email to client
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :admin_token 
+  # @option opts [Object] :body 
+  # @return [Object]
+  describe 'send_email_to_client test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

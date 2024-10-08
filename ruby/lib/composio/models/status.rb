@@ -11,12 +11,15 @@ require 'time'
 
 module Composio
   class Status
-    ALL = "all".freeze
-    SUCCESS = "success".freeze
-    ERROR = "error".freeze
+    INITIALIZED = "initialized".freeze
+    RUNNING = "running".freeze
+    CACHING = "caching".freeze
+    CANCELLED = "cancelled".freeze
+    FINISHED = "finished".freeze
+    EXITED = "exited".freeze
 
     def self.all_vars
-      @all_vars ||= [ALL, SUCCESS, ERROR].freeze
+      @all_vars ||= [INITIALIZED, RUNNING, CACHING, CANCELLED, FINISHED, EXITED].freeze
     end
 
     # Builds the enum from string

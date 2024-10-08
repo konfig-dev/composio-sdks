@@ -10,8 +10,8 @@ require 'spec_helper'
 require 'json'
 require 'date'
 
-# Unit tests for Composio::ConnectionWithAppDataCreatedAt
-describe Composio::ConnectionWithAppDataCreatedAt do
+# Unit tests for Composio::MemberInfoResDTOCreatedAt
+describe Composio::MemberInfoResDTOCreatedAt do
   describe '.openapi_one_of' do
     it 'lists the items referenced in the oneOf array' do
       expect(described_class.openapi_one_of).to_not be_empty

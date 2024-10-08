@@ -20,12 +20,16 @@ module Composio
     # The host to verify the member
     attr_accessor :verify_host
 
+    # The role that will be assignied to the invited user
+    attr_accessor :role
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'email' => :'email',
         :'name' => :'name',
-        :'verify_host' => :'verifyHost'
+        :'verify_host' => :'verifyHost',
+        :'role' => :'role'
       }
     end
 
@@ -39,7 +43,8 @@ module Composio
       {
         :'email' => :'String',
         :'name' => :'String',
-        :'verify_host' => :'String'
+        :'verify_host' => :'String',
+        :'role' => :'Role'
       }
     end
 
@@ -74,6 +79,10 @@ module Composio
 
       if attributes.key?(:'verify_host')
         self.verify_host = attributes[:'verify_host']
+      end
+
+      if attributes.key?(:'role')
+        self.role = attributes[:'role']
       end
     end
 
@@ -112,7 +121,8 @@ module Composio
       self.class == o.class &&
           email == o.email &&
           name == o.name &&
-          verify_host == o.verify_host
+          verify_host == o.verify_host &&
+          role == o.role
     end
 
     # @see the `==` method
@@ -124,7 +134,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [email, name, verify_host].hash
+      [email, name, verify_host, role].hash
     end
 
     # Builds the object from hash

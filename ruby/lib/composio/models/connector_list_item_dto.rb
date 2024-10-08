@@ -10,6 +10,7 @@ require 'date'
 require 'time'
 
 module Composio
+  # List of connectors
   class ConnectorListItemDTO
     # Application name associated with the connector
     attr_accessor :app_name
@@ -22,6 +23,8 @@ module Composio
 
     # Unique identifier of the connector
     attr_accessor :id
+
+    attr_accessor :member
 
     # Name of the connector
     attr_accessor :name
@@ -52,6 +55,7 @@ module Composio
         :'_count' => :'_count',
         :'connections' => :'connections',
         :'id' => :'id',
+        :'member' => :'member',
         :'name' => :'name',
         :'auth_scheme' => :'authScheme',
         :'created_at' => :'createdAt',
@@ -75,6 +79,7 @@ module Composio
         :'_count' => :'Object',
         :'connections' => :'Array<Object>',
         :'id' => :'String',
+        :'member' => :'MemberInfoResDTO',
         :'name' => :'String',
         :'auth_scheme' => :'String',
         :'created_at' => :'ConnectorListItemDTOCreatedAt',
@@ -123,6 +128,10 @@ module Composio
 
       if attributes.key?(:'id')
         self.id = attributes[:'id']
+      end
+
+      if attributes.key?(:'member')
+        self.member = attributes[:'member']
       end
 
       if attributes.key?(:'name')
@@ -178,6 +187,10 @@ module Composio
         invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
 
+      if @member.nil?
+        invalid_properties.push('invalid value for "member", member cannot be nil.')
+      end
+
       if @name.nil?
         invalid_properties.push('invalid value for "name", name cannot be nil.')
       end
@@ -212,6 +225,7 @@ module Composio
       return false if @_count.nil?
       return false if @connections.nil?
       return false if @id.nil?
+      return false if @member.nil?
       return false if @name.nil?
       return false if @auth_scheme.nil?
       return false if @created_at.nil?
@@ -230,6 +244,7 @@ module Composio
           _count == o._count &&
           connections == o.connections &&
           id == o.id &&
+          member == o.member &&
           name == o.name &&
           auth_scheme == o.auth_scheme &&
           created_at == o.created_at &&
@@ -249,7 +264,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [app_name, _count, connections, id, name, auth_scheme, created_at, updated_at, enabled, deleted, app_id, default_connector_id].hash
+      [app_name, _count, connections, id, member, name, auth_scheme, created_at, updated_at, enabled, deleted, app_id, default_connector_id].hash
     end
 
     # Builds the object from hash

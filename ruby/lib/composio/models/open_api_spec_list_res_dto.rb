@@ -20,21 +20,6 @@ module Composio
     # Client identifier
     attr_accessor :client_id
 
-    # OpenAPI specification in YAML format
-    attr_accessor :open_api_spec
-
-    # Integration details in YAML format
-    attr_accessor :integration_yaml
-
-    # Whether the OpenAPI spec is enabled
-    attr_accessor :enabled
-
-    # URL to the OpenAPI specification
-    attr_accessor :open_api_spec_url
-
-    # URL to the integration YAML
-    attr_accessor :integration_yamlurl
-
     # Last synchronization date and time
     attr_accessor :last_sync_at
 
@@ -45,7 +30,10 @@ module Composio
     attr_accessor :updated_at
 
     # The job status of the app
-    attr_accessor :job_status
+    attr_accessor :status
+
+    # Current state of the app FSM
+    attr_accessor :state
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -53,15 +41,11 @@ module Composio
         :'id' => :'id',
         :'name' => :'name',
         :'client_id' => :'clientId',
-        :'open_api_spec' => :'openApiSpec',
-        :'integration_yaml' => :'integrationYaml',
-        :'enabled' => :'enabled',
-        :'open_api_spec_url' => :'openAPISpecURL',
-        :'integration_yamlurl' => :'integrationYAMLURL',
         :'last_sync_at' => :'lastSyncAt',
         :'created_at' => :'createdAt',
         :'updated_at' => :'updatedAt',
-        :'job_status' => :'jobStatus'
+        :'status' => :'status',
+        :'state' => :'state'
       }
     end
 
@@ -76,23 +60,17 @@ module Composio
         :'id' => :'String',
         :'name' => :'String',
         :'client_id' => :'String',
-        :'open_api_spec' => :'String',
-        :'integration_yaml' => :'String',
-        :'enabled' => :'Boolean',
-        :'open_api_spec_url' => :'String',
-        :'integration_yamlurl' => :'String',
         :'last_sync_at' => :'Time',
         :'created_at' => :'Time',
         :'updated_at' => :'Time',
-        :'job_status' => :'JobStatus'
+        :'status' => :'Status',
+        :'state' => :'State'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'open_api_spec_url',
-        :'integration_yamlurl',
       ])
     end
 
@@ -123,26 +101,6 @@ module Composio
         self.client_id = attributes[:'client_id']
       end
 
-      if attributes.key?(:'open_api_spec')
-        self.open_api_spec = attributes[:'open_api_spec']
-      end
-
-      if attributes.key?(:'integration_yaml')
-        self.integration_yaml = attributes[:'integration_yaml']
-      end
-
-      if attributes.key?(:'enabled')
-        self.enabled = attributes[:'enabled']
-      end
-
-      if attributes.key?(:'open_api_spec_url')
-        self.open_api_spec_url = attributes[:'open_api_spec_url']
-      end
-
-      if attributes.key?(:'integration_yamlurl')
-        self.integration_yamlurl = attributes[:'integration_yamlurl']
-      end
-
       if attributes.key?(:'last_sync_at')
         self.last_sync_at = attributes[:'last_sync_at']
       end
@@ -155,8 +113,12 @@ module Composio
         self.updated_at = attributes[:'updated_at']
       end
 
-      if attributes.key?(:'job_status')
-        self.job_status = attributes[:'job_status']
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
+      end
+
+      if attributes.key?(:'state')
+        self.state = attributes[:'state']
       end
     end
 
@@ -174,18 +136,6 @@ module Composio
 
       if @client_id.nil?
         invalid_properties.push('invalid value for "client_id", client_id cannot be nil.')
-      end
-
-      if @open_api_spec.nil?
-        invalid_properties.push('invalid value for "open_api_spec", open_api_spec cannot be nil.')
-      end
-
-      if @integration_yaml.nil?
-        invalid_properties.push('invalid value for "integration_yaml", integration_yaml cannot be nil.')
-      end
-
-      if @enabled.nil?
-        invalid_properties.push('invalid value for "enabled", enabled cannot be nil.')
       end
 
       if @last_sync_at.nil?
@@ -224,9 +174,6 @@ module Composio
       return false if @id.nil?
       return false if @name.nil?
       return false if @client_id.nil?
-      return false if @open_api_spec.nil?
-      return false if @integration_yaml.nil?
-      return false if @enabled.nil?
       return false if @last_sync_at.nil?
       return false if @last_sync_at !~ Regexp.new(/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d.\d+Z?/)
       return false if @created_at.nil?
@@ -289,15 +236,11 @@ module Composio
           id == o.id &&
           name == o.name &&
           client_id == o.client_id &&
-          open_api_spec == o.open_api_spec &&
-          integration_yaml == o.integration_yaml &&
-          enabled == o.enabled &&
-          open_api_spec_url == o.open_api_spec_url &&
-          integration_yamlurl == o.integration_yamlurl &&
           last_sync_at == o.last_sync_at &&
           created_at == o.created_at &&
           updated_at == o.updated_at &&
-          job_status == o.job_status
+          status == o.status &&
+          state == o.state
     end
 
     # @see the `==` method
@@ -309,7 +252,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, name, client_id, open_api_spec, integration_yaml, enabled, open_api_spec_url, integration_yamlurl, last_sync_at, created_at, updated_at, job_status].hash
+      [id, name, client_id, last_sync_at, created_at, updated_at, status, state].hash
     end
 
     # Builds the object from hash

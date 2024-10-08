@@ -11,7 +11,6 @@ require 'time'
 
 module Composio
   class GetConnectorListResDTO
-    # List of connectors
     attr_accessor :items
 
     # Total number of pages available

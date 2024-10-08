@@ -23,6 +23,9 @@ module Composio
     # The creation date of the member record
     attr_accessor :created_at
 
+    # The role that is assigned to the member
+    attr_accessor :role
+
     # The last update date of the member record
     attr_accessor :updated_at
 
@@ -33,6 +36,7 @@ module Composio
         :'id' => :'id',
         :'name' => :'name',
         :'created_at' => :'createdAt',
+        :'role' => :'role',
         :'updated_at' => :'updatedAt'
       }
     end
@@ -49,6 +53,7 @@ module Composio
         :'id' => :'String',
         :'name' => :'String',
         :'created_at' => :'String',
+        :'role' => :'MemberResDtoRole',
         :'updated_at' => :'String'
       }
     end
@@ -90,6 +95,10 @@ module Composio
         self.created_at = attributes[:'created_at']
       end
 
+      if attributes.key?(:'role')
+        self.role = attributes[:'role']
+      end
+
       if attributes.key?(:'updated_at')
         self.updated_at = attributes[:'updated_at']
       end
@@ -116,6 +125,10 @@ module Composio
         invalid_properties.push("invalid value for \"created_at\", must conform to the pattern #{pattern}.")
       end
 
+      if @role.nil?
+        invalid_properties.push('invalid value for "role", role cannot be nil.')
+      end
+
       pattern = Regexp.new(/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d.\d+Z?/)
       if !@updated_at.nil? && @updated_at !~ pattern
         invalid_properties.push("invalid value for \"updated_at\", must conform to the pattern #{pattern}.")
@@ -131,6 +144,7 @@ module Composio
       return false if @id.nil?
       return false if @name.nil?
       return false if !@created_at.nil? && @created_at !~ Regexp.new(/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d.\d+Z?/)
+      return false if @role.nil?
       return false if !@updated_at.nil? && @updated_at !~ Regexp.new(/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d.\d+Z?/)
       true
     end
@@ -166,6 +180,7 @@ module Composio
           id == o.id &&
           name == o.name &&
           created_at == o.created_at &&
+          role == o.role &&
           updated_at == o.updated_at
     end
 
@@ -178,7 +193,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [email, id, name, created_at, updated_at].hash
+      [email, id, name, created_at, role, updated_at].hash
     end
 
     # Builds the object from hash

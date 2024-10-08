@@ -26,7 +26,7 @@ module Composio
     # Integration UUID
     attr_accessor :integration_id
 
-    # Entity UUID
+    # Entity id
     attr_accessor :entity_id
 
     # Limit of the logs
@@ -35,8 +35,8 @@ module Composio
     # Cursor for pagination
     attr_accessor :cursor
 
-    # Connection ID of the log
-    attr_accessor :connection_id
+    # Type of the log
+    attr_accessor :logs_type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -49,7 +49,7 @@ module Composio
         :'entity_id' => :'entityId',
         :'limit' => :'limit',
         :'cursor' => :'cursor',
-        :'connection_id' => :'connectionId'
+        :'logs_type' => :'logsType'
       }
     end
 
@@ -63,13 +63,13 @@ module Composio
       {
         :'type' => :'Type',
         :'time' => :'Time',
-        :'status' => :'Status',
+        :'status' => :'GetLogsDtoStatus',
         :'search' => :'String',
         :'integration_id' => :'String',
         :'entity_id' => :'String',
         :'limit' => :'Float',
         :'cursor' => :'String',
-        :'connection_id' => :'String'
+        :'logs_type' => :'String'
       }
     end
 
@@ -128,8 +128,8 @@ module Composio
         self.cursor = attributes[:'cursor']
       end
 
-      if attributes.key?(:'connection_id')
-        self.connection_id = attributes[:'connection_id']
+      if attributes.key?(:'logs_type')
+        self.logs_type = attributes[:'logs_type']
       end
     end
 
@@ -159,7 +159,7 @@ module Composio
           entity_id == o.entity_id &&
           limit == o.limit &&
           cursor == o.cursor &&
-          connection_id == o.connection_id
+          logs_type == o.logs_type
     end
 
     # @see the `==` method
@@ -171,7 +171,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, time, status, search, integration_id, entity_id, limit, cursor, connection_id].hash
+      [type, time, status, search, integration_id, entity_id, limit, cursor, logs_type].hash
     end
 
     # Builds the object from hash

@@ -10,13 +10,16 @@ require 'date'
 require 'time'
 
 module Composio
-  class JobStatus
-    RUNNING = "running".freeze
-    SUCCESS = "success".freeze
-    FAILED = "failed".freeze
+  class LastTimePeriod
+    DAY = "DAY".freeze
+    WEEK = "WEEK".freeze
+    MONTH = "MONTH".freeze
+    SIX_MONTH = "SIX_MONTH".freeze
+    YEAR = "YEAR".freeze
+    FIVE_YEAR = "FIVE_YEAR".freeze
 
     def self.all_vars
-      @all_vars ||= [RUNNING, SUCCESS, FAILED].freeze
+      @all_vars ||= [DAY, WEEK, MONTH, SIX_MONTH, YEAR, FIVE_YEAR].freeze
     end
 
     # Builds the enum from string
@@ -30,8 +33,8 @@ module Composio
     # @param [String] The enum value in the form of the string
     # @return [String] The enum value
     def build_from_hash(value)
-      return value if JobStatus.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #JobStatus"
+      return value if LastTimePeriod.all_vars.include?(value)
+      raise "Invalid ENUM value #{value} for class #LastTimePeriod"
     end
   end
 end
