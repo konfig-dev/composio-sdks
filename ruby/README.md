@@ -6,7 +6,7 @@
 
 Composio SDK: Equip your agent with high-quality tools and build your real-world usecase
 
-[![npm](https://img.shields.io/badge/gem-v0.1.6-blue)](https://rubygems.org/gems/composio/versions/0.1.6)
+[![npm](https://img.shields.io/badge/gem-v0.1.7-blue)](https://rubygems.org/gems/composio/versions/0.1.7)
 [![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](https://composio.dev)
 
 </div>
@@ -77,7 +77,7 @@ Composio SDK: Equip your agent with high-quality tools and build your real-world
 Add to Gemfile:
 
 ```ruby
-gem 'composio', '~> 0.1.6'
+gem 'composio', '~> 0.1.7'
 ```
 
 ## Getting Started<a id="getting-started"></a>
