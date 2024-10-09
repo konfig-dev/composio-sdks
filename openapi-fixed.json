@@ -18,10 +18,10 @@
       "name": "Triggers"
     },
     {
-      "name": "Apps"
+      "name": "Connections"
     },
     {
-      "name": "Connections"
+      "name": "Apps"
     },
     {
       "name": "Integrations"
@@ -691,6 +691,38 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DeleteRowAPIDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/connectedAccounts/{connectedAccountId}/info": {
+      "get": {
+        "tags": [
+          "Connections"
+        ],
+        "summary": "Get connection info",
+        "operationId": "Connections_getInfo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "connectedAccountId",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetConnectionInfoResponseDTO"
                 }
               }
             }
@@ -3720,6 +3752,73 @@
           "items",
           "totalPages",
           "page"
+        ]
+      },
+      "GetConnectionInfoResponseDTO": {
+        "properties": {
+          "parameters": {
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            },
+            "type": "array"
+          },
+          "base_url": {
+            "type": "string"
+          },
+          "body": {
+            "type": "object"
+          }
+        },
+        "type": "object",
+        "required": [
+          "base_url",
+          "parameters",
+          "body"
+        ]
+      },
+      "Parameter": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "in": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "in",
+          "value"
+        ]
+      },
+      "Data": {
+        "properties": {
+          "field1": {
+            "type": "string"
+          },
+          "field2": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "field1",
+          "field2"
+        ]
+      },
+      "AdditionalInfo": {
+        "properties": {
+          "meta": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "meta"
         ]
       },
       "GetConnectionsQueryDto": {

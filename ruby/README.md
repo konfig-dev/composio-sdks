@@ -40,6 +40,7 @@ Composio SDK: Equip your agent with high-quality tools and build your real-world
   * [`composio.connections.disable`](#composioconnectionsdisable)
   * [`composio.connections.enable`](#composioconnectionsenable)
   * [`composio.connections.get`](#composioconnectionsget)
+  * [`composio.connections.get_info`](#composioconnectionsget_info)
   * [`composio.connections.initiate`](#composioconnectionsinitiate)
   * [`composio.connections.list`](#composioconnectionslist)
   * [`composio.event_logs.get_events`](#composioevent_logsget_events)
@@ -732,6 +733,35 @@ p result
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v1/connectedAccounts/{connectedAccountId}` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `composio.connections.get_info`<a id="composioconnectionsget_info"></a>
+
+Get connection info
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```ruby
+result = composio.connections.get_info(
+  connected_account_id: "'+j>6",
+)
+p result
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### connected_account_id: `String`<a id="connected_account_id-string"></a>
+#### 🔄 Return<a id="🔄-return"></a>
+
+[GetConnectionInfoResponseDTO](./lib/composio/models/get_connection_info_response_dto.rb)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/api/v1/connectedAccounts/{connectedAccountId}/info` `GET`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 

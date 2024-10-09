@@ -140,6 +140,8 @@ operationIds:
     post: Connections_disable
   /api/v1/connectedAccounts/{connectedAccountId}/enable:
     post: Connections_enable
+  /api/v1/connectedAccounts/{connectedAccountId}/info:
+    get: Connections_getInfo
   /api/v1/event_logs/get/events:
     get: EventLogs_getEvents
   /api/v1/event_logs/get/webhook:
