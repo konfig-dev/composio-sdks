@@ -26,16 +26,18 @@ module Composio
     # @param entity_id [String] 
     # @param endpoint [String] 
     # @param input [Object] 
+    # @param auth_config [GetConnectionInfoResponseDTO] 
     # @param text [String] 
     # @param body [ActionExecutionReqDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def execute(action_id:, connected_account_id: SENTINEL, app_name: SENTINEL, entity_id: SENTINEL, endpoint: SENTINEL, input: SENTINEL, text: SENTINEL, extra: {})
+    def execute(action_id:, connected_account_id: SENTINEL, app_name: SENTINEL, entity_id: SENTINEL, endpoint: SENTINEL, input: SENTINEL, auth_config: SENTINEL, text: SENTINEL, extra: {})
       _body = {}
       _body[:connectedAccountId] = connected_account_id if connected_account_id != SENTINEL
       _body[:appName] = app_name if app_name != SENTINEL
       _body[:entityId] = entity_id if entity_id != SENTINEL
       _body[:endpoint] = endpoint if endpoint != SENTINEL
       _body[:input] = input if input != SENTINEL
+      _body[:authConfig] = auth_config if auth_config != SENTINEL
       _body[:text] = text if text != SENTINEL
       extra[:action_execution_req_dto] = _body if !_body.empty?
       api_response = execute_with_http_info_impl(action_id, extra)
@@ -52,16 +54,18 @@ module Composio
     # @param entity_id [String] 
     # @param endpoint [String] 
     # @param input [Object] 
+    # @param auth_config [GetConnectionInfoResponseDTO] 
     # @param text [String] 
     # @param body [ActionExecutionReqDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def execute_with_http_info(action_id:, connected_account_id: SENTINEL, app_name: SENTINEL, entity_id: SENTINEL, endpoint: SENTINEL, input: SENTINEL, text: SENTINEL, extra: {})
+    def execute_with_http_info(action_id:, connected_account_id: SENTINEL, app_name: SENTINEL, entity_id: SENTINEL, endpoint: SENTINEL, input: SENTINEL, auth_config: SENTINEL, text: SENTINEL, extra: {})
       _body = {}
       _body[:connectedAccountId] = connected_account_id if connected_account_id != SENTINEL
       _body[:appName] = app_name if app_name != SENTINEL
       _body[:entityId] = entity_id if entity_id != SENTINEL
       _body[:endpoint] = endpoint if endpoint != SENTINEL
       _body[:input] = input if input != SENTINEL
+      _body[:authConfig] = auth_config if auth_config != SENTINEL
       _body[:text] = text if text != SENTINEL
       extra[:action_execution_req_dto] = _body if !_body.empty?
       execute_with_http_info_impl(action_id, extra)
