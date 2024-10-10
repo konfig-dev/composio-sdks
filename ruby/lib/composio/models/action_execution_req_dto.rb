@@ -21,6 +21,8 @@ module Composio
 
     attr_accessor :input
 
+    attr_accessor :auth_config
+
     attr_accessor :text
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -31,6 +33,7 @@ module Composio
         :'entity_id' => :'entityId',
         :'endpoint' => :'endpoint',
         :'input' => :'input',
+        :'auth_config' => :'authConfig',
         :'text' => :'text'
       }
     end
@@ -48,6 +51,7 @@ module Composio
         :'entity_id' => :'String',
         :'endpoint' => :'String',
         :'input' => :'Object',
+        :'auth_config' => :'GetConnectionInfoResponseDTO',
         :'text' => :'String'
       }
     end
@@ -93,6 +97,10 @@ module Composio
         self.input = attributes[:'input']
       end
 
+      if attributes.key?(:'auth_config')
+        self.auth_config = attributes[:'auth_config']
+      end
+
       if attributes.key?(:'text')
         self.text = attributes[:'text']
       end
@@ -121,6 +129,7 @@ module Composio
           entity_id == o.entity_id &&
           endpoint == o.endpoint &&
           input == o.input &&
+          auth_config == o.auth_config &&
           text == o.text
     end
 
@@ -133,7 +142,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [connected_account_id, app_name, entity_id, endpoint, input, text].hash
+      [connected_account_id, app_name, entity_id, endpoint, input, auth_config, text].hash
     end
 
     # Builds the object from hash

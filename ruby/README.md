@@ -209,6 +209,17 @@ result = composio.actions.execute(
   entity_id: "string_example",
   endpoint: "string_example",
   input: {},
+  auth_config: {
+        "parameters" => [
+            {
+                "name" => "name_example",
+                "_in" => "_in_example",
+                "value" => "value_example",
+            }
+        ],
+        "base_url" => "base_url_example",
+        "body" => {},
+    },
   text: "string_example",
 )
 p result
@@ -222,6 +233,7 @@ p result
 ##### entityId: `String`<a id="entityid-string"></a>
 ##### endpoint: `String`<a id="endpoint-string"></a>
 ##### input: `Object`<a id="input-object"></a>
+##### authConfig: [`GetConnectionInfoResponseDTO`](./lib/composio/models/get_connection_info_response_dto.rb)<a id="authconfig-getconnectioninforesponsedtolibcomposiomodelsget_connection_info_response_dtorb"></a>
 ##### text: `String`<a id="text-string"></a>
 #### 🔄 Return<a id="🔄-return"></a>
 

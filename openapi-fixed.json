@@ -3231,275 +3231,6 @@
           "data"
         ]
       },
-      "ActionExecutionReqDTO": {
-        "properties": {
-          "connectedAccountId": {
-            "type": "string"
-          },
-          "appName": {
-            "type": "string"
-          },
-          "entityId": {
-            "type": "string"
-          },
-          "endpoint": {
-            "type": "string"
-          },
-          "input": {
-            "type": "object"
-          },
-          "text": {
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "ActionGetNLAInputsReqDTO": {
-        "properties": {
-          "text": {
-            "type": "string"
-          }
-        },
-        "type": "object",
-        "required": [
-          "text"
-        ]
-      },
-      "ProxyExecutionReqDTO": {
-        "properties": {
-          "endpoint": {
-            "type": "string"
-          },
-          "connectedAccountId": {
-            "type": "string"
-          }
-        },
-        "type": "object",
-        "required": [
-          "endpoint",
-          "connectedAccountId"
-        ]
-      },
-      "ActionDetailsMinimal": {
-        "properties": {
-          "tags": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "description": {
-            "type": "string"
-          },
-          "appId": {
-            "type": "string"
-          },
-          "appKey": {
-            "type": "string"
-          },
-          "appName": {
-            "type": "string"
-          },
-          "displayName": {
-            "type": "string"
-          },
-          "enabled": {
-            "type": "boolean"
-          },
-          "logo": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "deprecated": {
-            "type": "boolean"
-          }
-        },
-        "type": "object",
-        "required": [
-          "appKey",
-          "appName",
-          "description",
-          "displayName",
-          "enabled",
-          "logo",
-          "name",
-          "tags",
-          "deprecated"
-        ]
-      },
-      "ActionDetails": {
-        "properties": {
-          "tags": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "description": {
-            "type": "string"
-          },
-          "parameters": {
-            "type": "object"
-          },
-          "response": {
-            "type": "object"
-          },
-          "appId": {
-            "type": "string"
-          },
-          "appKey": {
-            "type": "string"
-          },
-          "appName": {
-            "type": "string"
-          },
-          "displayName": {
-            "type": "string"
-          },
-          "enabled": {
-            "type": "boolean"
-          },
-          "logo": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "deprecated": {
-            "type": "boolean"
-          }
-        },
-        "type": "object",
-        "required": [
-          "parameters",
-          "response",
-          "appKey",
-          "appName",
-          "description",
-          "displayName",
-          "enabled",
-          "logo",
-          "name",
-          "tags",
-          "deprecated"
-        ]
-      },
-      "ActionsListResponseDTO": {
-        "properties": {
-          "items": {
-            "items": {
-              "$ref": "#/components/schemas/ActionDetails"
-            },
-            "type": "array"
-          },
-          "page": {
-            "type": "number"
-          },
-          "totalPages": {
-            "type": "number"
-          }
-        },
-        "type": "object",
-        "required": [
-          "items",
-          "page",
-          "totalPages"
-        ]
-      },
-      "ActionsMinimalListResponseDTO": {
-        "properties": {
-          "items": {
-            "items": {
-              "$ref": "#/components/schemas/ActionDetailsMinimal"
-            },
-            "type": "array"
-          },
-          "page": {
-            "type": "number"
-          },
-          "totalPages": {
-            "type": "number"
-          }
-        },
-        "type": "object",
-        "required": [
-          "items",
-          "page",
-          "totalPages"
-        ]
-      },
-      "ExecuteActionResDTO": {
-        "properties": {
-          "response_data": {
-            "description": "Indicates if the action was executed successfully",
-            "type": "boolean"
-          },
-          "execution_details": {
-            "description": "Details of the execution status",
-            "type": "object"
-          }
-        },
-        "type": "object",
-        "required": [
-          "response_data",
-          "execution_details"
-        ]
-      },
-      "ActionsQueryDTO": {
-        "properties": {
-          "tags": {
-            "type": "string"
-          },
-          "appNames": {
-            "description": "Names of the apps",
-            "type": "string"
-          },
-          "useCase": {
-            "description": "Use case",
-            "type": "string"
-          },
-          "showEnabledOnly": {
-            "description": "Show enabled only",
-            "type": "boolean"
-          },
-          "limit": {
-            "description": "Limit",
-            "type": "number"
-          },
-          "apps": {
-            "type": "string"
-          },
-          "actions": {
-            "type": "string"
-          },
-          "usecaseLimit": {
-            "type": "number"
-          },
-          "filterImportantActions": {
-            "type": "boolean"
-          },
-          "showAll": {
-            "type": "boolean"
-          }
-        },
-        "type": "object"
-      },
-      "ActionsControllerV1": {
-        "properties": {
-          "getAction": {
-            "items": {
-              "type": "object"
-            },
-            "type": "array"
-          }
-        },
-        "type": "object",
-        "required": [
-          "getAction"
-        ]
-      },
       "ConnectionParams": {
         "properties": {
           "integrationId": {
@@ -3893,6 +3624,278 @@
         "required": [
           "connectionStatus",
           "connectedAccountId"
+        ]
+      },
+      "ActionExecutionReqDTO": {
+        "properties": {
+          "connectedAccountId": {
+            "type": "string"
+          },
+          "appName": {
+            "type": "string"
+          },
+          "entityId": {
+            "type": "string"
+          },
+          "endpoint": {
+            "type": "string"
+          },
+          "input": {
+            "type": "object"
+          },
+          "authConfig": {
+            "$ref": "#/components/schemas/GetConnectionInfoResponseDTO"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ActionGetNLAInputsReqDTO": {
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ]
+      },
+      "ProxyExecutionReqDTO": {
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "connectedAccountId": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "endpoint",
+          "connectedAccountId"
+        ]
+      },
+      "ActionDetailsMinimal": {
+        "properties": {
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "description": {
+            "type": "string"
+          },
+          "appId": {
+            "type": "string"
+          },
+          "appKey": {
+            "type": "string"
+          },
+          "appName": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "logo": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "deprecated": {
+            "type": "boolean"
+          }
+        },
+        "type": "object",
+        "required": [
+          "appKey",
+          "appName",
+          "description",
+          "displayName",
+          "enabled",
+          "logo",
+          "name",
+          "tags",
+          "deprecated"
+        ]
+      },
+      "ActionDetails": {
+        "properties": {
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "description": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "object"
+          },
+          "response": {
+            "type": "object"
+          },
+          "appId": {
+            "type": "string"
+          },
+          "appKey": {
+            "type": "string"
+          },
+          "appName": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "logo": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "deprecated": {
+            "type": "boolean"
+          }
+        },
+        "type": "object",
+        "required": [
+          "parameters",
+          "response",
+          "appKey",
+          "appName",
+          "description",
+          "displayName",
+          "enabled",
+          "logo",
+          "name",
+          "tags",
+          "deprecated"
+        ]
+      },
+      "ActionsListResponseDTO": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ActionDetails"
+            },
+            "type": "array"
+          },
+          "page": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "page",
+          "totalPages"
+        ]
+      },
+      "ActionsMinimalListResponseDTO": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ActionDetailsMinimal"
+            },
+            "type": "array"
+          },
+          "page": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "page",
+          "totalPages"
+        ]
+      },
+      "ExecuteActionResDTO": {
+        "properties": {
+          "response_data": {
+            "description": "Indicates if the action was executed successfully",
+            "type": "boolean"
+          },
+          "execution_details": {
+            "description": "Details of the execution status",
+            "type": "object"
+          }
+        },
+        "type": "object",
+        "required": [
+          "response_data",
+          "execution_details"
+        ]
+      },
+      "ActionsQueryDTO": {
+        "properties": {
+          "tags": {
+            "type": "string"
+          },
+          "appNames": {
+            "description": "Names of the apps",
+            "type": "string"
+          },
+          "useCase": {
+            "description": "Use case",
+            "type": "string"
+          },
+          "showEnabledOnly": {
+            "description": "Show enabled only",
+            "type": "boolean"
+          },
+          "limit": {
+            "description": "Limit",
+            "type": "number"
+          },
+          "apps": {
+            "type": "string"
+          },
+          "actions": {
+            "type": "string"
+          },
+          "usecaseLimit": {
+            "type": "number"
+          },
+          "filterImportantActions": {
+            "type": "boolean"
+          },
+          "showAll": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "ActionsControllerV1": {
+        "properties": {
+          "getAction": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object",
+        "required": [
+          "getAction"
         ]
       },
       "OAuth2CallbackQueryDto": {
