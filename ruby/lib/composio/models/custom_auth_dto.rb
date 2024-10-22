@@ -10,31 +10,19 @@ require 'date'
 require 'time'
 
 module Composio
-  class ActionExecutionReqDTO
-    attr_accessor :connected_account_id
+  class CustomAuthDTO
+    attr_accessor :parameters
 
-    attr_accessor :app_name
+    attr_accessor :base_url
 
-    attr_accessor :entity_id
-
-    attr_accessor :endpoint
-
-    attr_accessor :input
-
-    attr_accessor :auth_config
-
-    attr_accessor :text
+    attr_accessor :body
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'connected_account_id' => :'connectedAccountId',
-        :'app_name' => :'appName',
-        :'entity_id' => :'entityId',
-        :'endpoint' => :'endpoint',
-        :'input' => :'input',
-        :'auth_config' => :'authConfig',
-        :'text' => :'text'
+        :'parameters' => :'parameters',
+        :'base_url' => :'base_url',
+        :'body' => :'body'
       }
     end
 
@@ -46,13 +34,9 @@ module Composio
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'connected_account_id' => :'String',
-        :'app_name' => :'String',
-        :'entity_id' => :'String',
-        :'endpoint' => :'String',
-        :'input' => :'Object',
-        :'auth_config' => :'CustomAuthDTO',
-        :'text' => :'String'
+        :'parameters' => :'Array<Parameter>',
+        :'base_url' => :'String',
+        :'body' => :'Object'
       }
     end
 
@@ -66,43 +50,29 @@ module Composio
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Composio::ActionExecutionReqDTO` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Composio::CustomAuthDTO` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Composio::ActionExecutionReqDTO`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Composio::CustomAuthDTO`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'connected_account_id')
-        self.connected_account_id = attributes[:'connected_account_id']
+      if attributes.key?(:'parameters')
+        if (value = attributes[:'parameters']).is_a?(Array)
+          self.parameters = value
+        end
       end
 
-      if attributes.key?(:'app_name')
-        self.app_name = attributes[:'app_name']
+      if attributes.key?(:'base_url')
+        self.base_url = attributes[:'base_url']
       end
 
-      if attributes.key?(:'entity_id')
-        self.entity_id = attributes[:'entity_id']
-      end
-
-      if attributes.key?(:'endpoint')
-        self.endpoint = attributes[:'endpoint']
-      end
-
-      if attributes.key?(:'input')
-        self.input = attributes[:'input']
-      end
-
-      if attributes.key?(:'auth_config')
-        self.auth_config = attributes[:'auth_config']
-      end
-
-      if attributes.key?(:'text')
-        self.text = attributes[:'text']
+      if attributes.key?(:'body')
+        self.body = attributes[:'body']
       end
     end
 
@@ -110,12 +80,17 @@ module Composio
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @parameters.nil?
+        invalid_properties.push('invalid value for "parameters", parameters cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @parameters.nil?
       true
     end
 
@@ -124,13 +99,9 @@ module Composio
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          connected_account_id == o.connected_account_id &&
-          app_name == o.app_name &&
-          entity_id == o.entity_id &&
-          endpoint == o.endpoint &&
-          input == o.input &&
-          auth_config == o.auth_config &&
-          text == o.text
+          parameters == o.parameters &&
+          base_url == o.base_url &&
+          body == o.body
     end
 
     # @see the `==` method
@@ -142,7 +113,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [connected_account_id, app_name, entity_id, endpoint, input, auth_config, text].hash
+      [parameters, base_url, body].hash
     end
 
     # Builds the object from hash

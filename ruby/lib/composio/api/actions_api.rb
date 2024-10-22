@@ -26,7 +26,7 @@ module Composio
     # @param entity_id [String] 
     # @param endpoint [String] 
     # @param input [Object] 
-    # @param auth_config [GetConnectionInfoResponseDTO] 
+    # @param auth_config [CustomAuthDTO] 
     # @param text [String] 
     # @param body [ActionExecutionReqDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
@@ -54,7 +54,7 @@ module Composio
     # @param entity_id [String] 
     # @param endpoint [String] 
     # @param input [Object] 
-    # @param auth_config [GetConnectionInfoResponseDTO] 
+    # @param auth_config [CustomAuthDTO] 
     # @param text [String] 
     # @param body [ActionExecutionReqDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
