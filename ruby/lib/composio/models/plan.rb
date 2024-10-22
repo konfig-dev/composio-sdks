@@ -15,9 +15,10 @@ module Composio
     STARTER = "STARTER".freeze
     GROWTH = "GROWTH".freeze
     ENTERPRISE = "ENTERPRISE".freeze
+    STARTUP = "STARTUP".freeze
 
     def self.all_vars
-      @all_vars ||= [HOBBY, STARTER, GROWTH, ENTERPRISE].freeze
+      @all_vars ||= [HOBBY, STARTER, GROWTH, ENTERPRISE, STARTUP].freeze
     end
 
     # Builds the enum from string
