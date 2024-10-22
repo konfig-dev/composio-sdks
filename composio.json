@@ -1622,6 +1622,26 @@
           "connectedAccountId"
         ]
       },
+      "CustomAuthDTO": {
+        "properties": {
+          "base_url": {
+            "type": "string"
+          },
+          "parameters": {
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            },
+            "type": "array"
+          },
+          "body": {
+            "type": "object"
+          }
+        },
+        "type": "object",
+        "required": [
+          "parameters"
+        ]
+      },
       "ActionExecutionReqDTO": {
         "properties": {
           "connectedAccountId": {
@@ -1640,7 +1660,7 @@
             "type": "object"
           },
           "authConfig": {
-            "$ref": "#/components/schemas/GetConnectionInfoResponseDTO"
+            "$ref": "#/components/schemas/CustomAuthDTO"
           },
           "text": {
             "type": "string"
@@ -3386,7 +3406,8 @@
               "HOBBY",
               "STARTER",
               "GROWTH",
-              "ENTERPRISE"
+              "ENTERPRISE",
+              "STARTUP"
             ],
             "type": "string"
           }
