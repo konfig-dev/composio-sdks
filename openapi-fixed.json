@@ -211,6 +211,7 @@
         ],
         "summary": "Get opena api specs",
         "operationId": "App_listOpenApiSpecs",
+        "description": "List all openapi spec tools",
         "responses": {
           "200": {
             "description": "List of all openapi spec tools",
@@ -232,6 +233,7 @@
         ],
         "summary": "Delete open api spec tool",
         "operationId": "Apps_deleteOpenApiSpecTool",
+        "description": "Delete an openapi spec tool",
         "parameters": [
           {
             "in": "path",
@@ -306,6 +308,7 @@
         ],
         "summary": "Get open api spec status",
         "operationId": "Apps_getOpenApiSpecStatus",
+        "description": "Get the status of an openapi spec tool",
         "parameters": [
           {
             "in": "path",
@@ -371,6 +374,7 @@
         ],
         "summary": "Create connector",
         "operationId": "AppConnector_createIntegration",
+        "description": "Create a new connector",
         "requestBody": {
           "description": "CreateConnectorPayloadDTO",
           "content": {
@@ -401,6 +405,7 @@
         ],
         "summary": "List all connectors",
         "operationId": "AppConnector_listGlobalConnectors",
+        "description": "List all connectors",
         "responses": {
           "200": {
             "description": "",
@@ -422,6 +427,7 @@
         ],
         "summary": "Get connector info",
         "operationId": "AppConnector_getConnectorInfo",
+        "description": "Get connector info",
         "parameters": [
           {
             "in": "path",
@@ -452,6 +458,7 @@
         ],
         "summary": "Modify connector",
         "operationId": "AppConnector_updateIntegration",
+        "description": "Modify a connector",
         "parameters": [
           {
             "in": "path",
@@ -493,6 +500,7 @@
         ],
         "summary": "Delete connector",
         "operationId": "AppConnector_deleteConnector",
+        "description": "Delete a connector",
         "parameters": [
           {
             "in": "path",
@@ -673,6 +681,7 @@
         ],
         "summary": "Delete connection",
         "operationId": "Connections_delete",
+        "description": "Delete a connection",
         "parameters": [
           {
             "in": "path",
@@ -705,6 +714,7 @@
         ],
         "summary": "Get connection info",
         "operationId": "Connections_getInfo",
+        "description": "Get connection info",
         "parameters": [
           {
             "in": "path",
@@ -737,6 +747,7 @@
         ],
         "summary": "Disable connection",
         "operationId": "Connections_disable",
+        "description": "Disable a connection",
         "parameters": [
           {
             "in": "path",
@@ -769,6 +780,7 @@
         ],
         "summary": "Enable connection",
         "operationId": "Connections_enable",
+        "description": "Enable a connection",
         "parameters": [
           {
             "in": "path",
@@ -2897,6 +2909,7 @@
         "type": "object",
         "required": [
           "name",
+          "authScheme",
           "appId"
         ]
       },

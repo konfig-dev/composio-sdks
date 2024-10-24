@@ -18,6 +18,8 @@ module Composio
 
     # Delete connection
     #
+    # Delete a connection
+    #
     # @param connected_account_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def delete(connected_account_id:, extra: {})
@@ -27,6 +29,8 @@ module Composio
 
     # Delete connection
     #
+    # Delete a connection
+    #
     # @param connected_account_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def delete_with_http_info(connected_account_id:, extra: {})
@@ -34,6 +38,7 @@ module Composio
     end
 
     # Delete connection
+    # Delete a connection
     # @param connected_account_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [DeleteRowAPIDTO]
@@ -43,6 +48,7 @@ module Composio
     end
 
     # Delete connection
+    # Delete a connection
     # @param connected_account_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [APIResponse] data is DeleteRowAPIDTO, status code, headers and response
@@ -102,6 +108,8 @@ module Composio
 
     # Disable connection
     #
+    # Disable a connection
+    #
     # @param connected_account_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def disable(connected_account_id:, extra: {})
@@ -111,6 +119,8 @@ module Composio
 
     # Disable connection
     #
+    # Disable a connection
+    #
     # @param connected_account_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def disable_with_http_info(connected_account_id:, extra: {})
@@ -118,6 +128,7 @@ module Composio
     end
 
     # Disable connection
+    # Disable a connection
     # @param connected_account_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [ToggleConnectedAccountResponseDTO]
@@ -127,6 +138,7 @@ module Composio
     end
 
     # Disable connection
+    # Disable a connection
     # @param connected_account_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [APIResponse] data is ToggleConnectedAccountResponseDTO, status code, headers and response
@@ -186,6 +198,8 @@ module Composio
 
     # Enable connection
     #
+    # Enable a connection
+    #
     # @param connected_account_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def enable(connected_account_id:, extra: {})
@@ -195,6 +209,8 @@ module Composio
 
     # Enable connection
     #
+    # Enable a connection
+    #
     # @param connected_account_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def enable_with_http_info(connected_account_id:, extra: {})
@@ -202,6 +218,7 @@ module Composio
     end
 
     # Enable connection
+    # Enable a connection
     # @param connected_account_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [ToggleConnectedAccountResponseDTO]
@@ -211,6 +228,7 @@ module Composio
     end
 
     # Enable connection
+    # Enable a connection
     # @param connected_account_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [APIResponse] data is ToggleConnectedAccountResponseDTO, status code, headers and response
@@ -354,6 +372,8 @@ module Composio
 
     # Get connection info
     #
+    # Get connection info
+    #
     # @param connected_account_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def get_info(connected_account_id:, extra: {})
@@ -363,12 +383,15 @@ module Composio
 
     # Get connection info
     #
+    # Get connection info
+    #
     # @param connected_account_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def get_info_with_http_info(connected_account_id:, extra: {})
       get_info_with_http_info_impl(connected_account_id, extra)
     end
 
+    # Get connection info
     # Get connection info
     # @param connected_account_id [String] 
     # @param [Hash] opts the optional parameters
@@ -378,6 +401,7 @@ module Composio
       data
     end
 
+    # Get connection info
     # Get connection info
     # @param connected_account_id [String] 
     # @param [Hash] opts the optional parameters

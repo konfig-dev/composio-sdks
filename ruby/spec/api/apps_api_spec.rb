@@ -28,6 +28,7 @@ describe 'AppsApi' do
 
   # unit tests for delete_open_api_spec_tool
   # Delete open api spec tool
+  # Delete an openapi spec tool
   # @param id 
   # @param [Hash] opts the optional parameters
   # @return [Object]
@@ -51,6 +52,7 @@ describe 'AppsApi' do
 
   # unit tests for get_open_api_spec_status
   # Get open api spec status
+  # Get the status of an openapi spec tool
   # @param id 
   # @param [Hash] opts the optional parameters
   # @return [Object]
@@ -75,6 +77,7 @@ describe 'AppsApi' do
 
   # unit tests for list_open_api_specs
   # Get opena api specs
+  # List all openapi spec tools
   # @param [Hash] opts the optional parameters
   # @return [Array<AppListResDTO>]
   describe 'list_open_api_specs test' do

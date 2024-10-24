@@ -28,6 +28,7 @@ describe 'IntegrationsApi' do
 
   # unit tests for create_integration
   # Create connector
+  # Create a new connector
   # @param [Hash] opts the optional parameters
   # @option opts [CreateConnectorPayloadDTO] :create_connector_payload_dto CreateConnectorPayloadDTO
   # @return [GetConnectorInfoResDTO]
@@ -39,6 +40,7 @@ describe 'IntegrationsApi' do
 
   # unit tests for delete_connector
   # Delete connector
+  # Delete a connector
   # @param integration_id 
   # @param [Hash] opts the optional parameters
   # @return [DeleteRowAPIDTO]
@@ -49,6 +51,7 @@ describe 'IntegrationsApi' do
   end
 
   # unit tests for get_connector_info
+  # Get connector info
   # Get connector info
   # @param integration_id 
   # @param [Hash] opts the optional parameters
@@ -61,6 +64,7 @@ describe 'IntegrationsApi' do
 
   # unit tests for list_global_connectors
   # List all connectors
+  # List all connectors
   # @param [Hash] opts the optional parameters
   # @return [GetConnectorListResDTO]
   describe 'list_global_connectors test' do
@@ -71,6 +75,7 @@ describe 'IntegrationsApi' do
 
   # unit tests for update_integration
   # Modify connector
+  # Modify a connector
   # @param integration_id 
   # @param [Hash] opts the optional parameters
   # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO
