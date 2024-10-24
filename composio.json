@@ -893,7 +893,6 @@
         "type": "object",
         "required": [
           "name",
-          "authScheme",
           "appId"
         ]
       },
