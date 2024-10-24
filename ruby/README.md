@@ -440,7 +440,7 @@ p result
 
 ### `composio.apps.delete_open_api_spec_tool`<a id="composioappsdelete_open_api_spec_tool"></a>
 
-Delete open api spec tool
+Delete an openapi spec tool
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
@@ -494,7 +494,7 @@ p result
 
 ### `composio.apps.get_open_api_spec_status`<a id="composioappsget_open_api_spec_status"></a>
 
-Get open api spec status
+Get the status of an openapi spec tool
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
@@ -550,7 +550,7 @@ p result
 
 ### `composio.apps.list_open_api_specs`<a id="composioappslist_open_api_specs"></a>
 
-Get opena api specs
+List all openapi spec tools
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
@@ -635,7 +635,7 @@ The framework used by the client
 
 ### `composio.connections.delete`<a id="composioconnectionsdelete"></a>
 
-Delete connection
+Delete a connection
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
@@ -664,7 +664,7 @@ p result
 
 ### `composio.connections.disable`<a id="composioconnectionsdisable"></a>
 
-Disable connection
+Disable a connection
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
@@ -693,7 +693,7 @@ p result
 
 ### `composio.connections.enable`<a id="composioconnectionsenable"></a>
 
-Enable connection
+Enable a connection
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
@@ -974,15 +974,15 @@ Event Webhook URL
 
 ### `composio.integrations.create_integration`<a id="composiointegrationscreate_integration"></a>
 
-Create connector
+Create a new connector
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```ruby
 result = composio.integrations.create_integration(
   name: "string_example",
-  app_id: "string_example",
   auth_scheme: "string_example",
+  app_id: "string_example",
   auth_config: {
     },
   use_composio_auth: true,
@@ -996,11 +996,11 @@ p result
 ##### name: `String`<a id="name-string"></a>
 Name of the connector
 
-##### appId: `String`<a id="appid-string"></a>
-Application ID
-
 ##### authScheme: `String`<a id="authscheme-string"></a>
 Authentication scheme
+
+##### appId: `String`<a id="appid-string"></a>
+Application ID
 
 ##### authConfig: [`AuthConfigDTO`](./lib/composio/models/auth_config_dto.rb)<a id="authconfig-authconfigdtolibcomposiomodelsauth_config_dtorb"></a>
 ##### useComposioAuth: [`CreateConnectorPayloadDTOUseComposioAuth`](./lib/composio/models/create_connector_payload_dto_use_composio_auth.rb)<a id="usecomposioauth-createconnectorpayloaddtousecomposioauthlibcomposiomodelscreate_connector_payload_dto_use_composio_authrb"></a>
@@ -1022,7 +1022,7 @@ Flag to force new integration
 
 ### `composio.integrations.delete_connector`<a id="composiointegrationsdelete_connector"></a>
 
-Delete connector
+Delete a connector
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
@@ -1104,7 +1104,7 @@ p result
 
 ### `composio.integrations.update_integration`<a id="composiointegrationsupdate_integration"></a>
 
-Modify connector
+Modify a connector
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 

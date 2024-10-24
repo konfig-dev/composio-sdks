@@ -893,6 +893,7 @@
         "type": "object",
         "required": [
           "name",
+          "authScheme",
           "appId"
         ]
       },
@@ -3612,7 +3613,8 @@
         "summary": "Get opena api specs",
         "tags": [
           "Apps"
-        ]
+        ],
+        "description": "List all openapi spec tools"
       }
     },
     "/api/v1/apps/openapi/spec/delete/{id}": {
@@ -3640,7 +3642,8 @@
         "summary": "Delete open api spec tool",
         "tags": [
           "Apps"
-        ]
+        ],
+        "description": "Delete an openapi spec tool"
       }
     },
     "/api/v1/apps/openapi/send_email_to_client": {
@@ -3704,7 +3707,8 @@
         "summary": "Get open api spec status",
         "tags": [
           "Apps"
-        ]
+        ],
+        "description": "Get the status of an openapi spec tool"
       }
     },
     "/api/v1/apps/{appName}": {
@@ -3769,7 +3773,8 @@
         "summary": "Create connector",
         "tags": [
           "Integrations"
-        ]
+        ],
+        "description": "Create a new connector"
       },
       "get": {
         "operationId": "listAllConnectors",
@@ -3788,7 +3793,8 @@
         "summary": "List all connectors",
         "tags": [
           "Integrations"
-        ]
+        ],
+        "description": "List all connectors"
       }
     },
     "/api/v1/integrations/{integrationId}": {
@@ -3820,7 +3826,8 @@
         "summary": "Get connector info",
         "tags": [
           "Integrations"
-        ]
+        ],
+        "description": "Get connector info"
       },
       "patch": {
         "operationId": "modifyConnector",
@@ -3861,7 +3868,8 @@
         "summary": "Modify connector",
         "tags": [
           "Integrations"
-        ]
+        ],
+        "description": "Modify a connector"
       },
       "delete": {
         "operationId": "deleteConnector",
@@ -3891,7 +3899,8 @@
         "summary": "Delete connector",
         "tags": [
           "Integrations"
-        ]
+        ],
+        "description": "Delete a connector"
       }
     },
     "/api/v1/integrations/{integrationId}/status": {},
@@ -4070,7 +4079,8 @@
         "summary": "Delete connection",
         "tags": [
           "Connections"
-        ]
+        ],
+        "description": "Delete a connection"
       }
     },
     "/api/v1/connectedAccounts/{connectedAccountId}/info": {
@@ -4102,7 +4112,8 @@
         "summary": "Get connection info",
         "tags": [
           "Connections"
-        ]
+        ],
+        "description": "Get connection info"
       }
     },
     "/api/v1/connectedAccounts/{connectedAccountId}/disable": {
@@ -4134,7 +4145,8 @@
         "summary": "Disable connection",
         "tags": [
           "Connections"
-        ]
+        ],
+        "description": "Disable a connection"
       }
     },
     "/api/v1/connectedAccounts/{connectedAccountId}/enable": {
@@ -4166,7 +4178,8 @@
         "summary": "Enable connection",
         "tags": [
           "Connections"
-        ]
+        ],
+        "description": "Enable a connection"
       }
     },
     "/api/v1/triggers": {

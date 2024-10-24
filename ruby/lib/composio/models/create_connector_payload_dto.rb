@@ -110,6 +110,10 @@ module Composio
         invalid_properties.push('invalid value for "name", name cannot be nil.')
       end
 
+      if @auth_scheme.nil?
+        invalid_properties.push('invalid value for "auth_scheme", auth_scheme cannot be nil.')
+      end
+
       if @app_id.nil?
         invalid_properties.push('invalid value for "app_id", app_id cannot be nil.')
       end
@@ -121,6 +125,7 @@ module Composio
     # @return true if the model is valid
     def valid?
       return false if @name.nil?
+      return false if @auth_scheme.nil?
       return false if @app_id.nil?
       true
     end

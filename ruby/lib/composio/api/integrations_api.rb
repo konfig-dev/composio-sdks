@@ -18,15 +18,17 @@ module Composio
 
     # Create connector
     #
+    # Create a new connector
+    #
     # @param name [String] Name of the connector
-    # @param app_id [String] Application ID
     # @param auth_scheme [String] Authentication scheme
+    # @param app_id [String] Application ID
     # @param auth_config [AuthConfigDTO] 
     # @param use_composio_auth [CreateConnectorPayloadDTOUseComposioAuth] 
     # @param force_new_integration [Boolean] Flag to force new integration
     # @param body [CreateConnectorPayloadDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def create_integration(name:, app_id:, auth_scheme: SENTINEL, auth_config: SENTINEL, use_composio_auth: SENTINEL, force_new_integration: SENTINEL, extra: {})
+    def create_integration(name:, auth_scheme:, app_id:, auth_config: SENTINEL, use_composio_auth: SENTINEL, force_new_integration: SENTINEL, extra: {})
       _body = {}
       _body[:name] = name if name != SENTINEL
       _body[:authScheme] = auth_scheme if auth_scheme != SENTINEL
@@ -41,15 +43,17 @@ module Composio
 
     # Create connector
     #
+    # Create a new connector
+    #
     # @param name [String] Name of the connector
-    # @param app_id [String] Application ID
     # @param auth_scheme [String] Authentication scheme
+    # @param app_id [String] Application ID
     # @param auth_config [AuthConfigDTO] 
     # @param use_composio_auth [CreateConnectorPayloadDTOUseComposioAuth] 
     # @param force_new_integration [Boolean] Flag to force new integration
     # @param body [CreateConnectorPayloadDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def create_integration_with_http_info(name:, app_id:, auth_scheme: SENTINEL, auth_config: SENTINEL, use_composio_auth: SENTINEL, force_new_integration: SENTINEL, extra: {})
+    def create_integration_with_http_info(name:, auth_scheme:, app_id:, auth_config: SENTINEL, use_composio_auth: SENTINEL, force_new_integration: SENTINEL, extra: {})
       _body = {}
       _body[:name] = name if name != SENTINEL
       _body[:authScheme] = auth_scheme if auth_scheme != SENTINEL
@@ -62,6 +66,7 @@ module Composio
     end
 
     # Create connector
+    # Create a new connector
     # @param [Hash] opts the optional parameters
     # @option opts [CreateConnectorPayloadDTO] :create_connector_payload_dto CreateConnectorPayloadDTO
     # @return [GetConnectorInfoResDTO]
@@ -71,6 +76,7 @@ module Composio
     end
 
     # Create connector
+    # Create a new connector
     # @param [Hash] opts the optional parameters
     # @option opts [CreateConnectorPayloadDTO] :create_connector_payload_dto CreateConnectorPayloadDTO
     # @return [APIResponse] data is GetConnectorInfoResDTO, status code, headers and response
@@ -126,6 +132,8 @@ module Composio
 
     # Delete connector
     #
+    # Delete a connector
+    #
     # @param integration_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def delete_connector(integration_id:, extra: {})
@@ -135,6 +143,8 @@ module Composio
 
     # Delete connector
     #
+    # Delete a connector
+    #
     # @param integration_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def delete_connector_with_http_info(integration_id:, extra: {})
@@ -142,6 +152,7 @@ module Composio
     end
 
     # Delete connector
+    # Delete a connector
     # @param integration_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [DeleteRowAPIDTO]
@@ -151,6 +162,7 @@ module Composio
     end
 
     # Delete connector
+    # Delete a connector
     # @param integration_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [APIResponse] data is DeleteRowAPIDTO, status code, headers and response
@@ -210,6 +222,8 @@ module Composio
 
     # Get connector info
     #
+    # Get connector info
+    #
     # @param integration_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def get_connector_info(integration_id:, extra: {})
@@ -219,12 +233,15 @@ module Composio
 
     # Get connector info
     #
+    # Get connector info
+    #
     # @param integration_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def get_connector_info_with_http_info(integration_id:, extra: {})
       get_connector_info_with_http_info_impl(integration_id, extra)
     end
 
+    # Get connector info
     # Get connector info
     # @param integration_id [String] 
     # @param [Hash] opts the optional parameters
@@ -234,6 +251,7 @@ module Composio
       data
     end
 
+    # Get connector info
     # Get connector info
     # @param integration_id [String] 
     # @param [Hash] opts the optional parameters
@@ -294,6 +312,8 @@ module Composio
 
     # List all connectors
     #
+    # List all connectors
+    #
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def list_global_connectors(extra: {})
       api_response = list_global_connectors_with_http_info_impl(extra)
@@ -302,11 +322,14 @@ module Composio
 
     # List all connectors
     #
+    # List all connectors
+    #
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
     def list_global_connectors_with_http_info(extra: {})
       list_global_connectors_with_http_info_impl(extra)
     end
 
+    # List all connectors
     # List all connectors
     # @param [Hash] opts the optional parameters
     # @return [GetConnectorListResDTO]
@@ -315,6 +338,7 @@ module Composio
       data
     end
 
+    # List all connectors
     # List all connectors
     # @param [Hash] opts the optional parameters
     # @return [APIResponse] data is GetConnectorListResDTO, status code, headers and response
@@ -365,6 +389,8 @@ module Composio
 
     # Modify connector
     #
+    # Modify a connector
+    #
     # @param integration_id [String] 
     # @param auth_config [Object] Authentication configuration for the connector
     # @param enabled [Boolean] Flag to indicate if the connector is enabled
@@ -381,6 +407,8 @@ module Composio
 
     # Modify connector
     #
+    # Modify a connector
+    #
     # @param integration_id [String] 
     # @param auth_config [Object] Authentication configuration for the connector
     # @param enabled [Boolean] Flag to indicate if the connector is enabled
@@ -395,6 +423,7 @@ module Composio
     end
 
     # Modify connector
+    # Modify a connector
     # @param integration_id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO
@@ -405,6 +434,7 @@ module Composio
     end
 
     # Modify connector
+    # Modify a connector
     # @param integration_id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [PatchConnectorReqDTO] :patch_connector_req_dto PatchConnectorReqDTO

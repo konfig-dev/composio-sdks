@@ -28,6 +28,7 @@ describe 'ConnectionsApi' do
 
   # unit tests for delete
   # Delete connection
+  # Delete a connection
   # @param connected_account_id 
   # @param [Hash] opts the optional parameters
   # @return [DeleteRowAPIDTO]
@@ -39,6 +40,7 @@ describe 'ConnectionsApi' do
 
   # unit tests for disable
   # Disable connection
+  # Disable a connection
   # @param connected_account_id 
   # @param [Hash] opts the optional parameters
   # @return [ToggleConnectedAccountResponseDTO]
@@ -50,6 +52,7 @@ describe 'ConnectionsApi' do
 
   # unit tests for enable
   # Enable connection
+  # Enable a connection
   # @param connected_account_id 
   # @param [Hash] opts the optional parameters
   # @return [ToggleConnectedAccountResponseDTO]
@@ -71,6 +74,7 @@ describe 'ConnectionsApi' do
   end
 
   # unit tests for get_info
+  # Get connection info
   # Get connection info
   # @param connected_account_id 
   # @param [Hash] opts the optional parameters
