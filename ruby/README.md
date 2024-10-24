@@ -981,8 +981,8 @@ Create a new connector
 ```ruby
 result = composio.integrations.create_integration(
   name: "string_example",
-  auth_scheme: "string_example",
   app_id: "string_example",
+  auth_scheme: "string_example",
   auth_config: {
     },
   use_composio_auth: true,
@@ -996,11 +996,11 @@ p result
 ##### name: `String`<a id="name-string"></a>
 Name of the connector
 
-##### authScheme: `String`<a id="authscheme-string"></a>
-Authentication scheme
-
 ##### appId: `String`<a id="appid-string"></a>
 Application ID
+
+##### authScheme: `String`<a id="authscheme-string"></a>
+Authentication scheme
 
 ##### authConfig: [`AuthConfigDTO`](./lib/composio/models/auth_config_dto.rb)<a id="authconfig-authconfigdtolibcomposiomodelsauth_config_dtorb"></a>
 ##### useComposioAuth: [`CreateConnectorPayloadDTOUseComposioAuth`](./lib/composio/models/create_connector_payload_dto_use_composio_auth.rb)<a id="usecomposioauth-createconnectorpayloaddtousecomposioauthlibcomposiomodelscreate_connector_payload_dto_use_composio_authrb"></a>

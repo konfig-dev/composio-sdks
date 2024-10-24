@@ -21,14 +21,14 @@ module Composio
     # Create a new connector
     #
     # @param name [String] Name of the connector
-    # @param auth_scheme [String] Authentication scheme
     # @param app_id [String] Application ID
+    # @param auth_scheme [String] Authentication scheme
     # @param auth_config [AuthConfigDTO] 
     # @param use_composio_auth [CreateConnectorPayloadDTOUseComposioAuth] 
     # @param force_new_integration [Boolean] Flag to force new integration
     # @param body [CreateConnectorPayloadDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def create_integration(name:, auth_scheme:, app_id:, auth_config: SENTINEL, use_composio_auth: SENTINEL, force_new_integration: SENTINEL, extra: {})
+    def create_integration(name:, app_id:, auth_scheme: SENTINEL, auth_config: SENTINEL, use_composio_auth: SENTINEL, force_new_integration: SENTINEL, extra: {})
       _body = {}
       _body[:name] = name if name != SENTINEL
       _body[:authScheme] = auth_scheme if auth_scheme != SENTINEL
@@ -46,14 +46,14 @@ module Composio
     # Create a new connector
     #
     # @param name [String] Name of the connector
-    # @param auth_scheme [String] Authentication scheme
     # @param app_id [String] Application ID
+    # @param auth_scheme [String] Authentication scheme
     # @param auth_config [AuthConfigDTO] 
     # @param use_composio_auth [CreateConnectorPayloadDTOUseComposioAuth] 
     # @param force_new_integration [Boolean] Flag to force new integration
     # @param body [CreateConnectorPayloadDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def create_integration_with_http_info(name:, auth_scheme:, app_id:, auth_config: SENTINEL, use_composio_auth: SENTINEL, force_new_integration: SENTINEL, extra: {})
+    def create_integration_with_http_info(name:, app_id:, auth_scheme: SENTINEL, auth_config: SENTINEL, use_composio_auth: SENTINEL, force_new_integration: SENTINEL, extra: {})
       _body = {}
       _body[:name] = name if name != SENTINEL
       _body[:authScheme] = auth_scheme if auth_scheme != SENTINEL
