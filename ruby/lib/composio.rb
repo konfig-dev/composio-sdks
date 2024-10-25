@@ -167,6 +167,7 @@ require 'composio/models/webhook_url_response_dto'
 # APIs
 require 'composio/api/api_keys_api'
 require 'composio/api/actions_api'
+require 'composio/api/admin_api'
 require 'composio/api/analytics_api'
 require 'composio/api/apps_api'
 require 'composio/api/auth_api'
@@ -219,6 +220,7 @@ module Composio
   class Client
     attr_reader :api_keys
     attr_reader :actions
+    attr_reader :admin
     attr_reader :analytics
     attr_reader :apps
     attr_reader :auth
@@ -233,6 +235,7 @@ module Composio
       @api_client = ApiClient::new(config)
       @api_keys = Composio::APIKeysApi.new(@api_client)
       @actions = Composio::ActionsApi.new(@api_client)
+      @admin = Composio::AdminApi.new(@api_client)
       @analytics = Composio::AnalyticsApi.new(@api_client)
       @apps = Composio::AppsApi.new(@api_client)
       @auth = Composio::AuthApi.new(@api_client)

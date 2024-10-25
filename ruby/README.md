@@ -27,6 +27,7 @@ Composio SDK: Equip your agent with high-quality tools and build your real-world
   * [`composio.actions.get_action_by_id`](#composioactionsget_action_by_id)
   * [`composio.actions.get_action_inputs`](#composioactionsget_action_inputs)
   * [`composio.actions.get_all_actions_based_on_query`](#composioactionsget_all_actions_based_on_query)
+  * [`composio.admin.get_sentry_dns`](#composioadminget_sentry_dns)
   * [`composio.analytics.get`](#composioanalyticsget)
   * [`composio.analytics.get_top_entities`](#composioanalyticsget_top_entities)
   * [`composio.apps.delete_open_api_spec_tool`](#composioappsdelete_open_api_spec_tool)
@@ -374,6 +375,26 @@ p result
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v2/actions/list/all` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `composio.admin.get_sentry_dns`<a id="composioadminget_sentry_dns"></a>
+
+Jssentry dns
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```ruby
+result = composio.admin.get_sentry_dns
+p result
+```
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/api/v1/cli/js-sentry-dns` `GET`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 

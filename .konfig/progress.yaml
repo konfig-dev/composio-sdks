@@ -13,6 +13,10 @@ examples_3:
     get:
       '200':
         application/json: {}
+  /api/v1/cli/js-sentry-dns:
+    get:
+      '200':
+        application/json: {}
   /api/v1/connectedAccounts/{connectedAccountId}:
     delete:
       '200':
@@ -108,6 +112,8 @@ operationIds:
     get: Cli_exchangeCode
   /api/v1/cli/get-cli-code:
     get: Cli_getCode
+  /api/v1/cli/js-sentry-dns:
+    get: Admin_getSentryDns
   /api/v1/cli/sentry-dns:
     get: Admin_getSentryDns
   /api/v1/cli/verify-cli-code:
@@ -294,6 +300,10 @@ responseSchemaNames:
     get:
       '200':
         application/json: AppsGetOpenApiSpecStatusResponse
+  /api/v1/cli/js-sentry-dns:
+    get:
+      '200':
+        application/json: AdminGetSentryDnsResponse
   /api/v1/connectedAccounts/{connectedAccountId}:
     delete:
       '200':

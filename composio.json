@@ -4594,6 +4594,23 @@
         "description": "Fetches logs based on connection and integration details."
       }
     },
+    "/api/v1/cli/js-sentry-dns": {
+      "get": {
+        "operationId": "getSentryDNS",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Jssentry dns",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
     "/api/v1/logs/": {
       "get": {
         "operationId": "getLogs",

@@ -46,6 +46,9 @@
     },
     {
       "name": "Auth"
+    },
+    {
+      "name": "Admin"
     }
   ],
   "paths": {
@@ -1209,6 +1212,27 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TriggerLogsResDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cli/js-sentry-dns": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Jssentry dns",
+        "operationId": "Admin_getSentryDns",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGetSentryDnsResponse"
                 }
               }
             }
@@ -5475,6 +5499,13 @@
           "$ref": "#/components/schemas/TriggerResDTO"
         },
         "type": "array"
+      },
+      "AdminGetSentryDnsResponse": {
+        "type": "object",
+        "properties": {
+        },
+        "example": {
+        }
       },
       "ActionsGetActionInputsResponse": {
         "type": "object",
