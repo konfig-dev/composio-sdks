@@ -14,6 +14,9 @@ module Composio
     # Category of the app
     attr_accessor :category
 
+    # Additional fields to include in the response
+    attr_accessor :additional_fields
+
     # Whether to include local tools or not
     attr_accessor :include_local
 
@@ -21,6 +24,7 @@ module Composio
     def self.attribute_map
       {
         :'category' => :'category',
+        :'additional_fields' => :'additionalFields',
         :'include_local' => :'includeLocal'
       }
     end
@@ -34,6 +38,7 @@ module Composio
     def self.openapi_types
       {
         :'category' => :'String',
+        :'additional_fields' => :'String',
         :'include_local' => :'String'
       }
     end
@@ -63,6 +68,10 @@ module Composio
         self.category = attributes[:'category']
       end
 
+      if attributes.key?(:'additional_fields')
+        self.additional_fields = attributes[:'additional_fields']
+      end
+
       if attributes.key?(:'include_local')
         self.include_local = attributes[:'include_local']
       end
@@ -87,6 +96,7 @@ module Composio
       return true if self.equal?(o)
       self.class == o.class &&
           category == o.category &&
+          additional_fields == o.additional_fields &&
           include_local == o.include_local
     end
 
@@ -99,7 +109,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [category, include_local].hash
+      [category, additional_fields, include_local].hash
     end
 
     # Builds the object from hash

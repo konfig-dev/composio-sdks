@@ -11,6 +11,9 @@ require 'time'
 
 module Composio
   class AppInfoResponseDto
+    # The tags of the app
+    attr_accessor :tags
+
     # The description of the app
     attr_accessor :description
 
@@ -29,6 +32,9 @@ module Composio
     # The categories of the app
     attr_accessor :categories
 
+    # The authentication schemes of the app
+    attr_accessor :auth_schemes
+
     # Indicates if the app is enabled
     attr_accessor :enabled
 
@@ -38,12 +44,14 @@ module Composio
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'tags' => :'tags',
         :'description' => :'description',
         :'app_id' => :'appId',
         :'key' => :'key',
         :'name' => :'name',
         :'logo' => :'logo',
         :'categories' => :'categories',
+        :'auth_schemes' => :'auth_schemes',
         :'enabled' => :'enabled',
         :'no_auth' => :'no_auth'
       }
@@ -57,12 +65,14 @@ module Composio
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'tags' => :'Array<Object>',
         :'description' => :'String',
         :'app_id' => :'String',
         :'key' => :'String',
         :'name' => :'String',
         :'logo' => :'String',
         :'categories' => :'Array<Object>',
+        :'auth_schemes' => :'Object',
         :'enabled' => :'Boolean',
         :'no_auth' => :'Boolean'
       }
@@ -71,6 +81,7 @@ module Composio
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'auth_schemes',
       ])
     end
 
@@ -88,6 +99,12 @@ module Composio
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'tags')
+        if (value = attributes[:'tags']).is_a?(Array)
+          self.tags = value
+        end
+      end
 
       if attributes.key?(:'description')
         self.description = attributes[:'description']
@@ -113,6 +130,10 @@ module Composio
         if (value = attributes[:'categories']).is_a?(Array)
           self.categories = value
         end
+      end
+
+      if attributes.key?(:'auth_schemes')
+        self.auth_schemes = attributes[:'auth_schemes']
       end
 
       if attributes.key?(:'enabled')
@@ -177,12 +198,14 @@ module Composio
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          tags == o.tags &&
           description == o.description &&
           app_id == o.app_id &&
           key == o.key &&
           name == o.name &&
           logo == o.logo &&
           categories == o.categories &&
+          auth_schemes == o.auth_schemes &&
           enabled == o.enabled &&
           no_auth == o.no_auth
     end
@@ -196,7 +219,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [description, app_id, key, name, logo, categories, enabled, no_auth].hash
+      [tags, description, app_id, key, name, logo, categories, auth_schemes, enabled, no_auth].hash
     end
 
     # Builds the object from hash

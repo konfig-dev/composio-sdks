@@ -690,6 +690,10 @@
             "type": "string",
             "description": "Category of the app"
           },
+          "additionalFields": {
+            "type": "string",
+            "description": "Additional fields to include in the response"
+          },
           "includeLocal": {
             "type": "string",
             "description": "Whether to include local tools or not"
@@ -725,6 +729,16 @@
             },
             "type": "string",
             "description": "The categories of the app"
+          },
+          "tags": {
+            "items": {
+              "type": "object"
+            },
+            "type": "string",
+            "description": "The tags of the app"
+          },
+          "auth_schemes": {
+            "description": "The authentication schemes of the app"
           },
           "enabled": {
             "type": "boolean",
@@ -3561,6 +3575,14 @@
             "schema": {
               "type": "string",
               "description": "Category of the app"
+            }
+          },
+          {
+            "in": "query",
+            "name": "additionalFields",
+            "schema": {
+              "type": "string",
+              "description": "Additional fields to include in the response"
             }
           },
           {

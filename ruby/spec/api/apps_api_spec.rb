@@ -67,6 +67,7 @@ describe 'AppsApi' do
   # Retrieve a list of all applications based on query parameters.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :category 
+  # @option opts [String] :additional_fields 
   # @option opts [String] :include_local 
   # @return [AppListResDTO]
   describe 'list test' do

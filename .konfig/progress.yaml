@@ -370,6 +370,8 @@ responseSchemaNames:
 securityParameters:
   actions:
     query: false
+  additionalFields:
+    query: false
   adminToken:
     query: false
   appNames:

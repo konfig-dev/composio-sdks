@@ -186,6 +186,14 @@
           },
           {
             "in": "query",
+            "name": "additionalFields",
+            "schema": {
+              "description": "Additional fields to include in the response",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
             "name": "includeLocal",
             "schema": {
               "description": "Whether to include local tools or not",
@@ -2730,6 +2738,10 @@
             "description": "Category of the app",
             "type": "string"
           },
+          "additionalFields": {
+            "description": "Additional fields to include in the response",
+            "type": "string"
+          },
           "includeLocal": {
             "description": "Whether to include local tools or not",
             "type": "string"
@@ -2739,6 +2751,13 @@
       },
       "AppInfoResponseDto": {
         "properties": {
+          "tags": {
+            "description": "The tags of the app",
+            "items": {
+              "type": "object"
+            },
+            "type": "string"
+          },
           "description": {
             "description": "The description of the app",
             "type": "string"
@@ -2765,6 +2784,9 @@
               "type": "object"
             },
             "type": "string"
+          },
+          "auth_schemes": {
+            "description": "The authentication schemes of the app"
           },
           "enabled": {
             "description": "Indicates if the app is enabled",
