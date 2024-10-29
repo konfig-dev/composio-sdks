@@ -547,6 +547,7 @@ Retrieve a list of all applications based on query parameters.
 ```ruby
 result = composio.apps.list(
   category: "string_example",
+  additional_fields: "string_example",
   include_local: "string_example",
 )
 p result
@@ -555,6 +556,7 @@ p result
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
 ##### category: `String`<a id="category-string"></a>
+##### additional_fields: `String`<a id="additional_fields-string"></a>
 ##### include_local: `String`<a id="include_local-string"></a>
 #### 🔄 Return<a id="🔄-return"></a>
 

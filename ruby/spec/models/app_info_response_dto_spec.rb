@@ -19,6 +19,12 @@ describe Composio::AppInfoResponseDto do
       expect(instance).to be_instance_of(Composio::AppInfoResponseDto)
     end
   end
+  describe 'test attribute "tags"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "description"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -50,6 +56,12 @@ describe Composio::AppInfoResponseDto do
   end
 
   describe 'test attribute "categories"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "auth_schemes"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

@@ -25,6 +25,12 @@ describe Composio::AppQueryDTO do
     end
   end
 
+  describe 'test attribute "additional_fields"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "include_local"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
