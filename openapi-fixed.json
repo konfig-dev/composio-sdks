@@ -3657,6 +3657,9 @@
           },
           "userUuid": {
             "type": "string"
+          },
+          "entityId": {
+            "type": "string"
           }
         },
         "type": "object",

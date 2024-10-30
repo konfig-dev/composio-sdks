@@ -813,6 +813,7 @@ result = composio.connections.initiate(
   data: "a",
   redirect_uri: "string_example",
   user_uuid: "string_example",
+  entity_id: "string_example",
 )
 p result
 ```
@@ -823,6 +824,7 @@ p result
 ##### data: `String`<a id="data-string"></a>
 ##### redirectUri: `String`<a id="redirecturi-string"></a>
 ##### userUuid: `String`<a id="useruuid-string"></a>
+##### entityId: `String`<a id="entityid-string"></a>
 #### 🔄 Return<a id="🔄-return"></a>
 
 [InitiateConnectionResponse](./lib/composio/models/initiate_connection_response.rb)
