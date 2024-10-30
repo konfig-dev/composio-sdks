@@ -19,13 +19,16 @@ module Composio
 
     attr_accessor :user_uuid
 
+    attr_accessor :entity_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'data' => :'data',
         :'integration_id' => :'integrationId',
         :'redirect_uri' => :'redirectUri',
-        :'user_uuid' => :'userUuid'
+        :'user_uuid' => :'userUuid',
+        :'entity_id' => :'entityId'
       }
     end
 
@@ -40,7 +43,8 @@ module Composio
         :'data' => :'String',
         :'integration_id' => :'String',
         :'redirect_uri' => :'String',
-        :'user_uuid' => :'String'
+        :'user_uuid' => :'String',
+        :'entity_id' => :'String'
       }
     end
 
@@ -79,6 +83,10 @@ module Composio
 
       if attributes.key?(:'user_uuid')
         self.user_uuid = attributes[:'user_uuid']
+      end
+
+      if attributes.key?(:'entity_id')
+        self.entity_id = attributes[:'entity_id']
       end
     end
 
@@ -142,7 +150,8 @@ module Composio
           data == o.data &&
           integration_id == o.integration_id &&
           redirect_uri == o.redirect_uri &&
-          user_uuid == o.user_uuid
+          user_uuid == o.user_uuid &&
+          entity_id == o.entity_id
     end
 
     # @see the `==` method
@@ -154,7 +163,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [data, integration_id, redirect_uri, user_uuid].hash
+      [data, integration_id, redirect_uri, user_uuid, entity_id].hash
     end
 
     # Builds the object from hash

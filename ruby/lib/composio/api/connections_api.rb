@@ -466,14 +466,16 @@ module Composio
     # @param data [String] 
     # @param redirect_uri [String] 
     # @param user_uuid [String] 
+    # @param entity_id [String] 
     # @param body [InitiateConnectionPayloadDto] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def initiate(integration_id:, data: SENTINEL, redirect_uri: SENTINEL, user_uuid: SENTINEL, extra: {})
+    def initiate(integration_id:, data: SENTINEL, redirect_uri: SENTINEL, user_uuid: SENTINEL, entity_id: SENTINEL, extra: {})
       _body = {}
       _body[:data] = data if data != SENTINEL
       _body[:integrationId] = integration_id if integration_id != SENTINEL
       _body[:redirectUri] = redirect_uri if redirect_uri != SENTINEL
       _body[:userUuid] = user_uuid if user_uuid != SENTINEL
+      _body[:entityId] = entity_id if entity_id != SENTINEL
       extra[:initiate_connection_payload_dto] = _body if !_body.empty?
       api_response = initiate_with_http_info_impl(extra)
       api_response.data
@@ -485,14 +487,16 @@ module Composio
     # @param data [String] 
     # @param redirect_uri [String] 
     # @param user_uuid [String] 
+    # @param entity_id [String] 
     # @param body [InitiateConnectionPayloadDto] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def initiate_with_http_info(integration_id:, data: SENTINEL, redirect_uri: SENTINEL, user_uuid: SENTINEL, extra: {})
+    def initiate_with_http_info(integration_id:, data: SENTINEL, redirect_uri: SENTINEL, user_uuid: SENTINEL, entity_id: SENTINEL, extra: {})
       _body = {}
       _body[:data] = data if data != SENTINEL
       _body[:integrationId] = integration_id if integration_id != SENTINEL
       _body[:redirectUri] = redirect_uri if redirect_uri != SENTINEL
       _body[:userUuid] = user_uuid if user_uuid != SENTINEL
+      _body[:entityId] = entity_id if entity_id != SENTINEL
       extra[:initiate_connection_payload_dto] = _body if !_body.empty?
       initiate_with_http_info_impl(extra)
     end
