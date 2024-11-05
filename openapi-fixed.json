@@ -39,6 +39,9 @@
       "name": "API-Keys"
     },
     {
+      "name": "Admin"
+    },
+    {
       "name": "Logs"
     },
     {
@@ -48,7 +51,7 @@
       "name": "Auth"
     },
     {
-      "name": "Admin"
+      "name": "SDK"
     }
   ],
   "paths": {
@@ -852,6 +855,14 @@
           },
           {
             "in": "query",
+            "name": "integrationIds",
+            "schema": {
+              "description": "Integration ID",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
             "name": "showEnabledOnly",
             "schema": {
               "description": "Show enabled only",
@@ -1241,6 +1252,37 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AdminGetSentryDnsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clear-cache": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Clear cache",
+        "operationId": "Admin_clearCache",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-ADMIN-TOKEN",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminClearCacheResponse"
                 }
               }
             }
@@ -1859,6 +1901,38 @@
         }
       }
     },
+    "/api/v1/sdk/error": {
+      "post": {
+        "tags": [
+          "SDK"
+        ],
+        "summary": "Report sdk error",
+        "operationId": "Sdk_reportError",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SdkReportErrorRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SdkReportErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/logs": {
       "get": {
         "tags": [
@@ -1957,6 +2031,14 @@
             "name": "logsType",
             "schema": {
               "description": "Type of the log",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sessionId",
+            "schema": {
+              "description": "Session ID of the log",
               "type": "string"
             }
           }
@@ -3707,6 +3789,17 @@
           "parameters"
         ]
       },
+      "SessionInfoDTO": {
+        "properties": {
+          "sessionId": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
       "ActionExecutionReqDTO": {
         "properties": {
           "connectedAccountId": {
@@ -3722,6 +3815,10 @@
             "type": "string"
           },
           "input": {
+            "type": "object"
+          },
+          "sessionInfo": {
+            "$ref": "#/components/schemas/SessionInfoDTO",
             "type": "object"
           },
           "authConfig": {
@@ -4010,6 +4107,10 @@
           },
           "triggerIds": {
             "description": "IDs of the triggers",
+            "type": "string"
+          },
+          "integrationIds": {
+            "description": "Integration ID",
             "type": "string"
           },
           "showEnabledOnly": {
@@ -5085,6 +5186,10 @@
           "logsType": {
             "description": "Type of the log",
             "type": "string"
+          },
+          "sessionId": {
+            "description": "Session ID of the log",
+            "type": "string"
           }
         },
         "type": "object"
@@ -5093,6 +5198,14 @@
         "properties": {
           "connectionId": {
             "description": "Connection ID of the log",
+            "type": "string"
+          },
+          "sessionId": {
+            "description": "Session ID of the log",
+            "type": "string"
+          },
+          "logsType": {
+            "description": "Type of the log",
             "type": "string"
           },
           "entityId": {
@@ -5482,9 +5595,23 @@
           "plan"
         ]
       },
+      "SDKErrorResDTO": {
+        "properties": {
+          "status": {
+            "description": "The status of the SDK error",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ]
+      },
       "AppsSendEmailToClientRequest": {
       },
       "PaymentHandleStripeWebhookRequest": {
+      },
+      "SdkReportErrorRequest": {
       },
       "ApiKeysListResponse": {
         "items": {
@@ -5526,6 +5653,13 @@
         "type": "array"
       },
       "AdminGetSentryDnsResponse": {
+        "type": "object",
+        "properties": {
+        },
+        "example": {
+        }
+      },
+      "AdminClearCacheResponse": {
         "type": "object",
         "properties": {
         },
@@ -5609,6 +5743,13 @@
         }
       },
       "PaymentHandleStripeWebhookResponse": {
+        "type": "object",
+        "properties": {
+        },
+        "example": {
+        }
+      },
+      "SdkReportErrorResponse": {
         "type": "object",
         "properties": {
         },

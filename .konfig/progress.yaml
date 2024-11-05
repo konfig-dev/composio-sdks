@@ -13,6 +13,10 @@ examples_3:
     get:
       '200':
         application/json: {}
+  /api/v1/clear-cache:
+    post:
+      '200':
+        application/json: {}
   /api/v1/cli/js-sentry-dns:
     get:
       '200':
@@ -58,6 +62,10 @@ examples_3:
       '200':
         application/json: {}
   /api/v1/payment/webhook:
+    post:
+      '200':
+        application/json: {}
+  /api/v1/sdk/error:
     post:
       '200':
         application/json: {}
@@ -108,6 +116,8 @@ operationIds:
     post: App_syncCustomRepo
   /api/v1/apps/{appName}:
     get: App_getDetails
+  /api/v1/clear-cache:
+    post: Admin_clearCache
   /api/v1/cli/generate-cli-session:
     get: Cli_exchangeCode
   /api/v1/cli/get-cli-code:
@@ -191,6 +201,8 @@ operationIds:
     get: Payment_getInvoice
   /api/v1/payment/webhook:
     post: Payment_handleStripeWebhook
+  /api/v1/sdk/error:
+    post: Sdk_reportError
   /api/v1/team/invite:
     post: Team_sendInvitation
   /api/v1/team/members:
@@ -271,6 +283,9 @@ requestSchemaNames:
   /api/v1/payment/webhook:
     post:
       application/json: PaymentHandleStripeWebhookRequest
+  /api/v1/sdk/error:
+    post:
+      application/json: SdkReportErrorRequest
   /api/v1/triggers/handle/{appName}/{clientId}:
     post:
       application/json: TriggersHandleTriggerRequest
@@ -300,6 +315,10 @@ responseSchemaNames:
     get:
       '200':
         application/json: AppsGetOpenApiSpecStatusResponse
+  /api/v1/clear-cache:
+    post:
+      '200':
+        application/json: AdminClearCacheResponse
   /api/v1/cli/js-sentry-dns:
     get:
       '200':
@@ -348,6 +367,10 @@ responseSchemaNames:
     post:
       '200':
         application/json: PaymentHandleStripeWebhookResponse
+  /api/v1/sdk/error:
+    post:
+      '200':
+        application/json: SdkReportErrorResponse
   /api/v1/team/members:
     get:
       '200':
@@ -368,6 +391,8 @@ responseSchemaNames:
         application/json: TriggerControllerV2GetTriggerInfoResponse
         text/html; charset=utf-8: TriggerControllerV2GetTriggerInfoResponse
 securityParameters:
+  X-ADMIN-TOKEN:
+    header: false
   actions:
     query: false
   additionalFields:
@@ -423,6 +448,8 @@ securityParameters:
   redirectUri:
     query: false
   search:
+    query: false
+  sessionId:
     query: false
   showActiveOnly:
     query: false
