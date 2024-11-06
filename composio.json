@@ -1659,6 +1659,17 @@
           "parameters"
         ]
       },
+      "SessionInfoDTO": {
+        "properties": {
+          "sessionId": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
       "ActionExecutionReqDTO": {
         "properties": {
           "connectedAccountId": {
@@ -1674,6 +1685,10 @@
             "type": "string"
           },
           "input": {
+            "type": "object"
+          },
+          "sessionInfo": {
+            "$ref": "#/components/schemas/SessionInfoDTO",
             "type": "object"
           },
           "authConfig": {
@@ -1963,6 +1978,10 @@
           "triggerIds": {
             "type": "string",
             "description": "IDs of the triggers"
+          },
+          "integrationIds": {
+            "type": "string",
+            "description": "Integration ID"
           },
           "showEnabledOnly": {
             "type": "boolean",
@@ -3037,6 +3056,10 @@
           "logsType": {
             "type": "string",
             "description": "Type of the log"
+          },
+          "sessionId": {
+            "type": "string",
+            "description": "Session ID of the log"
           }
         },
         "type": "object"
@@ -3046,6 +3069,14 @@
           "connectionId": {
             "type": "string",
             "description": "Connection ID of the log"
+          },
+          "sessionId": {
+            "type": "string",
+            "description": "Session ID of the log"
+          },
+          "logsType": {
+            "type": "string",
+            "description": "Type of the log"
           },
           "entityId": {
             "type": "string",
@@ -3432,6 +3463,18 @@
         "type": "object",
         "required": [
           "plan"
+        ]
+      },
+      "SDKErrorResDTO": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status of the SDK error"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
         ]
       }
     },
@@ -4236,6 +4279,14 @@
           },
           {
             "in": "query",
+            "name": "integrationIds",
+            "schema": {
+              "type": "string",
+              "description": "Integration ID"
+            }
+          },
+          {
+            "in": "query",
             "name": "showEnabledOnly",
             "schema": {
               "type": "boolean",
@@ -4636,6 +4687,33 @@
         ]
       }
     },
+    "/api/v1/clear-cache": {
+      "post": {
+        "operationId": "clearCache",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-ADMIN-TOKEN",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Clear cache",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
     "/api/v1/logs/": {
       "get": {
         "operationId": "getLogs",
@@ -4730,6 +4808,14 @@
             "schema": {
               "type": "string",
               "description": "Type of the log"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sessionId",
+            "schema": {
+              "type": "string",
+              "description": "Session ID of the log"
             }
           }
         ],
@@ -5387,6 +5473,32 @@
         "summary": "Handle stripe webhook",
         "tags": [
           "Payment"
+        ]
+      }
+    },
+    "/api/v1/sdk/error": {
+      "post": {
+        "operationId": "reportSDKError",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "description": "",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Report sdk error",
+        "tags": [
+          "SDK"
         ]
       }
     }
