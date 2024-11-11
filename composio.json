@@ -264,6 +264,117 @@
           "count"
         ]
       },
+      "ClientDTO": {
+        "properties": {
+          "autoId": {
+            "type": "number",
+            "description": "Auto-generated ID of the client"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique ID of the client"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the client"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of the client"
+          },
+          "createdAt": {
+            "oneOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "format": "date-time",
+                "type": "string"
+              }
+            ],
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "oneOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "format": "date-time",
+                "type": "string"
+              }
+            ],
+            "description": "Last update timestamp"
+          },
+          "apiKey": {
+            "type": "string",
+            "description": "API key for the client"
+          },
+          "webhookURL": {
+            "type": "string",
+            "description": "Webhook URL for the client"
+          },
+          "eventWebhookURL": {
+            "type": "string",
+            "description": "Event webhook URL for the client"
+          },
+          "webhookSecret": {
+            "type": "string",
+            "description": "Secret for webhook authentication"
+          },
+          "triggersEnabled": {
+            "type": "boolean",
+            "description": "Whether triggers are enabled for the client"
+          },
+          "lastSubscribedAt": {
+            "oneOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "format": "date-time",
+                "type": "string"
+              }
+            ],
+            "description": "Last subscription timestamp"
+          },
+          "plan": {
+            "type": "string",
+            "description": "Client's subscription plan"
+          }
+        },
+        "type": "object",
+        "required": [
+          "autoId",
+          "id",
+          "name",
+          "email",
+          "createdAt",
+          "updatedAt",
+          "triggersEnabled",
+          "plan"
+        ]
+      },
+      "ClientInfoResDTO": {
+        "properties": {
+          "client": {
+            "$ref": "#/components/schemas/ClientDTO",
+            "description": "Client information"
+          },
+          "apiKey": {
+            "type": "string",
+            "description": "API key of the client"
+          }
+        },
+        "type": "object",
+        "required": [
+          "client",
+          "apiKey"
+        ]
+      },
       "InviteMemberReqDTO": {
         "properties": {
           "email": {
@@ -696,7 +807,7 @@
           },
           "includeLocal": {
             "type": "string",
-            "description": "Whether to include local tools or not"
+            "description": "Enter 'true' or 'false'"
           }
         },
         "type": "object"
@@ -780,6 +891,53 @@
           "totalPages"
         ]
       },
+      "ExpectedInputFieldsDTO": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the field"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of the field"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the field"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "Display name of the field"
+          },
+          "default": {
+            "type": "object",
+            "description": "Default value of the field"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the field is required"
+          },
+          "expected_from_customer": {
+            "type": "boolean",
+            "description": "Whether the field is expected from customer"
+          },
+          "is_secret": {
+            "type": "boolean",
+            "description": "Whether the field is a secret"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "type",
+          "description",
+          "display_name",
+          "default",
+          "required",
+          "expected_from_customer",
+          "is_secret"
+        ]
+      },
       "GetConnectorInfoResDTO": {
         "properties": {
           "id": {
@@ -826,7 +984,7 @@
           },
           "expectedInputFields": {
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/ExpectedInputFieldsDTO"
             },
             "type": "array",
             "description": "List of required fields expected from the customer"
@@ -897,7 +1055,11 @@
           },
           "appId": {
             "type": "string",
-            "description": "Application ID"
+            "description": "Composio App UUID to be used for authentication. Either specify this or appName"
+          },
+          "appName": {
+            "type": "string",
+            "description": "Name of the app to be used for authentication. Either specify this or appId"
           },
           "forceNewIntegration": {
             "type": "boolean",
@@ -906,8 +1068,7 @@
         },
         "type": "object",
         "required": [
-          "name",
-          "appId"
+          "name"
         ]
       },
       "PatchConnectorReqDTO": {
@@ -1141,6 +1302,12 @@
               "$ref": "#/components/schemas/MemberInfoResDTO"
             },
             "type": "object"
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "type": "object",
@@ -1314,6 +1481,12 @@
               "$ref": "#/components/schemas/MemberInfoResDTO"
             },
             "type": "object"
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "type": "object",
@@ -1590,6 +1763,12 @@
           },
           "showDisabled": {
             "type": "boolean"
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "type": "object"
@@ -1597,8 +1776,7 @@
       "InitiateConnectionPayloadDto": {
         "properties": {
           "data": {
-            "type": "string",
-            "minLength": 1
+            "type": "object"
           },
           "integrationId": {
             "minLength": 1,
@@ -1612,11 +1790,32 @@
           },
           "entityId": {
             "type": "string"
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "type": "object",
         "required": [
+          "data",
           "integrationId"
+        ]
+      },
+      "UpdateConnectionLabelsPayloadDto": {
+        "properties": {
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object",
+        "required": [
+          "labels"
         ]
       },
       "InitiateConnectionResponse": {
@@ -1659,6 +1858,17 @@
           "parameters"
         ]
       },
+      "SessionInfoDTO": {
+        "properties": {
+          "sessionId": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
       "ActionExecutionReqDTO": {
         "properties": {
           "connectedAccountId": {
@@ -1674,6 +1884,10 @@
             "type": "string"
           },
           "input": {
+            "type": "object"
+          },
+          "sessionInfo": {
+            "$ref": "#/components/schemas/SessionInfoDTO",
             "type": "object"
           },
           "authConfig": {
@@ -1913,6 +2127,12 @@
           },
           "showAll": {
             "type": "boolean"
+          },
+          "page": {
+            "type": "number"
+          },
+          "offset": {
+            "type": "number"
           }
         },
         "type": "object"
@@ -1963,6 +2183,10 @@
           "triggerIds": {
             "type": "string",
             "description": "IDs of the triggers"
+          },
+          "integrationIds": {
+            "type": "string",
+            "description": "Integration ID"
           },
           "showEnabledOnly": {
             "type": "boolean",
@@ -2456,6 +2680,10 @@
           "triggerId": {
             "type": "string",
             "description": "Optional trigger ID"
+          },
+          "isNew": {
+            "type": "boolean",
+            "description": "Is new trigger. If true, the trigger was created just now or else it was already existing"
           }
         },
         "type": "object",
@@ -3037,6 +3265,10 @@
           "logsType": {
             "type": "string",
             "description": "Type of the log"
+          },
+          "sessionId": {
+            "type": "string",
+            "description": "Session ID of the log"
           }
         },
         "type": "object"
@@ -3046,6 +3278,14 @@
           "connectionId": {
             "type": "string",
             "description": "Connection ID of the log"
+          },
+          "sessionId": {
+            "type": "string",
+            "description": "Session ID of the log"
+          },
+          "logsType": {
+            "type": "string",
+            "description": "Type of the log"
           },
           "entityId": {
             "type": "string",
@@ -3433,6 +3673,18 @@
         "required": [
           "plan"
         ]
+      },
+      "SDKErrorResDTO": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status of the SDK error"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ]
       }
     },
     "securitySchemes": {
@@ -3480,6 +3732,28 @@
         "tags": [
           "Auth"
         ]
+      }
+    },
+    "/api/v1/client/auth/client_info": {
+      "get": {
+        "operationId": "getUserInfo",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientInfoResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get user info",
+        "tags": [
+          "Auth"
+        ],
+        "description": "Get client info"
       }
     },
     "/api/v1/api_keys": {
@@ -3593,7 +3867,7 @@
             "name": "includeLocal",
             "schema": {
               "type": "string",
-              "description": "Whether to include local tools or not"
+              "description": "Enter 'true' or 'false'"
             }
           }
         ],
@@ -3994,6 +4268,16 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "in": "query",
+            "name": "labels",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
           }
         ],
         "responses": {
@@ -4042,6 +4326,46 @@
         "tags": [
           "Connections"
         ]
+      }
+    },
+    "/api/v1/connectedAccounts/{connectedAccountId}/data": {
+      "patch": {
+        "operationId": "updateConnectionData",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "connectedAccountId",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateConnectionLabelsPayloadDto"
+              }
+            }
+          },
+          "description": "UpdateConnectionLabelsPayloadDto",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Update connection data",
+        "tags": [
+          "Connections"
+        ],
+        "description": "Update connection data"
       }
     },
     "/api/v1/connectedAccounts/{connectedAccountId}": {
@@ -4232,6 +4556,14 @@
             "schema": {
               "type": "string",
               "description": "IDs of the triggers"
+            }
+          },
+          {
+            "in": "query",
+            "name": "integrationIds",
+            "schema": {
+              "type": "string",
+              "description": "Integration ID"
             }
           },
           {
@@ -4636,6 +4968,136 @@
         ]
       }
     },
+    "/api/v1/clear-cache": {
+      "post": {
+        "operationId": "clearCache",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-ADMIN-TOKEN",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Clear cache",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/cli/generate-cli-session": {
+      "get": {
+        "operationId": "generateCLISession",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateCLISessionResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Handle cli code exchange",
+        "tags": [
+          "CLI"
+        ]
+      }
+    },
+    "/api/v1/cli/get-cli-code": {
+      "get": {
+        "operationId": "getCLICode",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Unique key for CLI session"
+            }
+          },
+          {
+            "in": "query",
+            "name": "code",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Code for CLI verification"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCLISessionResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get cli code",
+        "tags": [
+          "CLI"
+        ]
+      }
+    },
+    "/api/v1/cli/verify-cli-code": {
+      "get": {
+        "operationId": "verifyCLICode",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Unique key for CLI session"
+            }
+          },
+          {
+            "in": "query",
+            "name": "code",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Code for CLI verification"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyCLICodeResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Handle cli code verification",
+        "tags": [
+          "CLI"
+        ]
+      }
+    },
     "/api/v1/logs/": {
       "get": {
         "operationId": "getLogs",
@@ -4731,6 +5193,14 @@
               "type": "string",
               "description": "Type of the log"
             }
+          },
+          {
+            "in": "query",
+            "name": "sessionId",
+            "schema": {
+              "type": "string",
+              "description": "Session ID of the log"
+            }
           }
         ],
         "responses": {
@@ -4781,6 +5251,118 @@
           "Logs"
         ],
         "description": "Add new logs"
+      }
+    },
+    "/api/v2/actions": {
+      "get": {
+        "operationId": "listActionsV2",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "appNames",
+            "schema": {
+              "type": "string",
+              "description": "Names of the apps"
+            }
+          },
+          {
+            "in": "query",
+            "name": "useCase",
+            "schema": {
+              "type": "string",
+              "description": "Use case"
+            }
+          },
+          {
+            "in": "query",
+            "name": "showEnabledOnly",
+            "schema": {
+              "type": "boolean",
+              "description": "Show enabled only"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "description": "Limit"
+            }
+          },
+          {
+            "in": "query",
+            "name": "apps",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "actions",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "tags",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "usecaseLimit",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filterImportantActions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "showAll",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionsListResponseDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "List actions",
+        "tags": [
+          "Actions"
+        ],
+        "description": "Retrieve a list of all actions based on query parameters."
       }
     },
     "/api/v2/actions/list/all": {
@@ -4859,6 +5441,20 @@
             "name": "showAll",
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number"
             }
           }
         ],
@@ -5169,224 +5765,6 @@
         "summary": "Update webhook",
         "tags": [
           "Event Logs"
-        ]
-      }
-    },
-    "/api/v1/event_logs/get/webhook": {
-      "get": {
-        "operationId": "getWebhook",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {}
-            },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Get webhook",
-        "tags": [
-          "Event Logs"
-        ]
-      }
-    },
-    "/api/v1/event_logs/get/events": {
-      "get": {
-        "operationId": "getEvents",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "startTime",
-            "required": true,
-            "schema": {
-              "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+Z?",
-              "type": "string",
-              "description": "Start time of the event in ISO 8601 format"
-            }
-          },
-          {
-            "in": "query",
-            "name": "endTime",
-            "required": true,
-            "schema": {
-              "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+Z?",
-              "type": "string",
-              "description": "End time of the event in ISO 8601 format"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {}
-            },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Get events",
-        "tags": [
-          "Event Logs"
-        ],
-        "description": "Fetch events from database"
-      }
-    },
-    "/api/v1/event_logs/webhook/secret/get": {
-      "get": {
-        "operationId": "getWebhookSecret",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {}
-            },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Get webhook secret",
-        "tags": [
-          "Event Logs"
-        ]
-      }
-    },
-    "/api/v1/event_logs/webhook/secret/refresh": {
-      "post": {
-        "operationId": "refreshWebhookSecret",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {}
-            },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Refresh webhook",
-        "tags": [
-          "Event Logs"
-        ]
-      }
-    },
-    "/api/v1/payment/create-checkout-session": {
-      "post": {
-        "operationId": "PaymentController.createCheckoutSession",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateCheckoutSessionReqDto"
-              }
-            }
-          },
-          "description": "CreateCheckoutSessionReqDto",
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {}
-            },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Create checkout session",
-        "tags": [
-          "Payment"
-        ]
-      }
-    },
-    "/api/v1/payment/checkout-session/{sessionId}/status": {
-      "get": {
-        "operationId": "PaymentController.getCheckoutSessionStatus",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "sessionId",
-            "required": true,
-            "schema": {
-              "pattern": "[^\\/#\\?]+?",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {}
-            },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Get checkout session status",
-        "tags": [
-          "Payment"
-        ]
-      }
-    },
-    "/api/v1/payment/invoices": {
-      "get": {
-        "operationId": "PaymentController.getInvoices",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {}
-            },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Get invoices",
-        "tags": [
-          "Payment"
-        ]
-      }
-    },
-    "/api/v1/payment/invoices/{invoiceId}": {
-      "get": {
-        "operationId": "PaymentController.getInvoice",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "invoiceId",
-            "required": true,
-            "schema": {
-              "pattern": "[^\\/#\\?]+?",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {}
-            },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Get invoice",
-        "tags": [
-          "Payment"
-        ]
-      }
-    },
-    "/api/v1/payment/webhook": {
-      "post": {
-        "operationId": "PaymentController.handleStripeWebhook",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
-            }
-          },
-          "description": "",
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {}
-            },
-            "description": "Successful response"
-          }
-        },
-        "summary": "Handle stripe webhook",
-        "tags": [
-          "Payment"
         ]
       }
     }
