@@ -91,7 +91,7 @@ module Composio
         :'app_id' => :'String',
         :'default_connector_id' => :'String',
         :'auth_config' => :'Object',
-        :'expected_input_fields' => :'Array<String>',
+        :'expected_input_fields' => :'Array<ExpectedInputFieldsDTO>',
         :'logo' => :'String',
         :'app_name' => :'String',
         :'use_composio_auth' => :'Boolean'

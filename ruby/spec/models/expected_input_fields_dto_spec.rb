@@ -10,64 +10,70 @@ require 'spec_helper'
 require 'json'
 require 'date'
 
-# Unit tests for Composio::IngestDataDTO
-describe Composio::IngestDataDTO do
-  let(:instance) { Composio::IngestDataDTO.new }
+# Unit tests for Composio::ExpectedInputFieldsDTO
+describe Composio::ExpectedInputFieldsDTO do
+  let(:instance) { Composio::ExpectedInputFieldsDTO.new }
 
-  describe 'test an instance of IngestDataDTO' do
-    it 'should create an instance of IngestDataDTO' do
-      expect(instance).to be_instance_of(Composio::IngestDataDTO)
+  describe 'test an instance of ExpectedInputFieldsDTO' do
+    it 'should create an instance of ExpectedInputFieldsDTO' do
+      expect(instance).to be_instance_of(Composio::ExpectedInputFieldsDTO)
     end
   end
-  describe 'test attribute "connection_id"' do
+  describe 'test attribute "description"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "session_id"' do
+  describe 'test attribute "name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "logs_type"' do
+  describe 'test attribute "type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "entity_id"' do
+  describe 'test attribute "display_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "provider_name"' do
+  describe 'test attribute "default"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "action_name"' do
+  describe 'test attribute "required"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "request"' do
+  describe 'test attribute "expected_from_customer"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "response"' do
+  describe 'test attribute "is_secret"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "is_error"' do
+  describe 'test attribute "example"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "x_konfig_original_example"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

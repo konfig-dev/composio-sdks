@@ -26,19 +26,25 @@ module Composio
     # @param entity_id [String] 
     # @param endpoint [String] 
     # @param input [Object] 
+    # @param session_info [SessionInfoDTO] 
     # @param auth_config [CustomAuthDTO] 
     # @param text [String] 
+    # @param custom_description [String] 
+    # @param system_prompt [String] 
     # @param body [ActionExecutionReqDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def execute(action_id:, connected_account_id: SENTINEL, app_name: SENTINEL, entity_id: SENTINEL, endpoint: SENTINEL, input: SENTINEL, auth_config: SENTINEL, text: SENTINEL, extra: {})
+    def execute(action_id:, connected_account_id: SENTINEL, app_name: SENTINEL, entity_id: SENTINEL, endpoint: SENTINEL, input: SENTINEL, session_info: SENTINEL, auth_config: SENTINEL, text: SENTINEL, custom_description: SENTINEL, system_prompt: SENTINEL, extra: {})
       _body = {}
       _body[:connectedAccountId] = connected_account_id if connected_account_id != SENTINEL
       _body[:appName] = app_name if app_name != SENTINEL
       _body[:entityId] = entity_id if entity_id != SENTINEL
       _body[:endpoint] = endpoint if endpoint != SENTINEL
       _body[:input] = input if input != SENTINEL
+      _body[:sessionInfo] = session_info if session_info != SENTINEL
       _body[:authConfig] = auth_config if auth_config != SENTINEL
       _body[:text] = text if text != SENTINEL
+      _body[:customDescription] = custom_description if custom_description != SENTINEL
+      _body[:systemPrompt] = system_prompt if system_prompt != SENTINEL
       extra[:action_execution_req_dto] = _body if !_body.empty?
       api_response = execute_with_http_info_impl(action_id, extra)
       api_response.data
@@ -54,19 +60,25 @@ module Composio
     # @param entity_id [String] 
     # @param endpoint [String] 
     # @param input [Object] 
+    # @param session_info [SessionInfoDTO] 
     # @param auth_config [CustomAuthDTO] 
     # @param text [String] 
+    # @param custom_description [String] 
+    # @param system_prompt [String] 
     # @param body [ActionExecutionReqDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def execute_with_http_info(action_id:, connected_account_id: SENTINEL, app_name: SENTINEL, entity_id: SENTINEL, endpoint: SENTINEL, input: SENTINEL, auth_config: SENTINEL, text: SENTINEL, extra: {})
+    def execute_with_http_info(action_id:, connected_account_id: SENTINEL, app_name: SENTINEL, entity_id: SENTINEL, endpoint: SENTINEL, input: SENTINEL, session_info: SENTINEL, auth_config: SENTINEL, text: SENTINEL, custom_description: SENTINEL, system_prompt: SENTINEL, extra: {})
       _body = {}
       _body[:connectedAccountId] = connected_account_id if connected_account_id != SENTINEL
       _body[:appName] = app_name if app_name != SENTINEL
       _body[:entityId] = entity_id if entity_id != SENTINEL
       _body[:endpoint] = endpoint if endpoint != SENTINEL
       _body[:input] = input if input != SENTINEL
+      _body[:sessionInfo] = session_info if session_info != SENTINEL
       _body[:authConfig] = auth_config if auth_config != SENTINEL
       _body[:text] = text if text != SENTINEL
+      _body[:customDescription] = custom_description if custom_description != SENTINEL
+      _body[:systemPrompt] = system_prompt if system_prompt != SENTINEL
       extra[:action_execution_req_dto] = _body if !_body.empty?
       execute_with_http_info_impl(action_id, extra)
     end
@@ -453,8 +465,10 @@ module Composio
     # @param usecase_limit [Float] 
     # @param filter_important_actions [Boolean] 
     # @param show_all [Boolean] 
+    # @param page [Float] 
+    # @param offset [Float] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def get_all_actions_based_on_query(app_names: SENTINEL, use_case: SENTINEL, show_enabled_only: SENTINEL, limit: SENTINEL, apps: SENTINEL, actions: SENTINEL, tags: SENTINEL, usecase_limit: SENTINEL, filter_important_actions: SENTINEL, show_all: SENTINEL, extra: {})
+    def get_all_actions_based_on_query(app_names: SENTINEL, use_case: SENTINEL, show_enabled_only: SENTINEL, limit: SENTINEL, apps: SENTINEL, actions: SENTINEL, tags: SENTINEL, usecase_limit: SENTINEL, filter_important_actions: SENTINEL, show_all: SENTINEL, page: SENTINEL, offset: SENTINEL, extra: {})
       extra[:app_names] = app_names if app_names != SENTINEL
       extra[:use_case] = use_case if use_case != SENTINEL
       extra[:show_enabled_only] = show_enabled_only if show_enabled_only != SENTINEL
@@ -465,6 +479,8 @@ module Composio
       extra[:usecase_limit] = usecase_limit if usecase_limit != SENTINEL
       extra[:filter_important_actions] = filter_important_actions if filter_important_actions != SENTINEL
       extra[:show_all] = show_all if show_all != SENTINEL
+      extra[:page] = page if page != SENTINEL
+      extra[:offset] = offset if offset != SENTINEL
       api_response = get_all_actions_based_on_query_with_http_info_impl(extra)
       api_response.data
     end
@@ -483,8 +499,10 @@ module Composio
     # @param usecase_limit [Float] 
     # @param filter_important_actions [Boolean] 
     # @param show_all [Boolean] 
+    # @param page [Float] 
+    # @param offset [Float] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def get_all_actions_based_on_query_with_http_info(app_names: SENTINEL, use_case: SENTINEL, show_enabled_only: SENTINEL, limit: SENTINEL, apps: SENTINEL, actions: SENTINEL, tags: SENTINEL, usecase_limit: SENTINEL, filter_important_actions: SENTINEL, show_all: SENTINEL, extra: {})
+    def get_all_actions_based_on_query_with_http_info(app_names: SENTINEL, use_case: SENTINEL, show_enabled_only: SENTINEL, limit: SENTINEL, apps: SENTINEL, actions: SENTINEL, tags: SENTINEL, usecase_limit: SENTINEL, filter_important_actions: SENTINEL, show_all: SENTINEL, page: SENTINEL, offset: SENTINEL, extra: {})
       extra[:app_names] = app_names if app_names != SENTINEL
       extra[:use_case] = use_case if use_case != SENTINEL
       extra[:show_enabled_only] = show_enabled_only if show_enabled_only != SENTINEL
@@ -495,6 +513,8 @@ module Composio
       extra[:usecase_limit] = usecase_limit if usecase_limit != SENTINEL
       extra[:filter_important_actions] = filter_important_actions if filter_important_actions != SENTINEL
       extra[:show_all] = show_all if show_all != SENTINEL
+      extra[:page] = page if page != SENTINEL
+      extra[:offset] = offset if offset != SENTINEL
       get_all_actions_based_on_query_with_http_info_impl(extra)
     end
 
@@ -511,6 +531,8 @@ module Composio
     # @option opts [Float] :usecase_limit 
     # @option opts [Boolean] :filter_important_actions 
     # @option opts [Boolean] :show_all 
+    # @option opts [Float] :page 
+    # @option opts [Float] :offset 
     # @return [ActionsListResponseDTO]
     private def get_all_actions_based_on_query_impl(opts = {})
       data, _status_code, _headers = get_all_actions_based_on_query_with_http_info(opts)
@@ -530,6 +552,8 @@ module Composio
     # @option opts [Float] :usecase_limit 
     # @option opts [Boolean] :filter_important_actions 
     # @option opts [Boolean] :show_all 
+    # @option opts [Float] :page 
+    # @option opts [Float] :offset 
     # @return [APIResponse] data is ActionsListResponseDTO, status code, headers and response
     private def get_all_actions_based_on_query_with_http_info_impl(opts = {})
       if @api_client.config.debugging
@@ -550,6 +574,8 @@ module Composio
       query_params[:'usecaseLimit'] = opts[:'usecase_limit'] if !opts[:'usecase_limit'].nil?
       query_params[:'filterImportantActions'] = opts[:'filter_important_actions'] if !opts[:'filter_important_actions'].nil?
       query_params[:'showAll'] = opts[:'show_all'] if !opts[:'show_all'].nil?
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -581,6 +607,167 @@ module Composio
       data, status_code, headers, response = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ActionsApi#get_all_actions_based_on_query\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      APIResponse::new(data, status_code, headers, response)
+    end
+
+
+    # List actions
+    #
+    # Retrieve a list of all actions based on query parameters.
+    #
+    # @param app_names [String] 
+    # @param use_case [String] 
+    # @param show_enabled_only [Boolean] 
+    # @param limit [Float] 
+    # @param apps [String] 
+    # @param actions [String] 
+    # @param tags [String] 
+    # @param usecase_limit [Float] 
+    # @param filter_important_actions [Boolean] 
+    # @param show_all [Boolean] 
+    # @param page [Float] 
+    # @param offset [Float] 
+    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
+    def list(app_names: SENTINEL, use_case: SENTINEL, show_enabled_only: SENTINEL, limit: SENTINEL, apps: SENTINEL, actions: SENTINEL, tags: SENTINEL, usecase_limit: SENTINEL, filter_important_actions: SENTINEL, show_all: SENTINEL, page: SENTINEL, offset: SENTINEL, extra: {})
+      extra[:app_names] = app_names if app_names != SENTINEL
+      extra[:use_case] = use_case if use_case != SENTINEL
+      extra[:show_enabled_only] = show_enabled_only if show_enabled_only != SENTINEL
+      extra[:limit] = limit if limit != SENTINEL
+      extra[:apps] = apps if apps != SENTINEL
+      extra[:actions] = actions if actions != SENTINEL
+      extra[:tags] = tags if tags != SENTINEL
+      extra[:usecase_limit] = usecase_limit if usecase_limit != SENTINEL
+      extra[:filter_important_actions] = filter_important_actions if filter_important_actions != SENTINEL
+      extra[:show_all] = show_all if show_all != SENTINEL
+      extra[:page] = page if page != SENTINEL
+      extra[:offset] = offset if offset != SENTINEL
+      api_response = list_with_http_info_impl(extra)
+      api_response.data
+    end
+
+    # List actions
+    #
+    # Retrieve a list of all actions based on query parameters.
+    #
+    # @param app_names [String] 
+    # @param use_case [String] 
+    # @param show_enabled_only [Boolean] 
+    # @param limit [Float] 
+    # @param apps [String] 
+    # @param actions [String] 
+    # @param tags [String] 
+    # @param usecase_limit [Float] 
+    # @param filter_important_actions [Boolean] 
+    # @param show_all [Boolean] 
+    # @param page [Float] 
+    # @param offset [Float] 
+    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
+    def list_with_http_info(app_names: SENTINEL, use_case: SENTINEL, show_enabled_only: SENTINEL, limit: SENTINEL, apps: SENTINEL, actions: SENTINEL, tags: SENTINEL, usecase_limit: SENTINEL, filter_important_actions: SENTINEL, show_all: SENTINEL, page: SENTINEL, offset: SENTINEL, extra: {})
+      extra[:app_names] = app_names if app_names != SENTINEL
+      extra[:use_case] = use_case if use_case != SENTINEL
+      extra[:show_enabled_only] = show_enabled_only if show_enabled_only != SENTINEL
+      extra[:limit] = limit if limit != SENTINEL
+      extra[:apps] = apps if apps != SENTINEL
+      extra[:actions] = actions if actions != SENTINEL
+      extra[:tags] = tags if tags != SENTINEL
+      extra[:usecase_limit] = usecase_limit if usecase_limit != SENTINEL
+      extra[:filter_important_actions] = filter_important_actions if filter_important_actions != SENTINEL
+      extra[:show_all] = show_all if show_all != SENTINEL
+      extra[:page] = page if page != SENTINEL
+      extra[:offset] = offset if offset != SENTINEL
+      list_with_http_info_impl(extra)
+    end
+
+    # List actions
+    # Retrieve a list of all actions based on query parameters.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :app_names 
+    # @option opts [String] :use_case 
+    # @option opts [Boolean] :show_enabled_only 
+    # @option opts [Float] :limit 
+    # @option opts [String] :apps 
+    # @option opts [String] :actions 
+    # @option opts [String] :tags 
+    # @option opts [Float] :usecase_limit 
+    # @option opts [Boolean] :filter_important_actions 
+    # @option opts [Boolean] :show_all 
+    # @option opts [Float] :page 
+    # @option opts [Float] :offset 
+    # @return [ActionsListResponseDTO]
+    private def list_impl(opts = {})
+      data, _status_code, _headers = list_with_http_info(opts)
+      data
+    end
+
+    # List actions
+    # Retrieve a list of all actions based on query parameters.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :app_names 
+    # @option opts [String] :use_case 
+    # @option opts [Boolean] :show_enabled_only 
+    # @option opts [Float] :limit 
+    # @option opts [String] :apps 
+    # @option opts [String] :actions 
+    # @option opts [String] :tags 
+    # @option opts [Float] :usecase_limit 
+    # @option opts [Boolean] :filter_important_actions 
+    # @option opts [Boolean] :show_all 
+    # @option opts [Float] :page 
+    # @option opts [Float] :offset 
+    # @return [APIResponse] data is ActionsListResponseDTO, status code, headers and response
+    private def list_with_http_info_impl(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ActionsApi.list ...'
+      end
+      # resource path
+      local_var_path = '/api/v2/actions'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'appNames'] = opts[:'app_names'] if !opts[:'app_names'].nil?
+      query_params[:'useCase'] = opts[:'use_case'] if !opts[:'use_case'].nil?
+      query_params[:'showEnabledOnly'] = opts[:'show_enabled_only'] if !opts[:'show_enabled_only'].nil?
+      query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
+      query_params[:'apps'] = opts[:'apps'] if !opts[:'apps'].nil?
+      query_params[:'actions'] = opts[:'actions'] if !opts[:'actions'].nil?
+      query_params[:'tags'] = opts[:'tags'] if !opts[:'tags'].nil?
+      query_params[:'usecaseLimit'] = opts[:'usecase_limit'] if !opts[:'usecase_limit'].nil?
+      query_params[:'filterImportantActions'] = opts[:'filter_important_actions'] if !opts[:'filter_important_actions'].nil?
+      query_params[:'showAll'] = opts[:'show_all'] if !opts[:'show_all'].nil?
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'ActionsListResponseDTO'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"ActionsApi.list",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers, response = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ActionsApi#list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       APIResponse::new(data, status_code, headers, response)
     end

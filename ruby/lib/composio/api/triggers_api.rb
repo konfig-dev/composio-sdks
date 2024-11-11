@@ -725,12 +725,14 @@ module Composio
     # @param app_names [String] 
     # @param connected_account_ids [String] 
     # @param trigger_ids [String] 
+    # @param integration_ids [String] 
     # @param show_enabled_only [Boolean] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def list(app_names: SENTINEL, connected_account_ids: SENTINEL, trigger_ids: SENTINEL, show_enabled_only: SENTINEL, extra: {})
+    def list(app_names: SENTINEL, connected_account_ids: SENTINEL, trigger_ids: SENTINEL, integration_ids: SENTINEL, show_enabled_only: SENTINEL, extra: {})
       extra[:app_names] = app_names if app_names != SENTINEL
       extra[:connected_account_ids] = connected_account_ids if connected_account_ids != SENTINEL
       extra[:trigger_ids] = trigger_ids if trigger_ids != SENTINEL
+      extra[:integration_ids] = integration_ids if integration_ids != SENTINEL
       extra[:show_enabled_only] = show_enabled_only if show_enabled_only != SENTINEL
       api_response = list_with_http_info_impl(extra)
       api_response.data
@@ -743,12 +745,14 @@ module Composio
     # @param app_names [String] 
     # @param connected_account_ids [String] 
     # @param trigger_ids [String] 
+    # @param integration_ids [String] 
     # @param show_enabled_only [Boolean] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def list_with_http_info(app_names: SENTINEL, connected_account_ids: SENTINEL, trigger_ids: SENTINEL, show_enabled_only: SENTINEL, extra: {})
+    def list_with_http_info(app_names: SENTINEL, connected_account_ids: SENTINEL, trigger_ids: SENTINEL, integration_ids: SENTINEL, show_enabled_only: SENTINEL, extra: {})
       extra[:app_names] = app_names if app_names != SENTINEL
       extra[:connected_account_ids] = connected_account_ids if connected_account_ids != SENTINEL
       extra[:trigger_ids] = trigger_ids if trigger_ids != SENTINEL
+      extra[:integration_ids] = integration_ids if integration_ids != SENTINEL
       extra[:show_enabled_only] = show_enabled_only if show_enabled_only != SENTINEL
       list_with_http_info_impl(extra)
     end
@@ -759,6 +763,7 @@ module Composio
     # @option opts [String] :app_names 
     # @option opts [String] :connected_account_ids 
     # @option opts [String] :trigger_ids 
+    # @option opts [String] :integration_ids 
     # @option opts [Boolean] :show_enabled_only 
     # @return [Array<TriggerResDTO>]
     private def list_impl(opts = {})
@@ -772,6 +777,7 @@ module Composio
     # @option opts [String] :app_names 
     # @option opts [String] :connected_account_ids 
     # @option opts [String] :trigger_ids 
+    # @option opts [String] :integration_ids 
     # @option opts [Boolean] :show_enabled_only 
     # @return [APIResponse] data is Array<TriggerResDTO>, status code, headers and response
     private def list_with_http_info_impl(opts = {})
@@ -786,6 +792,7 @@ module Composio
       query_params[:'appNames'] = opts[:'app_names'] if !opts[:'app_names'].nil?
       query_params[:'connectedAccountIds'] = opts[:'connected_account_ids'] if !opts[:'connected_account_ids'].nil?
       query_params[:'triggerIds'] = opts[:'trigger_ids'] if !opts[:'trigger_ids'].nil?
+      query_params[:'integrationIds'] = opts[:'integration_ids'] if !opts[:'integration_ids'].nil?
       query_params[:'showEnabledOnly'] = opts[:'show_enabled_only'] if !opts[:'show_enabled_only'].nil?
 
       # header parameters

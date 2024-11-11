@@ -26,12 +26,16 @@ module Composio
     # @param response [Object] 
     # @param is_error [Boolean] 
     # @param connection_id [String] Connection ID of the log
+    # @param session_id [String] Session ID of the log
+    # @param logs_type [String] Type of the log
     # @param entity_id [String] Entity ID of the log
     # @param body [IngestDataDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def add_new_logs(provider_name:, action_name:, request:, response:, is_error:, connection_id: SENTINEL, entity_id: SENTINEL, extra: {})
+    def add_new_logs(provider_name:, action_name:, request:, response:, is_error:, connection_id: SENTINEL, session_id: SENTINEL, logs_type: SENTINEL, entity_id: SENTINEL, extra: {})
       _body = {}
       _body[:connectionId] = connection_id if connection_id != SENTINEL
+      _body[:sessionId] = session_id if session_id != SENTINEL
+      _body[:logsType] = logs_type if logs_type != SENTINEL
       _body[:entityId] = entity_id if entity_id != SENTINEL
       _body[:providerName] = provider_name if provider_name != SENTINEL
       _body[:actionName] = action_name if action_name != SENTINEL
@@ -53,12 +57,16 @@ module Composio
     # @param response [Object] 
     # @param is_error [Boolean] 
     # @param connection_id [String] Connection ID of the log
+    # @param session_id [String] Session ID of the log
+    # @param logs_type [String] Type of the log
     # @param entity_id [String] Entity ID of the log
     # @param body [IngestDataDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def add_new_logs_with_http_info(provider_name:, action_name:, request:, response:, is_error:, connection_id: SENTINEL, entity_id: SENTINEL, extra: {})
+    def add_new_logs_with_http_info(provider_name:, action_name:, request:, response:, is_error:, connection_id: SENTINEL, session_id: SENTINEL, logs_type: SENTINEL, entity_id: SENTINEL, extra: {})
       _body = {}
       _body[:connectionId] = connection_id if connection_id != SENTINEL
+      _body[:sessionId] = session_id if session_id != SENTINEL
+      _body[:logsType] = logs_type if logs_type != SENTINEL
       _body[:entityId] = entity_id if entity_id != SENTINEL
       _body[:providerName] = provider_name if provider_name != SENTINEL
       _body[:actionName] = action_name if action_name != SENTINEL
@@ -147,8 +155,9 @@ module Composio
     # @param limit [Float] 
     # @param cursor [String] 
     # @param logs_type [String] 
+    # @param session_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def list(type: SENTINEL, time: SENTINEL, status: SENTINEL, search: SENTINEL, integration_id: SENTINEL, entity_id: SENTINEL, limit: 10, cursor: SENTINEL, logs_type: SENTINEL, extra: {})
+    def list(type: SENTINEL, time: SENTINEL, status: SENTINEL, search: SENTINEL, integration_id: SENTINEL, entity_id: SENTINEL, limit: 10, cursor: SENTINEL, logs_type: SENTINEL, session_id: SENTINEL, extra: {})
       extra[:type] = type if type != SENTINEL
       extra[:time] = time if time != SENTINEL
       extra[:status] = status if status != SENTINEL
@@ -158,6 +167,7 @@ module Composio
       extra[:limit] = limit if limit != SENTINEL
       extra[:cursor] = cursor if cursor != SENTINEL
       extra[:logs_type] = logs_type if logs_type != SENTINEL
+      extra[:session_id] = session_id if session_id != SENTINEL
       api_response = list_with_http_info_impl(extra)
       api_response.data
     end
@@ -175,8 +185,9 @@ module Composio
     # @param limit [Float] 
     # @param cursor [String] 
     # @param logs_type [String] 
+    # @param session_id [String] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def list_with_http_info(type: SENTINEL, time: SENTINEL, status: SENTINEL, search: SENTINEL, integration_id: SENTINEL, entity_id: SENTINEL, limit: 10, cursor: SENTINEL, logs_type: SENTINEL, extra: {})
+    def list_with_http_info(type: SENTINEL, time: SENTINEL, status: SENTINEL, search: SENTINEL, integration_id: SENTINEL, entity_id: SENTINEL, limit: 10, cursor: SENTINEL, logs_type: SENTINEL, session_id: SENTINEL, extra: {})
       extra[:type] = type if type != SENTINEL
       extra[:time] = time if time != SENTINEL
       extra[:status] = status if status != SENTINEL
@@ -186,6 +197,7 @@ module Composio
       extra[:limit] = limit if limit != SENTINEL
       extra[:cursor] = cursor if cursor != SENTINEL
       extra[:logs_type] = logs_type if logs_type != SENTINEL
+      extra[:session_id] = session_id if session_id != SENTINEL
       list_with_http_info_impl(extra)
     end
 
@@ -201,6 +213,7 @@ module Composio
     # @option opts [Float] :limit  (default to 10)
     # @option opts [String] :cursor 
     # @option opts [String] :logs_type 
+    # @option opts [String] :session_id 
     # @return [LogsResDTO]
     private def list_impl(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -219,6 +232,7 @@ module Composio
     # @option opts [Float] :limit  (default to 10)
     # @option opts [String] :cursor 
     # @option opts [String] :logs_type 
+    # @option opts [String] :session_id 
     # @return [APIResponse] data is LogsResDTO, status code, headers and response
     private def list_with_http_info_impl(opts = {})
       if @api_client.config.debugging
@@ -250,6 +264,7 @@ module Composio
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
       query_params[:'cursor'] = opts[:'cursor'] if !opts[:'cursor'].nil?
       query_params[:'logsType'] = opts[:'logs_type'] if !opts[:'logs_type'].nil?
+      query_params[:'sessionId'] = opts[:'session_id'] if !opts[:'session_id'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

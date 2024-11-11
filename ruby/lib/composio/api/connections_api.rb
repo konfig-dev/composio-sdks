@@ -462,20 +462,22 @@ module Composio
 
     # Initiate connection
     #
+    # @param data [Object] 
     # @param integration_id [String] 
-    # @param data [String] 
     # @param redirect_uri [String] 
     # @param user_uuid [String] 
     # @param entity_id [String] 
+    # @param labels [Array<String>] 
     # @param body [InitiateConnectionPayloadDto] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def initiate(integration_id:, data: SENTINEL, redirect_uri: SENTINEL, user_uuid: SENTINEL, entity_id: SENTINEL, extra: {})
+    def initiate(data:, integration_id:, redirect_uri: SENTINEL, user_uuid: SENTINEL, entity_id: SENTINEL, labels: SENTINEL, extra: {})
       _body = {}
       _body[:data] = data if data != SENTINEL
       _body[:integrationId] = integration_id if integration_id != SENTINEL
       _body[:redirectUri] = redirect_uri if redirect_uri != SENTINEL
       _body[:userUuid] = user_uuid if user_uuid != SENTINEL
       _body[:entityId] = entity_id if entity_id != SENTINEL
+      _body[:labels] = labels if labels != SENTINEL
       extra[:initiate_connection_payload_dto] = _body if !_body.empty?
       api_response = initiate_with_http_info_impl(extra)
       api_response.data
@@ -483,20 +485,22 @@ module Composio
 
     # Initiate connection
     #
+    # @param data [Object] 
     # @param integration_id [String] 
-    # @param data [String] 
     # @param redirect_uri [String] 
     # @param user_uuid [String] 
     # @param entity_id [String] 
+    # @param labels [Array<String>] 
     # @param body [InitiateConnectionPayloadDto] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def initiate_with_http_info(integration_id:, data: SENTINEL, redirect_uri: SENTINEL, user_uuid: SENTINEL, entity_id: SENTINEL, extra: {})
+    def initiate_with_http_info(data:, integration_id:, redirect_uri: SENTINEL, user_uuid: SENTINEL, entity_id: SENTINEL, labels: SENTINEL, extra: {})
       _body = {}
       _body[:data] = data if data != SENTINEL
       _body[:integrationId] = integration_id if integration_id != SENTINEL
       _body[:redirectUri] = redirect_uri if redirect_uri != SENTINEL
       _body[:userUuid] = user_uuid if user_uuid != SENTINEL
       _body[:entityId] = entity_id if entity_id != SENTINEL
+      _body[:labels] = labels if labels != SENTINEL
       extra[:initiate_connection_payload_dto] = _body if !_body.empty?
       initiate_with_http_info_impl(extra)
     end
@@ -575,8 +579,9 @@ module Composio
     # @param show_active_only [Boolean] 
     # @param status [String] 
     # @param show_disabled [Boolean] 
+    # @param labels [Array<String>] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def list(page: SENTINEL, page_size: SENTINEL, app_names: SENTINEL, integration_id: SENTINEL, connection_id: SENTINEL, user_uuid: SENTINEL, show_active_only: SENTINEL, status: SENTINEL, show_disabled: SENTINEL, extra: {})
+    def list(page: SENTINEL, page_size: SENTINEL, app_names: SENTINEL, integration_id: SENTINEL, connection_id: SENTINEL, user_uuid: SENTINEL, show_active_only: SENTINEL, status: SENTINEL, show_disabled: SENTINEL, labels: SENTINEL, extra: {})
       extra[:page] = page if page != SENTINEL
       extra[:page_size] = page_size if page_size != SENTINEL
       extra[:app_names] = app_names if app_names != SENTINEL
@@ -586,6 +591,7 @@ module Composio
       extra[:show_active_only] = show_active_only if show_active_only != SENTINEL
       extra[:status] = status if status != SENTINEL
       extra[:show_disabled] = show_disabled if show_disabled != SENTINEL
+      extra[:labels] = labels if labels != SENTINEL
       api_response = list_with_http_info_impl(extra)
       api_response.data
     end
@@ -601,8 +607,9 @@ module Composio
     # @param show_active_only [Boolean] 
     # @param status [String] 
     # @param show_disabled [Boolean] 
+    # @param labels [Array<String>] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def list_with_http_info(page: SENTINEL, page_size: SENTINEL, app_names: SENTINEL, integration_id: SENTINEL, connection_id: SENTINEL, user_uuid: SENTINEL, show_active_only: SENTINEL, status: SENTINEL, show_disabled: SENTINEL, extra: {})
+    def list_with_http_info(page: SENTINEL, page_size: SENTINEL, app_names: SENTINEL, integration_id: SENTINEL, connection_id: SENTINEL, user_uuid: SENTINEL, show_active_only: SENTINEL, status: SENTINEL, show_disabled: SENTINEL, labels: SENTINEL, extra: {})
       extra[:page] = page if page != SENTINEL
       extra[:page_size] = page_size if page_size != SENTINEL
       extra[:app_names] = app_names if app_names != SENTINEL
@@ -612,6 +619,7 @@ module Composio
       extra[:show_active_only] = show_active_only if show_active_only != SENTINEL
       extra[:status] = status if status != SENTINEL
       extra[:show_disabled] = show_disabled if show_disabled != SENTINEL
+      extra[:labels] = labels if labels != SENTINEL
       list_with_http_info_impl(extra)
     end
 
@@ -626,6 +634,7 @@ module Composio
     # @option opts [Boolean] :show_active_only 
     # @option opts [String] :status 
     # @option opts [Boolean] :show_disabled 
+    # @option opts [Array<String>] :labels 
     # @return [GetConnectionsResponseDto]
     private def list_impl(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -643,6 +652,7 @@ module Composio
     # @option opts [Boolean] :show_active_only 
     # @option opts [String] :status 
     # @option opts [Boolean] :show_disabled 
+    # @option opts [Array<String>] :labels 
     # @return [APIResponse] data is GetConnectionsResponseDto, status code, headers and response
     private def list_with_http_info_impl(opts = {})
       if @api_client.config.debugging
@@ -662,6 +672,7 @@ module Composio
       query_params[:'showActiveOnly'] = opts[:'show_active_only'] if !opts[:'show_active_only'].nil?
       query_params[:'status'] = opts[:'status'] if !opts[:'status'].nil?
       query_params[:'showDisabled'] = opts[:'show_disabled'] if !opts[:'show_disabled'].nil?
+      query_params[:'labels'] = @api_client.build_collection_param(opts[:'labels'], :multi) if !opts[:'labels'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -693,6 +704,113 @@ module Composio
       data, status_code, headers, response = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ConnectionsApi#list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      APIResponse::new(data, status_code, headers, response)
+    end
+
+
+    # Update connection data
+    #
+    # Update connection data
+    #
+    # @param labels [Array<String>] 
+    # @param connected_account_id [String] 
+    # @param body [UpdateConnectionLabelsPayloadDto] 
+    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
+    def update_connection_data(labels:, connected_account_id:, extra: {})
+      _body = {}
+      _body[:labels] = labels if labels != SENTINEL
+      extra[:update_connection_labels_payload_dto] = _body if !_body.empty?
+      api_response = update_connection_data_with_http_info_impl(connected_account_id, extra)
+      api_response.data
+    end
+
+    # Update connection data
+    #
+    # Update connection data
+    #
+    # @param labels [Array<String>] 
+    # @param connected_account_id [String] 
+    # @param body [UpdateConnectionLabelsPayloadDto] 
+    # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
+    def update_connection_data_with_http_info(labels:, connected_account_id:, extra: {})
+      _body = {}
+      _body[:labels] = labels if labels != SENTINEL
+      extra[:update_connection_labels_payload_dto] = _body if !_body.empty?
+      update_connection_data_with_http_info_impl(connected_account_id, extra)
+    end
+
+    # Update connection data
+    # Update connection data
+    # @param connected_account_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [UpdateConnectionLabelsPayloadDto] :update_connection_labels_payload_dto UpdateConnectionLabelsPayloadDto
+    # @return [Object]
+    private def update_connection_data_impl(connected_account_id, opts = {})
+      data, _status_code, _headers = update_connection_data_with_http_info(connected_account_id, opts)
+      data
+    end
+
+    # Update connection data
+    # Update connection data
+    # @param connected_account_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [UpdateConnectionLabelsPayloadDto] :update_connection_labels_payload_dto UpdateConnectionLabelsPayloadDto
+    # @return [APIResponse] data is Object, status code, headers and response
+    private def update_connection_data_with_http_info_impl(connected_account_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ConnectionsApi.update_connection_data ...'
+      end
+      # verify the required parameter 'connected_account_id' is set
+      if @api_client.config.client_side_validation && connected_account_id.nil?
+        fail ArgumentError, "Missing the required parameter 'connected_account_id' when calling ConnectionsApi.update_connection_data"
+      end
+      pattern = Regexp.new(/[^\/#\?]+?/)
+      if @api_client.config.client_side_validation && connected_account_id !~ pattern
+        fail ArgumentError, "invalid value for 'connected_account_id' when calling ConnectionsApi.update_connection_data, must conform to the pattern #{pattern}."
+      end
+
+      # resource path
+      local_var_path = '/api/v1/connectedAccounts/{connectedAccountId}/data'.sub('{' + 'connectedAccountId' + '}', CGI.escape(connected_account_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+        header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'update_connection_labels_payload_dto'])
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Object'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"ConnectionsApi.update_connection_data",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers, response = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ConnectionsApi#update_connection_data\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       APIResponse::new(data, status_code, headers, response)
     end

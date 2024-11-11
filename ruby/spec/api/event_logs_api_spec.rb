@@ -26,49 +26,6 @@ describe 'EventLogsApi' do
     end
   end
 
-  # unit tests for get_events
-  # Get events
-  # Fetch events from database
-  # @param start_time 
-  # @param end_time 
-  # @param [Hash] opts the optional parameters
-  # @return [Object]
-  describe 'get_events test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_webhook
-  # Get webhook
-  # @param [Hash] opts the optional parameters
-  # @return [Object]
-  describe 'get_webhook test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_webhook_secret
-  # Get webhook secret
-  # @param [Hash] opts the optional parameters
-  # @return [Object]
-  describe 'get_webhook_secret test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for refresh_webhook_secret
-  # Refresh webhook
-  # @param [Hash] opts the optional parameters
-  # @return [Object]
-  describe 'refresh_webhook_secret test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for update_webhook
   # Update webhook
   # @param [Hash] opts the optional parameters

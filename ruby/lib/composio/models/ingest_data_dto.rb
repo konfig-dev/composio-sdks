@@ -14,6 +14,12 @@ module Composio
     # Connection ID of the log
     attr_accessor :connection_id
 
+    # Session ID of the log
+    attr_accessor :session_id
+
+    # Type of the log
+    attr_accessor :logs_type
+
     # Entity ID of the log
     attr_accessor :entity_id
 
@@ -33,6 +39,8 @@ module Composio
     def self.attribute_map
       {
         :'connection_id' => :'connectionId',
+        :'session_id' => :'sessionId',
+        :'logs_type' => :'logsType',
         :'entity_id' => :'entityId',
         :'provider_name' => :'providerName',
         :'action_name' => :'actionName',
@@ -51,6 +59,8 @@ module Composio
     def self.openapi_types
       {
         :'connection_id' => :'String',
+        :'session_id' => :'String',
+        :'logs_type' => :'String',
         :'entity_id' => :'String',
         :'provider_name' => :'String',
         :'action_name' => :'String',
@@ -83,6 +93,14 @@ module Composio
 
       if attributes.key?(:'connection_id')
         self.connection_id = attributes[:'connection_id']
+      end
+
+      if attributes.key?(:'session_id')
+        self.session_id = attributes[:'session_id']
+      end
+
+      if attributes.key?(:'logs_type')
+        self.logs_type = attributes[:'logs_type']
       end
 
       if attributes.key?(:'entity_id')
@@ -154,6 +172,8 @@ module Composio
       return true if self.equal?(o)
       self.class == o.class &&
           connection_id == o.connection_id &&
+          session_id == o.session_id &&
+          logs_type == o.logs_type &&
           entity_id == o.entity_id &&
           provider_name == o.provider_name &&
           action_name == o.action_name &&
@@ -171,7 +191,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [connection_id, entity_id, provider_name, action_name, request, response, is_error].hash
+      [connection_id, session_id, logs_type, entity_id, provider_name, action_name, request, response, is_error].hash
     end
 
     # Builds the object from hash

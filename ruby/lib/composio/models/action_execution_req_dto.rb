@@ -21,9 +21,15 @@ module Composio
 
     attr_accessor :input
 
+    attr_accessor :session_info
+
     attr_accessor :auth_config
 
     attr_accessor :text
+
+    attr_accessor :custom_description
+
+    attr_accessor :system_prompt
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -33,8 +39,11 @@ module Composio
         :'entity_id' => :'entityId',
         :'endpoint' => :'endpoint',
         :'input' => :'input',
+        :'session_info' => :'sessionInfo',
         :'auth_config' => :'authConfig',
-        :'text' => :'text'
+        :'text' => :'text',
+        :'custom_description' => :'customDescription',
+        :'system_prompt' => :'systemPrompt'
       }
     end
 
@@ -51,8 +60,11 @@ module Composio
         :'entity_id' => :'String',
         :'endpoint' => :'String',
         :'input' => :'Object',
+        :'session_info' => :'SessionInfoDTO',
         :'auth_config' => :'CustomAuthDTO',
-        :'text' => :'String'
+        :'text' => :'String',
+        :'custom_description' => :'String',
+        :'system_prompt' => :'String'
       }
     end
 
@@ -97,12 +109,24 @@ module Composio
         self.input = attributes[:'input']
       end
 
+      if attributes.key?(:'session_info')
+        self.session_info = attributes[:'session_info']
+      end
+
       if attributes.key?(:'auth_config')
         self.auth_config = attributes[:'auth_config']
       end
 
       if attributes.key?(:'text')
         self.text = attributes[:'text']
+      end
+
+      if attributes.key?(:'custom_description')
+        self.custom_description = attributes[:'custom_description']
+      end
+
+      if attributes.key?(:'system_prompt')
+        self.system_prompt = attributes[:'system_prompt']
       end
     end
 
@@ -129,8 +153,11 @@ module Composio
           entity_id == o.entity_id &&
           endpoint == o.endpoint &&
           input == o.input &&
+          session_info == o.session_info &&
           auth_config == o.auth_config &&
-          text == o.text
+          text == o.text &&
+          custom_description == o.custom_description &&
+          system_prompt == o.system_prompt
     end
 
     # @see the `==` method
@@ -142,7 +169,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [connected_account_id, app_name, entity_id, endpoint, input, auth_config, text].hash
+      [connected_account_id, app_name, entity_id, endpoint, input, session_info, auth_config, text, custom_description, system_prompt].hash
     end
 
     # Builds the object from hash

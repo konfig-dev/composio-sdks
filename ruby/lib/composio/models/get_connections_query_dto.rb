@@ -29,6 +29,8 @@ module Composio
 
     attr_accessor :show_disabled
 
+    attr_accessor :labels
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -40,7 +42,8 @@ module Composio
         :'user_uuid' => :'user_uuid',
         :'show_active_only' => :'showActiveOnly',
         :'status' => :'status',
-        :'show_disabled' => :'showDisabled'
+        :'show_disabled' => :'showDisabled',
+        :'labels' => :'labels'
       }
     end
 
@@ -60,7 +63,8 @@ module Composio
         :'user_uuid' => :'String',
         :'show_active_only' => :'Boolean',
         :'status' => :'String',
-        :'show_disabled' => :'Boolean'
+        :'show_disabled' => :'Boolean',
+        :'labels' => :'Array<String>'
       }
     end
 
@@ -120,6 +124,12 @@ module Composio
       if attributes.key?(:'show_disabled')
         self.show_disabled = attributes[:'show_disabled']
       end
+
+      if attributes.key?(:'labels')
+        if (value = attributes[:'labels']).is_a?(Array)
+          self.labels = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -148,7 +158,8 @@ module Composio
           user_uuid == o.user_uuid &&
           show_active_only == o.show_active_only &&
           status == o.status &&
-          show_disabled == o.show_disabled
+          show_disabled == o.show_disabled &&
+          labels == o.labels
     end
 
     # @see the `==` method
@@ -160,7 +171,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [page, page_size, app_names, integration_id, connection_id, user_uuid, show_active_only, status, show_disabled].hash
+      [page, page_size, app_names, integration_id, connection_id, user_uuid, show_active_only, status, show_disabled, labels].hash
     end
 
     # Builds the object from hash

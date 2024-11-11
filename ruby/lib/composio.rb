@@ -47,6 +47,11 @@ require 'composio/models/app_name_count_dto'
 require 'composio/models/app_query_dto'
 require 'composio/models/auth_config_dto'
 require 'composio/models/cli_query_dto'
+require 'composio/models/client_dto'
+require 'composio/models/client_dto_created_at'
+require 'composio/models/client_dto_last_subscribed_at'
+require 'composio/models/client_dto_updated_at'
+require 'composio/models/client_info_res_dto'
 require 'composio/models/client_unique_user_id_count_dto'
 require 'composio/models/connected_account_response_dto'
 require 'composio/models/connection_params'
@@ -71,6 +76,7 @@ require 'composio/models/enable_trigger_body_dto'
 require 'composio/models/enable_trigger_params_dto'
 require 'composio/models/entity_query_req_dto'
 require 'composio/models/execute_action_res_dto'
+require 'composio/models/expected_input_fields_dto'
 require 'composio/models/fetch_query_dto'
 require 'composio/models/generate_api_key_req_dto'
 require 'composio/models/generate_cli_session_req_dto'
@@ -123,6 +129,8 @@ require 'composio/models/plan'
 require 'composio/models/proxy_execution_req_dto'
 require 'composio/models/redirect_uri_dto'
 require 'composio/models/role'
+require 'composio/models/sdk_error_res_dto'
+require 'composio/models/session_info_dto'
 require 'composio/models/set_callback_url_body_dto'
 require 'composio/models/single_app_info_res_dto'
 require 'composio/models/single_trigger_res_dto'
@@ -153,6 +161,7 @@ require 'composio/models/trigger_toggle_info_response_dto'
 require 'composio/models/triggers_enabled_toggle_req_dto'
 require 'composio/models/triggers_enabled_toggle_res_dto'
 require 'composio/models/type'
+require 'composio/models/update_connection_labels_payload_dto'
 require 'composio/models/update_member_req_dto'
 require 'composio/models/update_member_req_dto_role'
 require 'composio/models/user_git_user_info'
@@ -171,11 +180,11 @@ require 'composio/api/admin_api'
 require 'composio/api/analytics_api'
 require 'composio/api/apps_api'
 require 'composio/api/auth_api'
+require 'composio/api/cli_api'
 require 'composio/api/connections_api'
 require 'composio/api/event_logs_api'
 require 'composio/api/integrations_api'
 require 'composio/api/logs_api'
-require 'composio/api/payment_api'
 require 'composio/api/triggers_api'
 
 module Composio
@@ -224,11 +233,11 @@ module Composio
     attr_reader :analytics
     attr_reader :apps
     attr_reader :auth
+    attr_reader :cli
     attr_reader :connections
     attr_reader :event_logs
     attr_reader :integrations
     attr_reader :logs
-    attr_reader :payment
     attr_reader :triggers
 
     def initialize(config = Configuration.default)
@@ -239,11 +248,11 @@ module Composio
       @analytics = Composio::AnalyticsApi.new(@api_client)
       @apps = Composio::AppsApi.new(@api_client)
       @auth = Composio::AuthApi.new(@api_client)
+      @cli = Composio::CLIApi.new(@api_client)
       @connections = Composio::ConnectionsApi.new(@api_client)
       @event_logs = Composio::EventLogsApi.new(@api_client)
       @integrations = Composio::IntegrationsApi.new(@api_client)
       @logs = Composio::LogsApi.new(@api_client)
-      @payment = Composio::PaymentApi.new(@api_client)
       @triggers = Composio::TriggersApi.new(@api_client)
     end
   end

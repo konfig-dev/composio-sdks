@@ -10,30 +10,16 @@ require 'date'
 require 'time'
 
 module Composio
-  class ListTriggersQueryDTO
-    # Names of the apps
-    attr_accessor :app_names
+  class SessionInfoDTO
+    attr_accessor :session_id
 
-    # IDs of the connected accounts
-    attr_accessor :connected_account_ids
-
-    # IDs of the triggers
-    attr_accessor :trigger_ids
-
-    # Integration ID
-    attr_accessor :integration_ids
-
-    # Show enabled only
-    attr_accessor :show_enabled_only
+    attr_accessor :metadata
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'app_names' => :'appNames',
-        :'connected_account_ids' => :'connectedAccountIds',
-        :'trigger_ids' => :'triggerIds',
-        :'integration_ids' => :'integrationIds',
-        :'show_enabled_only' => :'showEnabledOnly'
+        :'session_id' => :'sessionId',
+        :'metadata' => :'metadata'
       }
     end
 
@@ -45,11 +31,8 @@ module Composio
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'app_names' => :'String',
-        :'connected_account_ids' => :'String',
-        :'trigger_ids' => :'String',
-        :'integration_ids' => :'String',
-        :'show_enabled_only' => :'Boolean'
+        :'session_id' => :'String',
+        :'metadata' => :'Object'
       }
     end
 
@@ -63,35 +46,23 @@ module Composio
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Composio::ListTriggersQueryDTO` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Composio::SessionInfoDTO` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Composio::ListTriggersQueryDTO`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Composio::SessionInfoDTO`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'app_names')
-        self.app_names = attributes[:'app_names']
+      if attributes.key?(:'session_id')
+        self.session_id = attributes[:'session_id']
       end
 
-      if attributes.key?(:'connected_account_ids')
-        self.connected_account_ids = attributes[:'connected_account_ids']
-      end
-
-      if attributes.key?(:'trigger_ids')
-        self.trigger_ids = attributes[:'trigger_ids']
-      end
-
-      if attributes.key?(:'integration_ids')
-        self.integration_ids = attributes[:'integration_ids']
-      end
-
-      if attributes.key?(:'show_enabled_only')
-        self.show_enabled_only = attributes[:'show_enabled_only']
+      if attributes.key?(:'metadata')
+        self.metadata = attributes[:'metadata']
       end
     end
 
@@ -113,11 +84,8 @@ module Composio
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          app_names == o.app_names &&
-          connected_account_ids == o.connected_account_ids &&
-          trigger_ids == o.trigger_ids &&
-          integration_ids == o.integration_ids &&
-          show_enabled_only == o.show_enabled_only
+          session_id == o.session_id &&
+          metadata == o.metadata
     end
 
     # @see the `==` method
@@ -129,7 +97,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [app_names, connected_account_ids, trigger_ids, integration_ids, show_enabled_only].hash
+      [session_id, metadata].hash
     end
 
     # Builds the object from hash

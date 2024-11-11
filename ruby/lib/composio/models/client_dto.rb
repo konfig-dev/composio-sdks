@@ -10,30 +10,60 @@ require 'date'
 require 'time'
 
 module Composio
-  class ListTriggersQueryDTO
-    # Names of the apps
-    attr_accessor :app_names
+  # Client information
+  class ClientDTO
+    # Auto-generated ID of the client
+    attr_accessor :auto_id
 
-    # IDs of the connected accounts
-    attr_accessor :connected_account_ids
+    # Unique ID of the client
+    attr_accessor :id
 
-    # IDs of the triggers
-    attr_accessor :trigger_ids
+    # Name of the client
+    attr_accessor :name
 
-    # Integration ID
-    attr_accessor :integration_ids
+    # Email of the client
+    attr_accessor :email
 
-    # Show enabled only
-    attr_accessor :show_enabled_only
+    attr_accessor :created_at
+
+    attr_accessor :updated_at
+
+    # API key for the client
+    attr_accessor :api_key
+
+    # Webhook URL for the client
+    attr_accessor :webhook_url
+
+    # Event webhook URL for the client
+    attr_accessor :event_webhook_url
+
+    # Secret for webhook authentication
+    attr_accessor :webhook_secret
+
+    # Whether triggers are enabled for the client
+    attr_accessor :triggers_enabled
+
+    attr_accessor :last_subscribed_at
+
+    # Client's subscription plan
+    attr_accessor :plan
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'app_names' => :'appNames',
-        :'connected_account_ids' => :'connectedAccountIds',
-        :'trigger_ids' => :'triggerIds',
-        :'integration_ids' => :'integrationIds',
-        :'show_enabled_only' => :'showEnabledOnly'
+        :'auto_id' => :'autoId',
+        :'id' => :'id',
+        :'name' => :'name',
+        :'email' => :'email',
+        :'created_at' => :'createdAt',
+        :'updated_at' => :'updatedAt',
+        :'api_key' => :'apiKey',
+        :'webhook_url' => :'webhookURL',
+        :'event_webhook_url' => :'eventWebhookURL',
+        :'webhook_secret' => :'webhookSecret',
+        :'triggers_enabled' => :'triggersEnabled',
+        :'last_subscribed_at' => :'lastSubscribedAt',
+        :'plan' => :'plan'
       }
     end
 
@@ -45,11 +75,19 @@ module Composio
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'app_names' => :'String',
-        :'connected_account_ids' => :'String',
-        :'trigger_ids' => :'String',
-        :'integration_ids' => :'String',
-        :'show_enabled_only' => :'Boolean'
+        :'auto_id' => :'Float',
+        :'id' => :'String',
+        :'name' => :'String',
+        :'email' => :'String',
+        :'created_at' => :'ClientDTOCreatedAt',
+        :'updated_at' => :'ClientDTOUpdatedAt',
+        :'api_key' => :'String',
+        :'webhook_url' => :'String',
+        :'event_webhook_url' => :'String',
+        :'webhook_secret' => :'String',
+        :'triggers_enabled' => :'Boolean',
+        :'last_subscribed_at' => :'ClientDTOLastSubscribedAt',
+        :'plan' => :'String'
       }
     end
 
@@ -63,35 +101,67 @@ module Composio
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Composio::ListTriggersQueryDTO` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Composio::ClientDTO` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Composio::ListTriggersQueryDTO`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Composio::ClientDTO`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'app_names')
-        self.app_names = attributes[:'app_names']
+      if attributes.key?(:'auto_id')
+        self.auto_id = attributes[:'auto_id']
       end
 
-      if attributes.key?(:'connected_account_ids')
-        self.connected_account_ids = attributes[:'connected_account_ids']
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       end
 
-      if attributes.key?(:'trigger_ids')
-        self.trigger_ids = attributes[:'trigger_ids']
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
 
-      if attributes.key?(:'integration_ids')
-        self.integration_ids = attributes[:'integration_ids']
+      if attributes.key?(:'email')
+        self.email = attributes[:'email']
       end
 
-      if attributes.key?(:'show_enabled_only')
-        self.show_enabled_only = attributes[:'show_enabled_only']
+      if attributes.key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      end
+
+      if attributes.key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
+      end
+
+      if attributes.key?(:'api_key')
+        self.api_key = attributes[:'api_key']
+      end
+
+      if attributes.key?(:'webhook_url')
+        self.webhook_url = attributes[:'webhook_url']
+      end
+
+      if attributes.key?(:'event_webhook_url')
+        self.event_webhook_url = attributes[:'event_webhook_url']
+      end
+
+      if attributes.key?(:'webhook_secret')
+        self.webhook_secret = attributes[:'webhook_secret']
+      end
+
+      if attributes.key?(:'triggers_enabled')
+        self.triggers_enabled = attributes[:'triggers_enabled']
+      end
+
+      if attributes.key?(:'last_subscribed_at')
+        self.last_subscribed_at = attributes[:'last_subscribed_at']
+      end
+
+      if attributes.key?(:'plan')
+        self.plan = attributes[:'plan']
       end
     end
 
@@ -99,12 +169,52 @@ module Composio
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @auto_id.nil?
+        invalid_properties.push('invalid value for "auto_id", auto_id cannot be nil.')
+      end
+
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
+      if @email.nil?
+        invalid_properties.push('invalid value for "email", email cannot be nil.')
+      end
+
+      if @created_at.nil?
+        invalid_properties.push('invalid value for "created_at", created_at cannot be nil.')
+      end
+
+      if @updated_at.nil?
+        invalid_properties.push('invalid value for "updated_at", updated_at cannot be nil.')
+      end
+
+      if @triggers_enabled.nil?
+        invalid_properties.push('invalid value for "triggers_enabled", triggers_enabled cannot be nil.')
+      end
+
+      if @plan.nil?
+        invalid_properties.push('invalid value for "plan", plan cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @auto_id.nil?
+      return false if @id.nil?
+      return false if @name.nil?
+      return false if @email.nil?
+      return false if @created_at.nil?
+      return false if @updated_at.nil?
+      return false if @triggers_enabled.nil?
+      return false if @plan.nil?
       true
     end
 
@@ -113,11 +223,19 @@ module Composio
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          app_names == o.app_names &&
-          connected_account_ids == o.connected_account_ids &&
-          trigger_ids == o.trigger_ids &&
-          integration_ids == o.integration_ids &&
-          show_enabled_only == o.show_enabled_only
+          auto_id == o.auto_id &&
+          id == o.id &&
+          name == o.name &&
+          email == o.email &&
+          created_at == o.created_at &&
+          updated_at == o.updated_at &&
+          api_key == o.api_key &&
+          webhook_url == o.webhook_url &&
+          event_webhook_url == o.event_webhook_url &&
+          webhook_secret == o.webhook_secret &&
+          triggers_enabled == o.triggers_enabled &&
+          last_subscribed_at == o.last_subscribed_at &&
+          plan == o.plan
     end
 
     # @see the `==` method
@@ -129,7 +247,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [app_names, connected_account_ids, trigger_ids, integration_ids, show_enabled_only].hash
+      [auto_id, id, name, email, created_at, updated_at, api_key, webhook_url, event_webhook_url, webhook_secret, triggers_enabled, last_subscribed_at, plan].hash
     end
 
     # Builds the object from hash

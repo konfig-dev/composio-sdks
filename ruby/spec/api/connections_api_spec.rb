@@ -108,8 +108,22 @@ describe 'ConnectionsApi' do
   # @option opts [Boolean] :show_active_only 
   # @option opts [String] :status 
   # @option opts [Boolean] :show_disabled 
+  # @option opts [Array<String>] :labels 
   # @return [GetConnectionsResponseDto]
   describe 'list test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for update_connection_data
+  # Update connection data
+  # Update connection data
+  # @param connected_account_id 
+  # @param [Hash] opts the optional parameters
+  # @option opts [UpdateConnectionLabelsPayloadDto] :update_connection_labels_payload_dto UpdateConnectionLabelsPayloadDto
+  # @return [Object]
+  describe 'update_connection_data test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

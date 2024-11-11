@@ -10,30 +10,50 @@ require 'date'
 require 'time'
 
 module Composio
-  class ListTriggersQueryDTO
-    # Names of the apps
-    attr_accessor :app_names
+  class ExpectedInputFieldsDTO
+    # Description of the field
+    attr_accessor :description
 
-    # IDs of the connected accounts
-    attr_accessor :connected_account_ids
+    # Name of the field
+    attr_accessor :name
 
-    # IDs of the triggers
-    attr_accessor :trigger_ids
+    # Type of the field
+    attr_accessor :type
 
-    # Integration ID
-    attr_accessor :integration_ids
+    # Display name of the field
+    attr_accessor :display_name
 
-    # Show enabled only
-    attr_accessor :show_enabled_only
+    # Default value of the field
+    attr_accessor :default
+
+    # Whether the field is required
+    attr_accessor :required
+
+    # Whether the field is expected from customer
+    attr_accessor :expected_from_customer
+
+    # Whether the field is a secret
+    attr_accessor :is_secret
+
+    # Default value of the field
+    attr_accessor :example
+
+    # Default value of the field
+    attr_accessor :x_konfig_original_example
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'app_names' => :'appNames',
-        :'connected_account_ids' => :'connectedAccountIds',
-        :'trigger_ids' => :'triggerIds',
-        :'integration_ids' => :'integrationIds',
-        :'show_enabled_only' => :'showEnabledOnly'
+        :'description' => :'description',
+        :'name' => :'name',
+        :'type' => :'type',
+        :'display_name' => :'display_name',
+        :'default' => :'default',
+        :'required' => :'required',
+        :'expected_from_customer' => :'expected_from_customer',
+        :'is_secret' => :'is_secret',
+        :'example' => :'example',
+        :'x_konfig_original_example' => :'x-konfig-original-example'
       }
     end
 
@@ -45,11 +65,16 @@ module Composio
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'app_names' => :'String',
-        :'connected_account_ids' => :'String',
-        :'trigger_ids' => :'String',
-        :'integration_ids' => :'String',
-        :'show_enabled_only' => :'Boolean'
+        :'description' => :'String',
+        :'name' => :'String',
+        :'type' => :'String',
+        :'display_name' => :'String',
+        :'default' => :'Object',
+        :'required' => :'Boolean',
+        :'expected_from_customer' => :'Boolean',
+        :'is_secret' => :'Boolean',
+        :'example' => :'Object',
+        :'x_konfig_original_example' => :'Object'
       }
     end
 
@@ -63,35 +88,55 @@ module Composio
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Composio::ListTriggersQueryDTO` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Composio::ExpectedInputFieldsDTO` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Composio::ListTriggersQueryDTO`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Composio::ExpectedInputFieldsDTO`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'app_names')
-        self.app_names = attributes[:'app_names']
+      if attributes.key?(:'description')
+        self.description = attributes[:'description']
       end
 
-      if attributes.key?(:'connected_account_ids')
-        self.connected_account_ids = attributes[:'connected_account_ids']
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
 
-      if attributes.key?(:'trigger_ids')
-        self.trigger_ids = attributes[:'trigger_ids']
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
       end
 
-      if attributes.key?(:'integration_ids')
-        self.integration_ids = attributes[:'integration_ids']
+      if attributes.key?(:'display_name')
+        self.display_name = attributes[:'display_name']
       end
 
-      if attributes.key?(:'show_enabled_only')
-        self.show_enabled_only = attributes[:'show_enabled_only']
+      if attributes.key?(:'default')
+        self.default = attributes[:'default']
+      end
+
+      if attributes.key?(:'required')
+        self.required = attributes[:'required']
+      end
+
+      if attributes.key?(:'expected_from_customer')
+        self.expected_from_customer = attributes[:'expected_from_customer']
+      end
+
+      if attributes.key?(:'is_secret')
+        self.is_secret = attributes[:'is_secret']
+      end
+
+      if attributes.key?(:'example')
+        self.example = attributes[:'example']
+      end
+
+      if attributes.key?(:'x_konfig_original_example')
+        self.x_konfig_original_example = attributes[:'x_konfig_original_example']
       end
     end
 
@@ -99,12 +144,52 @@ module Composio
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @description.nil?
+        invalid_properties.push('invalid value for "description", description cannot be nil.')
+      end
+
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
+      if @type.nil?
+        invalid_properties.push('invalid value for "type", type cannot be nil.')
+      end
+
+      if @display_name.nil?
+        invalid_properties.push('invalid value for "display_name", display_name cannot be nil.')
+      end
+
+      if @default.nil?
+        invalid_properties.push('invalid value for "default", default cannot be nil.')
+      end
+
+      if @required.nil?
+        invalid_properties.push('invalid value for "required", required cannot be nil.')
+      end
+
+      if @expected_from_customer.nil?
+        invalid_properties.push('invalid value for "expected_from_customer", expected_from_customer cannot be nil.')
+      end
+
+      if @is_secret.nil?
+        invalid_properties.push('invalid value for "is_secret", is_secret cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @description.nil?
+      return false if @name.nil?
+      return false if @type.nil?
+      return false if @display_name.nil?
+      return false if @default.nil?
+      return false if @required.nil?
+      return false if @expected_from_customer.nil?
+      return false if @is_secret.nil?
       true
     end
 
@@ -113,11 +198,16 @@ module Composio
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          app_names == o.app_names &&
-          connected_account_ids == o.connected_account_ids &&
-          trigger_ids == o.trigger_ids &&
-          integration_ids == o.integration_ids &&
-          show_enabled_only == o.show_enabled_only
+          description == o.description &&
+          name == o.name &&
+          type == o.type &&
+          display_name == o.display_name &&
+          default == o.default &&
+          required == o.required &&
+          expected_from_customer == o.expected_from_customer &&
+          is_secret == o.is_secret &&
+          example == o.example &&
+          x_konfig_original_example == o.x_konfig_original_example
     end
 
     # @see the `==` method
@@ -129,7 +219,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [app_names, connected_account_ids, trigger_ids, integration_ids, show_enabled_only].hash
+      [description, name, type, display_name, default, required, expected_from_customer, is_secret, example, x_konfig_original_example].hash
     end
 
     # Builds the object from hash

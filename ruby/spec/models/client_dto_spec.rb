@@ -10,64 +10,88 @@ require 'spec_helper'
 require 'json'
 require 'date'
 
-# Unit tests for Composio::IngestDataDTO
-describe Composio::IngestDataDTO do
-  let(:instance) { Composio::IngestDataDTO.new }
+# Unit tests for Composio::ClientDTO
+describe Composio::ClientDTO do
+  let(:instance) { Composio::ClientDTO.new }
 
-  describe 'test an instance of IngestDataDTO' do
-    it 'should create an instance of IngestDataDTO' do
-      expect(instance).to be_instance_of(Composio::IngestDataDTO)
+  describe 'test an instance of ClientDTO' do
+    it 'should create an instance of ClientDTO' do
+      expect(instance).to be_instance_of(Composio::ClientDTO)
     end
   end
-  describe 'test attribute "connection_id"' do
+  describe 'test attribute "auto_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "session_id"' do
+  describe 'test attribute "id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "logs_type"' do
+  describe 'test attribute "name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "entity_id"' do
+  describe 'test attribute "email"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "provider_name"' do
+  describe 'test attribute "created_at"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "action_name"' do
+  describe 'test attribute "updated_at"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "request"' do
+  describe 'test attribute "api_key"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "response"' do
+  describe 'test attribute "webhook_url"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "is_error"' do
+  describe 'test attribute "event_webhook_url"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "webhook_secret"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "triggers_enabled"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "last_subscribed_at"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "plan"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

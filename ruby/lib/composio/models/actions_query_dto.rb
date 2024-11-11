@@ -35,6 +35,10 @@ module Composio
 
     attr_accessor :show_all
 
+    attr_accessor :page
+
+    attr_accessor :offset
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -47,7 +51,9 @@ module Composio
         :'actions' => :'actions',
         :'usecase_limit' => :'usecaseLimit',
         :'filter_important_actions' => :'filterImportantActions',
-        :'show_all' => :'showAll'
+        :'show_all' => :'showAll',
+        :'page' => :'page',
+        :'offset' => :'offset'
       }
     end
 
@@ -68,7 +74,9 @@ module Composio
         :'actions' => :'String',
         :'usecase_limit' => :'Float',
         :'filter_important_actions' => :'Boolean',
-        :'show_all' => :'Boolean'
+        :'show_all' => :'Boolean',
+        :'page' => :'Float',
+        :'offset' => :'Float'
       }
     end
 
@@ -132,6 +140,14 @@ module Composio
       if attributes.key?(:'show_all')
         self.show_all = attributes[:'show_all']
       end
+
+      if attributes.key?(:'page')
+        self.page = attributes[:'page']
+      end
+
+      if attributes.key?(:'offset')
+        self.offset = attributes[:'offset']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -161,7 +177,9 @@ module Composio
           actions == o.actions &&
           usecase_limit == o.usecase_limit &&
           filter_important_actions == o.filter_important_actions &&
-          show_all == o.show_all
+          show_all == o.show_all &&
+          page == o.page &&
+          offset == o.offset
     end
 
     # @see the `==` method
@@ -173,7 +191,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [tags, app_names, use_case, show_enabled_only, limit, apps, actions, usecase_limit, filter_important_actions, show_all].hash
+      [tags, app_names, use_case, show_enabled_only, limit, apps, actions, usecase_limit, filter_important_actions, show_all, page, offset].hash
     end
 
     # Builds the object from hash
