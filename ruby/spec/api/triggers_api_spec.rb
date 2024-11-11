@@ -127,6 +127,7 @@ describe 'TriggersApi' do
   # @option opts [String] :app_names 
   # @option opts [String] :connected_account_ids 
   # @option opts [String] :trigger_ids 
+  # @option opts [String] :integration_ids 
   # @option opts [Boolean] :show_enabled_only 
   # @return [Array<TriggerResDTO>]
   describe 'list test' do

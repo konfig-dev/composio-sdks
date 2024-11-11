@@ -20,6 +20,9 @@ module Composio
     # IDs of the triggers
     attr_accessor :trigger_ids
 
+    # Integration ID
+    attr_accessor :integration_ids
+
     # Show enabled only
     attr_accessor :show_enabled_only
 
@@ -29,6 +32,7 @@ module Composio
         :'app_names' => :'appNames',
         :'connected_account_ids' => :'connectedAccountIds',
         :'trigger_ids' => :'triggerIds',
+        :'integration_ids' => :'integrationIds',
         :'show_enabled_only' => :'showEnabledOnly'
       }
     end
@@ -44,6 +48,7 @@ module Composio
         :'app_names' => :'String',
         :'connected_account_ids' => :'String',
         :'trigger_ids' => :'String',
+        :'integration_ids' => :'String',
         :'show_enabled_only' => :'Boolean'
       }
     end
@@ -81,6 +86,10 @@ module Composio
         self.trigger_ids = attributes[:'trigger_ids']
       end
 
+      if attributes.key?(:'integration_ids')
+        self.integration_ids = attributes[:'integration_ids']
+      end
+
       if attributes.key?(:'show_enabled_only')
         self.show_enabled_only = attributes[:'show_enabled_only']
       end
@@ -107,6 +116,7 @@ module Composio
           app_names == o.app_names &&
           connected_account_ids == o.connected_account_ids &&
           trigger_ids == o.trigger_ids &&
+          integration_ids == o.integration_ids &&
           show_enabled_only == o.show_enabled_only
     end
 
@@ -119,7 +129,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [app_names, connected_account_ids, trigger_ids, show_enabled_only].hash
+      [app_names, connected_account_ids, trigger_ids, integration_ids, show_enabled_only].hash
     end
 
     # Builds the object from hash

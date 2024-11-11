@@ -26,6 +26,17 @@ describe 'AdminApi' do
     end
   end
 
+  # unit tests for clear_cache
+  # Clear cache
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :x_admin_token 
+  # @return [Object]
+  describe 'clear_cache test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for get_sentry_dns
   # Jssentry dns
   # @param [Hash] opts the optional parameters

@@ -51,6 +51,7 @@ describe 'LogsApi' do
   # @option opts [Float] :limit 
   # @option opts [String] :cursor 
   # @option opts [String] :logs_type 
+  # @option opts [String] :session_id 
   # @return [LogsResDTO]
   describe 'list test' do
     it 'should work' do

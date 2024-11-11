@@ -13,12 +13,20 @@ examples_3:
     get:
       '200':
         application/json: {}
+  /api/v1/clear-cache:
+    post:
+      '200':
+        application/json: {}
   /api/v1/cli/js-sentry-dns:
     get:
       '200':
         application/json: {}
   /api/v1/connectedAccounts/{connectedAccountId}:
     delete:
+      '200':
+        application/json: {}
+  /api/v1/connectedAccounts/{connectedAccountId}/data:
+    patch:
       '200':
         application/json: {}
   /api/v1/event_logs/get/events:
@@ -108,6 +116,8 @@ operationIds:
     post: App_syncCustomRepo
   /api/v1/apps/{appName}:
     get: App_getDetails
+  /api/v1/clear-cache:
+    post: Admin_clearCache
   /api/v1/cli/generate-cli-session:
     get: Cli_exchangeCode
   /api/v1/cli/get-cli-code:
@@ -142,6 +152,8 @@ operationIds:
   /api/v1/connectedAccounts/{connectedAccountId}:
     delete: Connections_delete
     get: Connections_get
+  /api/v1/connectedAccounts/{connectedAccountId}/data:
+    patch: Connections_updateConnectionData
   /api/v1/connectedAccounts/{connectedAccountId}/disable:
     post: Connections_disable
   /api/v1/connectedAccounts/{connectedAccountId}/enable:
@@ -300,6 +312,10 @@ responseSchemaNames:
     get:
       '200':
         application/json: AppsGetOpenApiSpecStatusResponse
+  /api/v1/clear-cache:
+    post:
+      '200':
+        application/json: AdminClearCacheResponse
   /api/v1/cli/js-sentry-dns:
     get:
       '200':
@@ -308,6 +324,10 @@ responseSchemaNames:
     delete:
       '200':
         application/json: ConnectionsDeleteResponse
+  /api/v1/connectedAccounts/{connectedAccountId}/data:
+    patch:
+      '200':
+        application/json: ConnectionsUpdateConnectionDataResponse
   /api/v1/event_logs/get/events:
     get:
       '200':
@@ -368,6 +388,8 @@ responseSchemaNames:
         application/json: TriggerControllerV2GetTriggerInfoResponse
         text/html; charset=utf-8: TriggerControllerV2GetTriggerInfoResponse
 securityParameters:
+  X-ADMIN-TOKEN:
+    header: false
   actions:
     query: false
   additionalFields:
@@ -408,11 +430,15 @@ securityParameters:
     query: false
   key:
     query: false
+  labels:
+    query: false
   lastTimePeriod:
     query: false
   limit:
     query: false
   logsType:
+    query: false
+  offset:
     query: false
   page:
     query: false
@@ -423,6 +449,8 @@ securityParameters:
   redirectUri:
     query: false
   search:
+    query: false
+  sessionId:
     query: false
   showActiveOnly:
     query: false

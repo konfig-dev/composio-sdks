@@ -21,20 +21,22 @@ module Composio
     # Create a new connector
     #
     # @param name [String] Name of the connector
-    # @param app_id [String] Application ID
     # @param auth_scheme [String] Authentication scheme
     # @param auth_config [AuthConfigDTO] 
     # @param use_composio_auth [CreateConnectorPayloadDTOUseComposioAuth] 
+    # @param app_id [String] Composio App UUID to be used for authentication. Either specify this or appName
+    # @param app_name [String] Name of the app to be used for authentication. Either specify this or appId
     # @param force_new_integration [Boolean] Flag to force new integration
     # @param body [CreateConnectorPayloadDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def create_integration(name:, app_id:, auth_scheme: SENTINEL, auth_config: SENTINEL, use_composio_auth: SENTINEL, force_new_integration: SENTINEL, extra: {})
+    def create_integration(name:, auth_scheme: SENTINEL, auth_config: SENTINEL, use_composio_auth: SENTINEL, app_id: SENTINEL, app_name: SENTINEL, force_new_integration: SENTINEL, extra: {})
       _body = {}
       _body[:name] = name if name != SENTINEL
       _body[:authScheme] = auth_scheme if auth_scheme != SENTINEL
       _body[:authConfig] = auth_config if auth_config != SENTINEL
       _body[:useComposioAuth] = use_composio_auth if use_composio_auth != SENTINEL
       _body[:appId] = app_id if app_id != SENTINEL
+      _body[:appName] = app_name if app_name != SENTINEL
       _body[:forceNewIntegration] = force_new_integration if force_new_integration != SENTINEL
       extra[:create_connector_payload_dto] = _body if !_body.empty?
       api_response = create_integration_with_http_info_impl(extra)
@@ -46,20 +48,22 @@ module Composio
     # Create a new connector
     #
     # @param name [String] Name of the connector
-    # @param app_id [String] Application ID
     # @param auth_scheme [String] Authentication scheme
     # @param auth_config [AuthConfigDTO] 
     # @param use_composio_auth [CreateConnectorPayloadDTOUseComposioAuth] 
+    # @param app_id [String] Composio App UUID to be used for authentication. Either specify this or appName
+    # @param app_name [String] Name of the app to be used for authentication. Either specify this or appId
     # @param force_new_integration [Boolean] Flag to force new integration
     # @param body [CreateConnectorPayloadDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def create_integration_with_http_info(name:, app_id:, auth_scheme: SENTINEL, auth_config: SENTINEL, use_composio_auth: SENTINEL, force_new_integration: SENTINEL, extra: {})
+    def create_integration_with_http_info(name:, auth_scheme: SENTINEL, auth_config: SENTINEL, use_composio_auth: SENTINEL, app_id: SENTINEL, app_name: SENTINEL, force_new_integration: SENTINEL, extra: {})
       _body = {}
       _body[:name] = name if name != SENTINEL
       _body[:authScheme] = auth_scheme if auth_scheme != SENTINEL
       _body[:authConfig] = auth_config if auth_config != SENTINEL
       _body[:useComposioAuth] = use_composio_auth if use_composio_auth != SENTINEL
       _body[:appId] = app_id if app_id != SENTINEL
+      _body[:appName] = app_name if app_name != SENTINEL
       _body[:forceNewIntegration] = force_new_integration if force_new_integration != SENTINEL
       extra[:create_connector_payload_dto] = _body if !_body.empty?
       create_integration_with_http_info_impl(extra)

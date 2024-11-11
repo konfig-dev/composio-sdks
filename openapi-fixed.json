@@ -24,19 +24,22 @@
       "name": "Apps"
     },
     {
-      "name": "Integrations"
-    },
-    {
       "name": "Actions"
     },
     {
-      "name": "Event Logs"
-    },
-    {
-      "name": "Payment"
+      "name": "Integrations"
     },
     {
       "name": "API-Keys"
+    },
+    {
+      "name": "CLI"
+    },
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Admin"
     },
     {
       "name": "Logs"
@@ -45,10 +48,7 @@
       "name": "Analytics"
     },
     {
-      "name": "Auth"
-    },
-    {
-      "name": "Admin"
+      "name": "Event Logs"
     }
   ],
   "paths": {
@@ -77,6 +77,28 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/IdentifyClientResDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/client/auth/client_info": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Get user info",
+        "operationId": "ClientAuth_getUserInfo",
+        "description": "Get client info",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientInfoResDTO"
                 }
               }
             }
@@ -196,7 +218,7 @@
             "in": "query",
             "name": "includeLocal",
             "schema": {
-              "description": "Whether to include local tools or not",
+              "description": "Enter 'true' or 'false'",
               "type": "string"
             }
           }
@@ -609,6 +631,16 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "in": "query",
+            "name": "labels",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
           }
         ],
         "responses": {
@@ -648,6 +680,50 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/InitiateConnectionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/connectedAccounts/{connectedAccountId}/data": {
+      "patch": {
+        "tags": [
+          "Connections"
+        ],
+        "summary": "Update connection data",
+        "operationId": "Connections_updateConnectionData",
+        "description": "Update connection data",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "connectedAccountId",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "UpdateConnectionLabelsPayloadDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateConnectionLabelsPayloadDto"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionsUpdateConnectionDataResponse"
                 }
               }
             }
@@ -847,6 +923,14 @@
             "name": "triggerIds",
             "schema": {
               "description": "IDs of the triggers",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "integrationIds",
+            "schema": {
+              "description": "Integration ID",
               "type": "string"
             }
           },
@@ -1248,6 +1332,252 @@
         }
       }
     },
+    "/api/v1/clear-cache": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Clear cache",
+        "operationId": "Admin_clearCache",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-ADMIN-TOKEN",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminClearCacheResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cli/generate-cli-session": {
+      "get": {
+        "tags": [
+          "CLI"
+        ],
+        "summary": "Handle cli code exchange",
+        "operationId": "Cli_exchangeCode",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateCLISessionResDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cli/get-cli-code": {
+      "get": {
+        "tags": [
+          "CLI"
+        ],
+        "summary": "Get cli code",
+        "operationId": "Cli_getCode",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "description": "Unique key for CLI session",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "code",
+            "required": false,
+            "schema": {
+              "description": "Code for CLI verification",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCLISessionResDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cli/verify-cli-code": {
+      "get": {
+        "tags": [
+          "CLI"
+        ],
+        "summary": "Handle cli code verification",
+        "operationId": "Cli_verifyCode",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "description": "Unique key for CLI session",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "code",
+            "required": false,
+            "schema": {
+              "description": "Code for CLI verification",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyCLICodeResDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/actions": {
+      "get": {
+        "tags": [
+          "Actions"
+        ],
+        "summary": "List actions",
+        "operationId": "ActionsControllerV2_list",
+        "description": "Retrieve a list of all actions based on query parameters.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "appNames",
+            "schema": {
+              "description": "Names of the apps",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "useCase",
+            "schema": {
+              "description": "Use case",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "showEnabledOnly",
+            "schema": {
+              "description": "Show enabled only",
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "description": "Limit",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "apps",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "actions",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "tags",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "usecaseLimit",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filterImportantActions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "showAll",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionsListResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/actions/list/all": {
       "get": {
         "tags": [
@@ -1329,6 +1659,20 @@
             "name": "showAll",
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number"
             }
           }
         ],
@@ -1603,262 +1947,6 @@
         }
       }
     },
-    "/api/v1/event_logs/get/webhook": {
-      "get": {
-        "tags": [
-          "Event Logs"
-        ],
-        "summary": "Get webhook",
-        "operationId": "EventLogs_getWebhook",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventLogsGetWebhookResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/event_logs/get/events": {
-      "get": {
-        "tags": [
-          "Event Logs"
-        ],
-        "summary": "Get events",
-        "operationId": "EventLogs_getEvents",
-        "description": "Fetch events from database",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "startTime",
-            "required": true,
-            "schema": {
-              "description": "Start time of the event in ISO 8601 format",
-              "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+Z?",
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "endTime",
-            "required": true,
-            "schema": {
-              "description": "End time of the event in ISO 8601 format",
-              "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+Z?",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventLogsGetEventsResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/event_logs/webhook/secret/get": {
-      "get": {
-        "tags": [
-          "Event Logs"
-        ],
-        "summary": "Get webhook secret",
-        "operationId": "EventLogs_getWebhookSecret",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventLogsGetWebhookSecretResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/event_logs/webhook/secret/refresh": {
-      "post": {
-        "tags": [
-          "Event Logs"
-        ],
-        "summary": "Refresh webhook",
-        "operationId": "EventLogs_refreshWebhookSecret",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventLogsRefreshWebhookSecretResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/payment/create-checkout-session": {
-      "post": {
-        "tags": [
-          "Payment"
-        ],
-        "summary": "Create checkout session",
-        "operationId": "Payment_createCheckoutSession",
-        "requestBody": {
-          "description": "CreateCheckoutSessionReqDto",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateCheckoutSessionReqDto"
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentCreateCheckoutSessionResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/payment/checkout-session/{sessionId}/status": {
-      "get": {
-        "tags": [
-          "Payment"
-        ],
-        "summary": "Get checkout session status",
-        "operationId": "Payment_getCheckoutSessionStatus",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "sessionId",
-            "required": true,
-            "schema": {
-              "pattern": "[^\\/#\\?]+?",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentGetCheckoutSessionStatusResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/payment/invoices": {
-      "get": {
-        "tags": [
-          "Payment"
-        ],
-        "summary": "Get invoices",
-        "operationId": "Payment_getInvoices",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentGetInvoicesResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/payment/invoices/{invoiceId}": {
-      "get": {
-        "tags": [
-          "Payment"
-        ],
-        "summary": "Get invoice",
-        "operationId": "Payment_getInvoice",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "invoiceId",
-            "required": true,
-            "schema": {
-              "pattern": "[^\\/#\\?]+?",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentGetInvoiceResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/payment/webhook": {
-      "post": {
-        "tags": [
-          "Payment"
-        ],
-        "summary": "Handle stripe webhook",
-        "operationId": "Payment_handleStripeWebhook",
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PaymentHandleStripeWebhookRequest"
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentHandleStripeWebhookResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v1/logs": {
       "get": {
         "tags": [
@@ -1957,6 +2045,14 @@
             "name": "logsType",
             "schema": {
               "description": "Type of the log",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sessionId",
+            "schema": {
+              "description": "Session ID of the log",
               "type": "string"
             }
           }
@@ -2310,6 +2406,117 @@
         "required": [
           "status",
           "count"
+        ]
+      },
+      "ClientDTO": {
+        "description": "Client information",
+        "properties": {
+          "autoId": {
+            "description": "Auto-generated ID of the client",
+            "type": "number"
+          },
+          "id": {
+            "description": "Unique ID of the client",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the client",
+            "type": "string"
+          },
+          "email": {
+            "description": "Email of the client",
+            "type": "string"
+          },
+          "createdAt": {
+            "description": "Creation timestamp",
+            "oneOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "format": "date-time",
+                "type": "string"
+              }
+            ]
+          },
+          "updatedAt": {
+            "description": "Last update timestamp",
+            "oneOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "format": "date-time",
+                "type": "string"
+              }
+            ]
+          },
+          "apiKey": {
+            "description": "API key for the client",
+            "type": "string"
+          },
+          "webhookURL": {
+            "description": "Webhook URL for the client",
+            "type": "string"
+          },
+          "eventWebhookURL": {
+            "description": "Event webhook URL for the client",
+            "type": "string"
+          },
+          "webhookSecret": {
+            "description": "Secret for webhook authentication",
+            "type": "string"
+          },
+          "triggersEnabled": {
+            "description": "Whether triggers are enabled for the client",
+            "type": "boolean"
+          },
+          "lastSubscribedAt": {
+            "description": "Last subscription timestamp",
+            "oneOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "format": "date-time",
+                "type": "string"
+              }
+            ]
+          },
+          "plan": {
+            "description": "Client's subscription plan",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "autoId",
+          "id",
+          "name",
+          "email",
+          "createdAt",
+          "updatedAt",
+          "triggersEnabled",
+          "plan"
+        ]
+      },
+      "ClientInfoResDTO": {
+        "properties": {
+          "client": {
+            "$ref": "#/components/schemas/ClientDTO"
+          },
+          "apiKey": {
+            "description": "API key of the client",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "client",
+          "apiKey"
         ]
       },
       "InviteMemberReqDTO": {
@@ -2743,7 +2950,7 @@
             "type": "string"
           },
           "includeLocal": {
-            "description": "Whether to include local tools or not",
+            "description": "Enter 'true' or 'false'",
             "type": "string"
           }
         },
@@ -2828,6 +3035,53 @@
           "totalPages"
         ]
       },
+      "ExpectedInputFieldsDTO": {
+        "properties": {
+          "description": {
+            "description": "Description of the field",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the field",
+            "type": "string"
+          },
+          "type": {
+            "description": "Type of the field",
+            "type": "string"
+          },
+          "display_name": {
+            "description": "Display name of the field",
+            "type": "string"
+          },
+          "default": {
+            "description": "Default value of the field",
+            "type": "object"
+          },
+          "required": {
+            "description": "Whether the field is required",
+            "type": "boolean"
+          },
+          "expected_from_customer": {
+            "description": "Whether the field is expected from customer",
+            "type": "boolean"
+          },
+          "is_secret": {
+            "description": "Whether the field is a secret",
+            "type": "boolean"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "type",
+          "description",
+          "display_name",
+          "default",
+          "required",
+          "expected_from_customer",
+          "is_secret"
+        ]
+      },
       "GetConnectorInfoResDTO": {
         "properties": {
           "id": {
@@ -2875,7 +3129,7 @@
           "expectedInputFields": {
             "description": "List of required fields expected from the customer",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/ExpectedInputFieldsDTO"
             },
             "type": "array"
           },
@@ -2944,7 +3198,11 @@
             ]
           },
           "appId": {
-            "description": "Application ID",
+            "description": "Composio App UUID to be used for authentication. Either specify this or appName",
+            "type": "string"
+          },
+          "appName": {
+            "description": "Name of the app to be used for authentication. Either specify this or appId",
             "type": "string"
           },
           "forceNewIntegration": {
@@ -2954,8 +3212,7 @@
         },
         "type": "object",
         "required": [
-          "name",
-          "appId"
+          "name"
         ]
       },
       "PatchConnectorReqDTO": {
@@ -3189,6 +3446,12 @@
               "$ref": "#/components/schemas/MemberInfoResDTO"
             },
             "type": "object"
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "type": "object",
@@ -3240,6 +3503,12 @@
           },
           "appSchema": {
             "type": "object"
+          },
+          "customDescription": {
+            "type": "string"
+          },
+          "systemPrompt": {
+            "type": "string"
           }
         },
         "type": "object",
@@ -3362,6 +3631,12 @@
               "$ref": "#/components/schemas/MemberInfoResDTO"
             },
             "type": "object"
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "type": "object",
@@ -3638,6 +3913,12 @@
           },
           "showDisabled": {
             "type": "boolean"
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "type": "object"
@@ -3645,8 +3926,7 @@
       "InitiateConnectionPayloadDto": {
         "properties": {
           "data": {
-            "type": "string",
-            "minLength": 1
+            "type": "object"
           },
           "integrationId": {
             "minLength": 1,
@@ -3660,11 +3940,32 @@
           },
           "entityId": {
             "type": "string"
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "type": "object",
         "required": [
+          "data",
           "integrationId"
+        ]
+      },
+      "UpdateConnectionLabelsPayloadDto": {
+        "properties": {
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object",
+        "required": [
+          "labels"
         ]
       },
       "InitiateConnectionResponse": {
@@ -3707,6 +4008,17 @@
           "parameters"
         ]
       },
+      "SessionInfoDTO": {
+        "properties": {
+          "sessionId": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
       "ActionExecutionReqDTO": {
         "properties": {
           "connectedAccountId": {
@@ -3724,10 +4036,19 @@
           "input": {
             "type": "object"
           },
+          "sessionInfo": {
+            "$ref": "#/components/schemas/SessionInfoDTO"
+          },
           "authConfig": {
             "$ref": "#/components/schemas/CustomAuthDTO"
           },
           "text": {
+            "type": "string"
+          },
+          "customDescription": {
+            "type": "string"
+          },
+          "systemPrompt": {
             "type": "string"
           }
         },
@@ -3961,6 +4282,12 @@
           },
           "showAll": {
             "type": "boolean"
+          },
+          "page": {
+            "type": "number"
+          },
+          "offset": {
+            "type": "number"
           }
         },
         "type": "object"
@@ -4010,6 +4337,10 @@
           },
           "triggerIds": {
             "description": "IDs of the triggers",
+            "type": "string"
+          },
+          "integrationIds": {
+            "description": "Integration ID",
             "type": "string"
           },
           "showEnabledOnly": {
@@ -4504,6 +4835,10 @@
           "triggerId": {
             "description": "Optional trigger ID",
             "type": "string"
+          },
+          "isNew": {
+            "description": "Is new trigger. If true, the trigger was created just now or else it was already existing",
+            "type": "boolean"
           }
         },
         "type": "object",
@@ -5085,6 +5420,10 @@
           "logsType": {
             "description": "Type of the log",
             "type": "string"
+          },
+          "sessionId": {
+            "description": "Session ID of the log",
+            "type": "string"
           }
         },
         "type": "object"
@@ -5093,6 +5432,14 @@
         "properties": {
           "connectionId": {
             "description": "Connection ID of the log",
+            "type": "string"
+          },
+          "sessionId": {
+            "description": "Session ID of the log",
+            "type": "string"
+          },
+          "logsType": {
+            "description": "Type of the log",
             "type": "string"
           },
           "entityId": {
@@ -5482,9 +5829,19 @@
           "plan"
         ]
       },
-      "AppsSendEmailToClientRequest": {
+      "SDKErrorResDTO": {
+        "properties": {
+          "status": {
+            "description": "The status of the SDK error",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ]
       },
-      "PaymentHandleStripeWebhookRequest": {
+      "AppsSendEmailToClientRequest": {
       },
       "ApiKeysListResponse": {
         "items": {
@@ -5519,6 +5876,13 @@
         "example": {
         }
       },
+      "ConnectionsUpdateConnectionDataResponse": {
+        "type": "object",
+        "properties": {
+        },
+        "example": {
+        }
+      },
       "TriggersListResponse": {
         "items": {
           "$ref": "#/components/schemas/TriggerResDTO"
@@ -5526,6 +5890,13 @@
         "type": "array"
       },
       "AdminGetSentryDnsResponse": {
+        "type": "object",
+        "properties": {
+        },
+        "example": {
+        }
+      },
+      "AdminClearCacheResponse": {
         "type": "object",
         "properties": {
         },
@@ -5546,69 +5917,6 @@
         "type": "array"
       },
       "EventLogsUpdateWebhookResponse": {
-        "type": "object",
-        "properties": {
-        },
-        "example": {
-        }
-      },
-      "EventLogsGetWebhookResponse": {
-        "type": "object",
-        "properties": {
-        },
-        "example": {
-        }
-      },
-      "EventLogsGetEventsResponse": {
-        "type": "object",
-        "properties": {
-        },
-        "example": {
-        }
-      },
-      "EventLogsGetWebhookSecretResponse": {
-        "type": "object",
-        "properties": {
-        },
-        "example": {
-        }
-      },
-      "EventLogsRefreshWebhookSecretResponse": {
-        "type": "object",
-        "properties": {
-        },
-        "example": {
-        }
-      },
-      "PaymentCreateCheckoutSessionResponse": {
-        "type": "object",
-        "properties": {
-        },
-        "example": {
-        }
-      },
-      "PaymentGetCheckoutSessionStatusResponse": {
-        "type": "object",
-        "properties": {
-        },
-        "example": {
-        }
-      },
-      "PaymentGetInvoicesResponse": {
-        "type": "object",
-        "properties": {
-        },
-        "example": {
-        }
-      },
-      "PaymentGetInvoiceResponse": {
-        "type": "object",
-        "properties": {
-        },
-        "example": {
-        }
-      },
-      "PaymentHandleStripeWebhookResponse": {
         "type": "object",
         "properties": {
         },

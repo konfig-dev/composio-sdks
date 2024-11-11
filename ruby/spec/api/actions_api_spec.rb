@@ -91,8 +91,33 @@ describe 'ActionsApi' do
   # @option opts [Float] :usecase_limit 
   # @option opts [Boolean] :filter_important_actions 
   # @option opts [Boolean] :show_all 
+  # @option opts [Float] :page 
+  # @option opts [Float] :offset 
   # @return [ActionsListResponseDTO]
   describe 'get_all_actions_based_on_query test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list
+  # List actions
+  # Retrieve a list of all actions based on query parameters.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :app_names 
+  # @option opts [String] :use_case 
+  # @option opts [Boolean] :show_enabled_only 
+  # @option opts [Float] :limit 
+  # @option opts [String] :apps 
+  # @option opts [String] :actions 
+  # @option opts [String] :tags 
+  # @option opts [Float] :usecase_limit 
+  # @option opts [Boolean] :filter_important_actions 
+  # @option opts [Boolean] :show_all 
+  # @option opts [Float] :page 
+  # @option opts [Float] :offset 
+  # @return [ActionsListResponseDTO]
+  describe 'list test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

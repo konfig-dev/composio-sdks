@@ -45,6 +45,8 @@ module Composio
 
     attr_accessor :member
 
+    attr_accessor :labels
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -64,7 +66,8 @@ module Composio
         :'app_name' => :'appName',
         :'logo' => :'logo',
         :'auth_config' => :'authConfig',
-        :'member' => :'member'
+        :'member' => :'member',
+        :'labels' => :'labels'
       }
     end
 
@@ -92,7 +95,8 @@ module Composio
         :'app_name' => :'String',
         :'logo' => :'String',
         :'auth_config' => :'Object',
-        :'member' => :'Array<MemberInfoResDTO>'
+        :'member' => :'Array<MemberInfoResDTO>',
+        :'labels' => :'Array<String>'
       }
     end
 
@@ -186,6 +190,12 @@ module Composio
           self.member = value
         end
       end
+
+      if attributes.key?(:'labels')
+        if (value = attributes[:'labels']).is_a?(Array)
+          self.labels = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -272,7 +282,8 @@ module Composio
           app_name == o.app_name &&
           logo == o.logo &&
           auth_config == o.auth_config &&
-          member == o.member
+          member == o.member &&
+          labels == o.labels
     end
 
     # @see the `==` method
@@ -284,7 +295,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [integration_id, connection_params, is_disabled, invocation_count, id, client_unique_user_id, status, data, deleted, enabled, created_at, updated_at, app_unique_id, app_name, logo, auth_config, member].hash
+      [integration_id, connection_params, is_disabled, invocation_count, id, client_unique_user_id, status, data, deleted, enabled, created_at, updated_at, app_unique_id, app_name, logo, auth_config, member, labels].hash
     end
 
     # Builds the object from hash

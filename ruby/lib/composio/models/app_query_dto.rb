@@ -17,7 +17,7 @@ module Composio
     # Additional fields to include in the response
     attr_accessor :additional_fields
 
-    # Whether to include local tools or not
+    # Enter 'true' or 'false'
     attr_accessor :include_local
 
     # Attribute mapping from ruby-style variable name to JSON key.

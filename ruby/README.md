@@ -27,6 +27,8 @@ Composio SDK: Equip your agent with high-quality tools and build your real-world
   * [`composio.actions.get_action_by_id`](#composioactionsget_action_by_id)
   * [`composio.actions.get_action_inputs`](#composioactionsget_action_inputs)
   * [`composio.actions.get_all_actions_based_on_query`](#composioactionsget_all_actions_based_on_query)
+  * [`composio.actions.list`](#composioactionslist)
+  * [`composio.admin.clear_cache`](#composioadminclear_cache)
   * [`composio.admin.get_sentry_dns`](#composioadminget_sentry_dns)
   * [`composio.analytics.get`](#composioanalyticsget)
   * [`composio.analytics.get_top_entities`](#composioanalyticsget_top_entities)
@@ -36,7 +38,11 @@ Composio SDK: Equip your agent with high-quality tools and build your real-world
   * [`composio.apps.list`](#composioappslist)
   * [`composio.apps.list_open_api_specs`](#composioappslist_open_api_specs)
   * [`composio.apps.send_email_to_client`](#composioappssend_email_to_client)
+  * [`composio.auth.get_user_info`](#composioauthget_user_info)
   * [`composio.auth.identify_client_operation`](#composioauthidentify_client_operation)
+  * [`composio.cli.exchange_code`](#composiocliexchange_code)
+  * [`composio.cli.get_code`](#composiocliget_code)
+  * [`composio.cli.verify_code`](#composiocliverify_code)
   * [`composio.connections.delete`](#composioconnectionsdelete)
   * [`composio.connections.disable`](#composioconnectionsdisable)
   * [`composio.connections.enable`](#composioconnectionsenable)
@@ -44,10 +50,7 @@ Composio SDK: Equip your agent with high-quality tools and build your real-world
   * [`composio.connections.get_info`](#composioconnectionsget_info)
   * [`composio.connections.initiate`](#composioconnectionsinitiate)
   * [`composio.connections.list`](#composioconnectionslist)
-  * [`composio.event_logs.get_events`](#composioevent_logsget_events)
-  * [`composio.event_logs.get_webhook`](#composioevent_logsget_webhook)
-  * [`composio.event_logs.get_webhook_secret`](#composioevent_logsget_webhook_secret)
-  * [`composio.event_logs.refresh_webhook_secret`](#composioevent_logsrefresh_webhook_secret)
+  * [`composio.connections.update_connection_data`](#composioconnectionsupdate_connection_data)
   * [`composio.event_logs.update_webhook`](#composioevent_logsupdate_webhook)
   * [`composio.integrations.create_integration`](#composiointegrationscreate_integration)
   * [`composio.integrations.delete_connector`](#composiointegrationsdelete_connector)
@@ -56,11 +59,6 @@ Composio SDK: Equip your agent with high-quality tools and build your real-world
   * [`composio.integrations.update_integration`](#composiointegrationsupdate_integration)
   * [`composio.logs.add_new_logs`](#composiologsadd_new_logs)
   * [`composio.logs.list`](#composiologslist)
-  * [`composio.payment.create_checkout_session`](#composiopaymentcreate_checkout_session)
-  * [`composio.payment.get_checkout_session_status`](#composiopaymentget_checkout_session_status)
-  * [`composio.payment.get_invoice`](#composiopaymentget_invoice)
-  * [`composio.payment.get_invoices`](#composiopaymentget_invoices)
-  * [`composio.payment.handle_stripe_webhook`](#composiopaymenthandle_stripe_webhook)
   * [`composio.triggers.delete_trigger_instance`](#composiotriggersdelete_trigger_instance)
   * [`composio.triggers.disable_trigger_instance`](#composiotriggersdisable_trigger_instance)
   * [`composio.triggers.enable`](#composiotriggersenable)
@@ -210,6 +208,8 @@ result = composio.actions.execute(
   entity_id: "string_example",
   endpoint: "string_example",
   input: {},
+  session_info: {
+    },
   auth_config: {
         "parameters" => [
             {
@@ -220,6 +220,8 @@ result = composio.actions.execute(
         ],
     },
   text: "string_example",
+  custom_description: "string_example",
+  system_prompt: "string_example",
 )
 p result
 ```
@@ -232,8 +234,11 @@ p result
 ##### entityId: `String`<a id="entityid-string"></a>
 ##### endpoint: `String`<a id="endpoint-string"></a>
 ##### input: `Object`<a id="input-object"></a>
+##### sessionInfo: [`SessionInfoDTO`](./lib/composio/models/session_info_dto.rb)<a id="sessioninfo-sessioninfodtolibcomposiomodelssession_info_dtorb"></a>
 ##### authConfig: [`CustomAuthDTO`](./lib/composio/models/custom_auth_dto.rb)<a id="authconfig-customauthdtolibcomposiomodelscustom_auth_dtorb"></a>
 ##### text: `String`<a id="text-string"></a>
+##### customDescription: `String`<a id="customdescription-string"></a>
+##### systemPrompt: `String`<a id="systemprompt-string"></a>
 #### 🔄 Return<a id="🔄-return"></a>
 
 [ActionExecutionResDto](./lib/composio/models/action_execution_res_dto.rb)
@@ -352,6 +357,8 @@ result = composio.actions.get_all_actions_based_on_query(
   usecase_limit: 3.14,
   filter_important_actions: true,
   show_all: true,
+  page: 3.14,
+  offset: 3.14,
 )
 p result
 ```
@@ -368,6 +375,8 @@ p result
 ##### usecase_limit: `Float`<a id="usecase_limit-float"></a>
 ##### filter_important_actions: `Boolean`<a id="filter_important_actions-boolean"></a>
 ##### show_all: `Boolean`<a id="show_all-boolean"></a>
+##### page: `Float`<a id="page-float"></a>
+##### offset: `Float`<a id="offset-float"></a>
 #### 🔄 Return<a id="🔄-return"></a>
 
 [ActionsListResponseDTO](./lib/composio/models/actions_list_response_dto.rb)
@@ -375,6 +384,82 @@ p result
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v2/actions/list/all` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `composio.actions.list`<a id="composioactionslist"></a>
+
+Retrieve a list of all actions based on query parameters.
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```ruby
+result = composio.actions.list(
+  app_names: "string_example",
+  use_case: "string_example",
+  show_enabled_only: true,
+  limit: 3.14,
+  apps: "string_example",
+  actions: "string_example",
+  tags: "string_example",
+  usecase_limit: 3.14,
+  filter_important_actions: true,
+  show_all: true,
+  page: 3.14,
+  offset: 3.14,
+)
+p result
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### app_names: `String`<a id="app_names-string"></a>
+##### use_case: `String`<a id="use_case-string"></a>
+##### show_enabled_only: `Boolean`<a id="show_enabled_only-boolean"></a>
+##### limit: `Float`<a id="limit-float"></a>
+##### apps: `String`<a id="apps-string"></a>
+##### actions: `String`<a id="actions-string"></a>
+##### tags: `String`<a id="tags-string"></a>
+##### usecase_limit: `Float`<a id="usecase_limit-float"></a>
+##### filter_important_actions: `Boolean`<a id="filter_important_actions-boolean"></a>
+##### show_all: `Boolean`<a id="show_all-boolean"></a>
+##### page: `Float`<a id="page-float"></a>
+##### offset: `Float`<a id="offset-float"></a>
+#### 🔄 Return<a id="🔄-return"></a>
+
+[ActionsListResponseDTO](./lib/composio/models/actions_list_response_dto.rb)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/api/v2/actions` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `composio.admin.clear_cache`<a id="composioadminclear_cache"></a>
+
+Clear cache
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```ruby
+result = composio.admin.clear_cache(
+  x_admin_token: "string_example",
+)
+p result
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### x_admin_token: `String`<a id="x_admin_token-string"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/api/v1/clear-cache` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -621,6 +706,30 @@ p result
 ---
 
 
+### `composio.auth.get_user_info`<a id="composioauthget_user_info"></a>
+
+Get client info
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```ruby
+result = composio.auth.get_user_info
+p result
+```
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[ClientInfoResDTO](./lib/composio/models/client_info_res_dto.rb)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/api/v1/client/auth/client_info` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
 ### `composio.auth.identify_client_operation`<a id="composioauthidentify_client_operation"></a>
 
 Identify client
@@ -650,6 +759,92 @@ The framework used by the client
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v1/client/auth/identify` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `composio.cli.exchange_code`<a id="composiocliexchange_code"></a>
+
+Handle cli code exchange
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```ruby
+result = composio.cli.exchange_code
+p result
+```
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[GenerateCLISessionResDTO](./lib/composio/models/generate_cli_session_res_dto.rb)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/api/v1/cli/generate-cli-session` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `composio.cli.get_code`<a id="composiocliget_code"></a>
+
+Get cli code
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```ruby
+result = composio.cli.get_code(
+  key: "key_example",
+  code: "string_example",
+)
+p result
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### key: `String`<a id="key-string"></a>
+##### code: `String`<a id="code-string"></a>
+#### 🔄 Return<a id="🔄-return"></a>
+
+[GetCLISessionResDTO](./lib/composio/models/get_cli_session_res_dto.rb)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/api/v1/cli/get-cli-code` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `composio.cli.verify_code`<a id="composiocliverify_code"></a>
+
+Handle cli code verification
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```ruby
+result = composio.cli.verify_code(
+  key: "key_example",
+  code: "string_example",
+)
+p result
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### key: `String`<a id="key-string"></a>
+##### code: `String`<a id="code-string"></a>
+#### 🔄 Return<a id="🔄-return"></a>
+
+[VerifyCLICodeResDTO](./lib/composio/models/verify_cli_code_res_dto.rb)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/api/v1/cli/verify-cli-code` `GET`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -809,22 +1004,26 @@ Initiate connection
 
 ```ruby
 result = composio.connections.initiate(
+  data: {},
   integration_id: "a",
-  data: "a",
   redirect_uri: "string_example",
   user_uuid: "string_example",
   entity_id: "string_example",
+  labels: [
+        "string_example"
+    ],
 )
 p result
 ```
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
+##### data: `Object`<a id="data-object"></a>
 ##### integrationId: `String`<a id="integrationid-string"></a>
-##### data: `String`<a id="data-string"></a>
 ##### redirectUri: `String`<a id="redirecturi-string"></a>
 ##### userUuid: `String`<a id="useruuid-string"></a>
 ##### entityId: `String`<a id="entityid-string"></a>
+##### labels: Array<`String`><a id="labels-array"></a>
 #### 🔄 Return<a id="🔄-return"></a>
 
 [InitiateConnectionResponse](./lib/composio/models/initiate_connection_response.rb)
@@ -855,6 +1054,9 @@ result = composio.connections.list(
   show_active_only: true,
   status: "string_example",
   show_disabled: true,
+  labels: [
+        "string_example"
+    ],
 )
 p result
 ```
@@ -870,6 +1072,7 @@ p result
 ##### show_active_only: `Boolean`<a id="show_active_only-boolean"></a>
 ##### status: `String`<a id="status-string"></a>
 ##### show_disabled: `Boolean`<a id="show_disabled-boolean"></a>
+##### labels: Array<`String`><a id="labels-array"></a>
 #### 🔄 Return<a id="🔄-return"></a>
 
 [GetConnectionsResponseDto](./lib/composio/models/get_connections_response_dto.rb)
@@ -883,87 +1086,29 @@ p result
 ---
 
 
-### `composio.event_logs.get_events`<a id="composioevent_logsget_events"></a>
+### `composio.connections.update_connection_data`<a id="composioconnectionsupdate_connection_data"></a>
 
-Fetch events from database
+Update connection data
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```ruby
-result = composio.event_logs.get_events(
-  start_time: "0480-02-18T20:01:32F21798096225500850762068629339333975650685",
-  end_time: "0480-02-18T20:01:32F21798096225500850762068629339333975650685",
+result = composio.connections.update_connection_data(
+  labels: [
+        "string_example"
+    ],
+  connected_account_id: "'+j>6",
 )
 p result
 ```
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### start_time: `String`<a id="start_time-string"></a>
-##### end_time: `String`<a id="end_time-string"></a>
+##### labels: Array<`String`><a id="labels-array"></a>
+##### connected_account_id: `String`<a id="connected_account_id-string"></a>
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
-`/api/v1/event_logs/get/events` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.event_logs.get_webhook`<a id="composioevent_logsget_webhook"></a>
-
-Get webhook
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-result = composio.event_logs.get_webhook
-p result
-```
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/event_logs/get/webhook` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.event_logs.get_webhook_secret`<a id="composioevent_logsget_webhook_secret"></a>
-
-Get webhook secret
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-result = composio.event_logs.get_webhook_secret
-p result
-```
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/event_logs/webhook/secret/get` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.event_logs.refresh_webhook_secret`<a id="composioevent_logsrefresh_webhook_secret"></a>
-
-Refresh webhook
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-result = composio.event_logs.refresh_webhook_secret
-p result
-```
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/event_logs/webhook/secret/refresh` `POST`
+`/api/v1/connectedAccounts/{connectedAccountId}/data` `PATCH`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -1006,11 +1151,12 @@ Create a new connector
 ```ruby
 result = composio.integrations.create_integration(
   name: "string_example",
-  app_id: "string_example",
   auth_scheme: "string_example",
   auth_config: {
     },
   use_composio_auth: true,
+  app_id: "string_example",
+  app_name: "string_example",
   force_new_integration: true,
 )
 p result
@@ -1021,14 +1167,17 @@ p result
 ##### name: `String`<a id="name-string"></a>
 Name of the connector
 
-##### appId: `String`<a id="appid-string"></a>
-Application ID
-
 ##### authScheme: `String`<a id="authscheme-string"></a>
 Authentication scheme
 
 ##### authConfig: [`AuthConfigDTO`](./lib/composio/models/auth_config_dto.rb)<a id="authconfig-authconfigdtolibcomposiomodelsauth_config_dtorb"></a>
 ##### useComposioAuth: [`CreateConnectorPayloadDTOUseComposioAuth`](./lib/composio/models/create_connector_payload_dto_use_composio_auth.rb)<a id="usecomposioauth-createconnectorpayloaddtousecomposioauthlibcomposiomodelscreate_connector_payload_dto_use_composio_authrb"></a>
+##### appId: `String`<a id="appid-string"></a>
+Composio App UUID to be used for authentication. Either specify this or appName
+
+##### appName: `String`<a id="appname-string"></a>
+Name of the app to be used for authentication. Either specify this or appId
+
 ##### forceNewIntegration: `Boolean`<a id="forcenewintegration-boolean"></a>
 Flag to force new integration
 
@@ -1178,6 +1327,8 @@ result = composio.logs.add_new_logs(
   response: {},
   is_error: true,
   connection_id: "string_example",
+  session_id: "string_example",
+  logs_type: "string_example",
   entity_id: "string_example",
 )
 p result
@@ -1196,6 +1347,12 @@ Action name of the log
 ##### isError: `Boolean`<a id="iserror-boolean"></a>
 ##### connectionId: `String`<a id="connectionid-string"></a>
 Connection ID of the log
+
+##### sessionId: `String`<a id="sessionid-string"></a>
+Session ID of the log
+
+##### logsType: `String`<a id="logstype-string"></a>
+Type of the log
 
 ##### entityId: `String`<a id="entityid-string"></a>
 Entity ID of the log
@@ -1230,6 +1387,7 @@ result = composio.logs.list(
   limit: 10,
   cursor: "string_example",
   logs_type: "string_example",
+  session_id: "string_example",
 )
 p result
 ```
@@ -1245,6 +1403,7 @@ p result
 ##### limit: `Float`<a id="limit-float"></a>
 ##### cursor: `String`<a id="cursor-string"></a>
 ##### logs_type: `String`<a id="logs_type-string"></a>
+##### session_id: `String`<a id="session_id-string"></a>
 #### 🔄 Return<a id="🔄-return"></a>
 
 [LogsResDTO](./lib/composio/models/logs_res_dto.rb)
@@ -1252,123 +1411,6 @@ p result
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v1/logs` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.payment.create_checkout_session`<a id="composiopaymentcreate_checkout_session"></a>
-
-Create checkout session
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-result = composio.payment.create_checkout_session(
-  plan: "HOBBY",
-)
-p result
-```
-
-#### ⚙️ Parameters<a id="⚙️-parameters"></a>
-
-##### plan: [`Plan`](./lib/composio/models/plan.rb)<a id="plan-planlibcomposiomodelsplanrb"></a>
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/payment/create-checkout-session` `POST`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.payment.get_checkout_session_status`<a id="composiopaymentget_checkout_session_status"></a>
-
-Get checkout session status
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-result = composio.payment.get_checkout_session_status(
-  session_id: "'+j>6",
-)
-p result
-```
-
-#### ⚙️ Parameters<a id="⚙️-parameters"></a>
-
-##### session_id: `String`<a id="session_id-string"></a>
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/payment/checkout-session/{sessionId}/status` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.payment.get_invoice`<a id="composiopaymentget_invoice"></a>
-
-Get invoice
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-result = composio.payment.get_invoice(
-  invoice_id: "'+j>6",
-)
-p result
-```
-
-#### ⚙️ Parameters<a id="⚙️-parameters"></a>
-
-##### invoice_id: `String`<a id="invoice_id-string"></a>
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/payment/invoices/{invoiceId}` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.payment.get_invoices`<a id="composiopaymentget_invoices"></a>
-
-Get invoices
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-result = composio.payment.get_invoices
-p result
-```
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/payment/invoices` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `composio.payment.handle_stripe_webhook`<a id="composiopaymenthandle_stripe_webhook"></a>
-
-Handle stripe webhook
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```ruby
-result = composio.payment.handle_stripe_webhook(
-  body: None,
-)
-p result
-```
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/api/v1/payment/webhook` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -1612,6 +1654,7 @@ result = composio.triggers.list(
   app_names: "string_example",
   connected_account_ids: "string_example",
   trigger_ids: "string_example",
+  integration_ids: "string_example",
   show_enabled_only: true,
 )
 p result
@@ -1622,6 +1665,7 @@ p result
 ##### app_names: `String`<a id="app_names-string"></a>
 ##### connected_account_ids: `String`<a id="connected_account_ids-string"></a>
 ##### trigger_ids: `String`<a id="trigger_ids-string"></a>
+##### integration_ids: `String`<a id="integration_ids-string"></a>
 ##### show_enabled_only: `Boolean`<a id="show_enabled_only-boolean"></a>
 #### 🔄 Return<a id="🔄-return"></a>
 

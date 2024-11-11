@@ -38,6 +38,9 @@ module Composio
     # Type of the log
     attr_accessor :logs_type
 
+    # Session ID of the log
+    attr_accessor :session_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -49,7 +52,8 @@ module Composio
         :'entity_id' => :'entityId',
         :'limit' => :'limit',
         :'cursor' => :'cursor',
-        :'logs_type' => :'logsType'
+        :'logs_type' => :'logsType',
+        :'session_id' => :'sessionId'
       }
     end
 
@@ -69,7 +73,8 @@ module Composio
         :'entity_id' => :'String',
         :'limit' => :'Float',
         :'cursor' => :'String',
-        :'logs_type' => :'String'
+        :'logs_type' => :'String',
+        :'session_id' => :'String'
       }
     end
 
@@ -131,6 +136,10 @@ module Composio
       if attributes.key?(:'logs_type')
         self.logs_type = attributes[:'logs_type']
       end
+
+      if attributes.key?(:'session_id')
+        self.session_id = attributes[:'session_id']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -159,7 +168,8 @@ module Composio
           entity_id == o.entity_id &&
           limit == o.limit &&
           cursor == o.cursor &&
-          logs_type == o.logs_type
+          logs_type == o.logs_type &&
+          session_id == o.session_id
     end
 
     # @see the `==` method
@@ -171,7 +181,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, time, status, search, integration_id, entity_id, limit, cursor, logs_type].hash
+      [type, time, status, search, integration_id, entity_id, limit, cursor, logs_type, session_id].hash
     end
 
     # Builds the object from hash

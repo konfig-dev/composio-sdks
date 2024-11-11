@@ -20,12 +20,16 @@ module Composio
     # Optional trigger ID
     attr_accessor :trigger_id
 
+    # Is new trigger. If true, the trigger was created just now or else it was already existing
+    attr_accessor :is_new
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'status' => :'status',
         :'message' => :'message',
-        :'trigger_id' => :'triggerId'
+        :'trigger_id' => :'triggerId',
+        :'is_new' => :'isNew'
       }
     end
 
@@ -39,7 +43,8 @@ module Composio
       {
         :'status' => :'String',
         :'message' => :'String',
-        :'trigger_id' => :'String'
+        :'trigger_id' => :'String',
+        :'is_new' => :'Boolean'
       }
     end
 
@@ -75,6 +80,10 @@ module Composio
       if attributes.key?(:'trigger_id')
         self.trigger_id = attributes[:'trigger_id']
       end
+
+      if attributes.key?(:'is_new')
+        self.is_new = attributes[:'is_new']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -102,7 +111,8 @@ module Composio
       self.class == o.class &&
           status == o.status &&
           message == o.message &&
-          trigger_id == o.trigger_id
+          trigger_id == o.trigger_id &&
+          is_new == o.is_new
     end
 
     # @see the `==` method
@@ -114,7 +124,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [status, message, trigger_id].hash
+      [status, message, trigger_id, is_new].hash
     end
 
     # Builds the object from hash

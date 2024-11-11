@@ -21,8 +21,11 @@ module Composio
 
     attr_accessor :use_composio_auth
 
-    # Application ID
+    # Composio App UUID to be used for authentication. Either specify this or appName
     attr_accessor :app_id
+
+    # Name of the app to be used for authentication. Either specify this or appId
+    attr_accessor :app_name
 
     # Flag to force new integration
     attr_accessor :force_new_integration
@@ -35,6 +38,7 @@ module Composio
         :'auth_config' => :'authConfig',
         :'use_composio_auth' => :'useComposioAuth',
         :'app_id' => :'appId',
+        :'app_name' => :'appName',
         :'force_new_integration' => :'forceNewIntegration'
       }
     end
@@ -52,6 +56,7 @@ module Composio
         :'auth_config' => :'AuthConfigDTO',
         :'use_composio_auth' => :'CreateConnectorPayloadDTOUseComposioAuth',
         :'app_id' => :'String',
+        :'app_name' => :'String',
         :'force_new_integration' => :'Boolean'
       }
     end
@@ -97,6 +102,10 @@ module Composio
         self.app_id = attributes[:'app_id']
       end
 
+      if attributes.key?(:'app_name')
+        self.app_name = attributes[:'app_name']
+      end
+
       if attributes.key?(:'force_new_integration')
         self.force_new_integration = attributes[:'force_new_integration']
       end
@@ -110,10 +119,6 @@ module Composio
         invalid_properties.push('invalid value for "name", name cannot be nil.')
       end
 
-      if @app_id.nil?
-        invalid_properties.push('invalid value for "app_id", app_id cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -121,7 +126,6 @@ module Composio
     # @return true if the model is valid
     def valid?
       return false if @name.nil?
-      return false if @app_id.nil?
       true
     end
 
@@ -135,6 +139,7 @@ module Composio
           auth_config == o.auth_config &&
           use_composio_auth == o.use_composio_auth &&
           app_id == o.app_id &&
+          app_name == o.app_name &&
           force_new_integration == o.force_new_integration
     end
 
@@ -147,7 +152,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, auth_scheme, auth_config, use_composio_auth, app_id, force_new_integration].hash
+      [name, auth_scheme, auth_config, use_composio_auth, app_id, app_name, force_new_integration].hash
     end
 
     # Builds the object from hash

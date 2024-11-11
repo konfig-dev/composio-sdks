@@ -23,6 +23,10 @@ module Composio
 
     attr_accessor :app_schema
 
+    attr_accessor :custom_description
+
+    attr_accessor :system_prompt
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -31,7 +35,9 @@ module Composio
         :'input' => :'input',
         :'nla_input' => :'nlaInput',
         :'authorization_data' => :'authorizationData',
-        :'app_schema' => :'appSchema'
+        :'app_schema' => :'appSchema',
+        :'custom_description' => :'customDescription',
+        :'system_prompt' => :'systemPrompt'
       }
     end
 
@@ -48,7 +54,9 @@ module Composio
         :'input' => :'Object',
         :'nla_input' => :'String',
         :'authorization_data' => :'Object',
-        :'app_schema' => :'Object'
+        :'app_schema' => :'Object',
+        :'custom_description' => :'String',
+        :'system_prompt' => :'String'
       }
     end
 
@@ -96,6 +104,14 @@ module Composio
       if attributes.key?(:'app_schema')
         self.app_schema = attributes[:'app_schema']
       end
+
+      if attributes.key?(:'custom_description')
+        self.custom_description = attributes[:'custom_description']
+      end
+
+      if attributes.key?(:'system_prompt')
+        self.system_prompt = attributes[:'system_prompt']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -136,7 +152,9 @@ module Composio
           input == o.input &&
           nla_input == o.nla_input &&
           authorization_data == o.authorization_data &&
-          app_schema == o.app_schema
+          app_schema == o.app_schema &&
+          custom_description == o.custom_description &&
+          system_prompt == o.system_prompt
     end
 
     # @see the `==` method
@@ -148,7 +166,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [action_name, run_in_sandbox, input, nla_input, authorization_data, app_schema].hash
+      [action_name, run_in_sandbox, input, nla_input, authorization_data, app_schema, custom_description, system_prompt].hash
     end
 
     # Builds the object from hash

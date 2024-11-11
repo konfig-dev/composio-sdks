@@ -21,6 +21,8 @@ module Composio
 
     attr_accessor :entity_id
 
+    attr_accessor :labels
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -28,7 +30,8 @@ module Composio
         :'integration_id' => :'integrationId',
         :'redirect_uri' => :'redirectUri',
         :'user_uuid' => :'userUuid',
-        :'entity_id' => :'entityId'
+        :'entity_id' => :'entityId',
+        :'labels' => :'labels'
       }
     end
 
@@ -40,11 +43,12 @@ module Composio
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'data' => :'String',
+        :'data' => :'Object',
         :'integration_id' => :'String',
         :'redirect_uri' => :'String',
         :'user_uuid' => :'String',
-        :'entity_id' => :'String'
+        :'entity_id' => :'String',
+        :'labels' => :'Array<String>'
       }
     end
 
@@ -88,14 +92,20 @@ module Composio
       if attributes.key?(:'entity_id')
         self.entity_id = attributes[:'entity_id']
       end
+
+      if attributes.key?(:'labels')
+        if (value = attributes[:'labels']).is_a?(Array)
+          self.labels = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@data.nil? && @data.to_s.length < 1
-        invalid_properties.push('invalid value for "data", the character length must be great than or equal to 1.')
+      if @data.nil?
+        invalid_properties.push('invalid value for "data", data cannot be nil.')
       end
 
       if @integration_id.nil?
@@ -112,20 +122,10 @@ module Composio
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@data.nil? && @data.to_s.length < 1
+      return false if @data.nil?
       return false if @integration_id.nil?
       return false if @integration_id.to_s.length < 1
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] data Value to be assigned
-    def data=(data)
-      if !data.nil? && data.to_s.length < 1
-        fail ArgumentError, 'invalid value for "data", the character length must be great than or equal to 1.'
-      end
-
-      @data = data
     end
 
     # Custom attribute writer method with validation
@@ -151,7 +151,8 @@ module Composio
           integration_id == o.integration_id &&
           redirect_uri == o.redirect_uri &&
           user_uuid == o.user_uuid &&
-          entity_id == o.entity_id
+          entity_id == o.entity_id &&
+          labels == o.labels
     end
 
     # @see the `==` method
@@ -163,7 +164,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [data, integration_id, redirect_uri, user_uuid, entity_id].hash
+      [data, integration_id, redirect_uri, user_uuid, entity_id, labels].hash
     end
 
     # Builds the object from hash
