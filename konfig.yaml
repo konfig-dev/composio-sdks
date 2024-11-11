@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://unpkg.com/konfig-lib@latest/konfig-yaml.schema.json
 
 outputDirectory: /tmp/composio-sdks-out
-specRemotePath: https://backend.composio.dev/openapi.json
+specRemotePath: https://backend.composio.dev/openapi.json?lang=ruby
 specPath: openapi-fixed.json
 specInputPath: composio.json
 infoContactUrl: https://composio.dev
