@@ -1914,6 +1914,12 @@
         "properties": {
           "text": {
             "type": "string"
+          },
+          "customDescription": {
+            "type": "string"
+          },
+          "systemPrompt": {
+            "type": "string"
           }
         },
         "type": "object",
