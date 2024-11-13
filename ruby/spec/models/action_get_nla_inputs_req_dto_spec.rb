@@ -25,4 +25,16 @@ describe Composio::ActionGetNLAInputsReqDTO do
     end
   end
 
+  describe 'test attribute "custom_description"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "system_prompt"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end
