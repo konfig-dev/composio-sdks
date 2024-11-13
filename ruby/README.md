@@ -322,6 +322,8 @@ Get the inputs for an action with NLA
 result = composio.actions.get_action_inputs(
   text: "string_example",
   action_id: "'+j>6",
+  custom_description: "string_example",
+  system_prompt: "string_example",
 )
 p result
 ```
@@ -330,6 +332,8 @@ p result
 
 ##### text: `String`<a id="text-string"></a>
 ##### action_id: `String`<a id="action_id-string"></a>
+##### customDescription: `String`<a id="customdescription-string"></a>
+##### systemPrompt: `String`<a id="systemprompt-string"></a>
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/api/v2/actions/{actionId}/execute/get.inputs` `POST`

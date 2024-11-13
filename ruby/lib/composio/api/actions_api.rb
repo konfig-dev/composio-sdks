@@ -350,11 +350,15 @@ module Composio
     #
     # @param text [String] 
     # @param action_id [String] 
+    # @param custom_description [String] 
+    # @param system_prompt [String] 
     # @param body [ActionGetNLAInputsReqDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def get_action_inputs(text:, action_id:, extra: {})
+    def get_action_inputs(text:, action_id:, custom_description: SENTINEL, system_prompt: SENTINEL, extra: {})
       _body = {}
       _body[:text] = text if text != SENTINEL
+      _body[:customDescription] = custom_description if custom_description != SENTINEL
+      _body[:systemPrompt] = system_prompt if system_prompt != SENTINEL
       extra[:action_get_nla_inputs_req_dto] = _body if !_body.empty?
       api_response = get_action_inputs_with_http_info_impl(action_id, extra)
       api_response.data
@@ -366,11 +370,15 @@ module Composio
     #
     # @param text [String] 
     # @param action_id [String] 
+    # @param custom_description [String] 
+    # @param system_prompt [String] 
     # @param body [ActionGetNLAInputsReqDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def get_action_inputs_with_http_info(text:, action_id:, extra: {})
+    def get_action_inputs_with_http_info(text:, action_id:, custom_description: SENTINEL, system_prompt: SENTINEL, extra: {})
       _body = {}
       _body[:text] = text if text != SENTINEL
+      _body[:customDescription] = custom_description if custom_description != SENTINEL
+      _body[:systemPrompt] = system_prompt if system_prompt != SENTINEL
       extra[:action_get_nla_inputs_req_dto] = _body if !_body.empty?
       get_action_inputs_with_http_info_impl(action_id, extra)
     end

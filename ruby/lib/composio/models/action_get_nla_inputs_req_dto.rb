@@ -13,10 +13,16 @@ module Composio
   class ActionGetNLAInputsReqDTO
     attr_accessor :text
 
+    attr_accessor :custom_description
+
+    attr_accessor :system_prompt
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'text' => :'text'
+        :'text' => :'text',
+        :'custom_description' => :'customDescription',
+        :'system_prompt' => :'systemPrompt'
       }
     end
 
@@ -28,7 +34,9 @@ module Composio
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'text' => :'String'
+        :'text' => :'String',
+        :'custom_description' => :'String',
+        :'system_prompt' => :'String'
       }
     end
 
@@ -56,6 +64,14 @@ module Composio
       if attributes.key?(:'text')
         self.text = attributes[:'text']
       end
+
+      if attributes.key?(:'custom_description')
+        self.custom_description = attributes[:'custom_description']
+      end
+
+      if attributes.key?(:'system_prompt')
+        self.system_prompt = attributes[:'system_prompt']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -81,7 +97,9 @@ module Composio
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          text == o.text
+          text == o.text &&
+          custom_description == o.custom_description &&
+          system_prompt == o.system_prompt
     end
 
     # @see the `==` method
@@ -93,7 +111,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [text].hash
+      [text, custom_description, system_prompt].hash
     end
 
     # Builds the object from hash
