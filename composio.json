@@ -1340,80 +1340,6 @@
           "pageInfo"
         ]
       },
-      "ToolsExecuteReqDto": {
-        "properties": {
-          "actionName": {
-            "type": "string"
-          },
-          "runInSandbox": {
-            "type": "boolean"
-          },
-          "input": {
-            "type": "object"
-          },
-          "nlaInput": {
-            "type": "string"
-          },
-          "authorizationData": {
-            "type": "object"
-          },
-          "appSchema": {
-            "type": "object"
-          },
-          "customDescription": {
-            "type": "string"
-          },
-          "systemPrompt": {
-            "type": "string"
-          }
-        },
-        "type": "object",
-        "required": [
-          "actionName",
-          "runInSandbox",
-          "input"
-        ]
-      },
-      "DirectExecuteReqDto": {
-        "properties": {
-          "endpoint": {
-            "type": "string"
-          },
-          "base_url": {
-            "type": "string"
-          },
-          "headers": {
-            "type": "object"
-          },
-          "queryParams": {
-            "type": "object"
-          }
-        },
-        "type": "object",
-        "required": [
-          "endpoint",
-          "base_url",
-          "headers",
-          "queryParams"
-        ]
-      },
-      "ActionExecutionResDto": {
-        "properties": {
-          "data": {
-            "type": "object"
-          },
-          "error": {
-            "type": "string"
-          },
-          "successfull": {
-            "type": "string"
-          }
-        },
-        "type": "object",
-        "required": [
-          "data"
-        ]
-      },
       "ConnectionParams": {
         "properties": {
           "integrationId": {
@@ -1699,13 +1625,20 @@
       "Parameter": {
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the parameter. For example, 'x-api-key', 'Content-Type', etc.,"
           },
           "in": {
-            "type": "string"
+            "enum": [
+              "query",
+              "header"
+            ],
+            "type": "string",
+            "description": "The location of the parameter. Can be 'query' or 'header'."
           },
           "value": {
-            "type": "string"
+            "type": "string",
+            "description": "The value of the parameter. For example, '1234567890', 'application/json', etc.,"
           }
         },
         "type": "object",
@@ -1844,6 +1777,83 @@
           "connectedAccountId"
         ]
       },
+      "ToolsExecuteReqDto": {
+        "properties": {
+          "actionName": {
+            "type": "string"
+          },
+          "runInSandbox": {
+            "type": "boolean"
+          },
+          "input": {
+            "type": "object"
+          },
+          "nlaInput": {
+            "type": "string"
+          },
+          "authorizationData": {
+            "type": "object"
+          },
+          "appSchema": {
+            "type": "object"
+          },
+          "customDescription": {
+            "type": "string"
+          },
+          "systemPrompt": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "actionName",
+          "runInSandbox",
+          "input"
+        ]
+      },
+      "DirectExecuteReqDto": {
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "base_url": {
+            "type": "string"
+          },
+          "headers": {
+            "type": "object"
+          },
+          "queryParams": {
+            "type": "object"
+          },
+          "body": {
+            "type": "object"
+          }
+        },
+        "type": "object",
+        "required": [
+          "endpoint",
+          "base_url",
+          "headers",
+          "queryParams"
+        ]
+      },
+      "ActionExecutionResDto": {
+        "properties": {
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "type": "string"
+          },
+          "successfull": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ]
+      },
       "CustomAuthDTO": {
         "properties": {
           "base_url": {
@@ -1861,6 +1871,67 @@
         },
         "type": "object",
         "required": [
+          "parameters"
+        ]
+      },
+      "ActionProxyRequestMethodDTO": {
+        "properties": {
+          "type": {
+            "enum": [
+              "formData",
+              "urlEncoded",
+              "raw",
+              "binary",
+              "graphql",
+              "none"
+            ],
+            "type": "string",
+            "description": "The type of request body to use for the action. Defaults to 'none'."
+          },
+          "data": {
+            "type": "string",
+            "description": "The data to be sent to the endpoint. This will override the body set in the connected account."
+          }
+        },
+        "type": "object"
+      },
+      "ActionProxyRequestConfigDTO": {
+        "properties": {
+          "connectedAccountId": {
+            "type": "string",
+            "description": "The connected account uuid to use for the action."
+          },
+          "endpoint": {
+            "type": "string",
+            "description": "The endpoint to call for the action. If the given url is relative, it will be resolved relative to the base_url set in the connected account info."
+          },
+          "method": {
+            "enum": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ],
+            "type": "string",
+            "description": "The HTTP method to use for the action."
+          },
+          "parameters": {
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            },
+            "type": "array"
+          },
+          "body": {
+            "type": "object",
+            "description": "The body to be sent to the endpoint. This can either be a JSON field or a string."
+          }
+        },
+        "type": "object",
+        "required": [
+          "connectedAccountId",
+          "endpoint",
+          "method",
           "parameters"
         ]
       },
@@ -5614,24 +5685,17 @@
     "/api/v2/actions/proxy": {
       "post": {
         "operationId": "_executeActionProxyV2",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "endpoint",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActionProxyRequestConfigDTO"
+              }
             }
           },
-          {
-            "in": "query",
-            "name": "connectedAccountId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+          "description": "ActionProxyRequestConfigDTO",
+          "required": false
+        },
         "responses": {
           "200": {
             "content": {
