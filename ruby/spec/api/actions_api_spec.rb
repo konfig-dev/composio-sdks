@@ -42,9 +42,8 @@ describe 'ActionsApi' do
   # unit tests for execute_action_proxy
   # Execute action proxy
   # Execute an action with direct auth.
-  # @param endpoint 
-  # @param connected_account_id 
   # @param [Hash] opts the optional parameters
+  # @option opts [ActionProxyRequestConfigDTO] :action_proxy_request_config_dto ActionProxyRequestConfigDTO
   # @return [ActionExecutionResDto]
   describe 'execute_action_proxy test' do
     it 'should work' do

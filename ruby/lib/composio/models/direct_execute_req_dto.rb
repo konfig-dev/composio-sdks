@@ -19,13 +19,16 @@ module Composio
 
     attr_accessor :_query_params
 
+    attr_accessor :body
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'endpoint' => :'endpoint',
         :'base_url' => :'base_url',
         :'headers' => :'headers',
-        :'_query_params' => :'queryParams'
+        :'_query_params' => :'queryParams',
+        :'body' => :'body'
       }
     end
 
@@ -40,7 +43,8 @@ module Composio
         :'endpoint' => :'String',
         :'base_url' => :'String',
         :'headers' => :'Object',
-        :'_query_params' => :'Object'
+        :'_query_params' => :'Object',
+        :'body' => :'Object'
       }
     end
 
@@ -79,6 +83,10 @@ module Composio
 
       if attributes.key?(:'_query_params')
         self._query_params = attributes[:'_query_params']
+      end
+
+      if attributes.key?(:'body')
+        self.body = attributes[:'body']
       end
     end
 
@@ -123,7 +131,8 @@ module Composio
           endpoint == o.endpoint &&
           base_url == o.base_url &&
           headers == o.headers &&
-          _query_params == o._query_params
+          _query_params == o._query_params &&
+          body == o.body
     end
 
     # @see the `==` method
@@ -135,7 +144,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [endpoint, base_url, headers, _query_params].hash
+      [endpoint, base_url, headers, _query_params, body].hash
     end
 
     # Builds the object from hash

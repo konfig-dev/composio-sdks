@@ -10,22 +10,18 @@ require 'date'
 require 'time'
 
 module Composio
-  class Parameter
-    # The name of the parameter. For example, 'x-api-key', 'Content-Type', etc.,
-    attr_accessor :name
+  class ActionProxyRequestMethodDTO
+    # The type of request body to use for the action. Defaults to 'none'.
+    attr_accessor :type
 
-    # The location of the parameter. Can be 'query' or 'header'.
-    attr_accessor :_in
-
-    # The value of the parameter. For example, '1234567890', 'application/json', etc.,
-    attr_accessor :value
+    # The data to be sent to the endpoint. This will override the body set in the connected account.
+    attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name',
-        :'_in' => :'in',
-        :'value' => :'value'
+        :'type' => :'type',
+        :'data' => :'data'
       }
     end
 
@@ -37,9 +33,8 @@ module Composio
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'name' => :'String',
-        :'_in' => :'ModelIn',
-        :'value' => :'String'
+        :'type' => :'Type',
+        :'data' => :'String'
       }
     end
 
@@ -53,27 +48,23 @@ module Composio
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Composio::Parameter` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Composio::ActionProxyRequestMethodDTO` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Composio::Parameter`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Composio::ActionProxyRequestMethodDTO`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
       end
 
-      if attributes.key?(:'_in')
-        self._in = attributes[:'_in']
-      end
-
-      if attributes.key?(:'value')
-        self.value = attributes[:'value']
+      if attributes.key?(:'data')
+        self.data = attributes[:'data']
       end
     end
 
@@ -81,27 +72,12 @@ module Composio
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @name.nil?
-        invalid_properties.push('invalid value for "name", name cannot be nil.')
-      end
-
-      if @_in.nil?
-        invalid_properties.push('invalid value for "_in", _in cannot be nil.')
-      end
-
-      if @value.nil?
-        invalid_properties.push('invalid value for "value", value cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @name.nil?
-      return false if @_in.nil?
-      return false if @value.nil?
       true
     end
 
@@ -110,9 +86,8 @@ module Composio
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name &&
-          _in == o._in &&
-          value == o.value
+          type == o.type &&
+          data == o.data
     end
 
     # @see the `==` method
@@ -124,7 +99,7 @@ module Composio
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, _in, value].hash
+      [type, data].hash
     end
 
     # Builds the object from hash

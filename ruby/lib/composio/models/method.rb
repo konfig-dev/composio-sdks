@@ -10,16 +10,15 @@ require 'date'
 require 'time'
 
 module Composio
-  class Type
-    FORM_DATA = "formData".freeze
-    URL_ENCODED = "urlEncoded".freeze
-    RAW = "raw".freeze
-    BINARY = "binary".freeze
-    GRAPHQL = "graphql".freeze
-    NONE = "none".freeze
+  class Method
+    GET = "GET".freeze
+    POST = "POST".freeze
+    PUT = "PUT".freeze
+    PATCH = "PATCH".freeze
+    DELETE = "DELETE".freeze
 
     def self.all_vars
-      @all_vars ||= [FORM_DATA, URL_ENCODED, RAW, BINARY, GRAPHQL, NONE].freeze
+      @all_vars ||= [GET, POST, PUT, PATCH, DELETE].freeze
     end
 
     # Builds the enum from string
@@ -33,8 +32,8 @@ module Composio
     # @param [String] The enum value in the form of the string
     # @return [String] The enum value
     def build_from_hash(value)
-      return value if Type.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #Type"
+      return value if Method.all_vars.include?(value)
+      raise "Invalid ENUM value #{value} for class #Method"
     end
   end
 end

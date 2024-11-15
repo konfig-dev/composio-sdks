@@ -65,7 +65,7 @@ module Composio
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'Type',
+        :'type' => :'GetLogsDtoType',
         :'time' => :'Time',
         :'status' => :'GetLogsDtoStatus',
         :'search' => :'String',
