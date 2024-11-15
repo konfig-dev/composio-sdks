@@ -163,11 +163,22 @@ module Composio
     #
     # Execute an action with direct auth.
     #
-    # @param endpoint [String] 
-    # @param connected_account_id [String] 
+    # @param parameters [Array<Parameter>] 
+    # @param connected_account_id [String] The connected account uuid to use for the action.
+    # @param endpoint [String] The endpoint to call for the action. If the given url is relative, it will be resolved relative to the base_url set in the connected account info.
+    # @param method [Method] The HTTP method to use for the action.
+    # @param body [Object] The body to be sent to the endpoint. This can either be a JSON field or a string.
+    # @param body [ActionProxyRequestConfigDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def execute_action_proxy(endpoint:, connected_account_id:, extra: {})
-      api_response = execute_action_proxy_with_http_info_impl(endpoint, connected_account_id, extra)
+    def execute_action_proxy(parameters:, connected_account_id:, endpoint:, method:, body: SENTINEL, extra: {})
+      _body = {}
+      _body[:parameters] = parameters if parameters != SENTINEL
+      _body[:connectedAccountId] = connected_account_id if connected_account_id != SENTINEL
+      _body[:endpoint] = endpoint if endpoint != SENTINEL
+      _body[:method] = method if method != SENTINEL
+      _body[:body] = body if body != SENTINEL
+      extra[:action_proxy_request_config_dto] = _body if !_body.empty?
+      api_response = execute_action_proxy_with_http_info_impl(extra)
       api_response.data
     end
 
@@ -175,60 +186,64 @@ module Composio
     #
     # Execute an action with direct auth.
     #
-    # @param endpoint [String] 
-    # @param connected_account_id [String] 
+    # @param parameters [Array<Parameter>] 
+    # @param connected_account_id [String] The connected account uuid to use for the action.
+    # @param endpoint [String] The endpoint to call for the action. If the given url is relative, it will be resolved relative to the base_url set in the connected account info.
+    # @param method [Method] The HTTP method to use for the action.
+    # @param body [Object] The body to be sent to the endpoint. This can either be a JSON field or a string.
+    # @param body [ActionProxyRequestConfigDTO] 
     # @param [Hash] extra additional parameters to pass along through :header_params, :query_params, or parameter name
-    def execute_action_proxy_with_http_info(endpoint:, connected_account_id:, extra: {})
-      execute_action_proxy_with_http_info_impl(endpoint, connected_account_id, extra)
+    def execute_action_proxy_with_http_info(parameters:, connected_account_id:, endpoint:, method:, body: SENTINEL, extra: {})
+      _body = {}
+      _body[:parameters] = parameters if parameters != SENTINEL
+      _body[:connectedAccountId] = connected_account_id if connected_account_id != SENTINEL
+      _body[:endpoint] = endpoint if endpoint != SENTINEL
+      _body[:method] = method if method != SENTINEL
+      _body[:body] = body if body != SENTINEL
+      extra[:action_proxy_request_config_dto] = _body if !_body.empty?
+      execute_action_proxy_with_http_info_impl(extra)
     end
 
     # Execute action proxy
     # Execute an action with direct auth.
-    # @param endpoint [String] 
-    # @param connected_account_id [String] 
     # @param [Hash] opts the optional parameters
+    # @option opts [ActionProxyRequestConfigDTO] :action_proxy_request_config_dto ActionProxyRequestConfigDTO
     # @return [ActionExecutionResDto]
-    private def execute_action_proxy_impl(endpoint, connected_account_id, opts = {})
-      data, _status_code, _headers = execute_action_proxy_with_http_info(endpoint, connected_account_id, opts)
+    private def execute_action_proxy_impl(opts = {})
+      data, _status_code, _headers = execute_action_proxy_with_http_info(opts)
       data
     end
 
     # Execute action proxy
     # Execute an action with direct auth.
-    # @param endpoint [String] 
-    # @param connected_account_id [String] 
     # @param [Hash] opts the optional parameters
+    # @option opts [ActionProxyRequestConfigDTO] :action_proxy_request_config_dto ActionProxyRequestConfigDTO
     # @return [APIResponse] data is ActionExecutionResDto, status code, headers and response
-    private def execute_action_proxy_with_http_info_impl(endpoint, connected_account_id, opts = {})
+    private def execute_action_proxy_with_http_info_impl(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ActionsApi.execute_action_proxy ...'
-      end
-      # verify the required parameter 'endpoint' is set
-      if @api_client.config.client_side_validation && endpoint.nil?
-        fail ArgumentError, "Missing the required parameter 'endpoint' when calling ActionsApi.execute_action_proxy"
-      end
-      # verify the required parameter 'connected_account_id' is set
-      if @api_client.config.client_side_validation && connected_account_id.nil?
-        fail ArgumentError, "Missing the required parameter 'connected_account_id' when calling ActionsApi.execute_action_proxy"
       end
       # resource path
       local_var_path = '/api/v2/actions/proxy'
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'endpoint'] = endpoint
-      query_params[:'connectedAccountId'] = connected_account_id
 
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+        header_params['Content-Type'] = content_type
+      end
 
       # form parameters
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body]
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'action_proxy_request_config_dto'])
 
       # return_type
       return_type = opts[:debug_return_type] || 'ActionExecutionResDto'

@@ -10,34 +10,34 @@ require 'spec_helper'
 require 'json'
 require 'date'
 
-# Unit tests for Composio::DirectExecuteReqDto
-describe Composio::DirectExecuteReqDto do
-  let(:instance) { Composio::DirectExecuteReqDto.new }
+# Unit tests for Composio::ActionProxyRequestConfigDTO
+describe Composio::ActionProxyRequestConfigDTO do
+  let(:instance) { Composio::ActionProxyRequestConfigDTO.new }
 
-  describe 'test an instance of DirectExecuteReqDto' do
-    it 'should create an instance of DirectExecuteReqDto' do
-      expect(instance).to be_instance_of(Composio::DirectExecuteReqDto)
+  describe 'test an instance of ActionProxyRequestConfigDTO' do
+    it 'should create an instance of ActionProxyRequestConfigDTO' do
+      expect(instance).to be_instance_of(Composio::ActionProxyRequestConfigDTO)
     end
   end
+  describe 'test attribute "parameters"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "connected_account_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "endpoint"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "base_url"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "headers"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "_query_params"' do
+  describe 'test attribute "method"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

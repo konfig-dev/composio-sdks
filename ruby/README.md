@@ -214,7 +214,7 @@ result = composio.actions.execute(
         "parameters" => [
             {
                 "name" => "name_example",
-                "_in" => "_in_example",
+                "_in" => "query",
                 "value" => "value_example",
             }
         ],
@@ -260,16 +260,38 @@ Execute an action with direct auth.
 
 ```ruby
 result = composio.actions.execute_action_proxy(
-  endpoint: "endpoint_example",
-  connected_account_id: "connectedAccountId_example",
+  parameters: [
+        {
+            "name" => "name_example",
+            "_in" => "query",
+            "value" => "value_example",
+        }
+    ],
+  connected_account_id: "string_example",
+  endpoint: "string_example",
+  method: "GET",
+  body: {},
 )
 p result
 ```
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
+##### parameters: Array<[`Parameter`](./lib/composio/models/parameter.rb)><a id="parameters-array"></a>
+##### connectedAccountId: `String`<a id="connectedaccountid-string"></a>
+The connected account uuid to use for the action.
+
 ##### endpoint: `String`<a id="endpoint-string"></a>
-##### connected_account_id: `String`<a id="connected_account_id-string"></a>
+The endpoint to call for the action. If the given url is relative, it will be
+resolved relative to the base_url set in the connected account info.
+
+##### method: [`Method`](./lib/composio/models/method.rb)<a id="method-methodlibcomposiomodelsmethodrb"></a>
+The HTTP method to use for the action.
+
+##### body: `Object`<a id="body-object"></a>
+The body to be sent to the endpoint. This can either be a JSON field or a
+string.
+
 #### 🔄 Return<a id="🔄-return"></a>
 
 [ActionExecutionResDto](./lib/composio/models/action_execution_res_dto.rb)
