@@ -1,5 +1,0 @@
----
-ruby: patch
----
-
-Regenerate SDKs
