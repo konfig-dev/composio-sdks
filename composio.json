@@ -6,7 +6,7 @@
           "id": {
             "type": "string"
           },
-          "clientId": {
+          "projectId": {
             "type": "string"
           },
           "email": {
@@ -60,7 +60,7 @@
         "type": "object",
         "required": [
           "id",
-          "clientId",
+          "projectId",
           "email",
           "name",
           "role",
@@ -191,13 +191,18 @@
           "email": {
             "type": "string",
             "description": "The email associated with the client"
+          },
+          "orgId": {
+            "type": "string",
+            "description": "The organization ID associated with the client"
           }
         },
         "type": "object",
         "required": [
           "clientId",
           "apiKey",
-          "email"
+          "email",
+          "orgId"
         ]
       },
       "UserGitUserInfo": {
@@ -373,6 +378,50 @@
         "required": [
           "client",
           "apiKey"
+        ]
+      },
+      "ProjectReqDTO": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the project"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ]
+      },
+      "ProjectResDTO": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the project"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the project"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "ProjectListResDTO": {
+        "properties": {
+          "items": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "description": "The list of projects"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items"
         ]
       },
       "InviteMemberReqDTO": {
@@ -3842,6 +3891,83 @@
           "Auth"
         ],
         "description": "Get client info"
+      }
+    },
+    "/api/v1/client/auth/project/add": {
+      "post": {
+        "operationId": "_addProject",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectReqDTO"
+              }
+            }
+          },
+          "description": "ProjectReqDTO",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Add project",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/client/auth/project/delete/{projectId}": {
+      "delete": {
+        "operationId": "_deleteProject",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Delete project",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/client/auth/projects": {
+      "get": {
+        "operationId": "_getProjects",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectListResDTO"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get projects",
+        "tags": [
+          "Auth"
+        ]
       }
     },
     "/api/v1/api_keys": {
